@@ -1,13 +1,18 @@
 import React from 'react';
+import CategoryList from '../components/Category/CategoryList';
+import Footer from '../components/Footer';
+import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
-import Slider from '../components/Slider';
-import Slider2 from '../components/Slider2';
+import PopularList from '../components/Popular/PopularList';
 
 const Home = () => {
   return (
-    <div>
+    <div className='bg-green-50'>
       <Navbar />
-      <Slider />
+      <Hero />
+      <CategoryList />
+      <PopularList />
+      <Footer />
     </div>
   );
 };

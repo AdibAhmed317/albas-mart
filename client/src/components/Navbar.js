@@ -1,11 +1,10 @@
 import React from 'react';
 import logo from '../assets/logoT.png';
-import { ShoppingCart } from './icons';
+import { ShoppingCart } from '../assets/icons';
 
 const Navbar = () => {
   return (
-    // component
-    <nav className='bg-green-300 shadow'>
+    <nav className='bg-green-200 shadow'>
       <div className='container mx-auto px-6 py-3 justify-between md:flex md:items-center'>
         <div className='flex justify-between items-center'>
           <div>
@@ -37,43 +36,49 @@ const Navbar = () => {
         <div className='md:flex items-center lg:ml-14'>
           <div className='flex flex-col md:flex-row md:mx-6'>
             <a
-              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0'
+              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
               href='#'
             >
               Home
+              <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </a>
             <a
-              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0'
+              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
               href='#'
             >
               Shop
+              <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </a>
             <a
-              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0'
+              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
               href='#'
             >
               Contact
+              <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </a>
             <a
-              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0'
+              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
               href='#'
             >
               About
+              <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </a>
           </div>
         </div>
         <div className='flex'>
           <a
-            className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5'
+            className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5 group'
             href='#'
           >
             Login
+            <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
           </a>
           <a
-            className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5'
+            className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5 group'
             href='#'
           >
             Sign up
+            <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
           </a>
 
           <div className='flex justify-center md:block mt-1'>
