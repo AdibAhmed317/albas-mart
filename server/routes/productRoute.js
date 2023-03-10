@@ -18,84 +18,60 @@ router.post('/', verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//Get All User
-router.get('/', verifyTokenAndAdmin, async (req, res) => {
-  const query = req.query.new; // new = query name
+//Update Product
+router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
   try {
-    const user = query
-      ? await UserModel.find().sort({ _id: -1 }).limit(1)
-      : await UserModel.find();
-    res.status(200).json(user);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-//Get One User
-router.get('/find/:id', verifyTokenAndAdmin, async (req, res) => {
-  try {
-    const user = await UserModel.findById(req.params.id);
-    const { password, ...others } = user._doc;
-    res.status(200).json(others);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-//Get Stats
-router.get('/stats', verifyTokenAndAdmin, async (req, res) => {
-  const date = new Date();
-  const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
-  try {
-    const data = await UserModel.aggregate([
-      { $match: { createdAt: { $gte: lastYear } } },
-      {
-        $project: {
-          month: { $month: '$createdAt' },
-        },
-      },
-      {
-        $group: {
-          _id: '$month',
-          total: { $sum: 1 },
-        },
-      },
-    ]);
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-//Update User
-router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
-  if (req.body.password) {
-    req.body.password = CryptoJS.AES.encrypt(
-      req.body.password,
-      process.env.PASS_SEC
-    ).toString();
-  }
-
-  try {
-    const updatedUser = await UserModel.findByIdAndUpdate(
+    const updatedProduct = await ProductModel.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedUser);
+    res.status(200).json(updatedProduct);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-//Delete User
-router.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
+//Delete Product
+router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
   try {
-    await UserModel.findByIdAndDelete(req.params.id);
+    await ProductModel.findByIdAndDelete(req.params.id);
     res.status(200).json('Delete Successfully.');
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//Get All Product
+router.get('/', async (req, res) => {
+  const qNew = req.query.new; // new = query name
+  const qCategory = req.query.category;
+
+  try {
+    let products;
+    if (qNew) {
+      products = await ProductModel.find().sort({ createdAt: -1 }).limit(10);
+    } else if (qCategory) {
+      products = await ProductModel.find({
+        categories: { $in: [qCategory] },
+      });
+    } else {
+      products = await ProductModel.find();
+    }
+
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//Get Single Product
+router.get('/find/:id', async (req, res) => {
+  try {
+    const produtct = await ProductModel.findById(req.params.id);
+    res.status(200).json(produtct);
   } catch (error) {
     res.status(500).json(error);
   }
