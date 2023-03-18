@@ -5,11 +5,14 @@ import Login from './pages/Login';
 import ProductList from './pages/ProductList';
 import Registration from './pages/Registration';
 import SingleProduct from './pages/SingleProduct';
+import Success from './components/success';
+import PayTest from './components/PayTest';
 
 const App = () => {
   return (
-    <div className=''>
-      <Home />
+    <div className=' flex justify-center items-center h-screen flex-col'>
+      <PayTest />
+      <Success />
     </div>
   );
 };
