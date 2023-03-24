@@ -1,6 +1,7 @@
 import React from 'react';
-import logo from '../assets/logoT.png';
-import { ShoppingCart } from '../assets/icons';
+import logo from '../../assets/logoT.png';
+import { ShoppingCart } from '../../assets/icons';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -8,12 +9,12 @@ const Navbar = () => {
       <div className='container mx-auto px-6 py-3 justify-between md:flex md:items-center'>
         <div className='flex justify-between items-center'>
           <div>
-            <a
+            <Link
               className='text-green-800 text-xl font-bold md:text-2xl hover:text-green-600'
-              href='#'
+              to='/'
             >
               <img className='h-10' src={logo} />
-            </a>
+            </Link>
           </div>
 
           {/*  Mobile menu button  */}
@@ -35,59 +36,59 @@ const Navbar = () => {
         {/* Mobile Menu open: "block", Menu closed: "hidden"  */}
         <div className='md:flex items-center lg:ml-14'>
           <div className='flex flex-col md:flex-row md:mx-6'>
-            <a
+            <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              href='#'
+              to='/'
             >
               Home
               <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-            </a>
-            <a
+            </Link>
+            <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              href='#'
+              to='/product-list'
             >
               Shop
               <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-            </a>
-            <a
+            </Link>
+            <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              href='#'
+              to='/'
             >
               Contact
               <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-            </a>
-            <a
+            </Link>
+            <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              href='#'
+              to='/'
             >
               About
               <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-            </a>
+            </Link>
           </div>
         </div>
         <div className='flex'>
-          <a
+          <Link
             className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5 group'
-            href='#'
+            to='/signin'
           >
             Login
             <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-          </a>
-          <a
+          </Link>
+          <Link
             className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5 group'
-            href='#'
+            to='/signup'
           >
             Sign up
             <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-          </a>
+          </Link>
 
           <div className='flex justify-center md:block mt-1'>
-            <a
+            <Link
               className='relative text-green-800 hover:text-green-800'
-              href='#'
+              to='/cart'
             >
               <ShoppingCart />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

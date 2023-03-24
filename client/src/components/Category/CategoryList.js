@@ -1,5 +1,6 @@
 import React from 'react';
-import { categories } from '../data';
+import { Link } from 'react-router-dom';
+import { categories } from '../../assets/data/data';
 import CategoryItem from './CategoryItem';
 
 const CategoryList = () => {
@@ -15,11 +16,7 @@ const CategoryList = () => {
           <CategoryItem item={item} />
         ))}
       </div>
-      <div className='flex items-center justify-center mt-5'>
-        <button className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-purple-700 bg-green-500 rounded-md font-thin text-xl'>
-          View All
-        </button>
-      </div>
+      <div className='flex items-center justify-center mt-5'></div>
     </div>
   );
 };

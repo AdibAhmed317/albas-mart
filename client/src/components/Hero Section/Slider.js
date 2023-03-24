@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowRight } from '../assets/icons';
+import { ArrowLeft, ArrowRight } from '../../assets/icons';
 import { RxDotFilled } from 'react-icons/rx';
-import bb1 from '../assets/bb1.jpg';
-import bb2 from '../assets/bb2.jpg';
-import bb3 from '../assets/bb3.jpg';
-import banner1 from '../assets/banner1.jpg';
+import bb1 from '../../assets/bb1.jpg';
+import bb2 from '../../assets/bb2.jpg';
+import bb3 from '../../assets/bb3.jpg';
+import banner1 from '../../assets/banner1.jpg';
 
 const Slider = () => {
   const slides = [

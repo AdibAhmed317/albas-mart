@@ -1,9 +1,10 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer/Footer';
+import Navbar from '../components/Navbar/Navbar';
 import styled from 'styled-components';
 import b1 from '../assets/b1.jpg';
 import { Add, Remove } from '../assets/icons';
+import { Link } from 'react-router-dom';
 
 const TopButton = styled.button`
   padding: 10px;
@@ -30,7 +31,7 @@ const SummaryItemPrice = styled.span``;
 
 const Cart = () => {
   return (
-    <div id='container'>
+    <div id='container' className=' bg-green-100'>
       <Navbar />
       <div className='p-5' id='wrapper'>
         <h1 className='font-light text-center text-5xl' id='title'>
@@ -40,7 +41,9 @@ const Cart = () => {
           className='flex flex-col md:flex-row items-center justify-between p-5'
           id='top'
         >
-          <TopButton>Continue Shopping</TopButton>
+          <Link to='/product-list'>
+            <TopButton>Continue Shopping</TopButton>
+          </Link>
           <div id='toptexts'>
             <span className='underline my-0 mx-3 '>Shopping Bag (02)</span>
             <span className='underline my-0 mx-3 '>Your Wishlist (0)</span>

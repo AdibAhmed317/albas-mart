@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ArrowLeft, ArrowRight } from './icons/index';
-import b1 from '../assets/b1.jpg';
+import b1 from '../../assets/b1.jpg';
 
 const Container = styled.div`
   width: 100%;

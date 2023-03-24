@@ -1,6 +1,6 @@
 import React from 'react';
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
+import Footer from '../components/Footer/Footer';
+import Navbar from '../components/Navbar/Navbar';
 import b2 from '../assets/b2.jpg';
 import { Add, Remove, ShoppingCartSingle } from '../assets/icons';
 
