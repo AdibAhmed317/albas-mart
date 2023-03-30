@@ -5,7 +5,7 @@ import { dataCat } from './dataCat';
 const Sidebar = () => {
   return (
     <div className='h-full w-[350px] lg:w-auto lg:ml-10 overflow-hidden lg:mt-5'>
-      <h1 className='text-xl text-green-900 font-thin md:text-start lg:text-start text-center'>
+      <h1 className='text-xl text-green-900 font-thin md:text-start lg:text-start text-center mt-5 md:mt-0 lg:mt-0'>
         Categories
       </h1>
       <hr className='mt-4 bg-green-900 h-[1.5px] w-full'></hr>

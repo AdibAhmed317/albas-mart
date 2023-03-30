@@ -6,17 +6,32 @@ export const dataCat = [
   },
   {
     id: 2,
-    title: 'Meat-&-Fish',
-    path: 'Meat-&-Fish',
+    title: 'Meat & Fish',
+    path: 'meat-&-fish',
   },
   {
     id: 3,
-    title: 'vegetables',
+    title: 'Vegetables',
     path: 'vegetables',
   },
   {
     id: 4,
     title: 'Dried-Goods',
-    path: '',
+    path: 'dried-goods',
+  },
+  {
+    id: 4,
+    title: 'Dairy',
+    path: 'dairy',
+  },
+  {
+    id: 4,
+    title: 'Bakery',
+    path: 'bakery',
+  },
+  {
+    id: 4,
+    title: 'Canned Food',
+    path: 'canned-food',
   },
 ];

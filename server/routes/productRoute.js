@@ -77,4 +77,14 @@ router.get('/find/:id', async (req, res) => {
   }
 });
 
+//Get Single Search Product
+router.get('/search/:title', async (req, res) => {
+  try {
+    const produtct = await ProductModel.find({ title: req.params.title });
+    res.status(200).json(produtct);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;

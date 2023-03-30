@@ -34,8 +34,8 @@ const Navbar = () => {
           </div>
         </div>
         {/* Mobile Menu open: "block", Menu closed: "hidden"  */}
-        <div className='md:flex items-center lg:ml-14'>
-          <div className='flex flex-col md:flex-row md:mx-6'>
+        <div className='md:flex  items-center lg:ml-14 hidden'>
+          <div className='flex flex-col md:flex-row md:mx-6 items-center mt-3 mb-2'>
             <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
               to='/'
@@ -45,7 +45,7 @@ const Navbar = () => {
             </Link>
             <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              to='/product-list'
+              to='/product-list/'
             >
               Shop
               <span class='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
@@ -66,7 +66,7 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-        <div className='flex'>
+        <div className='md:flex justify-center hidden'>
           <Link
             className='my-1 text-sm text-green-800 font-medium hover:text-green-600 m-5 group'
             to='/signin'

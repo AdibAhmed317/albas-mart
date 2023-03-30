@@ -33,7 +33,7 @@ export const demoProduct = [
     price: 99,
     image: b1,
     stck: 'Available',
-    cat: 'vegitable',
+    cat: 'vegetables',
   },
   {
     id: 5,
@@ -81,7 +81,7 @@ export const demoProduct = [
     price: 99,
     image: b2,
     stck: 'Available',
-    cat: 'vegitable',
+    cat: 'vegetables',
   },
   {
     id: 11,
