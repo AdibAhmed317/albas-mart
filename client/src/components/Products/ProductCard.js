@@ -4,12 +4,9 @@ import { ShoppingCart } from '../../assets/icons/index';
 import b3 from '../../assets/b3.jpg';
 
 const ProductCard = ({ product }) => {
-  const location = useLocation();
-  const cat = location.pathname.split('/')[2];
-
   return (
     <div className='md:w-44 w-40 md:h-[45vh] lg:h-[45vh] items-center flex flex-col shadow-2xl bg-white md:m-10 m-2'>
-      <Link to='/product' className='w-full'>
+      <Link to={`/product/${product._id}`} className='w-full'>
         <img
           className='h-[120px] lg:h-40 w-full object-cover'
           src={b3}

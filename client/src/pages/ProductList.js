@@ -41,7 +41,7 @@ const ProductList = () => {
   }, [inputValue]);
 
   const searchProduct = async (event) => {
-    if (inputValue != '') {
+    if (inputValue !== '') {
       const fetchSearchProduct = await axios.get(
         `http://localhost:5000/api/products/search/${inputValue}`
       );

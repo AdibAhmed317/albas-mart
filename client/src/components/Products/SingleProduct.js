@@ -4,24 +4,23 @@ import Navbar from '../components/Navbar/Navbar';
 import b2 from '../assets/b2.jpg';
 import { Add, Remove, ShoppingCartSingle } from '../assets/icons';
 
-const SingleProduct = () => {
+const SingleProduct = ({ product }) => {
   return (
     <div className='bg-green-50' id='container'>
       <Navbar />
       <div className='p-[50px] flex flex-col md:flex-row' id='wrapper'>
         <div className='flex-1' id='image-container'>
-          <img className='w-full h-96 md:h-[90vh] object-cover' src={b2} />
+          <img className='w-full h-96 md:h-[80vh] object-cover' src={b2} />
         </div>
         <div className='flex-1 py-0 px-[50px]' id='info container'>
           <h1 className='font-extralight text-4xl mt-10 md:mt-0' id='title'>
-            Cini Gura Chal
+            {product.title}
           </h1>
           <p className='my-5 mx-0 text-xl md:text-lg font-thin' id='desc'>
-            Desc Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum
+            {product.desc}
           </p>
           <span className='font-semibold text-xl' id='price'>
-            $999
+            ${product.price}
           </span>
           <div
             className='flex justify-between w-3/6 my-[30px] mx-0'
@@ -31,23 +30,16 @@ const SingleProduct = () => {
               <span className='font-extralight text-xl m-1' id='filterTitle'>
                 Size
               </span>
-              <select
-                className='bg-green-200 p-2 rounded-full font-thin ml-1'
-                id='filterSize'
-              >
-                <option className='font-thin' id='filterSizeOption'>
-                  500g
-                </option>
-                <option className='font-thin' id='filterSizeOption'>
-                  1kg
-                </option>
-                <option className='font-thin' id='filterSizeOption'>
-                  1.5kg
-                </option>
-                <option className='font-thin' id='filterSizeOption'>
-                  2kg
-                </option>
-              </select>
+              {product.size?.map((option) => (
+                <select
+                  className='bg-green-200 p-2 rounded-full font-thin ml-1'
+                  id='filterSize'
+                >
+                  <option className='font-thin' id='filterSizeOption'>
+                    {option}
+                  </option>
+                </select>
+              ))}
             </div>
           </div>
           <div
