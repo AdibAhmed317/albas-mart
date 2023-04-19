@@ -74,7 +74,7 @@ const ProductList = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid md:grid-cols-4 grid-cols-2 overflow-auto scrollbar-hide h-[80vh] bg-green-50'>
+        <div className='grid md:grid-cols-4 grid-cols-2 overflow-auto scrollbar-hide h-[80vh] w-auto md:w-[150vh] bg-green-50'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
               <ProductCard product={product} key={product._id} />

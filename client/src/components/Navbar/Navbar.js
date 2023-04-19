@@ -2,8 +2,10 @@ import React from 'react';
 import logo from '../../assets/logoT.png';
 import { ShoppingCart } from '../../assets/icons';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
   return (
     <nav className='bg-green-200 shadow'>
       <div className='container mx-auto px-6 py-3 justify-between md:flex md:items-center'>
@@ -84,10 +86,11 @@ const Navbar = () => {
 
           <div className='flex justify-center md:block mt-1'>
             <Link
-              className='relative text-green-800 hover:text-green-800'
+              className='flex flex-row relative text-green-800 hover:text-green-800'
               to='/cart'
             >
               <ShoppingCart />
+              <span className='-mt-0.5'>({quantity})</span>
             </Link>
           </div>
         </div>

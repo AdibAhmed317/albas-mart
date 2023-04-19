@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { publicRequest } from '../api/requestMethods';
+import { addProduct } from '../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
 import b2 from '../assets/b2.jpg';
-import { Add, Remove, ShoppingCartSingle } from '../assets/icons';
-import { publicRequest } from '../api/requestMethods';
 import NoProductFound from '../components/Errors/NoProductFound';
+import { Add, Remove, ShoppingCartSingle } from '../assets/icons';
 
 const SingleProduct = () => {
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [size, setSize] = useState('');
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const id = location.pathname.split('/')[2];
@@ -17,13 +23,30 @@ const SingleProduct = () => {
     const getSingleProduct = async () => {
       try {
         const res = await publicRequest.get('products/find/' + id);
+        if (!res.data) {
+          return <NoProductFound />;
+        }
         setProduct(res.data);
+        setSize(res.data.size?.[0] || '');
       } catch (error) {
-        return <NoProductFound />;
+        console.log(error);
+        return <div></div>;
       }
     };
     getSingleProduct();
   }, [id]);
+
+  const hangleQuantity = (type) => {
+    if (type === 'dec') {
+      quantity > 1 && setQuantity(quantity - 1);
+    } else {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleCart = () => {
+    dispatch(addProduct({ ...product, quantity, size }));
+  };
 
   return (
     <div className='bg-green-50' id='container'>
@@ -50,16 +73,17 @@ const SingleProduct = () => {
               <span className='font-extralight text-xl m-1' id='filterTitle'>
                 Size
               </span>
-              {product.size?.map((option) => (
-                <select
-                  className='bg-green-200 p-2 rounded-full font-thin ml-1'
-                  id='filterSize'
-                >
-                  <option className='font-thin' id='filterSizeOption'>
+              <select
+                className='bg-green-200 p-2 rounded-full font-thin ml-1'
+                value={size}
+                onChange={(event) => setSize(event.target.value)}
+              >
+                {product.size?.map((option) => (
+                  <option key={option} value={option}>
                     {option}
                   </option>
-                </select>
-              ))}
+                ))}
+              </select>
             </div>
           </div>
           <div
@@ -67,20 +91,26 @@ const SingleProduct = () => {
             id='AddContainer'
           >
             <div className='flex items-center' id='AmountContainer'>
-              <Remove />
+              <button onClick={() => hangleQuantity('dec')}>
+                <Remove />
+              </button>
               <span
                 className='w-10 h-10 md:w-[30px] md:h-[30px] text-green-900 rounded-xl border-solid bg-green-200 flex justify-center items-center mx-1'
                 id='amount'
               >
-                1
+                {quantity}
               </span>
-              <Add />
+              <button onClick={() => hangleQuantity('inc')}>
+                <Add />
+              </button>
             </div>
-            <div className='w-40 h-fit flex justify-center items-center md:ml-0 ml-10 text-base text-green-900 bg-green-200 rounded-xl p-1'>
-              <ShoppingCartSingle />
-              <p className='justify-center mx-2 md:mx-0 text-green-900'>
-                Add to cart
-              </p>
+            <div className='w-fit h-fit justify-center items-center md:ml-0 ml-10 text-base text-green-900 bg-green-200 rounded-xl px-5 py-1'>
+              <button className='flex' onClick={handleCart}>
+                <ShoppingCartSingle />
+                <p className='justify-center mx-2 md:mx-0 text-green-900'>
+                  Add to cart
+                </p>
+              </button>
             </div>
           </div>
         </div>
@@ -91,3 +121,22 @@ const SingleProduct = () => {
 };
 
 export default SingleProduct;
+{
+  /* <select
+  className='bg-green-200 p-2 rounded-full font-thin ml-1'
+  id='filterSize'
+  value={size}
+  onChange={handleSelectChange}
+>
+  {product.size?.map((option) => (
+    <option
+      className='font-thin'
+      id='filterSizeOption'
+      key={option}
+      value={option}
+    >
+      {option}
+    </option>
+  ))}
+</select>; */
+}
