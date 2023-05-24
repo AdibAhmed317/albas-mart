@@ -29,7 +29,10 @@ router.post('/login', async (req, res) => {
     const user = await UserModel.findOne({
       email: req.body.email,
     });
-    !user && res.status(401).json('No user found');
+
+    if (!user) {
+      return res.status(401).json('No user found');
+    }
 
     const hashedPassword = CryptoJS.AES.decrypt(
       user.password,
@@ -37,6 +40,9 @@ router.post('/login', async (req, res) => {
     );
 
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+    if (Originalpassword !== req.body.password) {
+      return res.status(401).json('Invalid Password');
+    }
     Originalpassword !== req.body.password &&
       res.status(401).json('Invalid Password');
 

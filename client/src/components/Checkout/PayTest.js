@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useHistory } from 'react';
+import React, { useEffect, useState } from 'react';
 import StripeChekout from 'react-stripe-checkout';
 import axios from 'axios';
-import logo from '../assets/logoT.png';
+import logo from '../../assets/logoT.png';
 
-const PayTest = () => {
+const PayTest = ({ cartTotal }) => {
+  const stripeKey = process.env.REACT_APP_STRIPE_PUBLISH_KEY;
   const [stripeToken, setStripeToken] = useState(null);
 
   const onToken = (token) => {
@@ -15,9 +16,8 @@ const PayTest = () => {
       try {
         const res = await axios.post(
           'http://localhost:5000/api/checkout/payment',
-          { tokenId: stripeToken.id, amount: 2000 }
+          { tokenId: stripeToken.id, amount: cartTotal * 100 }
         );
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -26,18 +26,18 @@ const PayTest = () => {
   }, [stripeToken]);
 
   return (
-    <div className='bg-red-500 h-auto w-auto m-20'>
+    <div className='w-full py-3 bg-black text-white font-semibold text-center'>
       <StripeChekout
         name='Al-Raya'
         image={logo}
         billingAddress
         shippingAddress
-        description='your total is $20'
-        amount={2000} // stripe works in cents
+        description={`your total is $${cartTotal}`}
+        amount={cartTotal * 100} // stripe works in cents
         token={onToken}
-        stripeKey={`${process.env.REACT_APP_STRIPE_PUBLISH_KEY}`}
+        stripeKey={stripeKey}
       >
-        <button>Pay Now</button>
+        <button className='w-full'>Checkout</button>
       </StripeChekout>
     </div>
   );

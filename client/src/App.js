@@ -7,7 +7,6 @@ import ProductList from './pages/ProductList';
 import Registration from './pages/Registration';
 import SingleProductList from './pages/SingleProductList';
 import Success from './components/Checkout/success';
-// import PayTest from './components/PayTest';
 
 const App = () => {
   return (
