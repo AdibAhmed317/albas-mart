@@ -7,8 +7,58 @@ import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Shop/Sidebar';
 import ProductCard from '../../components/Shop/ProductCard';
 import NoProductFound from '../../components/Shop/NoProductFound';
+import { Search } from '../../assets/icons';
+import Footer from '../../components/Footer/Footer';
 
 const Shop = () => {
+  //States for sorting
+  const [fetchedProduct, setFetchedProduct] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+
+  //Location from current route
+  const location = useLocation();
+  const cat = location.pathname.split('/')[2];
+
+  //For Category
+  useEffect(() => {
+    getProductByCat();
+  }, [cat]);
+
+  const getProductByCat = async () => {
+    try {
+      const catFetch = await axios.get(
+        `http://localhost:5000/api/products?category=${cat}`
+      );
+      const data = catFetch.data;
+      setFetchedProduct(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // For Search
+  useEffect(() => {
+    searchProduct();
+  }, [inputValue]);
+
+  const searchProduct = async (event) => {
+    if (inputValue !== '') {
+      const fetchSearchProduct = await axios.get(
+        `http://localhost:5000/api/products/search/${inputValue}`
+      );
+      const searchData = fetchSearchProduct.data;
+      if (searchData) {
+        setFetchedProduct(searchData);
+      }
+    } else {
+      getProductByCat();
+    }
+  };
+
+  const handleSearch = (e) => {
+    setInputValue(e.target.value);
+  };
+
   return (
     <div className='bg-green-100 h-full'>
       <Navbar />
