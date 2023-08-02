@@ -24,6 +24,11 @@ const Shop = () => {
     getProductByCat();
   }, [cat]);
 
+  // For Search
+  useEffect(() => {
+    searchProduct();
+  }, [inputValue]);
+
   const getProductByCat = async () => {
     try {
       const catFetch = await axios.get(
@@ -35,11 +40,6 @@ const Shop = () => {
       console.log(error);
     }
   };
-
-  // For Search
-  useEffect(() => {
-    searchProduct();
-  }, [inputValue]);
 
   const searchProduct = async (event) => {
     if (inputValue !== '') {
