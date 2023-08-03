@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
           />
         </Link>
       </div>
-      <div className='w-40 mt-4 pl-1'>
+      <div className='w-40 mt-4 lg:pl-1 p-5 md:p-0'>
         <div>
           <h5 className='text-lg font-normal text-green-900'>
             {product.title}

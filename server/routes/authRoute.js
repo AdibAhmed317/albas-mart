@@ -6,14 +6,14 @@ const jwt = require('jsonwebtoken');
 //Register
 router.post('/register', async (req, res) => {
   const newUser = new UserModel({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    password: CryptoJS.AES.encrypt(
-      req.body.password,
+    Name: req.body.Name,
+    Email: req.body.Email,
+    Address: req.body.Address,
+    Password: CryptoJS.AES.encrypt(
+      req.body.Password,
       process.env.PASS_SEC
     ).toString(),
-    phone: req.body.phone,
+    Phone: req.body.Phone,
   });
   try {
     const savedUser = await newUser.save();
@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const user = await UserModel.findOne({
-      email: req.body.email,
+      Email: req.body.Email,
     });
 
     if (!user) {
@@ -35,15 +35,15 @@ router.post('/login', async (req, res) => {
     }
 
     const hashedPassword = CryptoJS.AES.decrypt(
-      user.password,
+      user.Password,
       process.env.PASS_SEC
     );
 
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
-    if (Originalpassword !== req.body.password) {
+    if (Originalpassword !== req.body.Password) {
       return res.status(401).json('Invalid Password');
     }
-    Originalpassword !== req.body.password &&
+    Originalpassword !== req.body.Password &&
       res.status(401).json('Invalid Password');
 
     const accessToken = jwt.sign(
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
       { expiresIn: '3d' }
     );
 
-    const { password, ...others } = user._doc;
+    const { Password, ...others } = user._doc;
 
     res.status(200).json({ ...others, accessToken });
   } catch (error) {

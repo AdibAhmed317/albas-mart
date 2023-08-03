@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
 router.get('/find/:id', async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
-    const { password, ...others } = user._doc;
+    const { Password, ...others } = user._doc;
     res.status(200).json(others);
   } catch (error) {
     res.status(500).json(error);
@@ -64,7 +64,6 @@ router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
       process.env.PASS_SEC
     ).toString();
   }
-
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.params.id,

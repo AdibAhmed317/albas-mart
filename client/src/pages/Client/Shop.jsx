@@ -60,11 +60,11 @@ const Shop = () => {
   };
 
   return (
-    <div className='bg-green-100 h-full'>
+    <div className='bg-green-50 h-full'>
       <Navbar />
       <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start mt-10'>
         <div className='md:mr-5 lg:mr-5 mr-0 scrollbar-hide'>
-          <div className='flex justify-start items-center mt-0 lg:mt-5 ml-10'>
+          <div className='flex justify-start items-center mt-0 lg:mt-5'>
             <input
               className='lg:w-[200px] w-60 h-10 bg-green-200 pl-5 items-center'
               type='search'
@@ -72,6 +72,7 @@ const Shop = () => {
               value={inputValue}
               onChange={handleSearch}
             />
+            <Search />
           </div>
           <Sidebar />
         </div>
