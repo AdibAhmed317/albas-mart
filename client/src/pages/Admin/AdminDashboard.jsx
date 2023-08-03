@@ -54,9 +54,9 @@ const AdminDashboard = () => {
         </div>
         {searchResult ? (
           <div className='bg-gray-100 p-4 rounded shadow-md mb-10'>
-            <h2 className='text-xl font-bold mb-2'>{searchResult.firstname}</h2>
-            <p>Email: {searchResult.email}</p>
-            <p>Phone: {searchResult.phone}</p>
+            <h2 className='text-xl font-bold mb-2'>{searchResult.Name}</h2>
+            <p>Email: {searchResult.Email}</p>
+            <p>Phone: {searchResult.Phone}</p>
           </div>
         ) : (
           <p></p>
@@ -73,13 +73,13 @@ const AdminDashboard = () => {
                   <b>Id:</b> {user._id}
                 </p>
                 <p>
-                  <b>Name:</b> {user.firstname}
+                  <b>Name:</b> {user.Name}
                 </p>
                 <p>
-                  <b>Email:</b> {user.email}
+                  <b>Email:</b> {user.Email}
                 </p>
                 <p>
-                  <b>Phone:</b> {user.phone}
+                  <b>Phone:</b> {user.Phone}
                 </p>
               </li>
             ))}

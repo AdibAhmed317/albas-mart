@@ -40,53 +40,54 @@ const Registration = () => {
   return (
     <>
       <Navbar />
-      <div className='w-auto h-screen bg-green-50 flex items-center justify-center'>
+      <div className='w-auto md:h-[85vh] h-screen bg-green-50 flex items-center justify-center'>
         <div className='p-5 w-[350px] md:w-[40%] bg-green-200'>
           <h1 className='text-2xl font-light'>CREATE AN ACCOUNT</h1>
           <input
-            className='flex-1 min-w-[40%] mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
+            className='flex-1 md:w-[40%] w-full mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
             placeholder='Name'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <input
-            className='flex-1 min-w-[40%] mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
+            className='flex-1 md:w-[40%] w-full mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
             placeholder='Email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
-            className='flex-1 min-w-[40%] mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
+            className='flex-1 md:w-[40%] w-full mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
+            placeholder='Phone Number'
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <input
+            className='flex-1 md:w-[40%] w-full mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
+            placeholder='Address'
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+          <input
+            className='flex-1 md:w-[40%] w-full mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
             type='password'
             placeholder='Password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
-            className='flex-1 min-w-[40%] mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
+            className='flex-1 md:w-[40%] w-full mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
             type='password'
             placeholder='Confirm Password'
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <input
-            className='flex-1 min-w-[40%] mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
-            placeholder='Phone Number'
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          <input
-            className='flex-1 min-w-[40%] mt-5 mr-3 mb-0 ml-0 bg-green-50 p-3'
-            placeholder='Address'
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
           <br />
           <button
-            className='w-full border-none py-2 px-5 text-center bg-green-900 text-white cursor-pointer mt-10'
+            className='w-[40%] border-none py-2 px-5 text-center bg-green-900 text-white cursor-pointer mt-5 md:mt-10'
             onClick={handleSubmit}>
             Create
           </button>
+          <br />
           <span className='text-sm my-5 mx-0'>
             <Link
               className='my-2 mx-0 text-base underline cursor-pointer text-green-900'
