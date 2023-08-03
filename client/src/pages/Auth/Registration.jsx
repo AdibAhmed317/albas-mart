@@ -25,7 +25,7 @@ const Registration = () => {
         Address: address,
       };
       const response = await axios.post(
-        'http://localhost:51317/api/users/registration',
+        'http://localhost:5000/api/user/registration',
         registrationData
       );
 

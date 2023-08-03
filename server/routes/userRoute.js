@@ -5,9 +5,9 @@ const {
 } = require('./verifyToken');
 
 const router = require('express').Router();
-
+// verifyTokenAndAdmin
 //Get All User
-router.get('/', verifyTokenAndAdmin, async (req, res) => {
+router.get('/', async (req, res) => {
   const query = req.query.new; // new = query name
   try {
     const user = query
@@ -18,9 +18,9 @@ router.get('/', verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(error);
   }
 });
-
+// verifyTokenAndAdmin
 //Get One User
-router.get('/find/:id', verifyTokenAndAdmin, async (req, res) => {
+router.get('/find/:id', async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
     const { password, ...others } = user._doc;

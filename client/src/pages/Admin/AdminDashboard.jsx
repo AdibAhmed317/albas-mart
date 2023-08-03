@@ -13,10 +13,9 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get(
-        'http://localhost:51317/api/users/getallusers'
-      );
+      const res = await axios.get('http://localhost:5000/api/user/');
       setData(res.data);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +24,7 @@ const AdminDashboard = () => {
   const handleSearch = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:51317/api/users/find/${searchId}`
+        `http://localhost:5000/api/user/find/${searchId}`
       );
       setSearchResult(res.data);
     } catch (error) {
@@ -55,10 +54,9 @@ const AdminDashboard = () => {
         </div>
         {searchResult ? (
           <div className='bg-gray-100 p-4 rounded shadow-md mb-10'>
-            <h2 className='text-xl font-bold mb-2'>{searchResult.Name}</h2>
-            <p>Email: {searchResult.Email}</p>
-            <p>Phone: {searchResult.Phone}</p>
-            <p>Address: {searchResult.Address}</p>
+            <h2 className='text-xl font-bold mb-2'>{searchResult.firstname}</h2>
+            <p>Email: {searchResult.email}</p>
+            <p>Phone: {searchResult.phone}</p>
           </div>
         ) : (
           <p></p>
@@ -71,10 +69,18 @@ const AdminDashboard = () => {
                 key={user.UserId}
                 className='bg-gray-100 p-4 rounded shadow-md'>
                 <h2 className='text-xl font-bold mb-2'>{user.Name}</h2>
-                <p>Id: {user.UserId}</p>
-                <p>Email: {user.Email}</p>
-                <p>Phone: {user.Phone}</p>
-                <p>Address: {user.Address}</p>
+                <p>
+                  <b>Id:</b> {user._id}
+                </p>
+                <p>
+                  <b>Name:</b> {user.firstname}
+                </p>
+                <p>
+                  <b>Email:</b> {user.email}
+                </p>
+                <p>
+                  <b>Phone:</b> {user.phone}
+                </p>
               </li>
             ))}
           </ul>
