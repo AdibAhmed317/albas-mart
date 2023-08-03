@@ -6,7 +6,7 @@ import Footer from '../../components/Footer/Footer';
 const HomePage = ({ Name }) => {
   return (
     <div className='bg-green-50'>
-      <Navbar Name={Name} />
+      <Navbar />
       <Hero />
       <Footer />
     </div>

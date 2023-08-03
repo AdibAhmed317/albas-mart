@@ -8,12 +8,12 @@ import Shop from './pages/Client/Shop';
 import Dropdown from './components/Navbar/Dropdown';
 
 function App() {
-  const location = useLocation();
-  const Name = location.state?.Name;
+  // const location = useLocation();
+  // const Name = location.state?.Name;
   return (
     <>
       <Routes>
-        <Route path='/' element={<HomePage Name={Name} />} />
+        <Route path='/' element={<HomePage />} />
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />

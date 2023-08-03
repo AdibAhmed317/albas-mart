@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import Navbar from '../../components/Navbar/Navbar';
+import UserContext from '../../context/UserContext';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const { setName } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -28,6 +31,7 @@ const Login = () => {
 
       const decodedToken = jwtDecode(res.data.accessToken);
       const Name = decodedToken.Name;
+      setName(Name);
       console.log(Name);
       navigate('/', { state: { Name } });
     } catch (error) {

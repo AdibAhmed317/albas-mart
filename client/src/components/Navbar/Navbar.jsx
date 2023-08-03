@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingCart } from '../../assets/icons/index';
 import logo from '../../assets/logoT.png';
+import UserContext from '../../context/UserContext';
 
-const Navbar = ({ Name }) => {
+const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const { Name } = useContext(UserContext);
   return (
     <nav className='bg-green-200 shadow'>
       <div className='container mx-auto px-6 py-3 justify-between md:flex md:items-center'>
