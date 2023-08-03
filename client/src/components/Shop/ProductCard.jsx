@@ -5,7 +5,7 @@ import b3 from '../../assets/hero.jpg';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='md:w-44 w-40 md:h-[45vh] lg:h-[45vh] items-center flex flex-col shadow-2xl bg-white md:m-10 m-2 rounded-b-lg'>
+    <div className='md:w-52 w-40 md:h-[45vh] lg:h-[45vh] items-center flex flex-col shadow-2xl bg-white md:m-10 m-2 rounded-b-lg'>
       <div>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img
