@@ -3,10 +3,10 @@ import Hero from '../../components/Hero Section/Hero';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-const HomePage = () => {
+const HomePage = ({ Name }) => {
   return (
     <div className='bg-green-50'>
-      <Navbar />
+      <Navbar Name={Name} />
       <Hero />
       <Footer />
     </div>

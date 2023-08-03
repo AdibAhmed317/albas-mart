@@ -40,9 +40,11 @@ router.post('/login', async (req, res) => {
     );
 
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+
     if (Originalpassword !== req.body.Password) {
       return res.status(401).json('Invalid Password');
     }
+
     Originalpassword !== req.body.Password &&
       res.status(401).json('Invalid Password');
 
@@ -50,6 +52,7 @@ router.post('/login', async (req, res) => {
       {
         id: user._id,
         isAdmin: user.isAdmin,
+        Name: user.Name,
       },
       process.env.JWT_SEC,
       { expiresIn: '3d' }

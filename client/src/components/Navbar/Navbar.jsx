@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ShoppingCart } from '../../assets/icons/index';
 import logo from '../../assets/logoT.png';
 
-const Navbar = () => {
+const Navbar = ({ Name }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
@@ -85,11 +85,17 @@ const Navbar = () => {
 
         {/* Center Menu for Large Screens */}
         <div className='md:flex justify-center hidden'>
-          <Link
-            className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'
-            to='/login'>
-            Login
-          </Link>
+          {Name ? (
+            <div className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'>
+              {Name}
+            </div>
+          ) : (
+            <Link
+              className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'
+              to='/login'>
+              Login
+            </Link>
+          )}
           <div className='flex justify-center md:block mt-1'>
             <Link
               className='flex flex-row relative text-green-800 hover:text-green-800 mt-1'
