@@ -5,7 +5,6 @@ const UserSchema = new mongoose.Schema(
     Name: {
       type: String,
       required: true,
-      unique: true,
     },
     Address: {
       type: String,
@@ -23,6 +22,7 @@ const UserSchema = new mongoose.Schema(
     Phone: {
       type: String,
       required: true,
+      unique: true,
     },
     isAdmin: {
       type: Boolean,

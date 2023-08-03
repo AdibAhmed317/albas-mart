@@ -5,11 +5,11 @@ import Footer from '../../components/Footer/Footer';
 
 const HomePage = () => {
   return (
-    <>
+    <div className='bg-green-50'>
       <Navbar />
       <Hero />
       <Footer />
-    </>
+    </div>
   );
 };
 

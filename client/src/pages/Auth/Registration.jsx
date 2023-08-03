@@ -10,6 +10,7 @@ const Registration = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
@@ -25,15 +26,21 @@ const Registration = () => {
         Address: address,
       };
       const response = await axios.post(
-        'http://localhost:5000/api/user/registration',
+        'http://localhost:5000/api/auth/register',
         registrationData
       );
 
-      // Handle successful registration response, if needed
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setPhoneNumber('');
+      setAddress('');
+      setErrorMessage('');
       console.log('Registration successful:', response.data);
     } catch (error) {
-      // Handle registration error, if needed
       console.error('Registration error:', error);
+      setErrorMessage('User Already Exist');
     }
   };
 
@@ -95,6 +102,8 @@ const Registration = () => {
               Already have an account?
             </Link>
           </span>
+          <br />
+          <span className='text-red-500'>{errorMessage}</span>
         </div>
       </div>
     </>
