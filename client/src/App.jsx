@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HomePage from './pages/Client/HomePage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import Login from './pages/Auth/Login';
 import Registration from './pages/Auth/Registration';
 import Shop from './pages/Client/Shop';
+import Dropdown from './components/Navbar/Dropdown';
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
@@ -16,7 +17,7 @@ function App() {
         <Route path='/registration' element={<Registration />} />
         <Route path='/shop' element={<Shop />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
