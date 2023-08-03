@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import { Link } from 'react-router-dom';
+
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+import Navbar from '../../components/Navbar/Navbar';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -11,6 +14,8 @@ const Registration = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [address, setAddress] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
@@ -38,6 +43,7 @@ const Registration = () => {
       setAddress('');
       setErrorMessage('');
       console.log('Registration successful:', response.data);
+      navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
       setErrorMessage('User Already Exist');

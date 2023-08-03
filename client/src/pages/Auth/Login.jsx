@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate('/');
+  };
+
   return (
     <>
       <Navbar />
@@ -19,7 +25,9 @@ const Login = () => {
               type='password'
               placeholder='Password'
             />
-            <button className='w-full mb-3 border-none py-3 px-5 bg-green-900 text-white cursor-pointer'>
+            <button
+              className='w-full mb-3 border-none py-3 px-5 bg-green-900 text-white cursor-pointer'
+              onClick={handleClick}>
               Login
             </button>
             <a className='my-1 mx-0 text-base underline cursor-pointer text-green-900'>
