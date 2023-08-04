@@ -1,12 +1,28 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+import { Link, useNavigate } from 'react-router-dom';
 import { Remove, ShoppingCart } from '../../assets/icons/index';
 import logo from '../../assets/logoT.png';
 import UserContext from '../../context/UserContext';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const { Name } = useContext(UserContext);
+  const { Name, setName } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    try {
+      const res = axios.post('http://localhost:5000/api/auth/login');
+      if (res) {
+        setName('');
+        localStorage.removeItem('accessToken');
+        navigate('/');
+      }
+    } catch (error) {}
+  };
+
   return (
     <nav className='bg-green-200 shadow'>
       <div className='container mx-auto px-6 py-3 justify-between md:flex md:items-center'>
@@ -103,7 +119,7 @@ const Navbar = () => {
                 <h5 className='bg-purple-700 hover:bg-purple-500 text-sm text-green-50 font-medium  py-1 px-3 rounded-md'>
                   {Name}
                 </h5>
-                <button>
+                <button onClick={handleLogout}>
                   <Remove />
                 </button>
               </div>

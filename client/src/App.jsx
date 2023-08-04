@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HomePage from './pages/Client/HomePage';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import Login from './pages/Auth/Login';
 import Registration from './pages/Auth/Registration';
 import Shop from './pages/Client/Shop';
-import Dropdown from './components/Navbar/Dropdown';
 
 function App() {
-  // const location = useLocation();
-  // const Name = location.state?.Name;
   return (
     <>
       <Routes>

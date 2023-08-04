@@ -13,7 +13,12 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/user/');
+      const accessToken = localStorage.getItem('accessToken');
+      console.log(accessToken);
+      const headers = { token: `Bearer ${accessToken}` };
+      const res = await axios.get('http://localhost:5000/api/user/', {
+        headers,
+      });
       setData(res.data);
       console.log(data);
     } catch (error) {
