@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from '../../assets/icons/index';
+import { Remove, ShoppingCart } from '../../assets/icons/index';
 import logo from '../../assets/logoT.png';
 import UserContext from '../../context/UserContext';
 
@@ -71,11 +71,22 @@ const Navbar = () => {
             </Link>
           </div>
           <div className='flex flex-row justify-between text-green-800 hover:text-green-800 md:hidden'>
-            <Link
-              className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'
-              to='/login'>
-              Login
-            </Link>
+            {Name ? (
+              <div>
+                <div className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'>
+                  {Name}
+                </div>
+                <button>
+                  <Remove />
+                </button>
+              </div>
+            ) : (
+              <Link
+                className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'
+                to='/login'>
+                Login
+              </Link>
+            )}
             <Link
               className='flex flex-row relative text-green-800 hover:text-green-800 mt-1'
               to='/'>
@@ -87,8 +98,15 @@ const Navbar = () => {
         {/* Center Menu for Large Screens */}
         <div className='md:flex justify-center hidden'>
           {Name ? (
-            <div className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'>
-              {Name}
+            <div>
+              <div className='flex flex-row my-1  m-5 group '>
+                <h5 className='bg-purple-700 hover:bg-purple-500 text-sm text-green-50 font-medium  py-1 px-3 rounded-md'>
+                  {Name}
+                </h5>
+                <button>
+                  <Remove />
+                </button>
+              </div>
             </div>
           ) : (
             <Link

@@ -28,12 +28,11 @@ const Login = () => {
       );
       console.log(res.data.accessToken);
       localStorage.setItem('accessToken', res.data.accessToken);
-
       const decodedToken = jwtDecode(res.data.accessToken);
       const Name = decodedToken.Name;
       setName(Name);
       console.log(Name);
-      navigate('/', { state: { Name } });
+      navigate('/');
     } catch (error) {
       setErrorMessage('Email/Password did not match');
       console.log(error);
