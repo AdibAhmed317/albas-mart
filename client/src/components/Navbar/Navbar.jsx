@@ -9,14 +9,16 @@ import UserContext from '../../context/UserContext';
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { Name, setName } = useContext(UserContext);
+  const { isAdmin, seIsAdmin } = useContext(UserContext);
 
   const navigate = useNavigate();
 
   const handleLogout = () => {
     try {
-      const res = axios.post('http://localhost:5000/api/auth/login');
+      const res = axios.post('http://localhost:5000/api/auth/logout');
       if (res) {
         setName('');
+        seIsAdmin(false);
         localStorage.removeItem('accessToken');
         navigate('/');
       }
@@ -25,20 +27,17 @@ const Navbar = () => {
 
   return (
     <nav className='bg-green-200 shadow'>
-      <div className='container mx-auto px-6 py-3 justify-between md:flex md:items-center'>
+      <div className='container mx-auto py-3 justify-between md:flex md:items-center'>
         <div className='flex justify-between items-center'>
-          <div>
-            <Link
-              className='text-green-800 text-xl font-bold md:text-2xl hover:text-green-600'
-              to='/'>
-              <img
-                className='h-10 -ml-0 lg:-ml-10 md:-ml-10'
-                src={logo}
-                alt='Logo'
-              />
-            </Link>
-          </div>
-
+          <Link
+            className='text-green-800 text-xl font-bold md:text-2xl hover:text-green-600 ml-10'
+            to='/'>
+            <img
+              className='h-10 -ml-0 lg:-ml-10 md:-ml-10'
+              src={logo}
+              alt='Logo'
+            />
+          </Link>
           {/* Mobile menu button */}
           <div className='flex md:hidden'>
             <button
@@ -79,17 +78,26 @@ const Navbar = () => {
               Contact
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </Link>
-            <Link
-              className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              to='/admin-dashboard'>
-              Admin
-              <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-            </Link>
+            {isAdmin ? (
+              <Link
+                className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
+                to='/admin-dashboard'>
+                Admin
+                <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
+              </Link>
+            ) : (
+              <Link
+                className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
+                to='/'>
+                About
+                <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
+              </Link>
+            )}
           </div>
           <div className='flex flex-row justify-between text-green-800 hover:text-green-800 md:hidden'>
             {Name ? (
               <div>
-                <div className='my-1 text-sm text-green-50 font-medium m-5 group bg-purple-700 hover:bg-purple-500 py-1 px-3 rounded-md'>
+                <div className='my-1 text-sm text-green-50 font-medium m-5 group py-1 px-3 rounded-md'>
                   {Name}
                 </div>
                 <button>
@@ -115,11 +123,11 @@ const Navbar = () => {
         <div className='md:flex justify-center hidden'>
           {Name ? (
             <div>
-              <div className='flex flex-row my-1  m-5 group '>
-                <h5 className='bg-purple-700 hover:bg-purple-500 text-sm text-green-50 font-medium  py-1 px-3 rounded-md'>
+              <div className='flex flex-row my-1 m-5 group '>
+                <h5 className='text-sm text-green-800 font-medium rounded-md mt-1'>
                   {Name}
                 </h5>
-                <button onClick={handleLogout}>
+                <button onClick={handleLogout} className='m-0 p-0'>
                   <Remove />
                 </button>
               </div>

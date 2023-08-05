@@ -12,6 +12,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const { setName } = useContext(UserContext);
+  const { setIsAdmin } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -26,12 +27,18 @@ const Login = () => {
         'http://localhost:5000/api/auth/login',
         loginData
       );
+
       console.log(res.data.accessToken);
       localStorage.setItem('accessToken', res.data.accessToken);
+
       const decodedToken = jwtDecode(res.data.accessToken);
       const Name = decodedToken.Name;
+      const adminCheck = decodedToken.isAdmin;
+
       setName(Name);
-      console.log(Name);
+      setIsAdmin(adminCheck);
+      console.log(Name, adminCheck);
+
       navigate('/');
     } catch (error) {
       setErrorMessage('Email/Password did not match');

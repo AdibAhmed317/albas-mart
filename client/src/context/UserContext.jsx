@@ -5,6 +5,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [Name, setName] = useState('');
+  const [isAdmin, setIsAdmin] = useState();
 
   useEffect(() => {
     try {
@@ -12,15 +13,18 @@ export const UserProvider = ({ children }) => {
       if (accessToken) {
         const decodedToken = jwtDecode(accessToken);
         const userName = decodedToken.Name;
+        const adminCheck = decodedToken.isAdmin;
         setName(userName);
+        setIsAdmin(adminCheck);
       }
     } catch (error) {
       setName('');
+      setIsAdmin(false);
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{ Name, setName }}>
+    <UserContext.Provider value={{ Name, setName, isAdmin, setIsAdmin }}>
       {children}
     </UserContext.Provider>
   );
