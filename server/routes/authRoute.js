@@ -66,18 +66,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-//Logout
-router.post('/logout', async (req, res) => {
-  try {
-    res.clearCookie('access_token', {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-    });
-    res.status(200).json({ message: 'Logout successful' });
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to logout' });
-  }
-});
-
 module.exports = router;

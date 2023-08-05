@@ -9,20 +9,15 @@ import UserContext from '../../context/UserContext';
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { Name, setName } = useContext(UserContext);
-  const { isAdmin, seIsAdmin } = useContext(UserContext);
+  const { isAdmin, setIsAdmin } = useContext(UserContext);
 
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    try {
-      const res = axios.post('http://localhost:5000/api/auth/logout');
-      if (res) {
-        setName('');
-        seIsAdmin(false);
-        localStorage.removeItem('accessToken');
-        navigate('/');
-      }
-    } catch (error) {}
+  const handleLogout = async () => {
+    localStorage.removeItem('accessToken');
+    navigate('/');
+    setName('');
+    setIsAdmin(false);
   };
 
   return (

@@ -42,7 +42,6 @@ const Registration = () => {
       setPhoneNumber('');
       setAddress('');
       setErrorMessage('');
-      console.log('Registration successful:', response.data);
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);

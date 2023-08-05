@@ -28,17 +28,15 @@ const Login = () => {
         loginData
       );
 
-      console.log(res.data.accessToken);
       localStorage.setItem('accessToken', res.data.accessToken);
 
       const decodedToken = jwtDecode(res.data.accessToken);
+
       const Name = decodedToken.Name;
       const adminCheck = decodedToken.isAdmin;
 
       setName(Name);
       setIsAdmin(adminCheck);
-      console.log(Name, adminCheck);
-
       navigate('/');
     } catch (error) {
       setErrorMessage('Email/Password did not match');
