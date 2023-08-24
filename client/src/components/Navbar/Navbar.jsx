@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { Remove, ShoppingCart } from '../../assets/icons/index';
@@ -33,6 +32,7 @@ const Navbar = () => {
               alt='Logo'
             />
           </Link>
+
           {/* Mobile menu button */}
           <div className='flex md:hidden'>
             <button
@@ -69,7 +69,7 @@ const Navbar = () => {
             </Link>
             <Link
               className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              to='/'>
+              to='/contact'>
               Contact
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
             ) : (
               <Link
                 className='my-1 text-sm text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-                to='/'>
+                to='/about'>
                 About
                 <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
               </Link>
@@ -108,7 +108,7 @@ const Navbar = () => {
             )}
             <Link
               className='flex flex-row relative text-green-800 hover:text-green-800 mt-1'
-              to='/'>
+              to='/cart'>
               <ShoppingCart />
             </Link>
           </div>
@@ -137,7 +137,7 @@ const Navbar = () => {
           <div className='flex justify-center md:block mt-1'>
             <Link
               className='flex flex-row relative text-green-800 hover:text-green-800 mt-1'
-              to='/'>
+              to='/cart'>
               <ShoppingCart />
             </Link>
           </div>
