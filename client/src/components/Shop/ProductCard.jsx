@@ -40,29 +40,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
-// md:h-[45vh] lg:h-[45vh]
-{
-  /* <hr className='mt-4 bg-green-500 h-[1.5px] w-40'></hr> */
-}
-
-{
-  /* <div className=' pb-5'>
-<div className='mt-1 flex flex-col justify-start w-32'>
-  <h5 className='text-lg font-normal text-green-900'>
-    {product.title}
-  </h5>
-  <h5 className='text-lg font-normal text-green-900'>{product.size}</h5>
-  <h5 className='text-lg font-medium text-green-900 mr-5 -ml-5'>
-    ${product.price}
-  </h5>
-</div>
-<div className='flex items-center justify-between mt-3 text-white w-32'>
-  <Link
-    className='relative text-green-800 hover:text-green-800 -mr-5'
-    to='/cart'>
-    <ShoppingCart />
-  </Link>
-</div>
-</div> */
-}
