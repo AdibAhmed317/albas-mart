@@ -13,7 +13,7 @@ const AdminSidebar = () => {
             <Link to='/admin/dashboard'>All Users</Link>
           </li>
           <li className='dashboard-link'>
-            <Link to='/'>Create Product</Link>
+            <Link to='/admin/create-product'>Create Product</Link>
           </li>
           <li className='dashboard-link'>
             <Link to='/'>All Products</Link>
