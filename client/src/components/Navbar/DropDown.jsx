@@ -18,7 +18,7 @@ const Dropdown = () => {
           </Link>
         </li>
         <li className='justify-center items-center flex'>
-          <Link className='small-navlink' to='/'>
+          <Link className='small-navlink' to='/shop/'>
             Shop
           </Link>
         </li>
@@ -33,22 +33,22 @@ const Dropdown = () => {
           </Link>
         </li>
       </ul>
-      <ul className='flex justify-between items-center'>
-        <li>
+      <ul className='flex justify-center items-center mt-10'>
+        <li className='mx-5'>
           <Link
             className='my-1 text-base text-green-50 font-medium m-0 bg-blue-600 hover:bg-blue-900 py-2 px-3 md:mx-2 rounded-md'
             to='/login'>
             Login
           </Link>
         </li>
-        <li>
+        <li className='mx-5'>
           <Link
             className='my-1 text-base text-green-50 font-medium m-0 bg-purple-700 hover:bg-purple-500 py-2 px-3 md:mx-2 rounded-md'
             to='/login'>
             Signup
           </Link>
         </li>
-      </ul>{' '}
+      </ul>
     </div>
   );
 };

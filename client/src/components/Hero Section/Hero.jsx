@@ -12,9 +12,9 @@ const Hero = () => {
           alt='hero'
         />
       </div>
-      <div className='flex flex-col items-start w-full lg:mr-[400px] max-w-xl px-4 lg:mt-2 lg:px-8 lg:max-w-screen-xl'>
+      <div className='flex flex-col items-start w-full lg:mr-[400px] px-4 lg:mt-2 lg:px-8 lg:max-w-screen-xl'>
         <div className='mb-16 lg:my-40 lg:max-w-lg lg:pr-5'>
-          <div className='max-w-xl mb-6'>
+          <div className='max-w-xl mb-6 md:ml-20 mt-5'>
             <h2 className='max-w-lg mb-6 font-sans text-5xl capitalize font-thin tracking-tight text-green-900 sm:text-4xl sm:leading-none'>
               Buy all your daily needs from one place
             </h2>
@@ -24,7 +24,7 @@ const Hero = () => {
               our products
             </p>
           </div>
-          <div className='flex flex-col items-center md:flex-row'>
+          <div className='flex flex-col items-center md:flex-row md:ml-20'>
             <Link
               to='/'
               className='text-xl bg-green-500 inline-flex items-center justify-center w-full h-12 px-6 mb-3 font-thin tracking-wider text-white transition duration-200 rounded shadow-md md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 hover:bg-purple-700 focus:shadow-outline focus:outline-none'>

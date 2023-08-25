@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
+import DropDown from '../../components/Navbar/DropDown';
 import Sidebar from '../../components/Shop/Sidebar';
 import ProductCard from '../../components/Shop/ProductCard';
 import NoProductFound from '../../components/Shop/NoProductFound';
@@ -62,6 +63,7 @@ const Shop = () => {
   return (
     <div className='bg-green-50 h-full'>
       <Navbar />
+      <DropDown />
       <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start mt-10'>
         <div className='md:mr-5 lg:mr-5 mr-0 scrollbar-hide'>
           <div className='flex justify-start items-center mt-0 lg:mt-5'>
@@ -76,10 +78,12 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid md:grid-cols-4 grid-cols-2 overflow-auto scrollbar-hide h-[80vh] w-auto md:w-[150vh] bg-green-50'>
+        <div className='grid md:grid-cols-4 grid-cols-2 justify-center items-center overflow-auto scrollbar-hide h-[80vh] w-auto md:w-[150vh] ml-5'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
-              <ProductCard product={product} key={product._id} />
+              <div className='-mt-0 md:-mt-[400px] w-full'>
+                <ProductCard product={product} key={product._id} />
+              </div>
             ))
           ) : (
             <NoProductFound />

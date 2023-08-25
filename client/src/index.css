@@ -5,3 +5,7 @@
 .small-navlink {
   @apply items-center text-base text-green-800 font-medium hover:text-green-600 my-2;
 }
+
+.dashboard-link {
+  @apply my-5 text-lg font-mono text-green-900 mx-10 md:mx-0;
+}

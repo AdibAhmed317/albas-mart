@@ -5,8 +5,8 @@ import b3 from '../../assets/hero.jpg';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='md:w-52 w-40 md:h-[45vh] lg:h-[50%] items-center flex flex-col shadow-2xl bg-white md:m-10 m-2 rounded-b-lg'>
-      <div className='h-[90%]'>
+    <div className='md:w-52 w-[80%] h-[50%] items-center flex flex-col shadow-2xl bg-white md:m-10 m-2 rounded-b-lg'>
+      <div className='h-[90%] md:w-auto'>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img
             className='h-full w-full object-cover rounded-t-lg'
@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
               ৳ {product.price}
             </h5>
             <Link
-              className='relative text-green-800 hover:text-green-800'
+              className='relative text-green-800 hover:text-green-800 mt-1'
               to='/cart'>
               <ShoppingCart />
             </Link>
