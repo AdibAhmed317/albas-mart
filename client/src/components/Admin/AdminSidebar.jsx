@@ -8,7 +8,7 @@ const AdminSidebar = () => {
         Admin Dashboard
       </h1>
       <div className='h-auto md:h-[90vh] w-full text-center'>
-        <ul className='flex md:flex-col'>
+        <ul className='flex md:flex-col overflow-auto'>
           <li className='dashboard-link'>
             <Link to='/admin/dashboard'>All Users</Link>
           </li>
@@ -19,10 +19,10 @@ const AdminSidebar = () => {
             <Link to='/'>All Products</Link>
           </li>
           <li className='dashboard-link'>
-            <Link to='/'>All Orders</Link>
+            <Link to='/admin/all-orders'>All Orders</Link>
           </li>
           <li className='dashboard-link'>
-            <Link to='/'>Admin Profile</Link>
+            <Link to='/admin/profile'>Admin Profile</Link>
           </li>
         </ul>
       </div>

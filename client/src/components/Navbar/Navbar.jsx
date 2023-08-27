@@ -13,7 +13,7 @@ const Navbar = () => {
   const handleClick = () => {
     setIsOpen(!isOpen);
   };
-  //accessToken
+
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     setName('');
@@ -71,25 +71,15 @@ const Navbar = () => {
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </Link>
           </li>
-          {Name != '' && isAdmin ? (
-            <li className='justify-center items-center flex'>
-              <Link
-                className='items-center text-base text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-                to='/'>
-                Admin
-                <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-              </Link>
-            </li>
-          ) : (
-            <li className='justify-center items-center flex'>
-              <Link
-                className='items-center text-base text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-                to='/'>
-                About Us
-                <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-              </Link>
-            </li>
-          )}
+
+          <li className='justify-center items-center flex'>
+            <Link
+              className='items-center text-base text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
+              to='/'>
+              About Us
+              <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
+            </Link>
+          </li>
         </ul>
       </div>
 
