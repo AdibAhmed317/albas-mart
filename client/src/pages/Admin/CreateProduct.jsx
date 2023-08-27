@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import hero from '../../assets/hero.jpg';
+import axios from 'axios';
 
 const CreateProduct = () => {
   const [productData, setProductData] = useState({
@@ -31,11 +32,20 @@ const CreateProduct = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(productData);
+
     try {
-    } catch (error) {}
+      const res = await axios.post(
+        'http://localhost:5000/api/products/create-product',
+        productData
+      );
+
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
