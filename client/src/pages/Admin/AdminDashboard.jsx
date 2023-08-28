@@ -63,7 +63,7 @@ const AdminDashboard = () => {
             </button>
           </div>
           {searchResult ? (
-            <div className='bg-green-100 p-4 rounded shadow-md mb-10'>
+            <div className='bg-white p-4 rounded shadow-md mb-10'>
               <h2 className='text-xl font-bold mb-2'>{searchResult.Name}</h2>
               <p>Email: {searchResult.Email}</p>
               <p>Phone: {searchResult.Phone}</p>
@@ -77,7 +77,7 @@ const AdminDashboard = () => {
               {data.map((user) => (
                 <li
                   key={user.UserId}
-                  className='bg-green-100 text-green-900 p-4 rounded shadow-md'>
+                  className='bg-white text-green-900 p-4 rounded shadow-md'>
                   <h2 className='text-xl font-bold mb-2'>{user.Name}</h2>
                   <p>
                     <b>Id:</b> {user._id}

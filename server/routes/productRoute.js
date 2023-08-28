@@ -7,7 +7,7 @@ const {
 const router = require('express').Router();
 
 //Create Product
-router.post('/create-product', async (req, res) => {
+router.post('/create-product', verifyTokenAndAdmin, async (req, res) => {
   const newProduct = new ProductModel(req.body);
 
   try {
