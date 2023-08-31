@@ -11,6 +11,7 @@ import Contact from './pages/Client/Contact';
 import About from './pages/Client/About';
 import CreateProduct from './pages/Admin/CreateProduct';
 import AllProducts from './pages/Admin/AllProducts';
+import AllOrders from './pages/Admin/AllOrders';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/admin/create-product' element={<CreateProduct />} />
         <Route path='/admin/all-products' element={<AllProducts />} />
+        <Route path='/admin/all-orders' element={<AllOrders />} />
       </Routes>
     </>
   );

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
+import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
   const [data, setData] = useState([]);
@@ -38,6 +39,21 @@ const AdminDashboard = () => {
     }
   };
 
+  function formatDateString(timestamp) {
+    const date = new Date(timestamp);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+
+    return `${year}-${month}-${day} ${formattedHours}:${minutes} ${ampm}`;
+  }
+
   return (
     <>
       <Navbar />
@@ -63,37 +79,58 @@ const AdminDashboard = () => {
             </button>
           </div>
           {searchResult ? (
-            <div className='bg-white p-4 rounded shadow-md mb-10'>
+            <div className='bg-white p-4 rounded shadow-md mb-10 text-green-900'>
               <h2 className='text-xl font-bold mb-2'>{searchResult.Name}</h2>
-              <p>Email: {searchResult.Email}</p>
-              <p>Phone: {searchResult.Phone}</p>
+              <p>
+                <b>Email:</b> {searchResult.Email}
+              </p>
+              <p>
+                <b>Phone:</b> {searchResult.Phone}
+              </p>
             </div>
           ) : (
             <p></p>
           )}
-          <div>
-            <h1 className='text-2xl text-green-900 mb-4'>All Users</h1>
-            <ul className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-              {data.map((user) => (
-                <li
-                  key={user.UserId}
-                  className='bg-white text-green-900 p-4 rounded shadow-md'>
-                  <h2 className='text-xl font-bold mb-2'>{user.Name}</h2>
-                  <p>
-                    <b>Id:</b> {user._id}
-                  </p>
-                  <p>
-                    <b>Name:</b> {user.Name}
-                  </p>
-                  <p>
-                    <b>Email:</b> {user.Email}
-                  </p>
-                  <p>
-                    <b>Phone:</b> {user.Phone}
-                  </p>
-                </li>
-              ))}
-            </ul>
+          <div className='mx-auto'>
+            <h1 className='text-2xl text-green-900 mb-4'>All Orders</h1>
+            <div className='overflow-x-auto'>
+              <table className='min-w-full bg-white rounded-lg overflow-hidden'>
+                <thead className='bg-gray-200 text-gray-700'>
+                  <tr>
+                    <th className='py-3 px-4 font-semibold text-sm'>User ID</th>
+                    <th className='py-3 px-4 font-semibold text-sm'>Name</th>
+                    <th className='py-3 px-4 font-semibold text-sm'>
+                      Joining Date
+                    </th>
+                    <th className='py-3 px-4 font-semibold text-sm'>Email</th>
+                    <th className='py-3 px-4 font-semibold text-sm'>Phone</th>
+                    <th className='py-3 px-4 font-semibold text-sm'>Details</th>
+                  </tr>
+                </thead>
+                <tbody className='text-gray-600'>
+                  {data.map((user) => (
+                    <tr
+                      key={user._id}
+                      className='hover:bg-gray-100 transition duration-300 ease-in-out'>
+                      <td className='py-3 px-4 text-center'>{user._id}</td>
+                      <td className='py-3 px-4 text-center'>{user.Name}</td>
+                      <td className='py-3 px-4 text-center'>
+                        {formatDateString(user.createdAt)}
+                      </td>
+                      <td className='py-3 px-4 text-center'>{user.Email}</td>
+                      <td className='py-3 px-4 text-center'>{user.Phone}</td>
+                      <td className='py-3 px-4 text-center'>
+                        <Link
+                          to={`/admin/order-details/${user._id}`}
+                          className='text-blue-500 hover:underline'>
+                          Details
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -102,3 +139,21 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+// <li
+// key={user.UserId}
+// className='bg-white text-green-900 p-4 rounded shadow-md'>
+// <h2 className='text-xl font-bold mb-2'>{user.Name}</h2>
+// <p>
+//   <b>Id:</b> {user._id}
+// </p>
+// <p>
+//   <b>Name:</b> {user.Name}
+// </p>
+// <p>
+//   <b>Email:</b> {user.Email}
+// </p>
+// <p>
+//   <b>Phone:</b> {user.Phone}
+// </p>
+// </li>

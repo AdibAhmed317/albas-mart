@@ -24,9 +24,11 @@ const Navbar = () => {
   return (
     <nav className='w-full h-auto bg-green-200 flex justify-between items-center'>
       <div className='flex-1'>
-        <Link to='/'>
-          <img className='h-16 w-auto p-2' src={logo} alt='Logo' />
-        </Link>
+        <div className='w-auto md:w-[35%]'>
+          <Link to='/'>
+            <img className='relative h-16 w-auto p-2' src={logo} alt='Logo' />
+          </Link>
+        </div>
       </div>
 
       <div className='px-4 cursor-pointer md:hidden' onClick={handleClick}>
