@@ -86,7 +86,7 @@ const AllProducts = () => {
           <h1 className='text-2xl font-normal text-green-900 mb-4'>
             All products
           </h1>
-          <div className='grid md:grid-cols-4 grid-cols-2 gap-24 justify-center items-center h-[80vh] w-auto md:w-[150vh] ml-5'>
+          <div className='grid md:grid-cols-4 grid-cols-2 gap-24 justify-center items-center overflow-auto h-[80vh] w-auto md:w-[150vh] ml-5'>
             {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
               fetchedProduct.map((product) => (
                 <div className='-mt-0 w-full'>

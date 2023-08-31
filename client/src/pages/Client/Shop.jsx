@@ -78,10 +78,10 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid md:grid-cols-4 grid-cols-2 justify-center items-center overflow-auto scrollbar-hide h-[80vh] w-auto md:w-[150vh] ml-5'>
+        <div className='grid md:grid-cols-4 grid-cols-2 justify-center items-center overflow-auto h-auto w-auto md:w-[150vh] ml-5'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
-              <div className='-mt-0 md:-mt-[400px] w-full'>
+              <div className='-mt-0 w-full'>
                 <ProductCard product={product} key={product._id} />
               </div>
             ))

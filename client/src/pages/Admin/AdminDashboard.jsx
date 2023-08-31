@@ -73,7 +73,7 @@ const AdminDashboard = () => {
           )}
           <div>
             <h1 className='text-2xl text-green-900 mb-4'>All Users</h1>
-            <ul className='grid grid-cols-2 gap-4'>
+            <ul className='grid grid-cols-1 md:grid-cols-2 gap-4'>
               {data.map((user) => (
                 <li
                   key={user.UserId}

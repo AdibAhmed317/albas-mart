@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
   const navigate = useNavigate();
+  
   const [productData, setProductData] = useState({
     title: '',
     desc: '',

@@ -5,7 +5,7 @@ import b3 from '../../assets/hero.jpg';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='md:w-52 w-[80%] h-[50%] items-center flex flex-col shadow-2xl bg-white md:m-10 m-2 rounded-b-lg'>
+    <div className='md:w-52 w-[80%] h-[50%] items-center flex flex-col shadow-lg bg-white md:m-10 m-2 rounded-b-lg'>
       <div className='h-[90%] md:w-auto'>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img
@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
           <h5 className='text-lg font-normal text-green-900 mt-1'>
             <b className='text-base'>Size:</b> {product.size}
           </h5>
-          <div className='flex justify-between mt-2 mb-5 items-center'>
+          <div className='flex justify-between mt-2 pb-1 md:pb-5 items-center'>
             <h5 className='text-2xl font-thin text-green-900'>
               ৳ {product.price}
             </h5>
