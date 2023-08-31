@@ -89,7 +89,7 @@ const Navbar = () => {
             <>
               <li>
                 <Link
-                  className='my-1 text-base text-green-50 font-medium m-0 bg-orange-700 hover:bg-orange-900 py-2 px-3 md:mx-2 rounded-md'
+                  className='my-1 text-base text-green-800 hover:text-green-600 font-medium m-0 py-2 px-3 md:mx-2 rounded-md'
                   to='/admin/dashboard'>
                   Dashboard
                 </Link>

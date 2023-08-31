@@ -4,8 +4,10 @@ import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import hero from '../../assets/hero.jpg';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const [productData, setProductData] = useState({
     title: '',
     desc: '',
@@ -35,14 +37,17 @@ const CreateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(productData);
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = { token: `Bearer ${accessToken}` };
 
     try {
       const res = await axios.post(
         'http://localhost:5000/api/products/create-product',
-        productData
+        productData,
+        { headers }
       );
 
-      console.log(res.data);
+      navigate('/admin/all-products/');
     } catch (error) {
       console.log(error);
     }
