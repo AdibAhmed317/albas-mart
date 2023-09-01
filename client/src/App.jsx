@@ -12,6 +12,7 @@ import About from './pages/Client/About';
 import CreateProduct from './pages/Admin/CreateProduct';
 import AllProducts from './pages/Admin/AllProducts';
 import AllOrders from './pages/Admin/AllOrders';
+import AdminProfile from './pages/Admin/AdminProfile';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path='/admin/create-product' element={<CreateProduct />} />
         <Route path='/admin/all-products' element={<AllProducts />} />
         <Route path='/admin/all-orders' element={<AllOrders />} />
+        <Route path='/admin/profile' element={<AdminProfile />} />
       </Routes>
     </>
   );

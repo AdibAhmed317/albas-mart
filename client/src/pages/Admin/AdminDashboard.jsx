@@ -139,21 +139,3 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
-
-// <li
-// key={user.UserId}
-// className='bg-white text-green-900 p-4 rounded shadow-md'>
-// <h2 className='text-xl font-bold mb-2'>{user.Name}</h2>
-// <p>
-//   <b>Id:</b> {user._id}
-// </p>
-// <p>
-//   <b>Name:</b> {user.Name}
-// </p>
-// <p>
-//   <b>Email:</b> {user.Email}
-// </p>
-// <p>
-//   <b>Phone:</b> {user.Phone}
-// </p>
-// </li>
