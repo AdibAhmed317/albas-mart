@@ -5,7 +5,7 @@ import b3 from '../../assets/hero.jpg';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='md:w-52 w-[80%] h-[50%] items-center flex flex-col shadow-lg bg-white md:m-10 m-2 rounded-b-lg'>
+    <div className='md:w-52 w-[80%] h-[300px] items-center flex flex-col shadow-lg bg-white md:m-10 m-2 rounded-b-lg'>
       <div className='h-[90%] md:w-auto'>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img
@@ -17,8 +17,8 @@ const ProductCard = ({ product }) => {
       </div>
       <div className='w-40 mt-2 p-5 md:p-0'>
         <div>
-          <h5 className='text-lg text-green-900'>
-            <b className='text-base'>Title:</b> {product.title}
+          <h5 className='text-xl font-medium text-green-900'>
+            {product.title}
           </h5>
           <h5 className='text-lg font-normal text-green-900 mt-1'>
             <b className='text-base'>Size:</b> {product.size}
@@ -27,11 +27,12 @@ const ProductCard = ({ product }) => {
             <h5 className='text-2xl font-thin text-green-900'>
               ৳ {product.price}
             </h5>
-            <Link
-              className='relative text-green-800 hover:text-green-800 mt-1'
-              to='/cart'>
+            <button className='relative text-green-800 hover:text-green-800 mt-1'>
               <ShoppingCart />
-            </Link>
+            </button>
+            <button className='relative text-green-800 hover:text-green-800 mt-1'>
+              <ShoppingCart />
+            </button>
           </div>
         </div>
       </div>

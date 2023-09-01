@@ -4,7 +4,7 @@ import b3 from '../../assets/hero.jpg';
 
 const AdminProductCard = ({ product }) => {
   return (
-    <div className='w-auto h-[50%] items-center flex flex-col shadow-lg bg-white rounded-b-lg'>
+    <div className='md:w-80 w-auto h-[50%] items-center flex flex-col shadow-md bg-white rounded-b-lg mb-10'>
       <div className='h-[90%] md:w-auto'>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img
@@ -29,14 +29,14 @@ const AdminProductCard = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col md:flex-row justify-between items-center mb-5'>
+      <div className='flex flex-row justify-between items-center mb-5'>
         <Link
-          to={`/admin/edit-product/${product.ProductId}`} // Replace with actual route
+          to={`/admin/edit-product/${product.ProductId}`}
           className='mt-2 mx-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md'>
           Edit
         </Link>
         <Link
-          to={`/admin/product-details/${product.ProductId}`} // Replace with actual route
+          to={`/admin/product-details/${product.ProductId}`}
           className='mt-2 mx-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md'>
           Details
         </Link>
