@@ -9,6 +9,7 @@ const authRoute = require('./routes/authRoute');
 const productRoute = require('./routes/productRoute');
 const cartRoute = require('./routes/cartRoute');
 const orderRoute = require('./routes/orderRoute');
+const categoryRoute = require('./routes/CategoryRoute');
 const stripeRoute = require('./routes/stripe');
 
 mongoose
@@ -24,6 +25,7 @@ app.use('/api/user', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/cart', cartRoute);
 app.use('/api/orders', orderRoute);
+// app.use('/api/category', categoryRoute);
 app.use('/api/checkout', stripeRoute);
 
 app.listen(5000, () => {
