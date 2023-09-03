@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
@@ -8,31 +8,38 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
   const [categoryName, setCategoryName] = useState('');
+  const [fetchCat, setFetchCat] = useState([]);
 
   const [productData, setProductData] = useState({
     title: '',
     desc: '',
     img: hero,
-    categories: [],
+    categories: '',
     size: [],
     price: null,
   });
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchCatFunction();
+  }, []);
+
+  const fetchCatFunction = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/api/category/');
+      setFetchCat(response.data);
+      console.log(fetchCat);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductData((prevData) => ({
       ...prevData,
       [name]: value,
-    }));
-  };
-
-  const handleCategoryChange = (e) => {
-    const { value } = e.target;
-    const categoriesArray = value.split(',').map((category) => category.trim());
-    setProductData((prevData) => ({
-      ...prevData,
-      categories: categoriesArray,
     }));
   };
 
@@ -68,6 +75,7 @@ const CreateProduct = () => {
       );
 
       setCategoryName('');
+      fetchCatFunction();
     } catch (error) {}
   };
 
@@ -103,17 +111,19 @@ const CreateProduct = () => {
                   className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
                   required
                 />
-                <label className='mt-5 block text-gray-700'>
-                  Product Category
-                </label>
-                <input
-                  type='text'
+                <label className='block text-gray-700'>Category</label>
+                <select
                   name='categories'
-                  value={productData.categories.join(', ')}
-                  onChange={handleCategoryChange}
-                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                  required
-                />
+                  value={productData.categories}
+                  onChange={handleInputChange}
+                  className='w-auto md:w-[50%] py-2 border rounded focus:outline-none focus:border-blue-500'>
+                  <option value=''>Select Category</option>
+                  {fetchCat.map((item) => (
+                    <option key={item._id} value={item.CategoryName}>
+                      {item.CategoryName}
+                    </option>
+                  ))}
+                </select>
                 <label className='mt-5 block text-gray-700'>Product size</label>
                 <input
                   type='text'
