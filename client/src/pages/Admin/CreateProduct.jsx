@@ -7,7 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
-  const [CategoryName, setCategoryName] = useState('');
+  const [categoryName, setCategoryName] = useState('');
 
   const [productData, setProductData] = useState({
     title: '',
@@ -57,16 +57,17 @@ const CreateProduct = () => {
 
   const handleCatSubmit = async (e) => {
     e.preventDefault();
+    const categoryData = { CategoryName: categoryName };
     const accessToken = localStorage.getItem('accessToken');
     const headers = { token: `Bearer ${accessToken}` };
     try {
       const res = axios.post(
-        'http://localhost:5000/api/category/create-product',
-        CategoryName,
+        'http://localhost:5000/api/category/',
+        categoryData,
         { headers }
       );
 
-      console.log(res);
+      setCategoryName('');
     } catch (error) {}
   };
 
@@ -146,7 +147,7 @@ const CreateProduct = () => {
                   <input
                     type='text'
                     name='categoryName'
-                    value={CategoryName}
+                    value={categoryName}
                     onChange={(e) => setCategoryName(e.target.value)}
                     className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
                     required
