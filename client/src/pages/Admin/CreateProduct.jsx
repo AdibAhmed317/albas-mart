@@ -17,6 +17,7 @@ const CreateProduct = () => {
     categories: '',
     size: [],
     price: null,
+    StockQuantity: null,
   });
 
   const navigate = useNavigate();
@@ -124,7 +125,9 @@ const CreateProduct = () => {
                     </option>
                   ))}
                 </select>
-                <label className='mt-5 block text-gray-700'>Product size</label>
+                <label className='mt-5 block text-gray-700'>
+                  Product size (Kg, L, ml)
+                </label>
                 <input
                   type='text'
                   name='size'
@@ -140,6 +143,17 @@ const CreateProduct = () => {
                   type='text'
                   name='price'
                   value={productData.price}
+                  onChange={handleInputChange}
+                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                  required
+                />
+                <label className='mt-5 block text-gray-700'>
+                  Stock Quantity
+                </label>
+                <input
+                  type='text'
+                  name='StockQuantity'
+                  value={productData.StockQuantity}
                   onChange={handleInputChange}
                   className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
                   required
