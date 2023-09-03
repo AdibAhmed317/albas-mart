@@ -7,8 +7,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
-  const navigate = useNavigate();
-  
+  const [CategoryName, setCategoryName] = useState('');
+
   const [productData, setProductData] = useState({
     title: '',
     desc: '',
@@ -17,6 +17,7 @@ const CreateProduct = () => {
     size: [],
     price: null,
   });
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -52,6 +53,21 @@ const CreateProduct = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleCatSubmit = async (e) => {
+    e.preventDefault();
+    const accessToken = localStorage.getItem('accessToken');
+    const headers = { token: `Bearer ${accessToken}` };
+    try {
+      const res = axios.post(
+        'http://localhost:5000/api/category/create-product',
+        CategoryName,
+        { headers }
+      );
+
+      console.log(res);
+    } catch (error) {}
   };
 
   return (
@@ -122,6 +138,25 @@ const CreateProduct = () => {
                 Crate Product
               </button>
             </form>
+            <div className='mt-8'>
+              <h2 className='mb-4 text-2xl font-semibold'>Add New Category</h2>
+              <form onSubmit={handleCatSubmit}>
+                <div className='mb-4'>
+                  <label className='block text-gray-700'>Category Name</label>
+                  <input
+                    type='text'
+                    name='categoryName'
+                    value={CategoryName}
+                    onChange={(e) => setCategoryName(e.target.value)}
+                    className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                    required
+                  />
+                </div>
+                <button className='p-3 bg-blue-400 rounded-lg font-thin'>
+                  Add Category
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </>
