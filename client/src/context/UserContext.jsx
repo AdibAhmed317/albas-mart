@@ -10,6 +10,12 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     try {
       const accessToken = localStorage.getItem('accessToken');
+
+      if (id) {
+        const getuserId = id;
+        setUserId(getuserId);
+        console.log(userId);
+      }
       if (accessToken) {
         const decodedToken = jwtDecode(accessToken);
         const userName = decodedToken.Name;

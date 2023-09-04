@@ -59,7 +59,9 @@ const AdminDashboard = () => {
       <Navbar />
       <DropDown />
       <div className='flex md:flex-row flex-col bg-green-50'>
-        <AdminSidebar />
+        <div className='w-[20%]'>
+          <AdminSidebar />
+        </div>
         <div className='container mx-auto px-4 py-8'>
           <h1 className='text-2xl font-normal text-green-900 mb-4'>
             Search user

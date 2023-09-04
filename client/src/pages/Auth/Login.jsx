@@ -28,7 +28,9 @@ const Login = () => {
         loginData
       );
 
+      console.log(res.data._id);
       localStorage.setItem('accessToken', res.data.accessToken);
+      localStorage.setItem('id', res.data._id);
 
       const decodedToken = jwtDecode(res.data.accessToken);
 

@@ -7,7 +7,7 @@ import { BsCart3 } from 'react-icons/bs';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='md:w-52 w-[80%] h-[350px] items-center flex flex-col shadow-lg bg-white md:m-10 m-2 rounded-b-lg'>
+    <div className='md:w-64 w-[80%] h-[350px] items-center flex flex-col shadow-lg bg-white md:m-10 m-2 rounded-b-lg'>
       <div className='h-[90%] md:w-auto'>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img

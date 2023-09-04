@@ -18,7 +18,7 @@ router.get('/', verifyTokenAndAdmin, async (req, res) => {
     res.status(500).json(error);
   }
 });
-// verifyTokenAndAdmin
+
 //Get One User
 router.get('/find/:id', async (req, res) => {
   try {
