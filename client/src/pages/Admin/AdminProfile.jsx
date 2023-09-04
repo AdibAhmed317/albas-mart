@@ -30,7 +30,7 @@ const AdminProfile = () => {
       <Navbar />
       <DropDown />
       <div className='flex md:flex-row flex-col h-screen md:h-full md:justify-between md:items-center bg-green-50'>
-        <div className='w-[20%]'>
+        <div className='md:w-[20%] w-full'>
           <AdminSidebar />
         </div>
 

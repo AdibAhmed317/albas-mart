@@ -59,7 +59,7 @@ const AdminDashboard = () => {
       <Navbar />
       <DropDown />
       <div className='flex md:flex-row flex-col bg-green-50'>
-        <div className='w-[20%]'>
+        <div className='md:w-[20%] w-full'>
           <AdminSidebar />
         </div>
         <div className='container mx-auto px-4 py-8'>

@@ -30,7 +30,6 @@ const CreateProduct = () => {
     try {
       const response = await axios.get('http://localhost:5000/api/category/');
       setFetchCat(response.data);
-      console.log(fetchCat);
     } catch (error) {
       console.log(error);
     }
