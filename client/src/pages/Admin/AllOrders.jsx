@@ -102,7 +102,7 @@ const AllOrders = () => {
                       <td className='py-3 px-4 text-center'>{order.status}</td>
                       <td className='py-3 px-4 text-center'>
                         <Link
-                          to={`/admin/order-details/${order.OrderId}`}
+                          to={`/admin/order-details/${order._id}`}
                           className='text-blue-500 hover:underline'>
                           Details
                         </Link>

@@ -13,6 +13,8 @@ import CreateProduct from './pages/Admin/CreateProduct';
 import AllProducts from './pages/Admin/AllProducts';
 import AllOrders from './pages/Admin/AllOrders';
 import AdminProfile from './pages/Admin/AdminProfile';
+import UserDetails from './pages/Admin/UserDetails';
+import OrderDetails from './pages/Admin/OrderDetails';
 
 function App() {
   return (
@@ -26,11 +28,13 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='/cart' element={<Cart />} />
+        <Route path='/admin/user-details/:id' element={<UserDetails />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/admin/create-product' element={<CreateProduct />} />
         <Route path='/admin/all-products' element={<AllProducts />} />
         <Route path='/admin/all-orders' element={<AllOrders />} />
         <Route path='/admin/profile' element={<AdminProfile />} />
+        <Route path='/admin/order-details/:id' element={<OrderDetails />} />
       </Routes>
     </>
   );
