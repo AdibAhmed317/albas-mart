@@ -3,7 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 
-import hero from '../../assets/hero.jpg';
+import b2 from '../../assets/b2.jpg';
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
 
 const SingleProduct = () => {
@@ -13,7 +13,7 @@ const SingleProduct = () => {
       <DropDown />
       <div className='p-[50px] flex flex-col md:flex-row' id='wrapper'>
         <div className='flex-1' id='image-container'>
-          <img className='w-full h-96 md:h-[60vh] object-cover' src={hero} />
+          <img className='w-full h-96 md:h-[60vh] object-cover' src={b2} />
         </div>
         <div className='flex-1 py-0 px-[50px]' id='info container'>
           <h1 className='font-extralight text-4xl mt-10 md:mt-0' id='title'>

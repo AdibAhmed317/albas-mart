@@ -78,7 +78,7 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-20 overflow-auto md:w-[150vh]'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-20 overflow-auto md:w-[150vh] pb-5 px-1'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
               <>

@@ -6,31 +6,31 @@ import { BsCart3 } from 'react-icons/bs';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='flex flex-col shadow-lg bg-white rounded-b-lg'>
-      <div className=''>
+    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg w-[10rem] md:w-[15rem]'>
+      <Link to={`/product/${product._id}`}>
         <img
           className='object-cover rounded-t-lg'
           src={b2}
           alt='product image'
         />
-      </div>
+      </Link>
       <div className='px-3'>
-        <h5 className='text-base md:text-xl font-medium text-green-900'>
+        <h5 className='text-base md:text-lg font-extralight text-green-900'>
           {product.title}
         </h5>
         <h5 className='text-sm md:text-lg font-medium text-green-900 mt-1'>
-          <b>Size:</b> {product.size}
+          <b className='text-base'>Size:</b> {product.size}
         </h5>
-        <div className='flex flex-col md:flex-row justify-between md:items-center'>
+        <div className='flex flex-col md:flex-row justify-between md:items-center mb-5'>
           <h5 className='text-base md:text-2xl font-thin text-green-900'>
             ৳ {product.price}
           </h5>
-          <div>
-            <button className='relative text-green-800 hover:text-green-800 mt-1'>
-              <BsCart3 />
-            </button>
-            <button className='relative text-red-800'>
+          <div className='mt-1'>
+            <button className='relative text-green-400 hover:text-red-700 mr-5'>
               <FaHeart />
+            </button>
+            <button className='relative text-green-800'>
+              <BsCart3 />
             </button>
           </div>
         </div>
