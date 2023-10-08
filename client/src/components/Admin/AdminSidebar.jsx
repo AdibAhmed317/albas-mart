@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const AdminSidebar = () => {
   return (
-    <div className='flex flex-col bg-green-100 overflow-hidden h-full'>
-      <h1 className='text-5xl text-green-900 font-thin p-10 text-center'>
+    <div className='flex flex-col bg-green-100 overflow-hidden h-full max-w-full md:max-w-[20rem]'>
+      <h1 className='text-2xl md:text-5xl text-green-900 font-thin p-2 md:p-10 text-center'>
         Admin Dashboard
       </h1>
       <div className='h-full md:h-[90vh] w-full text-center'>

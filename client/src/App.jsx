@@ -15,6 +15,8 @@ import AllOrders from './pages/Admin/AllOrders';
 import AdminProfile from './pages/Admin/AdminProfile';
 import UserDetails from './pages/Admin/UserDetails';
 import OrderDetails from './pages/Admin/OrderDetails';
+import Profile from './pages/Client/Profile';
+import SingleProduct from './pages/Client/SingleProduct';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/admin/user-details/:id' element={<UserDetails />} />
+        <Route path='/user-details/:id' element={<Profile />} />
+        <Route path='/product/:id' element={<SingleProduct />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/admin/create-product' element={<CreateProduct />} />
         <Route path='/admin/all-products' element={<AllProducts />} />

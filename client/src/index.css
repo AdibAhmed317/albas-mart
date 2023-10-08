@@ -7,5 +7,5 @@
 }
 
 .dashboard-link {
-  @apply my-5 text-lg font-mono text-green-900 mx-10 md:mx-0;
+  @apply my-5 text-sm md:text-lg font-mono text-green-900 mx-8 md:mx-0;
 }

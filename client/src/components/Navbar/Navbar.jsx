@@ -8,6 +8,8 @@ const Navbar = () => {
   const { isOpen, setIsOpen } = useContext(NavbarContext);
   const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);
 
+  const loggedInId = localStorage.getItem('id');
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -109,8 +111,8 @@ const Navbar = () => {
             <>
               <li>
                 <Link
-                  className='my-1 text-base text-green-50 font-medium m-0 bg-blue-600 hover:bg-blue-900 py-2 px-3 md:mx-2 rounded-md'
-                  to='/login'>
+                  className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                  to={`/user-details/${loggedInId}`}>
                   Profile
                 </Link>
               </li>

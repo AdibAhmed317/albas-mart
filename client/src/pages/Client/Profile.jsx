@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
+import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-const UserDetails = () => {
+const Profile = () => {
   const location = useLocation();
-  const customerId = location.pathname.split('/')[3];
+  const customerId = location.pathname.split('/')[2];
   const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const UserDetails = () => {
             </div>
             <div className='p-8'>
               <div className='uppercase tracking-wide text-sm text-indigo-500 font-semibold'>
-                Customer Details
+                Profile
               </div>
               <h2 className='mt-2 text-2xl leading-7 font-semibold text-gray-900'>
                 {customer.Name}
@@ -68,13 +68,6 @@ const UserDetails = () => {
                   <strong>Is Admin:</strong> {customer.IsAdmin ? 'Yes' : 'No'}
                 </p>
               </div>
-              <div className='mt-4'>
-                <Link
-                  to='/admin/dashboard'
-                  className='text-indigo-600 hover:text-indigo-800'>
-                  Go Back
-                </Link>
-              </div>
             </div>
           </div>
         </div>
@@ -83,4 +76,4 @@ const UserDetails = () => {
   );
 };
 
-export default UserDetails;
+export default Profile;

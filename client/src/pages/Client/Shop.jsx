@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
@@ -78,12 +78,12 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid md:grid-cols-4 grid-cols-2 justify-center items-center overflow-auto h-auto w-auto md:w-[150vh] ml-5'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-20 overflow-auto md:w-[150vh]'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
-              <div className='-mt-0 w-full'>
+              <>
                 <ProductCard product={product} key={product._id} />
-              </div>
+              </>
             ))
           ) : (
             <NoProductFound />
