@@ -6,7 +6,7 @@ import { BsCart3 } from 'react-icons/bs';
 
 const ProductCard = ({ product }) => {
   return (
-    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg w-[10rem] md:w-[15rem]'>
+    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg w-[10rem] md:w-[15rem] my-3'>
       <Link to={`/product/${product._id}`}>
         <img
           className='object-cover rounded-t-lg'

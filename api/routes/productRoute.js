@@ -44,24 +44,21 @@ router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//Get All Product
-router.get('/', async (req, res) => {
-  const qNew = req.query.new; // new = query name
-  const qCategory = req.query.category;
-
+// Route to get all products
+router.get('/all', async (req, res) => {
   try {
-    let products;
-    if (qNew) {
-      products = await ProductModel.find().sort({ createdAt: -1 }).limit(10);
-    } else if (qCategory) {
-      products = await ProductModel.find({
-        categories: { $in: [qCategory] },
-      });
-    } else {
-      products = await ProductModel.find();
-    }
-
+    const products = await ProductModel.find();
     res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+// Route to get 8 products
+router.get('/eight', async (req, res) => {
+  try {
+    const fiveProducts = await ProductModel.find().limit(8);
+    res.status(200).json(fiveProducts);
   } catch (error) {
     res.status(500).json(error);
   }

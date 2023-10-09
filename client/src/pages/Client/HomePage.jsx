@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import Dropdown from '../../components/Navbar/DropDown';
 import CategorySection from '../../components/Hero Section/CategorySection';
+import FeaturedProduct from '../../components/Hero Section/FeaturedProduct';
 
 const HomePage = ({ Name }) => {
   return (
@@ -12,6 +13,7 @@ const HomePage = ({ Name }) => {
       <Dropdown />
       <Hero />
       <CategorySection />
+      <FeaturedProduct />
       <Footer />
     </div>
   );

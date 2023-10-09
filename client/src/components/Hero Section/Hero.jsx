@@ -11,7 +11,7 @@ const Hero = () => {
         height: '800px',
       }}>
       <div className='h-full w-full flex items-center justify-center'>
-        <div className=' h-50 w-[40rem] bg-green-200 p-10'>
+        <div className=' h-50 w-[40rem] bg-green-200/95 p-10 border border-green-950/10 rounded-lg shadow-xl'>
           <div className='text-green-900 flex flex-col justify-center items-center m-2'>
             <h2 className='mb-6 font-sans text-4xl md:text-5xl capitalize font-thin'>
               Buy all your daily needs from one place
@@ -25,7 +25,7 @@ const Hero = () => {
               to='/'
               className='text-xl mt-5 bg-green-500 inline-flex items-center justify-center w-[60%] h-12 px-6 mb-3 font-thin tracking-wider 
               text-white transition duration-200 rounded shadow-md md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 
-              hover:bg-purple-700 focus:shadow-outline focus:outline-none'>
+              hover:bg-purple-700 focus:shadow-outline focus:outline-none border border-green-950/10'>
               Shop Now
             </Link>
           </div>

@@ -1,20 +1,19 @@
 import b2 from '../b2.jpg';
-import b3 from '../b3.jpg';
 
 export const categories = [
   {
     id: 1,
-    img: b2,
     title: 'Meat & Fish',
+    img: b2,
   },
   {
     id: 2,
-    img: b3,
-    title: 'Vegetables and fruit',
+    title: 'Vegetables',
+    img: b2,
   },
   {
     id: 3,
+    title: 'Fruit',
     img: b2,
-    title: 'Dried Goods',
   },
 ];

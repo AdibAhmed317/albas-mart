@@ -33,7 +33,7 @@ const Shop = () => {
   const getProductByCat = async () => {
     try {
       const catFetch = await axios.get(
-        `http://localhost:5000/api/products?category=${cat}`
+        `http://localhost:5000/api/products/all?category=${cat}`
       );
       const data = catFetch.data;
       setFetchedProduct(data);
@@ -68,7 +68,7 @@ const Shop = () => {
         <div className='md:mr-5 lg:mr-5 mr-0 scrollbar-hide'>
           <div className='flex justify-start items-center mt-0 lg:mt-5'>
             <input
-              className='lg:w-[200px] w-60 h-10 bg-green-200 pl-5 items-center'
+              className='lg:w-[200px] w-60 h-10 bg-green-200 pl-3 items-center'
               type='search'
               placeholder='Search'
               value={inputValue}
@@ -78,12 +78,12 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-20 overflow-auto md:w-[150vh] pb-5 px-1'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 overflow-auto md:w-[150vh] pb-5 px-1'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
-              <>
+              <div className='mt-0 md:mt-10 ml-0 md:ml-2'>
                 <ProductCard product={product} key={product._id} />
-              </>
+              </div>
             ))
           ) : (
             <NoProductFound />

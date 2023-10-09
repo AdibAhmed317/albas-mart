@@ -35,7 +35,7 @@ const Profile = () => {
     <>
       <Navbar />
       <div className='bg-green-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
-        <div className='max-w-md mx-auto bg-green-200 rounded-lg shadow-lg overflow-hidden md:max-w-2xl'>
+        <div className='max-w-md mx-auto md:max-w-2xl'>
           <div className='md:flex'>
             <div className='md:flex-shrink-0'>
               <img
@@ -63,9 +63,6 @@ const Profile = () => {
                 </p>
                 <p className='text-sm text-gray-500'>
                   <strong>Phone:</strong> {customer.Phone}
-                </p>
-                <p className='text-sm text-gray-500'>
-                  <strong>Is Admin:</strong> {customer.IsAdmin ? 'Yes' : 'No'}
                 </p>
               </div>
             </div>
