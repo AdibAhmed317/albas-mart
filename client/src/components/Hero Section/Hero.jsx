@@ -22,7 +22,7 @@ const Hero = () => {
               our products
             </p>
             <Link
-              to='/'
+              to='/shop/all'
               className='text-xl mt-5 bg-green-500 inline-flex items-center justify-center w-[60%] h-12 px-6 mb-3 font-thin tracking-wider 
               text-white transition duration-200 rounded shadow-md md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 
               hover:bg-purple-700 focus:shadow-outline focus:outline-none border border-green-950/10'>

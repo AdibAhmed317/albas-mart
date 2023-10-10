@@ -8,7 +8,7 @@ const CategorySection = () => {
       <h1 className='text-center text-5xl font-thin text-green-900 mb-2'>
         Popular Categories
       </h1>
-      <div className='flex flex-col md:flex-row justify-center items-center md:justify-between mx-0 md:mx-10'>
+      <div className='flex flex-col md:flex-row justify-center items-center md:justify-between mx-0 md:mx-40'>
         {categories.map((item) => (
           <CategoryCard item={item} />
         ))}

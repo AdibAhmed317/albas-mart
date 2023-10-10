@@ -18,6 +18,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('id');
     setName('');
     setIsAdmin(false);
     navigate('/');
@@ -62,7 +63,7 @@ const Navbar = () => {
           <li className='justify-center items-center flex'>
             <Link
               className='items-center text-base text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              to='/shop/'>
+              to='/shop/all'>
               Shop
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </Link>

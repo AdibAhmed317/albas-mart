@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ProductCard from '../Shop/ProductCard';
 import NoProductFound from '../Shop/NoProductFound';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const FeaturedProduct = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -36,6 +37,11 @@ const FeaturedProduct = () => {
           <NoProductFound />
         )}
       </div>
+      <Link
+        to={`/shop/all`}
+        className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-purple-700 bg-green-500 rounded-md font-thin text-xl mt-10'>
+        Shop Now
+      </Link>
     </div>
   );
 };

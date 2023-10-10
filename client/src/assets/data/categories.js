@@ -13,7 +13,7 @@ export const categories = [
   },
   {
     id: 3,
-    title: 'Fruit',
+    title: 'Fruits',
     img: b2,
   },
 ];

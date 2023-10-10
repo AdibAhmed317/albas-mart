@@ -26,7 +26,7 @@ function App() {
         <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
-        <Route path='/shop' element={<Shop />} />
+        <Route path='/shop/:category' element={<Shop />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='/cart' element={<Cart />} />
