@@ -71,7 +71,7 @@ const Navbar = () => {
           <li className='justify-center items-center flex'>
             <Link
               className='items-center text-base text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              to='/'>
+              to='/contact'>
               Contact
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </Link>
@@ -80,7 +80,7 @@ const Navbar = () => {
           <li className='justify-center items-center flex'>
             <Link
               className='items-center text-base text-green-800 font-medium hover:text-green-600 md:mx-4 md:my-0 group'
-              to='/'>
+              to='/about'>
               About Us
               <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
             </Link>

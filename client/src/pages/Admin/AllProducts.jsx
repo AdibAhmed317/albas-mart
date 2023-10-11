@@ -18,9 +18,7 @@ const AllProducts = () => {
 
   //Location from current route
   const location = useLocation();
-  const cat = location.pathname.split('/')[3];
-
-  console.log(cat);
+  const cat = 'all';
 
   //For Category
   useEffect(() => {
@@ -35,7 +33,7 @@ const AllProducts = () => {
   const getProductByCat = async () => {
     try {
       const catFetch = await axios.get(
-        `http://localhost:5000/api/products/all?category=${cat}`
+        `http://localhost:5000/api/products/all?categories=${cat}`
       );
       const data = catFetch.data;
       setFetchedProduct(data);

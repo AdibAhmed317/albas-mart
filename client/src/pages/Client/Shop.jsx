@@ -19,7 +19,7 @@ const Shop = () => {
   //Location from current route
   const location = useLocation();
   const cat = location.pathname.split('/')[2];
-  console.log(cat);
+
   //For Category
   useEffect(() => {
     getProductByCat();

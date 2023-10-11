@@ -23,12 +23,12 @@ const Dropdown = () => {
           </Link>
         </li>
         <li className='justify-center items-center flex'>
-          <Link className='small-navlink' to='/'>
+          <Link className='small-navlink' to='/contact'>
             Contact
           </Link>
         </li>
         <li className='justify-center items-center flex'>
-          <Link className='small-navlink' to='/'>
+          <Link className='small-navlink' to='/about'>
             About Us
           </Link>
         </li>

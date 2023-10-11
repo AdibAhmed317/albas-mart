@@ -14,7 +14,6 @@ const Sidebar = () => {
     try {
       const res = await axios.get('http://localhost:5000/api/category');
       setFetchCat(res.data);
-      console.log(fetchCat);
     } catch (error) {
       console.log(error);
     }

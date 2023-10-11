@@ -3,7 +3,7 @@ import logo from '../../assets/logoT.png';
 
 const Footer = () => {
   return (
-    <footer class='p-4 sm:p-6 bg-green-200 md:mt-16'>
+    <footer class='p-4 sm:p-6 bg-green-200'>
       <div class='md:flex md:justify-between'>
         <div class='mb-6 md:mb-0'>
           <a href='#' class='flex items-center mt-3'>

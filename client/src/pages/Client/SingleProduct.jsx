@@ -1,12 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 
 import b2 from '../../assets/b2.jpg';
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const SingleProduct = () => {
+  const [fetchedProduct, setFetchedProduct] = useState([]);
+
+  const location = useLocation();
+  const paramId = location.pathname.split('/')[2];
+
+  useEffect(() => {
+    getProductById();
+  }, [paramId]);
+
+  const getProductById = async () => {
+    try {
+      const productFetch = await axios.get(
+        `http://localhost:5000/api/products/find/${paramId}`
+      );
+      const data = productFetch.data;
+      setFetchedProduct(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className='bg-green-50' id='container'>
       <Navbar />
@@ -17,20 +40,20 @@ const SingleProduct = () => {
         </div>
         <div className='flex-1 py-0 px-[50px]' id='info container'>
           <h1 className='font-extralight text-4xl mt-10 md:mt-0' id='title'>
-            title
+            {fetchedProduct.title}
           </h1>
           <p className='my-5 mx-0 text-xl md:text-lg font-thin' id='desc'>
-            desc
+            {fetchedProduct.desc}
           </p>
-          <span className='font-semibold text-xl' id='price'>
-            $10
+          <span className='font-medium text-xl' id='price'>
+            ৳ {fetchedProduct.price}
           </span>
           <div
             className='flex justify-between w-3/6 my-[30px] mx-0'
             id='filterContainer'>
             <div className='flex items-center' id='filter'>
               <span className='font-extralight text-xl m-1' id='filterTitle'>
-                Size
+                Size: {fetchedProduct.size}
               </span>
             </div>
           </div>
@@ -44,7 +67,7 @@ const SingleProduct = () => {
               <span
                 className='p-6 w-10 h-10 md:w-[30px] md:h-[30px] text-green-900 rounded-xl border-solid bg-green-200 flex justify-center items-center mx-1'
                 id='amount'>
-                10
+                0
               </span>
               <button>
                 <Add />
