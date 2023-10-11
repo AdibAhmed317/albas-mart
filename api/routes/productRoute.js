@@ -47,7 +47,10 @@ router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
 // Route to get all products
 router.get('/all', async (req, res) => {
   try {
-    const products = await ProductModel.find();
+    const { categories } = req.query;
+    const query = categories === 'all' ? {} : { categories: categories };
+
+    const products = await ProductModel.find(query);
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json(error);

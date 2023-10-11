@@ -33,7 +33,7 @@ const Shop = () => {
   const getProductByCat = async () => {
     try {
       const catFetch = await axios.get(
-        `http://localhost:5000/api/products/all?category=${cat}`
+        `http://localhost:5000/api/products/all?categories=${cat}`
       );
       const data = catFetch.data;
       setFetchedProduct(data);
