@@ -65,7 +65,7 @@ const Shop = () => {
       <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start mt-10'>
-        <div className='md:mr-5 lg:mr-5 mr-0 scrollbar-hide'>
+        <div className='md:mr-10 mr-0 scrollbar-hide w-auto md:w-[20rem]'>
           <div className='flex justify-start items-center mt-0 lg:mt-5'>
             <input
               className='lg:w-[200px] w-60 h-10 bg-green-200 pl-3 items-center'
