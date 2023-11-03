@@ -7,7 +7,7 @@ const CategoryCard = ({ item }) => {
       style={{
         backgroundImage: `url(${item.img})`,
       }}
-      className='mt-10 shadow-xl bg-no-repeat h-[20rem] w-[20rem] md:w-[25rem] rounded-2xl'>
+      className='mt-10 mx-5 shadow-xl bg-no-repeat h-[20rem] w-[20rem] md:w-[25rem] rounded-2xl'>
       <div className='h-[8rem] w-full bg-green-200 flex flex-col justify-center items-center mt-[13rem] rounded-b-2xl'>
         <h1 className='text-3xl font-thin text-green-900'>{item.title}</h1>
         <Link

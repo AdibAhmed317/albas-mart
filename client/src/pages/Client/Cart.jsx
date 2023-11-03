@@ -5,7 +5,7 @@ import Footer from '../../components/Footer/Footer';
 const Cart = () => {
   const [itemCount, setItemCount] = useState(10);
   return (
-    <div className=' bg-green-100'>
+    <div className=' bg-green-50'>
       <Navbar />
       <section className='h-40 flex justify-center items-center'>
         <h1 className='text-4xl font-thin'>Your cart ({itemCount} items)</h1>

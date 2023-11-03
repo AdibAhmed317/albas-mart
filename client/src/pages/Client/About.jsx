@@ -14,7 +14,7 @@ const About = () => {
           <h1 className='text-5xl md:text-6xl font-thin text-center text-green-800 my-16'>
             Our Story
           </h1>
-          <p className='mx-10 md:mx-40 text-2xl text-center text-green-800 my-5'>
+          <p className='mx-10 md:mx-40 text-2xl text-justify text-green-800 my-5'>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
             repellat officia at dolore neque consectetur fugit nobis pariatur
             veniam. Magnam, cumque reiciendis odio eveniet suscipit aperiam
@@ -29,10 +29,10 @@ const About = () => {
             animi!
           </p>
         </div>
-        <div className='mb-20 flex flex-col md:flex-row mx5'>
-          <img src={b2} />
-          <img src={b2} />
-          <img src={b2} />
+        <div className='mb-20 flex flex-col md:flex-row overflow-auto'>
+          <img src={b2} height={500} width={500} className='mx-5' />
+          <img src={b2} height={500} width={500} className='mx-5' />
+          <img src={b2} height={500} width={500} className='mx-5' />
         </div>
       </div>
       <Footer />

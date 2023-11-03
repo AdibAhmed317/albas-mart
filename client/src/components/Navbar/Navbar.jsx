@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logoT.png';
 import NavbarContext from '../../context/NavbarContext';
 import UserContext from '../../context/UserContext';
+import { ShoppingCart } from '../../assets/icons';
 
 const Navbar = () => {
   const { isOpen, setIsOpen } = useContext(NavbarContext);
@@ -110,6 +111,13 @@ const Navbar = () => {
           )}
           {Name != '' && isAdmin == false && (
             <>
+              <li>
+                <Link
+                  className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                  to={`/cart`}>
+                  <ShoppingCart />
+                </Link>
+              </li>
               <li>
                 <Link
                   className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'

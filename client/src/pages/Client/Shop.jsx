@@ -65,7 +65,7 @@ const Shop = () => {
       <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start mt-10'>
-        <div className='md:mr-10 mr-0 scrollbar-hide w-auto md:w-[20rem]'>
+        <div className='md:mr-5 mr-0 scrollbar-hide w-auto md:w-[15rem]'>
           <div className='flex justify-start items-center mt-0 lg:mt-5'>
             <input
               className='lg:w-[200px] w-60 h-10 bg-green-200 pl-3 items-center'
@@ -78,7 +78,7 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10 overflow-auto md:w-[150vh] pb-5 px-1'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 overflow-auto md:w-[150vh] pb-5 px-1'>
           {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
               <div className='mt-0 md:mt-10 ml-0 md:ml-2'>

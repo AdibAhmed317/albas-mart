@@ -9,10 +9,19 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const SingleProduct = () => {
+  const [amount, setAmount] = useState(0);
   const [fetchedProduct, setFetchedProduct] = useState([]);
 
   const location = useLocation();
   const paramId = location.pathname.split('/')[2];
+
+  const handleOnClick = (param) => {
+    if (param === 'Add') {
+      setAmount(amount + 1);
+    } else if (param === 'Remove' && amount > 0) {
+      setAmount(amount - 1);
+    }
+  };
 
   useEffect(() => {
     getProductById();
@@ -61,15 +70,15 @@ const SingleProduct = () => {
             className='flex justify-between items-center w-3/6'
             id='AddContainer'>
             <div className='flex items-center' id='AmountContainer'>
-              <button>
+              <button onClick={() => handleOnClick('Remove')}>
                 <Remove />
               </button>
               <span
                 className='p-6 w-10 h-10 md:w-[30px] md:h-[30px] text-green-900 rounded-xl border-solid bg-green-200 flex justify-center items-center mx-1'
                 id='amount'>
-                0
+                {amount}
               </span>
-              <button>
+              <button onClick={() => handleOnClick('Add')}>
                 <Add />
               </button>
             </div>
@@ -90,20 +99,3 @@ const SingleProduct = () => {
 };
 
 export default SingleProduct;
-
-{
-  /* <select
-className='bg-green-200 p-2 rounded-full font-thin ml-1'
-value={size}
-onChange={(event) => setSize(event.target.value)}>
-{product.size?.map((option) => (
-  <option key={option} value={option}>
-    {option}
-  </option>
-))}
-</select> */
-}
-
-// onClick={() => hangleQuantity('dec')}
-// onClick={handleCart}
-// onClick={() => hangleQuantity('inc')}
