@@ -1,11 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/logoT.png';
 import NavbarContext from '../../context/NavbarContext';
 import UserContext from '../../context/UserContext';
 import { ShoppingCart } from '../../assets/icons';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
+
   const { isOpen, setIsOpen } = useContext(NavbarContext);
   const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);
 
@@ -115,7 +118,12 @@ const Navbar = () => {
                 <Link
                   className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
                   to={`/cart`}>
-                  <ShoppingCart />
+                  <div className='flex'>
+                    <div className='mt-1'>
+                      <ShoppingCart />
+                    </div>
+                    <div>({quantity})</div>
+                  </div>
                 </Link>
               </li>
               <li>

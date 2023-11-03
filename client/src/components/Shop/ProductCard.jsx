@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import b2 from '../../assets/b2.jpg';
 import { FaHeart } from 'react-icons/fa6';
 import { BsCart3 } from 'react-icons/bs';
+import { addProduct } from '../../redux/cartRedux';
+import { useDispatch } from 'react-redux';
 
 const ProductCard = ({ product }) => {
+  const quantity = 1;
+  const dispatch = useDispatch();
+
+  const handleCart = () => {
+    dispatch(addProduct({ ...product, quantity }));
+  };
+
   return (
     <div className='flex flex-col shadow-lg bg-green-100 rounded-lg w-[10rem] md:w-[13rem] my-3'>
       <Link to={`/product/${product._id}`}>
@@ -29,7 +38,7 @@ const ProductCard = ({ product }) => {
             <button className='relative text-green-400 hover:text-red-700 mr-5'>
               <FaHeart />
             </button>
-            <button className='relative text-green-800'>
+            <button className='relative text-green-800' onClick={handleCart}>
               <BsCart3 />
             </button>
           </div>
@@ -40,20 +49,3 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
-
-{
-  /* <div className='w-40 mt-2'>
-<div className=''>
-
-
-  <div className='flex flex-col justify-center md:justify-between mt-2 pb-1 md:pb-5 items-center md:flex-row'>
-    <div>
-
-    </div>
-    <div className='mt-1 pl-10'>
-
-    </div>
-  </div>
-</div>
-</div> */
-}

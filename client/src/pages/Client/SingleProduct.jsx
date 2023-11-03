@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { addProduct } from '../../redux/cartRedux';
+import { useDispatch } from 'react-redux';
+
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 
 import b2 from '../../assets/b2.jpg';
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 const SingleProduct = () => {
-  const [amount, setAmount] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const [fetchedProduct, setFetchedProduct] = useState([]);
+
+  const dispatch = useDispatch();
 
   const location = useLocation();
   const paramId = location.pathname.split('/')[2];
 
   const handleOnClick = (param) => {
     if (param === 'Add') {
-      setAmount(amount + 1);
-    } else if (param === 'Remove' && amount > 0) {
-      setAmount(amount - 1);
+      setQuantity(quantity + 1);
+    } else if (param === 'Remove' && quantity > 0) {
+      setQuantity(quantity - 1);
     }
   };
 
@@ -37,6 +42,10 @@ const SingleProduct = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const handleCart = () => {
+    dispatch(addProduct({ ...fetchedProduct, quantity }));
   };
 
   return (
@@ -76,13 +85,15 @@ const SingleProduct = () => {
               <span
                 className='p-6 w-10 h-10 md:w-[30px] md:h-[30px] text-green-900 rounded-xl border-solid bg-green-200 flex justify-center items-center mx-1'
                 id='amount'>
-                {amount}
+                {quantity}
               </span>
               <button onClick={() => handleOnClick('Add')}>
                 <Add />
               </button>
             </div>
-            <button className='w-fit h-fit justify-center items-center md:ml-0 ml-10 text-base text-green-900 bg-green-200 rounded-xl px-5 py-1 hover:text-green-600'>
+            <button
+              onClick={handleCart}
+              className='w-fit h-fit justify-center items-center md:ml-0 ml-10 text-base text-green-900 bg-green-200 rounded-xl px-5 py-1 hover:text-green-600'>
               <div className='flex justify-center items-center'>
                 <p className='mr-2'>
                   <ShoppingCart />
