@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import axios from 'axios';
 
 const Profile = () => {
@@ -34,7 +35,15 @@ const Profile = () => {
   return (
     <>
       <Navbar />
-      <div className='bg-green-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          type: 'keyframes',
+          delay: 0.175,
+        }}
+        className='bg-green-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
         <div className='max-w-md mx-auto md:max-w-2xl'>
           <div className='md:flex'>
             <div className='md:flex-shrink-0'>
@@ -68,7 +77,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

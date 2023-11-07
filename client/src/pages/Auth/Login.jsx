@@ -5,6 +5,7 @@ import jwtDecode from 'jwt-decode';
 
 import Navbar from '../../components/Navbar/Navbar';
 import UserContext from '../../context/UserContext';
+import Dropdown from '../../components/Navbar/DropDown';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -48,6 +49,7 @@ const Login = () => {
   return (
     <>
       <Navbar />
+      <Dropdown />
       <div className='w-auto h-[85vh] bg-green-50 flex items-center justify-center'>
         <div className='p-5 w-[350px] md:w-[25%] bg-green-200' id='wrapper'>
           <h1 className='text-2xl font-light'>SIGN IN</h1>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
@@ -61,7 +62,15 @@ const Shop = () => {
   };
 
   return (
-    <div className='bg-green-50 h-full'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        type: 'keyframes',
+        delay: 0.175,
+      }}
+      className='bg-green-50 h-full'>
       <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start mt-10'>
@@ -91,7 +100,7 @@ const Shop = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

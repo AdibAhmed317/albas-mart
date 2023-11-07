@@ -5,6 +5,7 @@ import NavbarContext from '../../context/NavbarContext';
 import UserContext from '../../context/UserContext';
 import { ShoppingCart } from '../../assets/icons';
 import { useSelector } from 'react-redux';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
@@ -29,7 +30,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='w-full h-auto bg-green-200 flex justify-between items-center'>
+    <motion.nav
+      className='w-full h-auto bg-green-200 flex justify-between items-center'
+      initial={{ y: -1, opacity: 0.1 }}
+      animate={{ y: 0, opacity: 1 }}>
       <div className='flex-1'>
         <div className='w-auto md:w-[35%]'>
           <Link to='/'>
@@ -162,7 +166,7 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

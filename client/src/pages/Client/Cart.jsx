@@ -4,6 +4,7 @@ import Footer from '../../components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import CartList from '../../components/Cart/CartList';
 import { addProduct, clearCart } from '../../redux/cartRedux';
+import { motion } from 'framer-motion';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
@@ -27,7 +28,15 @@ const Cart = () => {
   }, [quantity]);
 
   return (
-    <div className=' bg-green-50'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        type: 'keyframes',
+        delay: 0.175,
+      }}
+      className=' bg-green-50'>
       <Navbar />
       <section className='h-40 flex justify-center items-center'>
         <h1 className='text-4xl font-thin'>
@@ -69,7 +78,7 @@ const Cart = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

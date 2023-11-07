@@ -18,7 +18,6 @@ const FeaturedProduct = () => {
       );
       const data = catFetch.data;
       setFetchedProduct(data);
-      console.log(fetchedProduct);
     } catch (error) {
       console.log(error);
     }

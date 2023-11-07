@@ -2,15 +2,24 @@ import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   return (
     <>
       <Navbar />
       <DropDown />
-      <div className='bg-green-50 h-full w-full flex justify-center items-center'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          type: 'keyframes',
+          delay: 0.175,
+        }}
+        className='bg-green-50 h-full w-full flex justify-center items-center'>
         <div className='flex flex-col'>
-          <h1 className='text-3xl md:text-5xl font-thin text-center text-green-800 my-16'>
+          <h1 className='text-4xl md:text-5xl font-thin text-center text-green-800 my-16'>
             Contact Us
           </h1>
           <div className='flex flex-col h-full w-[20rem] md:w-[30rem] justify-center md:items-start my-10'>
@@ -45,7 +54,7 @@ const Contact = () => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );

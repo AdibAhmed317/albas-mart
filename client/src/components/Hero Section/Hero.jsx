@@ -1,17 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import hero from '../../assets/hero.jpg';
 
 const Hero = () => {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        type: 'just',
+        duration: 0.3,
+      }}
       className='relative overflow-hidden bg-cover bg-no-repeat text-center flex justify-center items-center'
       style={{
         backgroundImage: `url(${hero})`,
         height: '800px',
       }}>
       <div className='h-full w-full flex items-center justify-center'>
-        <div className=' h-50 w-[40rem] bg-green-200/95 p-10 border border-green-950/10 rounded-lg shadow-xl'>
+        <motion.div
+          initial={{ opacity: 0, y: 100 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            type: 'tween',
+            duration: 0.7,
+          }}
+          className='h-50 w-[40rem] bg-green-200 p-10 border border-green-950/10 rounded-lg shadow-xl'>
           <div className='text-green-900 flex flex-col justify-center items-center m-2'>
             <h2 className='mb-6 font-sans text-4xl md:text-5xl capitalize font-thin'>
               Buy all your daily needs from one place
@@ -29,9 +43,9 @@ const Hero = () => {
               Shop Now
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

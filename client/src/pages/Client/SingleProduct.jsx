@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
@@ -49,7 +50,16 @@ const SingleProduct = () => {
   };
 
   return (
-    <div className='bg-green-50' id='container'>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        type: 'keyframes',
+        delay: 0.175,
+      }}
+      className='bg-green-50'
+      id='container'>
       <Navbar />
       <DropDown />
       <div className='p-[50px] flex flex-col md:flex-row' id='wrapper'>
@@ -105,7 +115,7 @@ const SingleProduct = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

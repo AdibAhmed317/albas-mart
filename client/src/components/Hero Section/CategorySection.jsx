@@ -1,11 +1,18 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import CategoryCard from './CategoryCard';
 import { categories } from '../../assets/data/categories';
 
 const CategorySection = () => {
   return (
-    <div className='mt-10 h-full mb-20'>
-      <h1 className='text-center text-5xl font-thin text-green-900 mb-2'>
+    <motion.div
+      initial={{ opacity: 0, y: -100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        delay: 0.5,
+      }}
+      className='mt-10 md:mt-24 h-full mb-20'>
+      <h1 className='text-center text-5xl font-thin text-green-900 mb-2 md:mb-10'>
         Popular Categories
       </h1>
       <div className='flex flex-col md:flex-row justify-center items-center md:justify-between mx-0 md:mx-40'>
@@ -13,7 +20,7 @@ const CategorySection = () => {
           <CategoryCard item={item} />
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

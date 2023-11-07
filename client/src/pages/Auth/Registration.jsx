@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
+import Dropdown from '../../components/Navbar/DropDown';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -52,6 +53,7 @@ const Registration = () => {
   return (
     <>
       <Navbar />
+      <Dropdown />
       <div className='w-auto md:h-[85vh] h-screen bg-green-50 flex items-center justify-center'>
         <div className='p-5 w-[350px] md:w-[40%] bg-green-200'>
           <h1 className='text-2xl font-light'>CREATE AN ACCOUNT</h1>

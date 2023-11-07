@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import b2 from '../../assets/b2.jpg';
+import ab1 from '../../assets/about/ab1.jpg';
+import ab2 from '../../assets/about/ab2.jpg';
+import ab3 from '../../assets/about/ab3.jpg';
+
 import { ArrowRight, ArrowLeft } from '../../assets/icons/index';
 import { RxDotFilled } from 'react-icons/rx';
 
@@ -9,13 +13,13 @@ const Slider = () => {
       url: b2,
     },
     {
-      url: b2,
+      url: ab1,
     },
     {
-      url: b2,
+      url: ab2,
     },
     {
-      url: b2,
+      url: ab3,
     },
   ];
 

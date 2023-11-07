@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Dropdown from '../../components/Navbar/DropDown';
+import { motion } from 'framer-motion';
 import Footer from '../../components/Footer/Footer';
 import ab1 from '../../assets/about/ab1.jpg';
 import ab2 from '../../assets/about/ab2.jpg';
@@ -11,7 +12,15 @@ const About = () => {
     <>
       <Navbar />
       <Dropdown />
-      <div className='flex flex-col justify-center items-center bg-green-50'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          type: 'keyframes',
+          delay: 0.175,
+        }}
+        className='flex flex-col justify-center items-center bg-green-50'>
         <div>
           <h1 className='text-5xl md:text-6xl font-thin text-center text-green-800 my-16'>
             Our Story
@@ -51,7 +60,7 @@ const About = () => {
             className='mx-5 object-cover'
           />
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );
