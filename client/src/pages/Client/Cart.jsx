@@ -1,50 +1,68 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import CartList from '../../components/Cart/CartList';
+import { addProduct, clearCart } from '../../redux/cartRedux';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+  const total = useSelector((state) => state.cart.total);
 
   const [product, setProduct] = useState();
 
   const getCartData = () => {
     const cartData = localStorage.getItem('cartData');
     setProduct(JSON.parse(cartData));
-    console.log(product);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
   };
 
   useEffect(() => {
     getCartData();
   }, [quantity]);
 
-  const total = product ? product.total : 0;
-
   return (
     <div className=' bg-green-50'>
       <Navbar />
       <section className='h-40 flex justify-center items-center'>
-        <h1 className='text-4xl font-thin'>Your cart ({quantity} items)</h1>
+        <h1 className='text-4xl font-thin'>
+          Your cart ({quantity} items){' '}
+          <button
+            className='text-xl p-2 rounded-lg bg-red-500 text-white hover:bg-red-600'
+            onClick={handleClearCart}>
+            Clear All
+          </button>
+        </h1>
       </section>
-      <div className='h-[70vh] flex'>
-        <div id='left' className='h-full w-full'>
-          {product &&
-            product.products.map((product) => (
-              <div key={product._id}>
-                <h1>{product.title}</h1>
-                <p>Price: ${product.price}</p>
-                <p>Quantity: {product.quantity}</p>
-              </div>
-            ))}
+      <div className='h-[100vh] flex flex-col md:flex-row'>
+        <div
+          id='left'
+          className='h-full w-full overflow-auto bg-green-100 ml-0 md:ml-10'>
+          <CartList product={product} />
         </div>
         <div
           id='right'
-          className='h-full w-[60%] flex justify-center items-center'>
+          className='h-full w-full md:w-[60%] flex justify-center items-center'>
           <div className='h-[90%] w-full mx-10 border-spacing-10 border-[1px] border-black flex justify-start items-center'>
             <div>
-              <h1 className='font-thin text-4xl'>
-                <b>Subtotal: ${total}</b> <br />
-                <b>Total: ${total + 20}</b>
+              <h1 className='font-light text-3xl text-justify'>
+                <h1 className='my-5'>
+                  <b>Subtotal:</b> ${total}
+                </h1>
+                <h1 className='my-5'>
+                  <b>Delivery Charge:</b> $20
+                </h1>
+                <h1 className='my-5'>
+                  <b>Discount:</b> $10
+                </h1>
+                <h1 className='my-5'>
+                  <b>Total:</b> ${total + 20 - 10}
+                </h1>
               </h1>
             </div>
           </div>
