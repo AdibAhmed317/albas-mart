@@ -2,7 +2,9 @@ import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import Dropdown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
-import b2 from '../../assets/b2.jpg';
+import ab1 from '../../assets/about/ab1.jpg';
+import ab2 from '../../assets/about/ab2.jpg';
+import ab3 from '../../assets/about/ab3.jpg';
 
 const About = () => {
   return (
@@ -30,9 +32,24 @@ const About = () => {
           </p>
         </div>
         <div className='mb-20 flex flex-col md:flex-row overflow-auto'>
-          <img src={b2} height={500} width={500} className='mx-5' />
-          <img src={b2} height={500} width={500} className='mx-5' />
-          <img src={b2} height={500} width={500} className='mx-5' />
+          <img
+            src={ab1}
+            height={500}
+            width={500}
+            className='mx-5 object-cover'
+          />
+          <img
+            src={ab2}
+            height={500}
+            width={500}
+            className='mx-5 object-cover'
+          />
+          <img
+            src={ab3}
+            height={500}
+            width={500}
+            className='mx-5 object-cover'
+          />
         </div>
       </div>
       <Footer />

@@ -51,16 +51,16 @@ const Cart = () => {
           <div className='h-[90%] w-full mx-10 border-spacing-10 border-[1px] border-black flex justify-start items-center'>
             <div>
               <h1 className='font-light text-3xl text-justify'>
-                <h1 className='my-5'>
+                <h1 className='m-5'>
                   <b>Subtotal:</b> ${total}
                 </h1>
-                <h1 className='my-5'>
+                <h1 className='m-5'>
                   <b>Delivery Charge:</b> $20
                 </h1>
-                <h1 className='my-5'>
+                <h1 className='m-5'>
                   <b>Discount:</b> $10
                 </h1>
-                <h1 className='my-5'>
+                <h1 className='m-5'>
                   <b>Total:</b> ${total + 20 - 10}
                 </h1>
               </h1>
