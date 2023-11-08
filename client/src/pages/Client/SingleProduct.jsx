@@ -11,6 +11,7 @@ import Footer from '../../components/Footer/Footer';
 import b2 from '../../assets/b2.jpg';
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';
+import Swal from 'sweetalert2';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
@@ -45,6 +46,13 @@ const SingleProduct = () => {
 
   const handleCart = () => {
     dispatch(addProduct({ ...fetchedProduct, quantity }));
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Added to cart!',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (

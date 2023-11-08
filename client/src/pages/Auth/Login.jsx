@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 import Navbar from '../../components/Navbar/Navbar';
 import UserContext from '../../context/UserContext';
@@ -39,6 +39,12 @@ const Login = () => {
       setIsAdmin(adminCheck);
       navigate('/');
     } catch (error) {
+      // Use SweetAlert2 to show an error message
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Email/Password did not match!',
+      });
       setErrorMessage('Email/Password did not match');
       console.log(error);
     }

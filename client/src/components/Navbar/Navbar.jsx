@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import logo from '../../assets/logoT.png';
 import NavbarContext from '../../context/NavbarContext';
 import UserContext from '../../context/UserContext';
@@ -22,11 +23,30 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('id');
-    setName('');
-    setIsAdmin(false);
-    navigate('/');
+    // Use SweetAlert2 for logout confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out of your session.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('id');
+        setName('');
+        setIsAdmin(false);
+        navigate('/');
+        // Optionally, display a success message
+        Swal.fire(
+          'Logged out!',
+          'You have been successfully logged out.',
+          'success'
+        );
+      }
+    });
   };
 
   return (

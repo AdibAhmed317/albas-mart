@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartList from '../../components/Cart/CartList';
 import { addProduct, clearCart } from '../../redux/cartRedux';
 import { motion } from 'framer-motion';
+import Swal from 'sweetalert2';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
@@ -20,7 +21,22 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const handleClearCart = () => {
-    dispatch(clearCart());
+    // SweetAlert2 confirmation dialog
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, clear it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(clearCart());
+        // Optionally, you can clear the localStorage or perform other state updates here
+        Swal.fire('Cleared!', 'Your cart has been cleared.', 'success');
+      }
+    });
   };
 
   useEffect(() => {

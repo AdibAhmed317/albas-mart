@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import UserContext from '../../context/UserContext';
 import { ShoppingCart } from '../../assets/icons';
 import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const Dropdown = () => {
   const { isOpen } = useContext(NavbarContext);
@@ -17,11 +18,30 @@ const Dropdown = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('id');
-    setName('');
-    setIsAdmin(false);
-    navigate('/');
+    // Use SweetAlert2 for logout confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out of your session.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('id');
+        setName('');
+        setIsAdmin(false);
+        navigate('/');
+        // Optionally, display a success message
+        Swal.fire(
+          'Logged out!',
+          'You have been successfully logged out.',
+          'success'
+        );
+      }
+    });
   };
 
   // Define the animation properties

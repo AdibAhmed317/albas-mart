@@ -5,6 +5,7 @@ import { FaHeart } from 'react-icons/fa6';
 import { BsCart3 } from 'react-icons/bs';
 import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
 const ProductCard = ({ product }) => {
   const quantity = 1;
@@ -12,6 +13,14 @@ const ProductCard = ({ product }) => {
 
   const handleCart = () => {
     dispatch(addProduct({ ...product, quantity }));
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Added to cart!',
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (

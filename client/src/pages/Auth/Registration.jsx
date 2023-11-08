@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Dropdown from '../../components/Navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
+import Swal from 'sweetalert2';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -21,7 +22,11 @@ const Registration = () => {
 
   const handleSubmit = async () => {
     if (password !== confirmPassword) {
-      alert('Password and Confirm Password do not match.');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Password and Confirm Password do not match.',
+      });
       return;
     }
     try {
@@ -44,9 +49,27 @@ const Registration = () => {
       setPhoneNumber('');
       setAddress('');
       setErrorMessage('');
-      navigate('/login');
+
+      // Use SweetAlert2 for the success message
+      Swal.fire({
+        icon: 'success',
+        title: 'Registration Successful!',
+        text: 'Your account has been created.',
+        confirmButtonText: 'Login',
+      }).then((result) => {
+        // Navigate to login page after the user acknowledges the success alert
+        if (result.value) {
+          navigate('/login');
+        }
+      });
     } catch (error) {
       console.error('Registration error:', error);
+      // Use SweetAlert2 for the user already exists error
+      Swal.fire({
+        icon: 'error',
+        title: 'Registration Failed',
+        text: 'User already exists.',
+      });
       setErrorMessage('User Already Exist');
     }
   };
