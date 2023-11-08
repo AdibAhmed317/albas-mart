@@ -4,7 +4,7 @@ import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 
 import hero from '../../assets/hero.jpg';
-import axios from 'axios';
+import { publicRequest } from '../../network/RequestMethod';
 
 const AdminProfile = () => {
   const [adminData, setAdminData] = useState('');
@@ -16,9 +16,7 @@ const AdminProfile = () => {
   const fetchAdminData = async () => {
     const userId = localStorage.getItem('id');
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/user/find/${userId}`
-      );
+      const res = await publicRequest.get(`user/find/${userId}`);
       setAdminData(res.data);
     } catch (error) {
       console.log(error);

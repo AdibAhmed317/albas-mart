@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { publicRequest } from '../../network/RequestMethod';
 
 const Sidebar = () => {
   const [fetchCat, setFetchCat] = useState([]);
@@ -11,7 +12,7 @@ const Sidebar = () => {
 
   const fetchAllCatagory = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/category');
+      const res = await publicRequest.get('category');
       setFetchCat(res.data);
     } catch (error) {
       console.log(error);

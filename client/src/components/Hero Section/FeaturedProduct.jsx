@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import ProductCard from '../Shop/ProductCard';
-import NoProductFound from '../Shop/NoProductFound';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { publicRequest } from '../../network/RequestMethod';
+
+import NoProductFound from '../Shop/NoProductFound';
+import ProductCard from '../Shop/ProductCard';
 
 const FeaturedProduct = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -13,9 +14,7 @@ const FeaturedProduct = () => {
 
   const getProduct = async () => {
     try {
-      const catFetch = await axios.get(
-        `http://localhost:5000/api/products/eight`
-      );
+      const catFetch = await publicRequest.get(`products/eight`);
       const data = catFetch.data;
       setFetchedProduct(data);
     } catch (error) {

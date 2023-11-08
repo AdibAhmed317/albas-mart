@@ -6,6 +6,7 @@ import jwtDecode from 'jwt-decode';
 import Navbar from '../../components/Navbar/Navbar';
 import UserContext from '../../context/UserContext';
 import Dropdown from '../../components/Navbar/DropDown';
+import { publicRequest } from '../../network/RequestMethod';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,10 +25,7 @@ const Login = () => {
         Password: password,
       };
 
-      const res = await axios.post(
-        'http://localhost:5000/api/auth/login',
-        loginData
-      );
+      const res = await publicRequest.post('auth/login', loginData);
 
       localStorage.setItem('accessToken', res.data.accessToken);
       localStorage.setItem('id', res.data._id);

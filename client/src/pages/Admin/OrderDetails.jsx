@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
-import axios from 'axios';
+import { publicRequest } from '../../network/RequestMethod';
 
 const OrderDetails = () => {
   const location = useLocation();
@@ -13,8 +13,8 @@ const OrderDetails = () => {
   }, []);
 
   const fetchCustomerDetails = () => {
-    axios
-      .get(`http://localhost:5000/api/user/find/${customerId}`)
+    publicRequest
+      .get(`user/find/${customerId}`)
       .then((response) => {
         setCustomer(response.data);
       })

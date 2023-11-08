@@ -14,20 +14,16 @@ import Footer from '../../components/Footer/Footer';
 import { publicRequest } from '../../network/RequestMethod';
 
 const Shop = () => {
-  //States for sorting
   const [fetchedProduct, setFetchedProduct] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
-  //Location from current route
   const location = useLocation();
   const cat = location.pathname.split('/')[2];
 
-  //For Category
   useEffect(() => {
     getProductByCat();
   }, [cat]);
 
-  // For Search
   useEffect(() => {
     searchProduct();
   }, [inputValue]);
@@ -42,10 +38,10 @@ const Shop = () => {
     }
   };
 
-  const searchProduct = async (event) => {
+  const searchProduct = async () => {
     if (inputValue !== '') {
-      const fetchSearchProduct = await axios.get(
-        `http://localhost:5000/api/products/search/${inputValue}`
+      const fetchSearchProduct = await publicRequest.get(
+        `products/search/${inputValue}`
       );
       const searchData = fetchSearchProduct.data;
       if (searchData) {

@@ -3,8 +3,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import hero from '../../assets/hero.jpg';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { publicRequest, userRequest } from '../../network/RequestMethod';
 
 const CreateProduct = () => {
   const [categoryName, setCategoryName] = useState('');
@@ -28,7 +28,7 @@ const CreateProduct = () => {
 
   const fetchCatFunction = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/category/');
+      const response = await publicRequest.get('category/');
       setFetchCat(response.data);
     } catch (error) {
       console.log(error);
@@ -45,15 +45,11 @@ const CreateProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(productData);
-    const accessToken = localStorage.getItem('accessToken');
-    const headers = { token: `Bearer ${accessToken}` };
 
     try {
-      const res = await axios.post(
-        'http://localhost:5000/api/products/create-product',
-        productData,
-        { headers }
+      const res = await userRequest.post(
+        'products/create-product',
+        productData
       );
 
       navigate('/admin/all-products/');
@@ -65,14 +61,9 @@ const CreateProduct = () => {
   const handleCatSubmit = async (e) => {
     e.preventDefault();
     const categoryData = { CategoryName: categoryName };
-    const accessToken = localStorage.getItem('accessToken');
-    const headers = { token: `Bearer ${accessToken}` };
+
     try {
-      const res = axios.post(
-        'http://localhost:5000/api/category/',
-        categoryData,
-        { headers }
-      );
+      const res = userRequest.post('category/', categoryData);
 
       setCategoryName('');
       fetchCatFunction();

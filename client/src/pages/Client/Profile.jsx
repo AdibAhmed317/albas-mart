@@ -3,6 +3,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { publicRequest } from '../../network/RequestMethod';
 
 const Profile = () => {
   const location = useLocation();
@@ -14,8 +15,8 @@ const Profile = () => {
   }, []);
 
   const fetchCustomerDetails = () => {
-    axios
-      .get(`http://localhost:5000/api/user/find/${customerId}`)
+    publicRequest
+      .get(`user/find/${customerId}`)
       .then((response) => {
         setCustomer(response.data);
       })

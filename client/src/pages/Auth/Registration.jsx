@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Dropdown from '../../components/Navbar/DropDown';
+import { publicRequest } from '../../network/RequestMethod';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -31,8 +32,8 @@ const Registration = () => {
         Phone: phoneNumber,
         Address: address,
       };
-      const response = await axios.post(
-        'http://localhost:5000/api/auth/register',
+      const response = await publicRequest.post(
+        'auth/register',
         registrationData
       );
 

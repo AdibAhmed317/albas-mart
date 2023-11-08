@@ -9,6 +9,7 @@ import NoProductFound from '../../components/Shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import AdminProductCard from '../../components/Admin/AdminProductCard';
+import { userRequest } from '../../network/RequestMethod';
 
 const AllOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -18,12 +19,8 @@ const AllOrders = () => {
   }, []);
 
   const getAllOrders = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    const headers = { token: `Bearer ${accessToken}` };
     try {
-      const res = await axios.get(`http://localhost:5000/api/orders/`, {
-        headers,
-      });
+      const res = await userRequest.get(`orders/`);
 
       setOrders(res.data);
     } catch (error) {

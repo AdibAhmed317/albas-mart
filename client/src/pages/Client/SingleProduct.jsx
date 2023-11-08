@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { addProduct } from '../../redux/cartRedux';
@@ -11,6 +10,7 @@ import Footer from '../../components/Footer/Footer';
 
 import b2 from '../../assets/b2.jpg';
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
+import { publicRequest } from '../../network/RequestMethod';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
@@ -35,9 +35,7 @@ const SingleProduct = () => {
 
   const getProductById = async () => {
     try {
-      const productFetch = await axios.get(
-        `http://localhost:5000/api/products/find/${paramId}`
-      );
+      const productFetch = await publicRequest.get(`products/find/${paramId}`);
       const data = productFetch.data;
       setFetchedProduct(data);
     } catch (error) {

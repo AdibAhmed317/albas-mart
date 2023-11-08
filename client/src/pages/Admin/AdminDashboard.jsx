@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import { Link } from 'react-router-dom';
+import { publicRequest, userRequest } from '../../network/RequestMethod';
 
 const AdminDashboard = () => {
   const [data, setData] = useState([]);
@@ -16,11 +17,7 @@ const AdminDashboard = () => {
 
   const fetchData = async () => {
     try {
-      const accessToken = localStorage.getItem('accessToken');
-      const headers = { token: `Bearer ${accessToken}` };
-      const res = await axios.get('http://localhost:5000/api/user/', {
-        headers,
-      });
+      const res = await userRequest.get('user/');
       setData(res.data);
     } catch (error) {
       console.log(error);
@@ -29,9 +26,7 @@ const AdminDashboard = () => {
 
   const handleSearch = async () => {
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/user/find/${searchId}`
-      );
+      const res = await publicRequest.get(`user/find/${searchId}`);
       setSearchResult(res.data);
     } catch (error) {
       console.log(error);

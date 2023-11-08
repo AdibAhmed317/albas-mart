@@ -10,6 +10,7 @@ import NoProductFound from '../../components/Shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import AdminProductCard from '../../components/Admin/AdminProductCard';
+import { publicRequest } from '../../network/RequestMethod';
 
 const AllProducts = () => {
   //States for sorting
@@ -32,8 +33,8 @@ const AllProducts = () => {
 
   const getProductByCat = async () => {
     try {
-      const catFetch = await axios.get(
-        `http://localhost:5000/api/products/all?categories=${cat}`
+      const catFetch = await publicRequest.get(
+        `products/all?categories=${cat}`
       );
       const data = catFetch.data;
       setFetchedProduct(data);
