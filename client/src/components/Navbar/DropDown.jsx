@@ -1,10 +1,28 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NavbarContext from '../../context/NavbarContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import UserContext from '../../context/UserContext';
+import { ShoppingCart } from '../../assets/icons';
+import { useSelector } from 'react-redux';
 
 const Dropdown = () => {
   const { isOpen } = useContext(NavbarContext);
+  const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);
+
+  const quantity = useSelector((state) => state.cart.quantity);
+
+  const loggedInId = localStorage.getItem('id');
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('id');
+    setName('');
+    setIsAdmin(false);
+    navigate('/');
+  };
 
   // Define the animation properties
   const dropdownVariants = {
@@ -45,20 +63,72 @@ const Dropdown = () => {
             </li>
           </ul>
           <ul className='flex justify-center items-center mt-10'>
-            <li className='mx-5'>
-              <Link
-                className='my-1 text-base text-green-50 font-medium m-0 bg-blue-600 hover:bg-blue-900 py-2 px-3 md:mx-2 rounded-md'
-                to='/login'>
-                Login
-              </Link>
-            </li>
-            <li className='mx-5'>
-              <Link
-                className='my-1 text-base text-green-50 font-medium m-0 bg-purple-700 hover:bg-purple-500 py-2 px-3 md:mx-2 rounded-md'
-                to='/login'>
-                Signup
-              </Link>
-            </li>
+            {Name != '' && isAdmin && (
+              <>
+                <li>
+                  <Link
+                    className='my-1 text-base text-green-800 hover:text-green-600 font-medium m-0 py-2 px-3 md:mx-2 rounded-md'
+                    to='/admin/dashboard'>
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
+                    onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
+            {Name != '' && isAdmin == false && (
+              <>
+                <li>
+                  <Link
+                    className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                    to={`/cart`}>
+                    <div className='flex'>
+                      <div className='mt-1'>
+                        <ShoppingCart />
+                      </div>
+                      <div>({quantity})</div>
+                    </div>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                    to={`/user-details/${loggedInId}`}>
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
+                    onClick={handleLogout}>
+                    Logout
+                  </button>
+                </li>
+              </>
+            )}
+            {Name === '' && (
+              <>
+                <li>
+                  <Link
+                    className='my-1 text-base text-green-50 font-medium bg-blue-600 hover:bg-blue-900 py-2 px-3 mx-2 rounded-md'
+                    to='/login'>
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className='my-1 text-base text-green-50 font-medium bg-purple-700 hover:bg-purple-500 py-2 px-3 mx-2 rounded-md'
+                    to='/registration'>
+                    Signup
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </motion.div>
       )}
