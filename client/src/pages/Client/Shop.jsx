@@ -11,6 +11,7 @@ import ProductCard from '../../components/Shop/ProductCard';
 import NoProductFound from '../../components/Shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import Footer from '../../components/Footer/Footer';
+import { publicRequest } from '../../network/RequestMethod';
 
 const Shop = () => {
   //States for sorting
@@ -33,9 +34,7 @@ const Shop = () => {
 
   const getProductByCat = async () => {
     try {
-      const catFetch = await axios.get(
-        `http://localhost:5000/api/products/all?categories=${cat}`
-      );
+      const catFetch = await publicRequest.get(`products/all?categories=all`);
       const data = catFetch.data;
       setFetchedProduct(data);
     } catch (error) {
