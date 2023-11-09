@@ -30,7 +30,9 @@ const Shop = () => {
 
   const getProductByCat = async () => {
     try {
-      const catFetch = await publicRequest.get(`products/all?categories=all`);
+      const catFetch = await publicRequest.get(
+        `products/all?categories=${cat}`
+      );
       const data = catFetch.data;
       setFetchedProduct(data);
     } catch (error) {
