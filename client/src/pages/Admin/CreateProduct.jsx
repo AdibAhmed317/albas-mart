@@ -5,22 +5,30 @@ import AdminSidebar from '../../components/Admin/AdminSidebar';
 import hero from '../../assets/hero.jpg';
 import { useNavigate } from 'react-router-dom';
 import { publicRequest, userRequest } from '../../network/RequestMethod';
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage';
+import app from '../../firebase';
 
 const CreateProduct = () => {
   const [categoryName, setCategoryName] = useState('');
   const [fetchCat, setFetchCat] = useState([]);
+  const [file, setFile] = useState(null);
+
+  const navigate = useNavigate();
 
   const [productData, setProductData] = useState({
     title: '',
     desc: '',
-    img: hero,
+    img: null,
     categories: '',
     size: [],
     price: null,
     StockQuantity: null,
   });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCatFunction();
@@ -47,12 +55,59 @@ const CreateProduct = () => {
     e.preventDefault();
 
     try {
-      const res = await userRequest.post(
-        'products/create-product',
-        productData
-      );
+      const filename = new Date().getTime() + file.name;
+      const storage = getStorage(app);
+      const storageRef = ref(storage, 'images/' + filename);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-      navigate('/admin/all-products/');
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log('Upload is ' + progress + '% done');
+          switch (snapshot.state) {
+            case 'paused':
+              console.log('Upload is paused');
+              break;
+            case 'running':
+              console.log('Upload is running');
+              break;
+            default:
+          }
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref)
+            .then((downloadURL) => {
+              console.log('File available at', downloadURL);
+              setProductData((prevData) => ({
+                ...prevData,
+                img: downloadURL,
+              }));
+
+              const updatedProductData = {
+                ...productData,
+                img: downloadURL,
+              };
+
+              userRequest
+                .post('products/create-product', updatedProductData)
+                .then((res) => {
+                  navigate('/admin/all-products/');
+                  console.log(updatedProductData);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -60,14 +115,16 @@ const CreateProduct = () => {
 
   const handleCatSubmit = async (e) => {
     e.preventDefault();
-    const categoryData = { CategoryName: categoryName };
 
+    const categoryData = { CategoryName: categoryName };
     try {
       const res = userRequest.post('category/', categoryData);
-
       setCategoryName('');
       fetchCatFunction();
-    } catch (error) {}
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -145,6 +202,18 @@ const CreateProduct = () => {
                   name='StockQuantity'
                   value={productData.StockQuantity}
                   onChange={handleInputChange}
+                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                  required
+                />
+                <label className='mt-5 block text-gray-700'>
+                  Product Image
+                </label>
+                <input
+                  type='file'
+                  name='img'
+                  id='file'
+                  accept='image/png, image/jpeg'
+                  onChange={(e) => setFile(e.target.files[0])}
                   className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
                   required
                 />

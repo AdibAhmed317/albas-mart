@@ -122,6 +122,18 @@ const Navbar = () => {
             <>
               <li>
                 <Link
+                  className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                  to={`/cart`}>
+                  <div className='flex'>
+                    <div className='mt-1'>
+                      <ShoppingCart />
+                    </div>
+                    <div>({quantity})</div>
+                  </div>
+                </Link>
+              </li>
+              <li>
+                <Link
                   className='my-1 text-base text-green-800 hover:text-green-600 font-medium m-0 py-2 px-3 md:mx-2 rounded-md'
                   to='/admin/dashboard'>
                   Dashboard
@@ -168,6 +180,18 @@ const Navbar = () => {
           )}
           {Name === '' && (
             <>
+              <li>
+                <Link
+                  className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                  to={`/cart`}>
+                  <div className='flex'>
+                    <div className='mt-1'>
+                      <ShoppingCart />
+                    </div>
+                    <div>({quantity})</div>
+                  </div>
+                </Link>
+              </li>
               <li>
                 <Link
                   className='my-1 text-base text-green-50 font-medium m-0 bg-blue-600 hover:bg-blue-900 py-2 px-3 md:mx-2 rounded-md'
