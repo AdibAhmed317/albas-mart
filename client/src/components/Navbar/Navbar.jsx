@@ -23,7 +23,6 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    // Use SweetAlert2 for logout confirmation
     Swal.fire({
       title: 'Are you sure?',
       text: 'You will be logged out of your session.',

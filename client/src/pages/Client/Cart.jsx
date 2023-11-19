@@ -9,14 +9,12 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
-  const total = useSelector((state) => state.cart.total);
+  const cartProducts = useSelector((state) => state.cart.products);
 
-  const [product, setProduct] = useState();
-
-  const getCartData = () => {
-    const cartData = localStorage.getItem('cartData');
-    setProduct(JSON.parse(cartData));
-  };
+  const subtotal = cartProducts.reduce(
+    (acc, product) => acc + product.price * product.quantity,
+    0
+  );
 
   const dispatch = useDispatch();
 
@@ -38,10 +36,6 @@ const Cart = () => {
       }
     });
   };
-
-  useEffect(() => {
-    getCartData();
-  }, [quantity]);
 
   return (
     <motion.div
@@ -68,7 +62,7 @@ const Cart = () => {
         <div
           id='left'
           className='h-full w-full overflow-auto bg-green-100 ml-0 md:ml-10'>
-          <CartList product={product} />
+          <CartList />
         </div>
         <div
           id='right'
@@ -77,16 +71,16 @@ const Cart = () => {
             <div>
               <h1 className='font-light text-3xl text-justify'>
                 <h1 className='m-5'>
-                  <b>Subtotal:</b> ${total}
+                  <b>Subtotal:</b> ৳{subtotal}
                 </h1>
                 <h1 className='m-5'>
-                  <b>Delivery Charge:</b> $20
+                  <b>Delivery Charge:</b> ৳20
                 </h1>
                 <h1 className='m-5'>
-                  <b>Discount:</b> $10
+                  <b>Discount:</b> ৳10
                 </h1>
                 <h1 className='m-5'>
-                  <b>Total:</b> ${total + 20 - 10}
+                  <b>Total:</b> ৳{subtotal + 20 - 10}
                 </h1>
               </h1>
             </div>
