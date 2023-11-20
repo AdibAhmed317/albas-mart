@@ -8,6 +8,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Dropdown from '../../components/Navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
 import Swal from 'sweetalert2';
+import Footer from '../../components/Footer/Footer';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -78,7 +79,7 @@ const Registration = () => {
     <>
       <Navbar />
       <Dropdown />
-      <div className='w-auto md:h-[85vh] h-screen bg-green-50 flex items-center justify-center'>
+      <div className='w-auto md:h-[80vh] h-screen bg-green-50 flex items-center justify-center -mb-10'>
         <div className='p-5 w-[350px] md:w-[40%] bg-green-200'>
           <h1 className='text-2xl font-light'>CREATE AN ACCOUNT</h1>
           <input
@@ -128,7 +129,7 @@ const Registration = () => {
           <br />
           <span className='text-sm my-5 mx-0'>
             <Link
-              className='my-2 mx-0 text-base underline cursor-pointer text-green-900'
+              className='text-base underline cursor-pointer text-green-900'
               to='/login'>
               Already have an account?
             </Link>
@@ -137,6 +138,7 @@ const Registration = () => {
           <span className='text-red-500'>{errorMessage}</span>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

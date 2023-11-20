@@ -23,22 +23,23 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/admin-dashboard' element={<AdminDashboard />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
         <Route path='/shop/:category' element={<Shop />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/admin/user-details/:id' element={<UserDetails />} />
-        <Route path='/user-details/:id' element={<Profile />} />
         <Route path='/product/:id' element={<SingleProduct />} />
-        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+
+        <Route path='/login' element={<Login />} />
+        <Route path='/registration' element={<Registration />} />
+        <Route path='/user-details/:id' element={<Profile />} />
+
+        <Route path='/admin-dashboard' element={<AdminDashboard />} />
         <Route path='/admin/create-product' element={<CreateProduct />} />
         <Route path='/admin/all-products' element={<AllProducts />} />
         <Route path='/admin/all-orders' element={<AllOrders />} />
-        <Route path='/admin/profile' element={<AdminProfile />} />
         <Route path='/admin/order-details/:id' element={<OrderDetails />} />
+        <Route path='/admin/user-details/:id' element={<UserDetails />} />
+        <Route path='/admin/profile' element={<AdminProfile />} />
       </Routes>
     </>
   );

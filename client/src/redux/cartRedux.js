@@ -49,20 +49,14 @@ const cartSlice = createSlice({
     },
     removeProduct: (state, action) => {
       const productId = action.payload;
-      const productIndex = state.products.findIndex(
-        (item) => item._id === productId
-      );
+      const index = state.products.findIndex((item) => item._id === productId);
 
-      if (productIndex !== -1) {
-        const removedProduct = state.products[productIndex];
-        state.total -= removedProduct.price * removedProduct.quantity;
-        state.quantity -= removedProduct.quantity;
-
-        state.products.splice(productIndex, 1);
-        if (state.products.length === 0) {
-          state.quantity = 0;
-        }
-
+      if (index !== -1) {
+        const removedProduct = state.products[index];
+        const removedQuantity = removedProduct.quantity;
+        state.quantity -= 1;
+        state.total -= removedProduct.price * removedQuantity;
+        state.products.splice(index, 1);
         localStorage.setItem('cartData', JSON.stringify(state));
       }
     },

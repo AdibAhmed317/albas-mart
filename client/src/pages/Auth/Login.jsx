@@ -4,6 +4,7 @@ import jwtDecode from 'jwt-decode';
 import Swal from 'sweetalert2';
 
 import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/Footer';
 import UserContext from '../../context/UserContext';
 import Dropdown from '../../components/Navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
@@ -54,8 +55,10 @@ const Login = () => {
     <>
       <Navbar />
       <Dropdown />
-      <div className='w-auto h-[85vh] bg-green-50 flex items-center justify-center'>
-        <div className='p-5 w-[350px] md:w-[25%] bg-green-200' id='wrapper'>
+      <div className='w-auto md:h-[80vh] h-screen bg-green-50 flex items-center justify-center -mb-10'>
+        <div
+          className='p-5 w-[350px] md:w-[25%] h-auto bg-green-200'
+          id='wrapper'>
           <h1 className='text-2xl font-light'>SIGN IN</h1>
           <input
             className='flex-1 w-full my-3 mx-0 bg-green-50 p-3'
@@ -88,6 +91,7 @@ const Login = () => {
           <span className='text-red-500'>{errorMessage}</span>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
