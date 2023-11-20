@@ -6,6 +6,7 @@ import CartList from '../../components/Cart/CartList';
 import { addProduct, clearCart } from '../../redux/cartRedux';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
+import Dropdown from '../../components/Navbar/DropDown';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
@@ -49,11 +50,12 @@ const Cart = () => {
       }}
       className=' bg-green-50'>
       <Navbar />
+      <Dropdown />
       <section className='h-40 flex justify-center items-center'>
-        <h1 className='text-4xl font-thin'>
-          Your cart ({quantity} items)
+        <h1 className='text-2xl md:text-4xl font-thin'>
+          <span>Your cart ({quantity} items)</span>
           <button
-            className='text-xl p-2 rounded-lg bg-red-500 text-white hover:bg-red-600'
+            className='text-sm md:text-lg p-2 rounded-lg bg-red-500 text-white hover:bg-red-600 ml-5 transition-all'
             onClick={handleClearCart}>
             Clear All
           </button>
@@ -62,15 +64,15 @@ const Cart = () => {
       <div className='h-[100vh] flex flex-col md:flex-row'>
         <div
           id='left'
-          className='h-full w-full overflow-auto bg-green-100 ml-0 md:ml-10'>
+          className='h-full md:h-[80vh] w-full overflow-auto bg-green-100 ml-0 md:ml-10'>
           <CartList />
         </div>
         <div
           id='right'
-          className='h-full w-full md:w-[60%] flex justify-center items-center'>
-          <div className='h-[90%] w-full mx-10 border-spacing-10 border-[1px] border-black flex justify-start items-center'>
+          className='h-full w-full md:w-[60%] flex justify-center items-center md:items-start'>
+          <div className='h-[80%] w-full mx-10 border-spacing-10 border-[1px] border-black flex justify-center items-center flex-col'>
             <div>
-              <h1 className='font-light text-3xl text-justify'>
+              <span className='font-light text-xl md:text-4xl text-start md:text-justify'>
                 <h1 className='m-5'>
                   <b>Subtotal:</b> ৳{subtotal}
                 </h1>
@@ -83,8 +85,11 @@ const Cart = () => {
                 <h1 className='m-5'>
                   <b>Total:</b> ৳{subtotal + 20 - 10}
                 </h1>
-              </h1>
+              </span>
             </div>
+            <button className='w-[55%] h-10 md:h-16 rounded-md bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
+              Confirm Order
+            </button>
           </div>
         </div>
       </div>

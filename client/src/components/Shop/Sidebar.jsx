@@ -20,8 +20,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className='h-full w-[350px] lg:max-w-[14rem] overflow-hidden mt-0 md:mt-5'>
-      <h1 className='text-2xl text-green-900 font-thin md:text-start lg:text-start mt-5 md:mt-0'>
+    <div className='h-auto md:h-full w-[350px] max-w-[15rem] overflow-hidden mt-0 md:mt-5'>
+      <h1 className='text-2xl text-green-900 font-thin md:text-start mt-5 md:mt-0'>
         Categories
       </h1>
       <hr className='mt-4 bg-green-900 h-[1.5px] w-full'></hr>
