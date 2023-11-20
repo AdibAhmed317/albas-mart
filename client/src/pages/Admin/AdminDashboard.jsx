@@ -89,7 +89,7 @@ const AdminDashboard = () => {
             <p></p>
           )}
           <div className='mx-auto'>
-            <h1 className='text-2xl text-green-900 mb-4'>All Orders</h1>
+            <h1 className='text-2xl text-green-900 mb-4'>All Users</h1>
             <div className='overflow-x-auto'>
               <table className='min-w-full bg-white rounded-lg overflow-hidden'>
                 <thead className='bg-gray-200 text-gray-700'>
