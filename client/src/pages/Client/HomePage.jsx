@@ -13,9 +13,9 @@ const HomePage = ({ Name }) => {
       <Navbar />
       <Dropdown />
       <Hero />
+      <Slider />
       <CategorySection />
       <FeaturedProduct />
-      <Slider />
       <Footer />
     </div>
   );

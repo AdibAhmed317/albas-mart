@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg w-[10rem] md:w-[13rem] my-3'>
+    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg w-[10rem] md:w-[13rem] my-3 md:my-0'>
       <Link to={`/product/${product._id}`}>
         <img
           className='object-cover rounded-t-lg h-auto md:h-[10rem]'

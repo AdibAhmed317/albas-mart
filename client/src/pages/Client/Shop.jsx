@@ -85,10 +85,10 @@ const Shop = () => {
       <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row justify-center items-center lg:items-start mt-10'>
-        <div className='md:mr-5 mr-0 scrollbar-hide w-auto md:w-[15rem]'>
-          <div className='flex justify-start items-center mt-0 lg:mt-5'>
+        <div className='md:mx-10 mx-0 scrollbar-hide w-auto md:w-[20rem] shadow-xl p-10 bg-green-100'>
+          <div className='flex justify-start items-center'>
             <input
-              className='lg:w-[200px] w-60 h-10 bg-green-200 pl-3 items-center'
+              className='md:w-[20rem] w-60 h-10 bg-green-200 pl-3 items-center rounded-full mr-1'
               type='search'
               placeholder='Search'
               value={inputValue}
@@ -98,7 +98,7 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 overflow-auto md:w-[150vh] pb-5 px-1'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 overflow-auto md:w-full pb-5 px-1'>
           {isLoading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div className='mt-0 md:mt-10 ml-0 md:ml-2' key={index}>
@@ -107,7 +107,7 @@ const Shop = () => {
             ))
           ) : fetchedProduct.length > 0 || fetchedProduct.value === null ? (
             fetchedProduct.map((product) => (
-              <div className='mt-0 md:mt-10 ml-0 md:ml-2' key={product._id}>
+              <div className='' key={product._id}>
                 <ProductCard product={product} />
               </div>
             ))
@@ -122,5 +122,3 @@ const Shop = () => {
 };
 
 export default Shop;
-
-//<h1>Loading... Please Wait.</h1>
