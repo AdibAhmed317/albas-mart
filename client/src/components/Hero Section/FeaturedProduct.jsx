@@ -33,7 +33,7 @@ const FeaturedProduct = () => {
       </h1>
       <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-20'>
         {isLoading ? (
-          Array.from({ length: 4 }).map((_, index) => (
+          Array.from({ length: 8 }).map((_, index) => (
             <SkeletonProductCard key={index} />
           ))
         ) : fetchedProduct.length > 0 || fetchedProduct.value === null ? (
