@@ -4,9 +4,11 @@ import { publicRequest } from '../../network/RequestMethod';
 
 import NoProductFound from '../Shop/NoProductFound';
 import ProductCard from '../Shop/ProductCard';
+import SkeletonProductCard from '../Shop/SkeletonProductCard';
 
 const FeaturedProduct = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getProduct();
@@ -19,6 +21,8 @@ const FeaturedProduct = () => {
       setFetchedProduct(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -28,7 +32,11 @@ const FeaturedProduct = () => {
         Featured Product
       </h1>
       <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-20'>
-        {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
+        {isLoading ? (
+          Array.from({ length: 4 }).map((_, index) => (
+            <SkeletonProductCard key={index} />
+          ))
+        ) : fetchedProduct.length > 0 || fetchedProduct.value === null ? (
           fetchedProduct.map((product) => (
             <ProductCard product={product} key={product._id} />
           ))

@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
+
   const cartProducts = useSelector((state) => state.cart.products);
 
   const subtotal = cartProducts.reduce(
@@ -50,7 +51,7 @@ const Cart = () => {
       <Navbar />
       <section className='h-40 flex justify-center items-center'>
         <h1 className='text-4xl font-thin'>
-          Your cart ({quantity} items){' '}
+          Your cart ({quantity} items)
           <button
             className='text-xl p-2 rounded-lg bg-red-500 text-white hover:bg-red-600'
             onClick={handleClearCart}>
