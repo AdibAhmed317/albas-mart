@@ -7,6 +7,7 @@ import { addProduct, clearCart } from '../../redux/cartRedux';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import Dropdown from '../../components/Navbar/DropDown';
+import StripeCheckout from 'react-stripe-checkout';
 
 const Cart = () => {
   const quantity = useSelector((state) => state.cart.quantity);
@@ -17,6 +18,8 @@ const Cart = () => {
     (acc, product) => acc + product.price * product.quantity,
     0
   );
+
+  const KEY = import.meta.env.VITE_STRIPE;
 
   const dispatch = useDispatch();
 
@@ -87,7 +90,7 @@ const Cart = () => {
                 </h1>
               </span>
             </div>
-            <button className='w-[55%] h-10 md:h-16 rounded-md bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
+            <button className='w-[55%] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
               Confirm Order
             </button>
           </div>

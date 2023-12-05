@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://al-9dkg.onrender.com/api/';
+const BASE_URL = import.meta.env.DEV
+  ? import.meta.env.VITE_LOCAL_URL
+  : import.meta.env.VITE_LIVE_URL;
 
 const accessToken = localStorage.getItem('accessToken');
 
