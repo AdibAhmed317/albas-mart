@@ -3,15 +3,16 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import CartList from '../../components/Cart/CartList';
-import { addProduct, clearCart } from '../../redux/cartRedux';
+import { clearCart } from '../../redux/cartRedux';
 import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import Dropdown from '../../components/Navbar/DropDown';
 import StripeCheckout from 'react-stripe-checkout';
+import logo from '../../assets/logoT.png';
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const quantity = useSelector((state) => state.cart.quantity);
-
   const cartProducts = useSelector((state) => state.cart.products);
 
   const subtotal = cartProducts.reduce(
@@ -21,10 +22,11 @@ const Cart = () => {
 
   const KEY = import.meta.env.VITE_STRIPE;
 
-  const dispatch = useDispatch();
+  const onToken = (token) => {
+    third;
+  };
 
   const handleClearCart = () => {
-    // SweetAlert2 confirmation dialog
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -36,7 +38,6 @@ const Cart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(clearCart());
-        // Optionally, you can clear the localStorage or perform other state updates here
         Swal.fire('Cleared!', 'Your cart has been cleared.', 'success');
       }
     });
@@ -90,9 +91,19 @@ const Cart = () => {
                 </h1>
               </span>
             </div>
-            <button className='w-[55%] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
-              Confirm Order
-            </button>
+            <StripeCheckout
+              name='Al-Raya'
+              image={logo}
+              billingAddress
+              shippingAddress
+              description={`Your total is ৳${subtotal + 20 - 10}`}
+              token={onToken}
+              amount={subtotal + 20 - 10}
+              stripeKey={KEY}>
+              <button className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
+                Confirm Order
+              </button>
+            </StripeCheckout>
           </div>
         </div>
       </div>
