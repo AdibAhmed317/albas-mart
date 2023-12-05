@@ -27,7 +27,7 @@ const FeaturedProduct = () => {
   };
 
   return (
-    <div className='mt-10 h-full mb-20 flex justify-center items-center flex-col'>
+    <div className='mt-10 h-full mb-20 flex justify-center items-center flex-col px-10'>
       <h1 className='text-center text-5xl font-thin text-green-900 mb-20'>
         Featured Product
       </h1>

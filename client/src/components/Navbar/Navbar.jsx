@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2'; // Import SweetAlert2
+import Swal from 'sweetalert2';
 import logo from '../../assets/logoT.png';
 import NavbarContext from '../../context/NavbarContext';
 import UserContext from '../../context/UserContext';
@@ -38,7 +38,6 @@ const Navbar = () => {
         setName('');
         setIsAdmin(false);
         navigate('/');
-        // Optionally, display a success message
         Swal.fire(
           'Logged out!',
           'You have been successfully logged out.',
@@ -50,13 +49,13 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className='w-full h-auto bg-green-200 flex justify-between items-center'
+      className='w-full bg-green-200 flex justify-between items-center'
       initial={{ y: -1, opacity: 0.1 }}
       animate={{ y: 0, opacity: 1 }}>
       <div className='flex-1'>
         <div className='w-auto md:w-[35%]'>
           <Link to='/'>
-            <img className='relative h-16 w-auto p-2' src={logo} alt='Logo' />
+            <img className='relative h-14 w-auto p-2' src={logo} alt='Logo' />
           </Link>
         </div>
       </div>

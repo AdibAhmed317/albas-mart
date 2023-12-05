@@ -7,10 +7,10 @@ import DropDown from '../../components/Navbar/DropDown';
 import Sidebar from '../../components/Shop/Sidebar';
 import ProductCard from '../../components/Shop/ProductCard';
 import NoProductFound from '../../components/Shop/NoProductFound';
-import { Search } from '../../assets/icons';
 import Footer from '../../components/Footer/Footer';
-import { publicRequest } from '../../network/RequestMethod';
 import SkeletonProductCard from '../../components/Shop/SkeletonProductCard';
+import { Search } from '../../assets/icons';
+import { publicRequest } from '../../network/RequestMethod';
 
 const Shop = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);

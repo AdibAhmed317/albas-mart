@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa6';
-import { BsCart3 } from 'react-icons/bs';
 import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import { userRequest } from '../../network/RequestMethod';
 
 const ProductCard = ({ product }) => {
   const quantity = 1;
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
+
+  const loggedInId = localStorage.getItem('id');
+
+  const navigate = useNavigate();
 
   const handleCart = () => {
     setIsLoading(true);
@@ -25,6 +29,49 @@ const ProductCard = ({ product }) => {
         timer: 1500,
       });
     }, 500);
+  };
+
+  const handleWishList = async () => {
+    if (loggedInId != null) {
+      const wishlistData = {
+        userId: loggedInId,
+        productId: product._id,
+      };
+
+      console.log(wishlistData);
+      try {
+        const createWL = await userRequest.post('wishlist', wishlistData);
+
+        if (createWL.status === 200) {
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Added to wishlist',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      } catch (error) {
+        if (
+          error.response &&
+          error.response.status === 400 &&
+          error.response.data.message ===
+            'Product already exists in the wishlist'
+        ) {
+          Swal.fire({
+            position: 'center',
+            icon: 'info',
+            title: 'Product already in wishlist',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          console.log('Error adding to wishlist:', error);
+        }
+      }
+    } else {
+      navigate('/login');
+    }
   };
 
   return (
@@ -48,7 +95,9 @@ const ProductCard = ({ product }) => {
             ৳ {product.price}
           </h5>
           <div className='mt-1'>
-            <button className='text-green-400 hover:text-green-600 mr-5 transition-all'>
+            <button
+              className='text-green-400 hover:text-green-600 mr-5 transition-all'
+              onClick={handleWishList}>
               <FaHeart />
             </button>
           </div>

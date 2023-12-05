@@ -7,7 +7,7 @@ dotenv.config();
 const userRoute = require('./routes/userRoute');
 const authRoute = require('./routes/authRoute');
 const productRoute = require('./routes/productRoute');
-const cartRoute = require('./routes/cartRoute');
+const wishListRoute = require('./routes/wishlist.route');
 const orderRoute = require('./routes/orderRoute');
 const categoryRoute = require('./routes/categoryRoute');
 const stripeRoute = require('./routes/stripe');
@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);
 app.use('/api/products', productRoute);
-app.use('/api/cart', cartRoute);
+app.use('/api/wishlist', wishListRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/category', categoryRoute);
 app.use('/api/checkout', stripeRoute);
