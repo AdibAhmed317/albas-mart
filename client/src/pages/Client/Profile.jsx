@@ -44,7 +44,7 @@ const Profile = () => {
           type: 'keyframes',
           delay: 0.175,
         }}
-        className='bg-green-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
+        className='bg-green-50 min-h-screen py-12 px-4 sm:px-6 lg:px-10'>
         <div className='max-w-md mx-auto md:max-w-2xl'>
           <div className='md:flex'>
             <div className='md:flex-shrink-0'>
