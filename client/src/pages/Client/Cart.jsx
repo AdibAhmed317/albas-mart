@@ -9,9 +9,14 @@ import Swal from 'sweetalert2';
 import Dropdown from '../../components/Navbar/DropDown';
 import StripeCheckout from 'react-stripe-checkout';
 import logo from '../../assets/logoT.png';
+import { userRequest } from '../../network/RequestMethod';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedId = localStorage.getItem('id');
+  const [stripeToken, setStripeToken] = useState(null);
   const quantity = useSelector((state) => state.cart.quantity);
   const cartProducts = useSelector((state) => state.cart.products);
 
@@ -23,8 +28,27 @@ const Cart = () => {
   const KEY = import.meta.env.VITE_STRIPE;
 
   const onToken = (token) => {
-    third;
+    setStripeToken(token);
   };
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await userRequest.post('checkout/payment', {
+          tokenId: stripeToken.id,
+          amount: (subtotal + 20 - 10) * 100,
+        });
+
+        navigate(`/user-details/${loggedId}`);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (stripeToken && subtotal > 0) {
+      makeRequest();
+    }
+  }, [stripeToken, subtotal, navigate]);
 
   const handleClearCart = () => {
     Swal.fire({
@@ -98,8 +122,8 @@ const Cart = () => {
               shippingAddress
               description={`Your total is ৳${subtotal + 20 - 10}`}
               token={onToken}
-              amount={subtotal + 20 - 10}
-              stripeKey={KEY}>
+              amount={(subtotal + 20 - 10) * 100}
+              key={KEY}>
               <button className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
                 Confirm Order
               </button>
