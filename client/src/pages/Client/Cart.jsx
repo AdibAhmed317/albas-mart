@@ -26,6 +26,7 @@ const Cart = () => {
   );
 
   const KEY = import.meta.env.VITE_STRIPE;
+  console.log(KEY);
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -123,7 +124,7 @@ const Cart = () => {
               description={`Your total is ৳${subtotal + 20 - 10}`}
               token={onToken}
               amount={(subtotal + 20 - 10) * 100}
-              key={KEY}>
+              stripeKey={KEY}>
               <button className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
                 Confirm Order
               </button>
