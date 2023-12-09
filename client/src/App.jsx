@@ -15,8 +15,11 @@ import AllOrders from './pages/Admin/AllOrders';
 import AdminProfile from './pages/Admin/AdminProfile';
 import UserDetails from './pages/Admin/UserDetails';
 import OrderDetails from './pages/Admin/OrderDetails';
-import Profile from './pages/Client/Profile';
 import SingleProduct from './pages/Client/SingleProduct';
+import Profile from './pages/Client/profile/Profile';
+import Orders from './pages/Client/Profile/Orders';
+import Wishlist from './pages/Client/Profile/Wishlist';
+import Setting from './pages/Client/Profile/Setting';
 
 function App() {
   return (
@@ -32,6 +35,9 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/registration' element={<Registration />} />
         <Route path='/user-details/:id' element={<Profile />} />
+        <Route path='/user-details/orders/:id' element={<Orders />} />
+        <Route path='/user-details/wishlist/:id' element={<Wishlist />} />
+        <Route path='/user-details/setting/:id' element={<Setting />} />
 
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/admin/create-product' element={<CreateProduct />} />

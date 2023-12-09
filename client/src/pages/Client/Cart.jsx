@@ -26,7 +26,6 @@ const Cart = () => {
   );
 
   const KEY = import.meta.env.VITE_STRIPE;
-  console.log(KEY);
 
   const onToken = (token) => {
     setStripeToken(token);
