@@ -8,7 +8,7 @@ import Footer from '../../../components/Footer/Footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Dropdown from '../../../components/Navbar/DropDown';
 
-const Profile = () => {
+const UserProfile = () => {
   const location = useLocation();
   const customerId = location.pathname.split('/')[2];
   const [customer, setCustomer] = useState(null);
@@ -90,4 +90,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserProfile;
