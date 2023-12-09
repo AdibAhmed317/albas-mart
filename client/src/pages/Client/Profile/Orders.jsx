@@ -5,6 +5,7 @@ import Dropdown from '../../../components/Navbar/DropDown';
 import { userRequest } from '../../../network/RequestMethod';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Footer from '../../../components/Footer/Footer';
+import { motion } from 'framer-motion';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -44,59 +45,55 @@ const Orders = () => {
       <Navbar />
       <Dropdown />
       <ProfileSidebar />
-      <div className='flex flex-col bg-green-50'>
-        <div className='mx-auto'>
-          <h1 className='text-2xl text-center text-green-900 py-8'>
-            All Orders
-          </h1>
-          <section className='min-h-[60vh] w-full relative flex flex-col'>
-            <div className='w-full overflow-x-auto'>
-              <table className='w-full'>
-                <thead className='text-green-900'>
-                  <tr>
-                    <th className='py-3 px-4 font-semibold text-sm'>
-                      Order ID
-                    </th>
-                    <th className='py-3 px-4 font-semibold text-sm'>
-                      Customer ID
-                    </th>
-                    <th className='py-3 px-4 font-semibold text-sm'>
-                      Order Date
-                    </th>
-                    <th className='py-3 px-4 font-semibold text-sm'>
-                      Total Amount
-                    </th>
-                    <th className='py-3 px-4 font-semibold text-sm'>Status</th>
-                    <th className='py-3 px-4 font-semibold text-sm'>Details</th>
-                  </tr>
-                </thead>
-                <tbody className='text-gray-600 text-sm'>
-                  {orders.map((order) => (
-                    <tr
-                      key={order.OrderId}
-                      className='hover:bg-gray-100 transition duration-300 ease-in-out'>
-                      <td className='py-3 px-4 text-center'>{order._id}</td>
-                      <td className='py-3 px-4 text-center'>{order.userId}</td>
-                      <td className='py-3 px-4 text-center'>
-                        {formatDateString(order.createdAt)}
-                      </td>
-                      <td className='py-3 px-4 text-center'>${order.amount}</td>
-                      <td className='py-3 px-4 text-center'>{order.status}</td>
-                      <td className='py-3 px-4 text-center'>
-                        <Link
-                          to={`/admin/order-details/${order._id}`}
-                          className='text-blue-500 hover:underline'>
-                          Details
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </section>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{
+          type: 'keyframes',
+          delay: 0.175,
+        }}
+        className='bg-green-50'>
+        <h1 className='text-3xl text-center text-green-900 p-8'>All Orders</h1>
+        <div className='overflow-x-auto md:min-h-[60vh] px-10'>
+          <table className='min-w-full overflow-hidden'>
+            <thead className='text-green-900 bg-green-200'>
+              <tr>
+                <th className='py-3 px-4 font-semibold text-sm'>Order ID</th>
+                <th className='py-3 px-4 font-semibold text-sm'>Customer ID</th>
+                <th className='py-3 px-4 font-semibold text-sm'>Order Date</th>
+                <th className='py-3 px-4 font-semibold text-sm'>
+                  Total Amount
+                </th>
+                <th className='py-3 px-4 font-semibold text-sm'>Status</th>
+                <th className='py-3 px-4 font-semibold text-sm'>Details</th>
+              </tr>
+            </thead>
+            <tbody className='text-green-900 text-sm'>
+              {orders.map((order) => (
+                <tr
+                  key={order.OrderId}
+                  className='hover:bg-green-100 transition duration-300 ease-in-out'>
+                  <td className='py-3 px-4 text-center'>{order._id}</td>
+                  <td className='py-3 px-4 text-center'>{order.userId}</td>
+                  <td className='py-3 px-4 text-center'>
+                    {formatDateString(order.createdAt)}
+                  </td>
+                  <td className='py-3 px-4 text-center'>${order.amount}</td>
+                  <td className='py-3 px-4 text-center'>{order.status}</td>
+                  <td className='py-3 px-4 text-center'>
+                    <Link
+                      to={`/admin/order-details/${order._id}`}
+                      className='text-blue-500 hover:underline'>
+                      Details
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </>
   );
