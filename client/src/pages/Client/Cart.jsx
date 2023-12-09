@@ -10,7 +10,7 @@ import Dropdown from '../../components/Navbar/DropDown';
 import StripeCheckout from 'react-stripe-checkout';
 import logo from '../../assets/logoT.png';
 import { userRequest } from '../../network/RequestMethod';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -67,6 +67,10 @@ const Cart = () => {
     });
   };
 
+  const handleNavigation = () => {
+    navigate('/login');
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -115,19 +119,27 @@ const Cart = () => {
                 </h1>
               </span>
             </div>
-            <StripeCheckout
-              name='Al-Raya'
-              image={logo}
-              billingAddress
-              shippingAddress
-              description={`Your total is ৳${subtotal + 20 - 10}`}
-              token={onToken}
-              amount={(subtotal + 20 - 10) * 100}
-              stripeKey={KEY}>
-              <button className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
-                Confirm Order
+            {loggedId === '' || loggedId === null ? (
+              <button
+                onClick={handleNavigation}
+                className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
+                Login First
               </button>
-            </StripeCheckout>
+            ) : (
+              <StripeCheckout
+                name='Al-Raya'
+                image={logo}
+                billingAddress
+                shippingAddress
+                description={`Your total is ৳${subtotal + 20 - 10}`}
+                token={onToken}
+                amount={(subtotal + 20 - 10) * 100}
+                stripeKey={KEY}>
+                <button className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
+                  Confirm Order
+                </button>
+              </StripeCheckout>
+            )}
           </div>
         </div>
       </div>

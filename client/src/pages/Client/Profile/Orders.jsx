@@ -49,47 +49,51 @@ const Orders = () => {
           <h1 className='text-2xl text-center text-green-900 py-8'>
             All Orders
           </h1>
-          <section className='min-h-[60vh]'>
-            <table className=''>
-              <thead className='text-green-900'>
-                <tr>
-                  <th className='py-3 px-4 font-semibold text-sm'>Order ID</th>
-                  <th className='py-3 px-4 font-semibold text-sm'>
-                    Customer ID
-                  </th>
-                  <th className='py-3 px-4 font-semibold text-sm'>
-                    Order Date
-                  </th>
-                  <th className='py-3 px-4 font-semibold text-sm'>
-                    Total Amount
-                  </th>
-                  <th className='py-3 px-4 font-semibold text-sm'>Status</th>
-                  <th className='py-3 px-4 font-semibold text-sm'>Details</th>
-                </tr>
-              </thead>
-              <tbody className='text-gray-600 text-sm'>
-                {orders.map((order) => (
-                  <tr
-                    key={order.OrderId}
-                    className='hover:bg-gray-100 transition duration-300 ease-in-out'>
-                    <td className='py-3 px-4 text-center'>{order._id}</td>
-                    <td className='py-3 px-4 text-center'>{order.userId}</td>
-                    <td className='py-3 px-4 text-center'>
-                      {formatDateString(order.createdAt)}
-                    </td>
-                    <td className='py-3 px-4 text-center'>${order.amount}</td>
-                    <td className='py-3 px-4 text-center'>{order.status}</td>
-                    <td className='py-3 px-4 text-center'>
-                      <Link
-                        to={`/admin/order-details/${order._id}`}
-                        className='text-blue-500 hover:underline'>
-                        Details
-                      </Link>
-                    </td>
+          <section className='min-h-[60vh] w-full relative flex flex-col'>
+            <div className='w-full overflow-x-auto'>
+              <table className='w-full'>
+                <thead className='text-green-900'>
+                  <tr>
+                    <th className='py-3 px-4 font-semibold text-sm'>
+                      Order ID
+                    </th>
+                    <th className='py-3 px-4 font-semibold text-sm'>
+                      Customer ID
+                    </th>
+                    <th className='py-3 px-4 font-semibold text-sm'>
+                      Order Date
+                    </th>
+                    <th className='py-3 px-4 font-semibold text-sm'>
+                      Total Amount
+                    </th>
+                    <th className='py-3 px-4 font-semibold text-sm'>Status</th>
+                    <th className='py-3 px-4 font-semibold text-sm'>Details</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className='text-gray-600 text-sm'>
+                  {orders.map((order) => (
+                    <tr
+                      key={order.OrderId}
+                      className='hover:bg-gray-100 transition duration-300 ease-in-out'>
+                      <td className='py-3 px-4 text-center'>{order._id}</td>
+                      <td className='py-3 px-4 text-center'>{order.userId}</td>
+                      <td className='py-3 px-4 text-center'>
+                        {formatDateString(order.createdAt)}
+                      </td>
+                      <td className='py-3 px-4 text-center'>${order.amount}</td>
+                      <td className='py-3 px-4 text-center'>{order.status}</td>
+                      <td className='py-3 px-4 text-center'>
+                        <Link
+                          to={`/admin/order-details/${order._id}`}
+                          className='text-blue-500 hover:underline'>
+                          Details
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
         </div>
       </div>
