@@ -46,10 +46,12 @@ const Orders = () => {
       <ProfileSidebar />
       <div className='flex flex-col bg-green-50'>
         <div className='mx-auto'>
-          <h1 className='text-2xl text-green-900 mb-4'>All Orders</h1>
-          <div className='overflow-x-auto'>
-            <table className='bg-white rounded-lg overflow-scroll'>
-              <thead className='bg-gray-200 text-gray-700'>
+          <h1 className='text-2xl text-center text-green-900 py-8'>
+            All Orders
+          </h1>
+          <section className='min-h-[60vh]'>
+            <table className=''>
+              <thead className='text-green-900'>
                 <tr>
                   <th className='py-3 px-4 font-semibold text-sm'>Order ID</th>
                   <th className='py-3 px-4 font-semibold text-sm'>
@@ -65,7 +67,7 @@ const Orders = () => {
                   <th className='py-3 px-4 font-semibold text-sm'>Details</th>
                 </tr>
               </thead>
-              <tbody className='text-gray-600'>
+              <tbody className='text-gray-600 text-sm'>
                 {orders.map((order) => (
                   <tr
                     key={order.OrderId}
@@ -88,7 +90,7 @@ const Orders = () => {
                 ))}
               </tbody>
             </table>
-          </div>
+          </section>
         </div>
       </div>
       <Footer />
