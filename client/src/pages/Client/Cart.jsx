@@ -39,16 +39,36 @@ const Cart = () => {
           amount: (subtotal + 20 - 10) * 100,
         });
 
-        navigate(`/user-details/${loggedId}`);
+        if (res.status === 200) {
+          handleOrder(); // Placing order after successful payment
+          navigate(`/user-details/${loggedId}`); // Navigating to user details page
+        }
       } catch (error) {
         console.log(error);
       }
     };
 
     if (stripeToken && subtotal > 0) {
-      makeRequest();
+      makeRequest(); // Trigger the payment request
     }
   }, [stripeToken, subtotal, navigate]);
+
+  const handleOrder = async () => {
+    const orderData = {
+      userId: loggedId,
+      products: cartProducts,
+      amount: subtotal + 20 - 10,
+      address: 'asdf',
+      status: 'pending',
+    };
+
+    try {
+      const orderRes = await userRequest.post('orders/', orderData);
+      console.log(orderRes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleClearCart = () => {
     Swal.fire({
