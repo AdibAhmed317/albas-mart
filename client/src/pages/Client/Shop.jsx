@@ -102,7 +102,7 @@ const Shop = () => {
           {isLoading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div className='mt-0 md:mt-10 ml-0 md:ml-2' key={index}>
-                <SkeletonProductCard />{' '}
+                <SkeletonProductCard />
               </div>
             ))
           ) : fetchedProduct.length > 0 || fetchedProduct.value === null ? (
