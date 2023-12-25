@@ -50,7 +50,6 @@ const Wishlist = () => {
     title: product.title,
     description: product.desc,
     image: product.img,
-    // Add other necessary fields as required by ProductCard
   }));
 
   return (
