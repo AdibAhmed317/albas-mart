@@ -38,36 +38,36 @@ const ProductCard = ({ product }) => {
         productId: product._id,
       };
 
-      console.log(wishlistData);
       try {
-        const createWL = await userRequest.post('wishlist', wishlistData);
+        const response = await userRequest.post('wishlist/', wishlistData);
 
-        if (createWL.status === 200) {
+        if (response.status === 201) {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Added to wishlist',
+            title: 'Added to wishlist!',
             showConfirmButton: false,
             timer: 1500,
+          });
+        } else if (response.status === 400) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Product already exists in wishlist!',
+          });
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Failed to add to wishlist!',
           });
         }
       } catch (error) {
-        if (
-          error.response &&
-          error.response.status === 400 &&
-          error.response.data.message ===
-            'Product already exists in the wishlist'
-        ) {
-          Swal.fire({
-            position: 'center',
-            icon: 'info',
-            title: 'Product already in wishlist',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } else {
-          console.log('Error adding to wishlist:', error);
-        }
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Failed to add to wishlist!',
+        });
       }
     } else {
       navigate('/login');
