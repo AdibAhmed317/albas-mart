@@ -56,7 +56,7 @@ const Orders = () => {
         className='bg-green-50'>
         <h1 className='text-3xl text-center text-green-900 p-8'>All Orders</h1>
         <div className='overflow-x-auto md:min-h-[60vh] px-10'>
-          <table className='min-w-full overflow-hidden'>
+          <table className='min-w-full overflow-hidden rounded-t-md'>
             <thead className='text-green-900 bg-green-200'>
               <tr>
                 <th className='py-3 px-4 font-semibold text-sm'>Order ID</th>

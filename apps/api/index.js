@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.send('Hello, Welcome to Al-Raya Backend!');
 });
 
 app.use('/api/auth', authRoute);

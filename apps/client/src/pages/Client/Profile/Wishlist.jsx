@@ -5,52 +5,36 @@ import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Footer from '../../../components/Footer/Footer';
 import { motion } from 'framer-motion';
 import SkeletonProductCard from '../../../components/Shop/SkeletonProductCard';
-import ProductCard from '../../../components/Shop/ProductCard';
 import NoProductFound from '../../../components/Shop/NoProductFound';
-import { userRequest, publicRequest } from '../../../network/RequestMethod';
+import { userRequest } from '../../../network/RequestMethod';
+import WishListCard from '../../../components/Profile/WishListCard';
 
 const Wishlist = () => {
-  const [fetchedProducts, setFetchedProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const loggedinId = localStorage.getItem('id');
 
   useEffect(() => {
     if (loggedinId) {
-      fetchWishlist(loggedinId);
+      fetchWishlistData(loggedinId);
     }
   }, [loggedinId]);
 
-  async function fetchWishlist(userId) {
+  const fetchWishlistData = async (userId) => {
     setIsLoading(true);
     try {
-      const res = await userRequest.get(`wishlist?userId=${userId}`);
-      const wishlistData = res.data;
+      const res = await userRequest.get(`wishlist/${userId}`);
 
-      if (wishlistData && wishlistData.length > 0) {
-        const productIds = wishlistData.map((item) => item.productId);
+      const productsData = res.data;
 
-        const productsResponse = await publicRequest.get('products', {
-          params: { productIds: productIds.join(',') },
-        });
-
-        const products = productsResponse.data;
-        setFetchedProducts(products);
-      } else {
-        setFetchedProducts([]);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
+      setProducts(productsData);
       setIsLoading(false);
+      console.log(productsData);
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Error fetching wishlist data:', error);
     }
-  }
-
-  const mapProductsForCard = fetchedProducts.map((product) => ({
-    id: product._id,
-    title: product.title,
-    description: product.desc,
-    image: product.img,
-  }));
+  };
 
   return (
     <>
@@ -70,22 +54,21 @@ const Wishlist = () => {
           Your Wishlist
         </h1>
         <div className='overflow-x-auto md:min-h-[60vh] p-10'>
-          <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6'>
+          <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-10'>
             {isLoading ? (
               Array.from({ length: 8 }).map((_, index) => (
                 <div className='mt-0 md:mt-10 ml-0 md:ml-2' key={index}>
                   <SkeletonProductCard />
                 </div>
               ))
-            ) : mapProductsForCard.length > 0 ? (
-              mapProductsForCard.map((product) => (
-                <React.Fragment key={product.id}>
-                  <ProductCard
-                    id={product.id}
-                    title={product.title}
-                    description={product.description}
-                    image={product.image}
-                  />
+            ) : products.length > 0 ? (
+              products.map((product) => (
+                <React.Fragment key={product._id}>
+                  {product.productId.map((productInfo) => (
+                    <React.Fragment key={productInfo._id}>
+                      <WishListCard product={productInfo} />
+                    </React.Fragment>
+                  ))}
                 </React.Fragment>
               ))
             ) : (
