@@ -9,7 +9,7 @@ const Notice = () => {
   };
 
   if (isClosed) {
-    return null; // Return null to hide the Notice component when FaTimes is clicked
+    return null;
   }
 
   return (
