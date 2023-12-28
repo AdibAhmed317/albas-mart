@@ -50,132 +50,134 @@ const Dropdown = () => {
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className='grid grid-cols-1 text-center items-center bg-green-300 text-green-900 w-full h-full p-10'
-          initial='hidden'
-          animate='visible'
-          exit='hidden'
-          variants={dropdownVariants}
-          transition={{ duration: 0.3 }}>
-          <ul className='flex flex-col justify-center items-center'>
-            <li className='justify-center items-center flex'>
-              <Link className='small-navlink' to='/'>
-                Home
-              </Link>
-            </li>
-            <li className='justify-center items-center flex'>
-              <Link className='small-navlink' to='/shop/all'>
-                Shop
-              </Link>
-            </li>
-            <li className='justify-center items-center flex'>
-              <Link className='small-navlink' to='/contact'>
-                Contact
-              </Link>
-            </li>
-            <li className='justify-center items-center flex'>
-              <Link className='small-navlink' to='/about'>
-                About Us
-              </Link>
-            </li>
-          </ul>
-          <ul className='flex justify-center items-center mt-10'>
-            {Name != '' && isAdmin && (
-              <>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                    to={`/cart`}>
-                    <div className='flex'>
-                      <div className='mt-1'>
-                        <ShoppingCart />
+    <>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className='grid grid-cols-1 text-center items-center bg-green-300 text-green-900 w-full h-full p-10'
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
+            variants={dropdownVariants}
+            transition={{ duration: 0.3 }}>
+            <ul className='flex flex-col justify-center items-center'>
+              <li className='justify-center items-center flex'>
+                <Link className='small-navlink' to='/'>
+                  Home
+                </Link>
+              </li>
+              <li className='justify-center items-center flex'>
+                <Link className='small-navlink' to='/shop/all'>
+                  Shop
+                </Link>
+              </li>
+              <li className='justify-center items-center flex'>
+                <Link className='small-navlink' to='/contact'>
+                  Contact
+                </Link>
+              </li>
+              <li className='justify-center items-center flex'>
+                <Link className='small-navlink' to='/about'>
+                  About Us
+                </Link>
+              </li>
+            </ul>
+            <ul className='flex justify-center items-center mt-10'>
+              {Name != '' && isAdmin && (
+                <>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                      to={`/cart`}>
+                      <div className='flex'>
+                        <div className='mt-1'>
+                          <ShoppingCart />
+                        </div>
+                        <div>({quantity})</div>
                       </div>
-                      <div>({quantity})</div>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-800 hover:text-green-600 font-medium m-0 py-2 px-3 md:mx-2 rounded-md'
-                    to='/admin/dashboard'>
-                    Dashboard
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
-                    onClick={handleLogout}>
-                    Logout
-                  </button>
-                </li>
-              </>
-            )}
-            {Name != '' && isAdmin == false && (
-              <>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                    to={`/cart`}>
-                    <div className='flex'>
-                      <div className='mt-1'>
-                        <ShoppingCart />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-800 hover:text-green-600 font-medium m-0 py-2 px-3 md:mx-2 rounded-md'
+                      to='/admin/dashboard'>
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
+                      onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
+              {Name != '' && isAdmin == false && (
+                <>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                      to={`/cart`}>
+                      <div className='flex'>
+                        <div className='mt-1'>
+                          <ShoppingCart />
+                        </div>
+                        <div>({quantity})</div>
                       </div>
-                      <div>({quantity})</div>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                    to={`/user-details/${loggedInId}`}>
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
-                    onClick={handleLogout}>
-                    Logout
-                  </button>
-                </li>
-              </>
-            )}
-            {Name === '' && (
-              <>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                    to={`/cart`}>
-                    <div className='flex'>
-                      <div className='mt-1'>
-                        <ShoppingCart />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                      to={`/user-details/${loggedInId}`}>
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
+                      onClick={handleLogout}>
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
+              {Name === '' && (
+                <>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
+                      to={`/cart`}>
+                      <div className='flex'>
+                        <div className='mt-1'>
+                          <ShoppingCart />
+                        </div>
+                        <div>({quantity})</div>
                       </div>
-                      <div>({quantity})</div>
-                    </div>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-50 font-medium bg-blue-600 hover:bg-blue-900 py-2 px-3 mx-2 rounded-md'
-                    to='/login'>
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className='my-1 text-base text-green-50 font-medium bg-purple-700 hover:bg-purple-500 py-2 px-3 mx-2 rounded-md'
-                    to='/registration'>
-                    Signup
-                  </Link>
-                </li>
-              </>
-            )}
-          </ul>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-50 font-medium bg-blue-600 hover:bg-blue-900 py-2 px-3 mx-2 rounded-md'
+                      to='/login'>
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className='my-1 text-base text-green-50 font-medium bg-purple-700 hover:bg-purple-500 py-2 px-3 mx-2 rounded-md'
+                      to='/registration'>
+                      Signup
+                    </Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

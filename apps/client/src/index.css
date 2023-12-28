@@ -9,3 +9,20 @@
 .dashboard-link {
   @apply my-5 text-sm md:text-lg font-mono text-green-900 mx-8 md:mx-0;
 }
+
+/* Define keyframes for the marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(400%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Apply styles for the marquee animation */
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
+}
