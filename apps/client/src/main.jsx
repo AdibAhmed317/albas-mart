@@ -8,7 +8,6 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import { UserProvider } from './context/UserContext.jsx';
 import { NavbarProvider } from './context/NavbarContext.jsx';
-import Notice from './components/Notice.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

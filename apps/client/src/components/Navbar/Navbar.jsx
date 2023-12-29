@@ -7,7 +7,7 @@ import UserContext from '../../context/UserContext';
 import { ShoppingCart } from '../../assets/icons';
 import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
-import Notice from '../Notice';
+import Notice from './Notice';
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);

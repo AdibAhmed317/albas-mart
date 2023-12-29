@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaHeart } from 'react-icons/fa6';
+import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -31,24 +31,22 @@ const WishListCard = ({ product }) => {
     }, 500);
   };
 
-  const handleWishList = async () => {
+  const handleDeleteWishList = async () => {
     if (loggedInId != null) {
-      const wishlistData = {
-        userId: loggedInId,
-        productId: product._id,
-      };
-
       try {
-        const response = await userRequest.post('wishlist/', wishlistData);
+        const response = await userRequest.delete(
+          `wishlist/${loggedInId}/${product._id}`
+        );
 
-        if (response.status === 201) {
+        if (response.status === 200) {
           Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Added to wishlist!',
+            title: 'Removed from wishlist!',
             showConfirmButton: false,
             timer: 1500,
           });
+          location.reload();
         } else if (response.status === 400) {
           Swal.fire({
             icon: 'error',
@@ -96,9 +94,9 @@ const WishListCard = ({ product }) => {
           </h5>
           <div className='mt-1'>
             <button
-              className='text-green-400 hover:text-green-600 mr-5 transition-all'
-              onClick={handleWishList}>
-              <FaHeart />
+              className='text-red-400 hover:text-red-600 mr-5 transition-all text-2xl'
+              onClick={handleDeleteWishList}>
+              <IoMdRemoveCircleOutline />
             </button>
           </div>
         </div>

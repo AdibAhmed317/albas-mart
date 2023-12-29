@@ -4,7 +4,7 @@ const { verifyTokenAndAuthorization, verifyToken } = require('./verifyToken');
 const router = require('express').Router();
 
 // Create Wishlist
-router.post('/', verifyTokenAndAuthorization, async (req, res) => {
+router.post('/', verifyToken, async (req, res) => {
   try {
     const { userId, productId } = req.body;
 
@@ -23,7 +23,7 @@ router.post('/', verifyTokenAndAuthorization, async (req, res) => {
       });
 
       const savedWishlist = await newWishlist.save();
-      return res.status(201).json(savedWishlist);
+      return res.status(200).json(savedWishlist);
     }
 
     if (wishlist.productId.includes(productId)) {
@@ -59,32 +59,28 @@ router.get('/:userId', verifyToken, async (req, res) => {
 });
 
 // //Delete Wishlist
-router.delete(
-  '/:userId/:productId',
-  verifyTokenAndAuthorization,
-  async (req, res) => {
-    const { userId, productId } = req.params;
-    try {
-      const updatedWishlist = await WishlistModel.findOneAndUpdate(
-        { userId: userId },
-        { $pull: { productId: productId } },
-        { new: true }
-      );
+router.delete('/:userId/:productId', verifyToken, async (req, res) => {
+  const { userId, productId } = req.params;
+  try {
+    const updatedWishlist = await WishListModel.findOneAndUpdate(
+      { userId: userId },
+      { $pull: { productId: productId } },
+      { new: true }
+    );
 
-      if (!updatedWishlist) {
-        return res.status(404).json({ message: 'Wishlist not found' });
-      }
-
-      res.status(200).json({
-        message: 'Product deleted successfully',
-        wishlist: updatedWishlist,
-      });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ error: 'Internal server error', message: error.message });
+    if (!updatedWishlist) {
+      return res.status(404).json({ message: 'Wishlist not found' });
     }
+
+    res.status(200).json({
+      message: 'Product deleted successfully',
+      wishlist: updatedWishlist,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: 'Internal server error', message: error.message });
   }
-);
+});
 
 module.exports = router;

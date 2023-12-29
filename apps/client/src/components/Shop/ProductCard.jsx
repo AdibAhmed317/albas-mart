@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
       try {
         const response = await userRequest.post('wishlist/', wishlistData);
 
-        if (response.status === 201) {
+        if (response.status === 200) {
           Swal.fire({
             position: 'center',
             icon: 'success',
@@ -49,24 +49,12 @@ const ProductCard = ({ product }) => {
             showConfirmButton: false,
             timer: 1500,
           });
-        } else if (response.status === 400) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Product already exists in wishlist!',
-          });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Failed to add to wishlist!',
-          });
         }
       } catch (error) {
         Swal.fire({
-          icon: 'error',
+          icon: 'info',
           title: 'Oops...',
-          text: 'Failed to add to wishlist!',
+          text: 'Product already exist in wishlist!',
         });
       }
     } else {
