@@ -82,6 +82,14 @@ const UserProfile = () => {
                 <p className='my-3 text-base'>{customer.Phone}</p>
               </div>
             </div>
+            <div className='flex gap-1 mt-10'>
+              <button className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'>
+                Update Profile
+              </button>
+              <button className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
+                Delete Account
+              </button>
+            </div>
           </div>
         </div>
       </motion.div>

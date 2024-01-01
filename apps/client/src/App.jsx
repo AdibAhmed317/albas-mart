@@ -18,7 +18,6 @@ import OrderDetails from './pages/Admin/OrderDetails';
 import SingleProduct from './pages/Client/SingleProduct';
 import Orders from './pages/Client/Profile/Orders';
 import Wishlist from './pages/Client/Profile/Wishlist';
-import Setting from './pages/Client/Profile/Setting';
 import UserProfile from './pages/Client/Profile/UserProfile';
 
 function App() {
@@ -37,7 +36,6 @@ function App() {
         <Route path='/user-details/:id' element={<UserProfile />} />
         <Route path='/user-details/orders/:id' element={<Orders />} />
         <Route path='/user-details/wishlist/:id' element={<Wishlist />} />
-        <Route path='/user-details/setting/:id' element={<Setting />} />
 
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
         <Route path='/admin/create-product' element={<CreateProduct />} />

@@ -25,12 +25,6 @@ const ProfileSidebar = () => {
             <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
           </Link>
         </li>
-        <li>
-          <Link to={`/user-details/setting/${loggedInId}`} className='group'>
-            Setting
-            <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
-          </Link>
-        </li>
       </ul>
     </section>
   );
