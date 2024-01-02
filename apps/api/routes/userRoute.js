@@ -58,12 +58,6 @@ router.get('/stats', verifyTokenAndAdmin, async (req, res) => {
 
 //Update User
 router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
-  if (req.body.password) {
-    req.body.password = CryptoJS.AES.encrypt(
-      req.body.password,
-      process.env.PASS_SEC
-    ).toString();
-  }
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.params.id,

@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+import { userRequest } from '../../network/RequestMethod';
 
-const UpdateModal = ({ isOpen, onClose }) => {
+const UpdateProfileModal = ({ isOpen, onClose, customer }) => {
+  const [updatedCustomer, setUpdatedCustomer] = useState({
+    Name: customer.Name,
+    Address: customer.Address,
+    Phone: customer.Phone,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedCustomer((prevCustomer) => ({
+      ...prevCustomer,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const res = await userRequest.put(
+        `user/${customer._id}`,
+        updatedCustomer
+      );
+
+      if (res.status === 200) {
+        onClose();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       {isOpen && (
@@ -25,13 +56,15 @@ const UpdateModal = ({ isOpen, onClose }) => {
               Update Profile
             </h2>
             <section>
-              <form>
+              <form onSubmit={handleSubmit}>
                 <label className='mx-1'>
                   Name
                   <input
                     className='bg-green-100 p-2 m-1 w-full'
                     type='text'
-                    placeholder='name here'
+                    name='Name'
+                    value={updatedCustomer.Name}
+                    onChange={handleInputChange}
                   />
                 </label>
                 <br />
@@ -40,7 +73,9 @@ const UpdateModal = ({ isOpen, onClose }) => {
                   <input
                     className='bg-green-100 p-2 m-1 w-full'
                     type='text'
-                    placeholder='name here'
+                    name='Address'
+                    value={updatedCustomer.Address}
+                    onChange={handleInputChange}
                   />
                 </label>
                 <br />
@@ -48,8 +83,10 @@ const UpdateModal = ({ isOpen, onClose }) => {
                   Phone
                   <input
                     className='bg-green-100 p-2 m-1 w-full'
-                    type='number'
-                    placeholder='name here'
+                    type='text'
+                    name='Phone'
+                    value={updatedCustomer.Phone}
+                    onChange={handleInputChange}
                   />
                 </label>
                 <input
@@ -66,4 +103,4 @@ const UpdateModal = ({ isOpen, onClose }) => {
   );
 };
 
-export default UpdateModal;
+export default UpdateProfileModal;

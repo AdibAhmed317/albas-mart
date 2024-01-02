@@ -7,7 +7,7 @@ import { publicRequest } from '../../../network/RequestMethod';
 import Footer from '../../../components/Footer/Footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Dropdown from '../../../components/Navbar/DropDown';
-import UpdateModal from '../../../components/Modals/UpdateModal';
+import UpdateProfileModal from '../../../components/Modals/UpdateProfileModal';
 
 const UserProfile = () => {
   const location = useLocation();
@@ -100,7 +100,11 @@ const UserProfile = () => {
                 Update Profile
               </button>
               {isModalOpen && (
-                <UpdateModal isOpen={isModalOpen} onClose={closeModal} />
+                <UpdateProfileModal
+                  customer={customer}
+                  isOpen={isModalOpen}
+                  onClose={closeModal}
+                />
               )}
 
               <button className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
