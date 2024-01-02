@@ -19,7 +19,8 @@ const UpdateProfileModal = ({ isOpen, onClose, customer }) => {
     }));
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
       const res = await userRequest.put(
         `user/${customer._id}`,
@@ -28,6 +29,7 @@ const UpdateProfileModal = ({ isOpen, onClose, customer }) => {
 
       if (res.status === 200) {
         onClose();
+        location.reload();
       }
     } catch (error) {
       console.log(error);

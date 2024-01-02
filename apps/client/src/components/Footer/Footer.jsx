@@ -67,7 +67,7 @@ const Footer = () => {
       <hr class='my-6 sm:mx-auto border-green-900 lg:my-8' />
       <div class='sm:flex sm:items-center sm:justify-between'>
         <span class='text-sm text-green-900 sm:text-center'>
-          © 2023{' '}
+          © 2024{' '}
           <a href='#' class='hover:underline'>
             Al Raya™
           </a>
