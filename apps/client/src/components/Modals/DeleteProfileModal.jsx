@@ -15,15 +15,19 @@ const DeleteProfileModal = ({ isOpen, onClose, customerId }) => {
 
   const isDeleteButtonDisabled = confirmationText !== 'Confirm-Delete-Account';
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     if (confirmationText === 'Confirm-Delete-Account') {
       try {
-        await userRequest.delete(`user/${customerId}`);
-        // Assuming onClose, navigate, and localStorage.clear are asynchronous or promise-based functions
-        await onClose(); // Wait for any necessary cleanup or operations
-        // Navigate only after the deletion operation and onClose function have completed
-        navigate('/'); // Navigate to the root URL
-        localStorage.clear(); // Clear local storage after successful deletion and navigation
+        const res = await userRequest.delete(`user/${customerId}`);
+
+        if (res.status === 200) {
+          onClose();
+          localStorage.clear();
+          navigate('/');
+          location.reload();
+        }
       } catch (error) {
         console.log(error);
       }
