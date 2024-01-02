@@ -8,6 +8,7 @@ import Footer from '../../../components/Footer/Footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Dropdown from '../../../components/Navbar/DropDown';
 import UpdateProfileModal from '../../../components/Modals/UpdateProfileModal';
+import DeleteProfileModal from '../../../components/Modals/DeleteProfileModal';
 
 const UserProfile = () => {
   const location = useLocation();
@@ -15,6 +16,7 @@ const UserProfile = () => {
   const [customer, setCustomer] = useState(null);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -22,6 +24,14 @@ const UserProfile = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
   };
 
   useEffect(() => {
@@ -107,9 +117,18 @@ const UserProfile = () => {
                 />
               )}
 
-              <button className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
+              <button
+                onClick={openDeleteModal}
+                className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
                 Delete Account
               </button>
+              {isDeleteModalOpen && (
+                <DeleteProfileModal
+                  isOpen={isDeleteModalOpen}
+                  onClose={closeDeleteModal}
+                  customerId={customer._id}
+                />
+              )}
             </div>
           </div>
         </div>
