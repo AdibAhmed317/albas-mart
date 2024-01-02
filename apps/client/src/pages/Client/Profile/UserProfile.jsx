@@ -7,11 +7,22 @@ import { publicRequest } from '../../../network/RequestMethod';
 import Footer from '../../../components/Footer/Footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Dropdown from '../../../components/Navbar/DropDown';
+import UpdateModal from '../../../components/Modals/UpdateModal';
 
 const UserProfile = () => {
   const location = useLocation();
   const customerId = location.pathname.split('/')[2];
   const [customer, setCustomer] = useState(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     fetchCustomerDetails();
@@ -83,9 +94,15 @@ const UserProfile = () => {
               </div>
             </div>
             <div className='flex gap-1 mt-10'>
-              <button className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'>
+              <button
+                onClick={openModal}
+                className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'>
                 Update Profile
               </button>
+              {isModalOpen && (
+                <UpdateModal isOpen={isModalOpen} onClose={closeModal} />
+              )}
+
               <button className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
                 Delete Account
               </button>
