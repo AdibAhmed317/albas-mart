@@ -49,7 +49,7 @@ const AdminProfile = () => {
       <Navbar />
       <DropDown />
       <AdminSidebar />
-      <div className='bg-green-50 flex justify-center items-center'>
+      <div className='bg-green-50 flex justify-center items-center min-h-[70vh]'>
         <div className='flex justify-center'>
           <div className='bg-green-200 shadow-md rounded p-6 max-w-2xl w-full text-green-900'>
             <h1 className='text-4xl font-thin text-center'>
