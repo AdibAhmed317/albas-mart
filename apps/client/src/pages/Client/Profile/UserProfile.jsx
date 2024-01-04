@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../../components/Navbar/Navbar';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import { publicRequest } from '../../../network/RequestMethod';
 import Footer from '../../../components/Footer/Footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';

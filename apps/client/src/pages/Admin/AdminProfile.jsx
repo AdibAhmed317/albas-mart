@@ -1,13 +1,33 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 
-import hero from '../../assets/hero.jpg';
 import { publicRequest } from '../../network/RequestMethod';
+import UpdateProfileModal from '../../components/Modals/UpdateProfileModal';
+import DeleteProfileModal from '../../components/Modals/DeleteProfileModal';
 
 const AdminProfile = () => {
   const [adminData, setAdminData] = useState('');
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+  };
 
   useEffect(() => {
     fetchAdminData();
@@ -27,41 +47,65 @@ const AdminProfile = () => {
     <>
       <Navbar />
       <DropDown />
-      <div className='flex md:flex-row flex-col h-screen md:h-full md:justify-between md:items-center bg-green-50'>
-        <div className='md:w-[20%] w-full'>
-          <AdminSidebar />
-        </div>
-
-        <div className='w-screen md:w-1/2 h-full mt-5 md:-mt-10 md:ml-0'>
-          <div className='bg-white rounded-lg shadow-lg w-auto md:w-1/2'>
-            <div className='md:flex'>
-              <div className='md:flex-shrink-0'>
-                <img
-                  className='h-48 w-full object-cover md:w-48'
-                  src={hero}
-                  alt='Customer Profile'
+      <AdminSidebar />
+      <div className='bg-green-50 flex justify-center items-center min-h-[70vh]'>
+        <div className='flex justify-center'>
+          <div className='bg-green-200 shadow-md rounded p-6 max-w-2xl w-full text-green-900'>
+            <h1 className='text-4xl font-thin text-center'>
+              Admin Information
+            </h1>
+            <div className='grid grid-cols-2 gap-y-4 text-xl mt-6'>
+              <div className='text-left'>
+                <p className='my-3 text-base'>
+                  <strong>ID:</strong>
+                </p>
+                <p className='my-3 text-base'>
+                  <strong>Name:</strong>
+                </p>
+                <p className='my-3 text-base'>
+                  <strong>Email:</strong>
+                </p>
+                <p className='my-3 text-base'>
+                  <strong>Address:</strong>
+                </p>
+                <p className='my-3 text-base'>
+                  <strong>Phone:</strong>
+                </p>
+              </div>
+              <div className='text-left overflow-auto'>
+                <p className='my-3 text-base'>{adminData._id}</p>
+                <p className='my-3 text-base'>{adminData.Name}</p>
+                <p className='my-3 text-base'>{adminData.Email}</p>
+                <p className='my-3 text-base'>{adminData.Address}</p>
+                <p className='my-3 text-base'>{adminData.Phone}</p>
+              </div>
+            </div>
+            <div className='flex gap-1 mt-10'>
+              <button
+                onClick={openModal}
+                className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'>
+                Update Profile
+              </button>
+              {isModalOpen && (
+                <UpdateProfileModal
+                  customer={adminData}
+                  isOpen={isModalOpen}
+                  onClose={closeModal}
                 />
-              </div>
-              <div className='p-8'>
-                <div className='uppercase tracking-wide text-sm text-indigo-500 font-semibold'>
-                  Admin Details
-                </div>
-                <h2 className='mt-2 text-2xl leading-7 font-semibold text-gray-900'></h2>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    <strong>Admin ID:</strong> {adminData._id}
-                  </p>
-                  <p className='text-sm text-gray-500'>
-                    <strong>Email:</strong> {adminData.Email}
-                  </p>
-                  <p className='text-sm text-gray-500'>
-                    <strong>Address:</strong> {adminData.Address}
-                  </p>
-                  <p className='text-sm text-gray-500'>
-                    <strong>Phone:</strong> {adminData.Phone}
-                  </p>
-                </div>
-              </div>
+              )}
+
+              <button
+                onClick={openDeleteModal}
+                className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
+                Delete Account
+              </button>
+              {isDeleteModalOpen && (
+                <DeleteProfileModal
+                  isOpen={isDeleteModalOpen}
+                  onClose={closeDeleteModal}
+                  customerId={adminData._id}
+                />
+              )}
             </div>
           </div>
         </div>
