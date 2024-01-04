@@ -54,7 +54,7 @@ const AdminDashboard = () => {
       <DropDown />
       <AdminSidebar />
 
-      <div className='bg-green-50 overflow-x-auto text-center px-10 py-2'>
+      <div className='bg-green-50 overflow-x-auto text-center px-10 py-2 md:min-h-[80vh]'>
         <h1 className='text-2xl font-normal text-green-900 mb-4'>
           Search user
         </h1>

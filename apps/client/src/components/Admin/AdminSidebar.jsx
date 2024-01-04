@@ -24,13 +24,13 @@ const AdminSidebar = () => {
           </Link>
         </li>
         <li>
-          <Link to={`/user-details/wishlist/`} className='group'>
+          <Link to='/admin/all-orders' className='group'>
             All Orders
             <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
           </Link>
         </li>
         <li>
-          <Link to={`/user-details/wishlist/`} className='group'>
+          <Link to='/admin/profile' className='group'>
             Admin Profile
             <span className='block max-w-0 group-hover:max-w-full transition-all duration-200 h-0.5 bg-green-500'></span>
           </Link>
@@ -59,10 +59,10 @@ export default AdminSidebar;
       <Link to=></Link>
     </li>
     <li className='dashboard-link'>
-      <Link to='/admin/all-orders'></Link>
+      <Link to=></Link>
     </li>
     <li className='dashboard-link'>
-      <Link to='/admin/profile'></Link>
+      <Link to=></Link>
     </li>
   </ul>
 </div>
