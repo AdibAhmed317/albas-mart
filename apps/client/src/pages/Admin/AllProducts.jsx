@@ -63,42 +63,40 @@ const AllProducts = () => {
   // };
 
   return (
-    <div className='bg-green-50 h-full'>
+    <>
       <Navbar />
       <DropDown />
-      <div className='flex md:flex-col lg:flex-row flex-col bg-green-50'>
-        <AdminSidebar />
-        <div className='h-auto w-screen p-5'>
-          <h1 className='text-2xl font-normal text-green-900 mb-4'>
-            Search product
-          </h1>
-          <div className='mb-4'>
-            <input
-              type='text'
-              placeholder='Search by ID'
-              className='border border-gray-300 rounded px-4 py-2'
-            />
-            <button className='bg-green-300 text-green-800 font-medium px-4 py-2 rounded ml-2'>
-              Search
-            </button>
-          </div>
-          <h1 className='text-2xl font-normal text-green-900 mb-4'>
-            All products
-          </h1>
-          <div className='grid md:grid-cols-4 grid-cols-1 justify-center items-center overflow-auto h-[80vh] w-auto md:w-[150vh] ml-0 md:ml-5'>
-            {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
-              fetchedProduct.map((product) => (
-                <div className='-mt-0 w-full'>
-                  <AdminProductCard product={product} key={product._id} />
-                </div>
-              ))
-            ) : (
-              <NoProductFound />
-            )}
-          </div>
+      <AdminSidebar />
+      <div className='bg-green-50 p-10'>
+        <h1 className='text-2xl font-normal text-green-900 mb-4'>
+          Search product
+        </h1>
+        <div className='mb-4'>
+          <input
+            type='text'
+            placeholder='Search by ID'
+            className='border border-gray-300 rounded px-4 py-2'
+          />
+          <button className='bg-green-300 text-green-800 font-medium px-4 py-2 rounded ml-2'>
+            Search
+          </button>
+        </div>
+        <h1 className='text-2xl font-normal text-green-900 mb-4'>
+          All products
+        </h1>
+        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6'>
+          {fetchedProduct.length > 0 || fetchedProduct.value === null ? (
+            fetchedProduct.map((product) => (
+              <div className='-mt-0 w-full'>
+                <AdminProductCard product={product} key={product._id} />
+              </div>
+            ))
+          ) : (
+            <NoProductFound />
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

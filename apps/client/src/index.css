@@ -26,3 +26,7 @@
   width: max-content;
   animation: marquee 20s linear infinite;
 }
+
+.product-link-action {
+  @apply p-1 px-4 text-white rounded-md;
+}

@@ -4,12 +4,12 @@ import b3 from '../../assets/hero.jpg';
 
 const AdminProductCard = ({ product }) => {
   return (
-    <div className='md:w-80 w-auto h-[50%] items-center flex flex-col shadow-md bg-white rounded-b-lg mb-10'>
+    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg max-w-[16rem]'>
       <div className='h-[90%] md:w-auto'>
         <Link to={`/product/${product._id}`} className='w-full'>
           <img
-            className='h-full w-full object-cover rounded-t-xl'
-            src={b3}
+            className='object-cover rounded-t-lg h-[10rem] md:h-[12rem] w-full justify-center items-center'
+            src={product.img}
             alt='product image'
           />
         </Link>
@@ -29,20 +29,20 @@ const AdminProductCard = ({ product }) => {
           </div>
         </div>
       </div>
-      <div className='flex flex-row justify-between items-center mb-5'>
+      <div className='flex flex-col gap-2 sm:flex-row justify-between items-center p-3 text-sm'>
         <Link
           to={`/admin/edit-product/${product.ProductId}`}
-          className='mt-2 mx-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md'>
+          className='product-link-action bg-blue-500 hover:bg-blue-600'>
           Edit
         </Link>
         <Link
           to={`/admin/product-details/${product.ProductId}`}
-          className='mt-2 mx-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md'>
+          className='product-link-action bg-green-500 hover:bg-green-600'>
           Details
         </Link>
         <button
           onClick={() => deleteProduct(product.ProductId)}
-          className='mt-2 mx-2 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md'>
+          className='product-link-action bg-red-500 hover:bg-red-600'>
           Delete
         </button>
       </div>
