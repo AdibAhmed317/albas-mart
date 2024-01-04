@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/Footer';
 import DropDown from '../../components/Navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 
@@ -48,7 +49,7 @@ const AdminProfile = () => {
       <Navbar />
       <DropDown />
       <AdminSidebar />
-      <div className='bg-green-50 flex justify-center items-center min-h-screen'>
+      <div className='bg-green-50 flex justify-center items-center'>
         <div className='flex justify-center'>
           <div className='bg-green-200 shadow-md rounded p-6 max-w-2xl w-full text-green-900'>
             <h1 className='text-4xl font-thin text-center'>
@@ -110,6 +111,7 @@ const AdminProfile = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
