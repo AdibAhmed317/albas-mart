@@ -132,117 +132,109 @@ const CreateProduct = () => {
       <>
         <Navbar />
         <DropDown />
-        <div className='flex md:flex-row flex-col bg-green-50'>
-          <AdminSidebar />
-          <div className='container mx-auto px-4 py-8'>
-            <form onSubmit={handleSubmit}>
-              <h1 className='text-2xl font-normal text-green-900 mb-4'>
-                Create product
-              </h1>
+        <AdminSidebar />
+        <div className='flex flex-col bg-green-50 p-10'>
+          <form onSubmit={handleSubmit} className=''>
+            <h1 className='text-2xl font-normal text-green-900 mb-4'>
+              Create product
+            </h1>
+            <div className='mb-4'>
+              <label className='block text-gray-700'>Product Title</label>
+              <input
+                type='text'
+                name='title'
+                value={productData.title}
+                onChange={handleInputChange}
+                className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                required
+              />
+              <label className='mt-5 block text-gray-700'>
+                Product Description
+              </label>
+              <textarea
+                name='desc'
+                value={productData.desc}
+                onChange={handleInputChange}
+                className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                required
+              />
+              <label className='block text-gray-700'>Category</label>
+              <select
+                name='categories'
+                value={productData.categories}
+                onChange={handleInputChange}
+                className='w-auto md:w-[50%] py-2 border rounded focus:outline-none focus:border-blue-500'>
+                <option value=''>Select Category</option>
+                {fetchCat.map((item) => (
+                  <option key={item._id} value={item.CategoryName}>
+                    {item.CategoryName}
+                  </option>
+                ))}
+              </select>
+              <label className='mt-5 block text-gray-700'>
+                Product size (Kg, L, ml)
+              </label>
+              <input
+                type='text'
+                name='size'
+                value={productData.size}
+                onChange={handleInputChange}
+                className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                required
+              />
+              <label className='mt-5 block text-gray-700'>Product Price</label>
+              <input
+                type='text'
+                name='price'
+                value={productData.price}
+                onChange={handleInputChange}
+                className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                required
+              />
+              <label className='mt-5 block text-gray-700'>Stock Quantity</label>
+              <input
+                type='text'
+                name='StockQuantity'
+                value={productData.StockQuantity}
+                onChange={handleInputChange}
+                className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                required
+              />
+              <label className='mt-5 block text-gray-700'>Product Image</label>
+              <input
+                type='file'
+                name='img'
+                id='file'
+                accept='image/png, image/jpeg'
+                onChange={(e) => setFile(e.target.files[0])}
+                className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
+                required
+              />
+            </div>
+            <button className='p-3 bg-blue-400 rounded-lg font-thin'>
+              Crate Product
+            </button>
+          </form>
+          <div className='mt-8'>
+            <h2 className='text-2xl font-normal text-green-900 mb-4'>
+              Add New Category
+            </h2>
+            <form onSubmit={handleCatSubmit}>
               <div className='mb-4'>
-                <label className='block text-gray-700'>Product Title</label>
+                <label className='block text-gray-700'>Category Name</label>
                 <input
                   type='text'
-                  name='title'
-                  value={productData.title}
-                  onChange={handleInputChange}
-                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                  required
-                />
-                <label className='mt-5 block text-gray-700'>
-                  Product Description
-                </label>
-                <textarea
-                  name='desc'
-                  value={productData.desc}
-                  onChange={handleInputChange}
-                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                  required
-                />
-                <label className='block text-gray-700'>Category</label>
-                <select
-                  name='categories'
-                  value={productData.categories}
-                  onChange={handleInputChange}
-                  className='w-auto md:w-[50%] py-2 border rounded focus:outline-none focus:border-blue-500'>
-                  <option value=''>Select Category</option>
-                  {fetchCat.map((item) => (
-                    <option key={item._id} value={item.CategoryName}>
-                      {item.CategoryName}
-                    </option>
-                  ))}
-                </select>
-                <label className='mt-5 block text-gray-700'>
-                  Product size (Kg, L, ml)
-                </label>
-                <input
-                  type='text'
-                  name='size'
-                  value={productData.size}
-                  onChange={handleInputChange}
-                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                  required
-                />
-                <label className='mt-5 block text-gray-700'>
-                  Product Price
-                </label>
-                <input
-                  type='text'
-                  name='price'
-                  value={productData.price}
-                  onChange={handleInputChange}
-                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                  required
-                />
-                <label className='mt-5 block text-gray-700'>
-                  Stock Quantity
-                </label>
-                <input
-                  type='text'
-                  name='StockQuantity'
-                  value={productData.StockQuantity}
-                  onChange={handleInputChange}
-                  className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                  required
-                />
-                <label className='mt-5 block text-gray-700'>
-                  Product Image
-                </label>
-                <input
-                  type='file'
-                  name='img'
-                  id='file'
-                  accept='image/png, image/jpeg'
-                  onChange={(e) => setFile(e.target.files[0])}
+                  name='categoryName'
+                  value={categoryName}
+                  onChange={(e) => setCategoryName(e.target.value)}
                   className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
                   required
                 />
               </div>
               <button className='p-3 bg-blue-400 rounded-lg font-thin'>
-                Crate Product
+                Add Category
               </button>
             </form>
-            <div className='mt-8'>
-              <h2 className='text-2xl font-normal text-green-900 mb-4'>
-                Add New Category
-              </h2>
-              <form onSubmit={handleCatSubmit}>
-                <div className='mb-4'>
-                  <label className='block text-gray-700'>Category Name</label>
-                  <input
-                    type='text'
-                    name='categoryName'
-                    value={categoryName}
-                    onChange={(e) => setCategoryName(e.target.value)}
-                    className='w-auto md:w-[50%] px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                    required
-                  />
-                </div>
-                <button className='p-3 bg-blue-400 rounded-lg font-thin'>
-                  Add Category
-                </button>
-              </form>
-            </div>
           </div>
         </div>
       </>

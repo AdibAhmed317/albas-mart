@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Navbar from '../../components/Navbar/Navbar';
-import { publicRequest } from '../../network/RequestMethod';
+import Navbar from '../../../components/Navbar/Navbar';
+import { publicRequest } from '../../../network/RequestMethod';
 
-const OrderDetails = () => {
+const UserDetails = () => {
   const location = useLocation();
   const customerId = location.pathname.split('/')[3];
   const [customer, setCustomer] = useState(null);
@@ -34,8 +34,8 @@ const OrderDetails = () => {
   return (
     <>
       <Navbar />
-      <div className='bg-gray-100 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
-        <div className='max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden md:max-w-2xl'>
+      <div className='bg-green-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8'>
+        <div className='max-w-md mx-auto bg-green-200 rounded-lg shadow-lg overflow-hidden md:max-w-2xl'>
           <div className='md:flex'>
             <div className='md:flex-shrink-0'>
               <img
@@ -83,4 +83,4 @@ const OrderDetails = () => {
   );
 };
 
-export default OrderDetails;
+export default UserDetails;
