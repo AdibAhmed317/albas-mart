@@ -10,6 +10,10 @@
   @apply my-5 text-sm md:text-lg font-mono text-green-900 mx-8 md:mx-0;
 }
 
+.product-link-action {
+  @apply p-1 px-4 text-white rounded-md;
+}
+
 /* Define keyframes for the marquee animation */
 @keyframes marquee {
   0% {
@@ -25,8 +29,4 @@
   display: flex;
   width: max-content;
   animation: marquee 20s linear infinite;
-}
-
-.product-link-action {
-  @apply p-1 px-4 text-white rounded-md;
 }

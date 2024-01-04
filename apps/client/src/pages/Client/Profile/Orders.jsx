@@ -37,7 +37,7 @@ const Orders = () => {
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const formattedHours = hours % 12 || 12;
 
-    return `${year}-${month}-${day} (${formattedHours}:${minutes} ${ampm})`;
+    return `${day}-${month}-${year} (${formattedHours}:${minutes} ${ampm})`;
   }
 
   return (
