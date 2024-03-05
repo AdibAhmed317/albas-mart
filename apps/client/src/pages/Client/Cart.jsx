@@ -10,7 +10,7 @@ import Dropdown from '../../components/Navbar/DropDown';
 import StripeCheckout from 'react-stripe-checkout';
 import logo from '../../assets/logoT.png';
 import { userRequest } from '../../network/RequestMethod';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -40,8 +40,8 @@ const Cart = () => {
         });
 
         if (res.status === 200) {
-          handleOrder(); // Placing order after successful payment
-          navigate(`/user-details/${loggedId}`); // Navigating to user details page
+          handleOrder(res.data);
+          navigate(`/user-details/${loggedId}`);
         }
       } catch (error) {
         console.log(error);
@@ -49,24 +49,24 @@ const Cart = () => {
     };
 
     if (stripeToken && subtotal > 0) {
-      makeRequest(); // Trigger the payment request
+      makeRequest();
     }
   }, [stripeToken, subtotal, navigate]);
 
-  const handleOrder = async () => {
+  const handleOrder = async (paymentData) => {
     const orderData = {
       userId: loggedId,
       products: cartProducts,
       amount: subtotal + 20 - 10,
       address: 'asdf',
-      status: 'pending',
+      status: paymentData.status,
     };
 
     try {
       const orderRes = await userRequest.post('orders/', orderData);
       console.log(orderRes);
     } catch (error) {
-      console.log(error);
+      console.log(error, 'msg');
     }
   };
 
