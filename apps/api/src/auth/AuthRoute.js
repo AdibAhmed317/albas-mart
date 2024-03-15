@@ -1,10 +1,10 @@
-const router = require('express').Router();
-const UserModel = require('../models/UserModel');
-const CryptoJS = require('crypto-js');
-const jwt = require('jsonwebtoken');
+const router = require("express").Router();
+const UserModel = require("../user/UserModel");
+const CryptoJS = require("crypto-js");
+const jwt = require("jsonwebtoken");
 
 //Register
-router.post('/register', async (req, res) => {
+router.post("/register", async (req, res) => {
   const newUser = new UserModel({
     Name: req.body.Name,
     Email: req.body.Email,
@@ -24,14 +24,14 @@ router.post('/register', async (req, res) => {
 });
 
 //Login
-router.post('/login', async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const user = await UserModel.findOne({
       Email: req.body.Email,
     });
 
     if (!user) {
-      return res.status(401).json('No user found');
+      return res.status(401).json("No user found");
     }
 
     const hashedPassword = CryptoJS.AES.decrypt(
@@ -42,11 +42,11 @@ router.post('/login', async (req, res) => {
     const Originalpassword = hashedPassword.toString(CryptoJS.enc.Utf8);
 
     if (Originalpassword !== req.body.Password) {
-      return res.status(401).json('Invalid Password');
+      return res.status(401).json("Invalid Password");
     }
 
     Originalpassword !== req.body.Password &&
-      res.status(401).json('Invalid Password');
+      res.status(401).json("Invalid Password");
 
     const accessToken = jwt.sign(
       {
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
         Name: user.Name,
       },
       process.env.JWT_SEC,
-      { expiresIn: '3d' }
+      { expiresIn: "3d" }
     );
 
     const { Password, ...others } = user._doc;

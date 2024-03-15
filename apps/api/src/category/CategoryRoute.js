@@ -1,10 +1,9 @@
-const CategoryModel = require('../models/CategoryModel');
-const { verifyTokenAndAdmin } = require('./verifyToken');
+const CategoryModel = require("./CategoryModel");
+const { verifyTokenAndAdmin } = require("../middleware/verifyToken");
 
-const router = require('express').Router();
+const router = require("express").Router();
 
-//Add new category
-router.post('/', verifyTokenAndAdmin, async (req, res) => {
+router.post("/", verifyTokenAndAdmin, async (req, res) => {
   const newCat = new CategoryModel({
     CategoryName: req.body.CategoryName,
   });
@@ -16,8 +15,7 @@ router.post('/', verifyTokenAndAdmin, async (req, res) => {
   }
 });
 
-//Get all categories
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const allCategory = await CategoryModel.find();
     res.status(201).json(allCategory);

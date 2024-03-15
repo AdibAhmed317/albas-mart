@@ -1,13 +1,13 @@
-const UserModel = require('../models/UserModel');
+const UserModel = require("./UserModel");
 const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-} = require('./verifyToken');
+} = require("../middleware/verifyToken");
 
-const router = require('express').Router();
+const router = require("express").Router();
 
 //Get All User
-router.get('/', verifyTokenAndAdmin, async (req, res) => {
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
   const query = req.query.new; // new = query name
   try {
     const user = query
@@ -20,7 +20,7 @@ router.get('/', verifyTokenAndAdmin, async (req, res) => {
 });
 
 //Get One User
-router.get('/find/:id', async (req, res) => {
+router.get("/find/:id", async (req, res) => {
   try {
     const user = await UserModel.findById(req.params.id);
     const { Password, ...others } = user._doc;
@@ -31,7 +31,7 @@ router.get('/find/:id', async (req, res) => {
 });
 
 //Get Stats
-router.get('/stats', verifyTokenAndAdmin, async (req, res) => {
+router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
   const date = new Date();
   const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
 
@@ -40,12 +40,12 @@ router.get('/stats', verifyTokenAndAdmin, async (req, res) => {
       { $match: { createdAt: { $gte: lastYear } } },
       {
         $project: {
-          month: { $month: '$createdAt' },
+          month: { $month: "$createdAt" },
         },
       },
       {
         $group: {
-          _id: '$month',
+          _id: "$month",
           total: { $sum: 1 },
         },
       },
@@ -57,7 +57,7 @@ router.get('/stats', verifyTokenAndAdmin, async (req, res) => {
 });
 
 //Update User
-router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const updatedUser = await UserModel.findByIdAndUpdate(
       req.params.id,
@@ -73,10 +73,10 @@ router.put('/:id', verifyTokenAndAuthorization, async (req, res) => {
 });
 
 //Delete User
-router.delete('/:id', verifyTokenAndAuthorization, async (req, res) => {
+router.delete("/:id", verifyTokenAndAuthorization, async (req, res) => {
   try {
     await UserModel.findByIdAndDelete(req.params.id);
-    res.status(200).json('Delete Successfully.');
+    res.status(200).json("Delete Successfully.");
   } catch (error) {
     res.status(500).json(error);
   }

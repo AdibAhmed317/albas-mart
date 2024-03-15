@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
+
 const app = express();
 app.use(cookieParser());
 app.use(
@@ -15,14 +16,14 @@ app.use(
   })
 );
 
-const userRoute = require("./routes/userRoute");
-const authRoute = require("./routes/authRoute");
-const productRoute = require("./routes/productRoute");
-const wishListRoute = require("./routes/wishlist.route");
-const orderRoute = require("./routes/orderRoute");
-const categoryRoute = require("./routes/categoryRoute");
-const CartRoute = require("./routes/CartRoute");
-const stripeRoute = require("./routes/stripe");
+const userRoute = require("./src/user/UserRoute");
+const authRoute = require("./src/auth/AuthRoute");
+const productRoute = require("./src/product/ProductRoute");
+const wishListRoute = require("./src/wishlist/WishListRoute");
+const orderRoute = require("./src/order/OrderRoute");
+const categoryRoute = require("./src/category/CategoryRoute");
+const CartRoute = require("./src/cart/CartRoute");
+const stripeRoute = require("./src/payment/Stripe");
 
 mongoose
   .connect(process.env.MONGO_URL)

@@ -1,13 +1,13 @@
-const ProductModel = require('../models/ProductModel');
+const ProductModel = require("./ProductModel");
 const {
   verifyTokenAndAuthorization,
   verifyTokenAndAdmin,
-} = require('./verifyToken');
+} = require("../middleware/verifyToken");
 
-const router = require('express').Router();
+const router = require("express").Router();
 
 //Create Product
-router.post('/create-product', verifyTokenAndAdmin, async (req, res) => {
+router.post("/create-product", verifyTokenAndAdmin, async (req, res) => {
   const newProduct = new ProductModel(req.body);
 
   try {
@@ -19,7 +19,7 @@ router.post('/create-product', verifyTokenAndAdmin, async (req, res) => {
 });
 
 //Update Product
-router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
+router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedProduct = await ProductModel.findByIdAndUpdate(
       req.params.id,
@@ -35,20 +35,20 @@ router.put('/:id', verifyTokenAndAdmin, async (req, res) => {
 });
 
 //Delete Product
-router.delete('/:id', verifyTokenAndAdmin, async (req, res) => {
+router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     await ProductModel.findByIdAndDelete(req.params.id);
-    res.status(200).json('Delete Successfully.');
+    res.status(200).json("Delete Successfully.");
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
 // Route to get all products
-router.get('/all', async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     const { categories } = req.query;
-    const query = categories === 'all' ? {} : { categories: categories };
+    const query = categories === "all" ? {} : { categories: categories };
 
     const products = await ProductModel.find(query);
     res.status(200).json(products);
@@ -58,7 +58,7 @@ router.get('/all', async (req, res) => {
 });
 
 // Route to get 8 products
-router.get('/eight', async (req, res) => {
+router.get("/eight", async (req, res) => {
   try {
     const fiveProducts = await ProductModel.find().limit(8);
     res.status(200).json(fiveProducts);
@@ -68,7 +68,7 @@ router.get('/eight', async (req, res) => {
 });
 
 //Get Single Product
-router.get('/find/:id', async (req, res) => {
+router.get("/find/:id", async (req, res) => {
   try {
     const produtct = await ProductModel.findById(req.params.id);
     res.status(200).json(produtct);
@@ -78,7 +78,7 @@ router.get('/find/:id', async (req, res) => {
 });
 
 //Get Single Search Product
-router.get('/search/:title', async (req, res) => {
+router.get("/search/:title", async (req, res) => {
   try {
     const produtct = await ProductModel.find({ title: req.params.title });
     res.status(200).json(produtct);
