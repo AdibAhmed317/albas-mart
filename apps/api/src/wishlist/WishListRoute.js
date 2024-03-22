@@ -1,8 +1,5 @@
 const WishListModel = require("./WishListModel");
-const {
-  verifyTokenAndAuthorization,
-  verifyToken,
-} = require("../middleware/verifyToken");
+const { verifyToken } = require("../middleware/verifyToken");
 
 const router = require("express").Router();
 

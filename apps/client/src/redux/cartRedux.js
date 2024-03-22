@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
+import { userRequest } from "../network/RequestMethod";
 
-const savedCartData = localStorage.getItem('cartData');
+const savedCartData = localStorage.getItem("cartData");
 const initialState = savedCartData
   ? JSON.parse(savedCartData)
   : {
@@ -10,7 +11,7 @@ const initialState = savedCartData
     };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addProduct: (state, action) => {
@@ -27,8 +28,24 @@ const cartSlice = createSlice({
       }
       state.total += action.payload.price * action.payload.quantity;
 
-      localStorage.setItem('cartData', JSON.stringify(state));
+      const accessToken = localStorage.getItem("accessToken");
+      const userId = localStorage.getItem("id");
+
+      const { products, total } = state;
+      const cartData = { products, userId, total };
+
+      if (accessToken && userId) {
+        try {
+          const response = userRequest.post("/", cartData);
+          return response.data;
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        localStorage.setItem("cartData", JSON.stringify(state));
+      }
     },
+
     updateProductQuantity: (state, action) => {
       const { _id, quantity } = action.payload;
       const productToUpdate = state.products.find((item) => item._id === _id);
@@ -37,16 +54,18 @@ const cartSlice = createSlice({
         const diffInQuantity = quantity - productToUpdate.quantity;
         productToUpdate.quantity = quantity;
         state.total += diffInQuantity * productToUpdate.price;
-        localStorage.setItem('cartData', JSON.stringify(state));
+        localStorage.setItem("cartData", JSON.stringify(state));
       }
     },
+
     clearCart: (state) => {
       state.products = [];
       state.quantity = 0;
       state.total = 0;
 
-      localStorage.removeItem('cartData');
+      localStorage.removeItem("cartData");
     },
+
     removeProduct: (state, action) => {
       const productId = action.payload;
       const index = state.products.findIndex((item) => item._id === productId);
@@ -57,7 +76,7 @@ const cartSlice = createSlice({
         state.quantity -= 1;
         state.total -= removedProduct.price * removedQuantity;
         state.products.splice(index, 1);
-        localStorage.setItem('cartData', JSON.stringify(state));
+        localStorage.setItem("cartData", JSON.stringify(state));
       }
     },
   },
