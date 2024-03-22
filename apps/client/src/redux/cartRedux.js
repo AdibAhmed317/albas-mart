@@ -80,21 +80,21 @@ const cartSlice = createSlice({
       }
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(addProductAsync.fulfilled, (state, action) => {
-        // Update state with the fetched data
-        const { products, userId, total } = action.payload;
-        state.products = products;
-        state.quantity = products.length;
-        state.total = total;
-        localStorage.setItem("cartData", JSON.stringify(state));
-      })
-      .addCase(addProductAsync.rejected, (state, action) => {
-        // Handle the error
-        console.log(action.payload);
-      });
-  },
+  // extraReducers: (builder) => {
+  //   builder
+  //     .addCase(addProductAsync.fulfilled, (state, action) => {
+  //       // Update state with the fetched data
+  //       const { products, userId, total } = action.payload;
+  //       state.products = products;
+  //       state.quantity = products.length;
+  //       state.total = total;
+  //       localStorage.setItem("cartData", JSON.stringify(state));
+  //     })
+  //     .addCase(addProductAsync.rejected, (state, action) => {
+  //       // Handle the error
+  //       console.log(action.payload);
+  //     });
+  // },
 });
 
 export const { addProduct, clearCart, updateProductQuantity, removeProduct } =
