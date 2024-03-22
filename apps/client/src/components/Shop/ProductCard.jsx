@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { userRequest } from "../../network/RequestMethod";
 import useAuth from "../../hooks/useAuth";
+import { addProductAsync } from "../../redux/thunks/cartThunk";
 
 const ProductCard = ({ product }) => {
   // const quantity = 1;
@@ -27,8 +28,10 @@ const ProductCard = ({ product }) => {
 
   const handleCart = async () => {
     try {
-      const res = await userRequest.post("/cart", cartData);
-      if ((res.status === 201) | (res.status === 200)) {
+      const actionResult = await dispatch(addProductAsync(cartData));
+      const status = actionResult.meta.requst;
+
+      if ((status === 201) | (status === 200)) {
         setIsLoading(false);
         Swal.fire({
           position: "center",

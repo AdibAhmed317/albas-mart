@@ -4,9 +4,9 @@ import { userRequest } from "../../network/RequestMethod";
 export const addProductAsync = createAsyncThunk(
   "cart/addProductAsync",
   async (cartData, { rejectWithValue }) => {
-    const { accessToken, userId } = cartData;
+    const { userId } = cartData;
     try {
-      if (accessToken && userId) {
+      if (userId) {
         const response = await userRequest.post("/cart", cartData);
         return response.data;
       } else {
