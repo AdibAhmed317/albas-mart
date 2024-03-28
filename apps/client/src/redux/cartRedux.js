@@ -31,13 +31,8 @@ const cartSlice = createSlice({
       const accessToken = localStorage.getItem("accessToken");
       const userId = localStorage.getItem("id");
 
-      const { products, total } = state;
-      const cartData = { products, userId, total };
-
       if (accessToken && userId) {
         try {
-          const response = userRequest.post("/", cartData);
-          return response.data;
         } catch (error) {
           console.log(error);
         }
@@ -80,21 +75,6 @@ const cartSlice = createSlice({
       }
     },
   },
-  // extraReducers: (builder) => {
-  //   builder
-  //     .addCase(addProductAsync.fulfilled, (state, action) => {
-  //       // Update state with the fetched data
-  //       const { products, userId, total } = action.payload;
-  //       state.products = products;
-  //       state.quantity = products.length;
-  //       state.total = total;
-  //       localStorage.setItem("cartData", JSON.stringify(state));
-  //     })
-  //     .addCase(addProductAsync.rejected, (state, action) => {
-  //       // Handle the error
-  //       console.log(action.payload);
-  //     });
-  // },
 });
 
 export const { addProduct, clearCart, updateProductQuantity, removeProduct } =

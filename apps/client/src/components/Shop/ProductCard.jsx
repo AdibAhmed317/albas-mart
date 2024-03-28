@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa6";
-import { addProduct } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 import { userRequest } from "../../network/RequestMethod";
@@ -10,7 +9,6 @@ import { addProductAsync } from "../../redux/thunks/cartThunk";
 
 const ProductCard = ({ product }) => {
   // const quantity = 1;
-  // const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const { userId } = useAuth();
   const cartData = {
@@ -25,10 +23,11 @@ const ProductCard = ({ product }) => {
   };
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleCart = async () => {
     try {
-      const actionResult = await dispatch(addProductAsync(cartData));
+      const actionResult = dispatch(addProductAsync(cartData));
       const status = actionResult.meta.requst;
 
       if ((status === 201) | (status === 200)) {
