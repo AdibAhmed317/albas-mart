@@ -5,6 +5,7 @@ import { publicRequest } from '../../network/RequestMethod';
 
 const CartList = () => {
   const products = useSelector((state) => state.cart.products);
+  const quantity = useSelector((state) => state.cart.products.quantity);
   const dispatch = useDispatch();
   const [fetchedProducts, setFetchedProducts] = useState([]);
 
@@ -65,10 +66,10 @@ const CartList = () => {
                 >
                   +
                 </button>
-                <span className='m-2'>{product.quantity}</span>
+                <span className='m-2'>{quantity}</span>
                 <button
                   className='h-8 w-8 bg-green-700 hover:bg-green-400 hover:text-green-900 transition-all rounded-lg mx-1 text-white'
-                  onClick={() => decreaseQuantity(product)}
+                  onClick={() => decreaseQuantity(product.quantity)}
                 >
                   -
                 </button>

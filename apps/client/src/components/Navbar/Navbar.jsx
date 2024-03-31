@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import logo from '../../assets/logoT.png';
@@ -11,8 +11,7 @@ import Notice from './Notice';
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-  //working
-  const items = useSelector((state) => state.cart.items);
+  const items = useSelector((state) => state.cart.products.length);
 
   const { isOpen, setIsOpen } = useContext(NavbarContext);
   const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);

@@ -1,16 +1,17 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { userRequest } from "../../network/RequestMethod";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { userRequest } from '../../network/RequestMethod';
+import { addProduct } from '../cartRedux';
 
 export const addProductAsync = createAsyncThunk(
-  "cart/addProductAsync",
-  async (cartData, { rejectWithValue }) => {
+  'cart/addProductAsync',
+  async (cartData, { rejectWithValue, dispatch }) => {
     const { userId } = cartData;
     try {
       if (userId) {
-        const response = await userRequest.post("/cart", cartData);
+        const response = await userRequest.post('/cart', cartData);
         return response.data;
       } else {
-        const existingItem = localStorage.getItem("cartData");
+        const existingItem = localStorage.getItem('cartData');
         let updatedCartData = cartData;
 
         if (existingItem) {
@@ -26,11 +27,9 @@ export const addProductAsync = createAsyncThunk(
             );
 
             if (existingProductIndex !== -1) {
-              // If the product exists, update the quantity
               updatedCartData.products[existingProductIndex].quantity +=
                 product.quantity;
             } else {
-              // If the product doesn't exist, add it to the products array
               updatedCartData.products.push({
                 _id: product._id,
                 quantity: product.quantity,
@@ -39,7 +38,6 @@ export const addProductAsync = createAsyncThunk(
             }
           });
 
-          // Calculate and update the total price
           updatedCartData.total = updatedCartData.products.reduce(
             (acc, product) => {
               return acc + product.price * product.quantity;
@@ -47,14 +45,14 @@ export const addProductAsync = createAsyncThunk(
             0
           );
 
-          // Calculate and update the items count
           const uniqueProductIds = Array.from(
             new Set(updatedCartData.products.map((product) => product._id))
           );
           updatedCartData.items = uniqueProductIds.length;
         }
 
-        localStorage.setItem("cartData", JSON.stringify(updatedCartData));
+        localStorage.setItem('cartData', JSON.stringify(updatedCartData));
+        dispatch(addProduct(updatedCartData));
         return updatedCartData;
       }
     } catch (error) {
