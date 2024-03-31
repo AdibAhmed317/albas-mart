@@ -14,45 +14,6 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addProduct: (state, action) => {
-      const newItem = action.payload;
-      const existingItem = state.products.find(
-        (item) => item._id === newItem._id
-      );
-
-      if (existingItem) {
-        existingItem.quantity += newItem.quantity;
-      } else {
-        state.quantity += 1;
-        state.products.push(action.payload);
-      }
-      state.total += action.payload.price * action.payload.quantity;
-
-      const accessToken = localStorage.getItem("accessToken");
-      const userId = localStorage.getItem("id");
-
-      if (accessToken && userId) {
-        try {
-        } catch (error) {
-          console.log(error);
-        }
-      } else {
-        localStorage.setItem("cartData", JSON.stringify(state));
-      }
-    },
-
-    updateProductQuantity: (state, action) => {
-      const { _id, quantity } = action.payload;
-      const productToUpdate = state.products.find((item) => item._id === _id);
-
-      if (productToUpdate) {
-        const diffInQuantity = quantity - productToUpdate.quantity;
-        productToUpdate.quantity = quantity;
-        state.total += diffInQuantity * productToUpdate.price;
-        localStorage.setItem("cartData", JSON.stringify(state));
-      }
-    },
-
     clearCart: (state) => {
       state.products = [];
       state.quantity = 0;
@@ -80,3 +41,20 @@ const cartSlice = createSlice({
 export const { addProduct, clearCart, updateProductQuantity, removeProduct } =
   cartSlice.actions;
 export default cartSlice.reducer;
+
+// addProduct: (state, action) => {
+//   const newItem = action.payload;
+//   const existingItem = state.products.find(
+//     (item) => item._id === newItem._id
+//   );
+
+//   if (existingItem) {
+//     existingItem.quantity += newItem.quantity;
+//   } else {
+//     state.quantity += 1;
+//     state.products.push(action.payload);
+//   }
+//   state.total += action.payload.price * action.payload.quantity;
+
+//   localStorage.setItem("cartData", JSON.stringify(state));
+// },

@@ -71,9 +71,9 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/:userId", async (req, res) => {
   try {
-    const userId = req.body;
+    const userId = req.params;
     const cart = await CartModel.findOne({ userId });
     if (!cart) {
       return res.status(404).json({ message: "Cart not found" });

@@ -25,21 +25,31 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleCart = async () => {
-    try {
-      const actionResult = dispatch(addProductAsync(cartData));
-      const status = actionResult.meta.requst;
+  const handleCart = () => {
+    console.log("clicked");
 
-      if ((status === 201) | (status === 200)) {
-        setIsLoading(false);
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Added to cart!",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      } else {
+    dispatch(addProductAsync(cartData))
+      .then((actionResult) => {
+        if (actionResult.meta.requestStatus === "fulfilled") {
+          setIsLoading(false);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Added to cart!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Add to cart failed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((error) => {
         Swal.fire({
           position: "center",
           icon: "error",
@@ -47,22 +57,14 @@ const ProductCard = ({ product }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-      }
-    } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Add to cart failed",
-        showConfirmButton: false,
-        timer: 1500,
+        console.log(error);
       });
-    }
   };
 
   const handleWishList = async () => {
-    if (loggedInId != null) {
+    if (userId != null) {
       const wishlistData = {
-        userId: loggedInId,
+        userId: userId,
         productId: product._id,
       };
 
