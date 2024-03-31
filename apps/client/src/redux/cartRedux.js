@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userRequest } from "../network/RequestMethod";
 
 const savedCartData = localStorage.getItem("cartData");
 const initialState = savedCartData
@@ -8,6 +7,7 @@ const initialState = savedCartData
       products: [],
       quantity: 0,
       total: 0,
+      items: 0,
     };
 
 const cartSlice = createSlice({
@@ -18,6 +18,7 @@ const cartSlice = createSlice({
       state.products = [];
       state.quantity = 0;
       state.total = 0;
+      state.items = 0;
 
       localStorage.removeItem("cartData");
     },
@@ -29,7 +30,7 @@ const cartSlice = createSlice({
       if (index !== -1) {
         const removedProduct = state.products[index];
         const removedQuantity = removedProduct.quantity;
-        state.quantity -= 1;
+        state.quantity -= removedQuantity;
         state.total -= removedProduct.price * removedQuantity;
         state.products.splice(index, 1);
         localStorage.setItem("cartData", JSON.stringify(state));
@@ -41,20 +42,3 @@ const cartSlice = createSlice({
 export const { addProduct, clearCart, updateProductQuantity, removeProduct } =
   cartSlice.actions;
 export default cartSlice.reducer;
-
-// addProduct: (state, action) => {
-//   const newItem = action.payload;
-//   const existingItem = state.products.find(
-//     (item) => item._id === newItem._id
-//   );
-
-//   if (existingItem) {
-//     existingItem.quantity += newItem.quantity;
-//   } else {
-//     state.quantity += 1;
-//     state.products.push(action.payload);
-//   }
-//   state.total += action.payload.price * action.payload.quantity;
-
-//   localStorage.setItem("cartData", JSON.stringify(state));
-// },
