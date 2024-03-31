@@ -36,7 +36,7 @@ const CartList = () => {
             />
             <div className="ml-0 md:ml-5">
               <h1 className="text-3xl font-serif m-2">{product.title}</h1>
-              <p className="text-lg m-2">Price: ৳{product.price}asdfasdfasdf</p>
+              <p className="text-lg m-2">Price: ৳{product.price}</p>
               <div>
                 <button
                   className="h-8 w-8 bg-green-700 hover:bg-green-400 hover:text-green-900 transition-all rounded-lg mx-1 text-white"
