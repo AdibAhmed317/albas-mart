@@ -33,6 +33,23 @@ const cartSlice = createSlice({
       state.items = uniqueProductIds.size;
     },
 
+    updateProductQuantity: (state, action) => {
+      const updatedProduct = action.payload;
+      const index = state.products.findIndex(
+        (product) => product._id === updatedProduct._id
+      );
+
+      if (index !== -1) {
+        const oldQuantity = state.products[index].quantity;
+        state.products[index] = updatedProduct;
+        state.quantity += updatedProduct.quantity - oldQuantity;
+        state.total +=
+          updatedProduct.price * updatedProduct.quantity -
+          updatedProduct.price * oldQuantity;
+        localStorage.setItem('cartData', JSON.stringify(state));
+      }
+    },
+
     clearCart: (state) => {
       state.products = [];
       state.quantity = 0;
