@@ -14,23 +14,23 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    addProduct: (state, action) => {
-      const newProducts = action.payload.products;
-      state.products = newProducts;
-      state.quantity = newProducts.reduce(
-        (acc, product) => acc + product.quantity,
-        0
-      );
-      state.total = newProducts.reduce(
-        (acc, product) => acc + product.price * product.quantity,
-        0
-      );
+    // addProduct: (state, action) => {
+    //   const newProducts = action.payload.products;
+    //   state.products = newProducts;
+    //   state.quantity = newProducts.reduce(
+    //     (acc, product) => acc + product.quantity,
+    //     0
+    //   );
+    //   state.total = newProducts.reduce(
+    //     (acc, product) => acc + product.price * product.quantity,
+    //     0
+    //   );
 
-      const uniqueProductIds = new Set(
-        newProducts.map((product) => product._id)
-      );
-      state.items = uniqueProductIds.size;
-    },
+    //   const uniqueProductIds = new Set(
+    //     newProducts.map((product) => product._id)
+    //   );
+    //   state.items = uniqueProductIds.size;
+    // },
 
     addOrUpdateProduct: (state, action) => {
       const { products } = action.payload;
@@ -41,15 +41,12 @@ const cartSlice = createSlice({
         );
 
         if (existingProductIndex !== -1) {
-          // If the product exists, update its quantity
           state.products[existingProductIndex].quantity += newProduct.quantity;
         } else {
-          // If the product doesn't exist, add it to the products array
           state.products.push(newProduct);
         }
       });
 
-      // Update the total quantity and total price
       state.quantity = state.products.reduce(
         (acc, product) => acc + product.quantity,
         0
@@ -60,7 +57,6 @@ const cartSlice = createSlice({
         0
       );
 
-      // Update the number of unique items
       const uniqueProductIds = new Set(
         state.products.map((product) => product._id)
       );

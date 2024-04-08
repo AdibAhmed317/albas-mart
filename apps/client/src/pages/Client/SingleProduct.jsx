@@ -11,7 +11,6 @@ import { Add, Remove, ShoppingCart } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';
 import Swal from 'sweetalert2';
 import { addProductAsync } from '../../redux/thunks/cartThunk';
-import { addOrUpdateProduct } from '../../redux/cartRedux';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
@@ -57,7 +56,9 @@ const SingleProduct = () => {
     };
     console.log(cartData);
 
-    dispatch(addOrUpdateProduct({ products: cartData.products })); // Pass cartData.products correctly
+    // dispatch(addOrUpdateProduct({ products: cartData.products }));
+    dispatch(addProductAsync({ products: cartData.products }));
+
     Swal.fire({
       position: 'center',
       icon: 'success',

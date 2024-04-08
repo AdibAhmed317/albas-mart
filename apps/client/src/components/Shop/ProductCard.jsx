@@ -6,10 +6,8 @@ import Swal from 'sweetalert2';
 import { userRequest } from '../../network/RequestMethod';
 import useAuth from '../../hooks/useAuth';
 import { addProductAsync } from '../../redux/thunks/cartThunk';
-import { addOrUpdateProduct } from '../../redux/cartRedux';
 
 const ProductCard = ({ product }) => {
-  // const quantity = 1;
   const cart = useSelector((state) => state.cart);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +30,8 @@ const ProductCard = ({ product }) => {
   const handleCart = () => {
     console.log('clicked');
 
-    dispatch(addOrUpdateProduct({ products: cartData.products }));
+    // dispatch(addOrUpdateProduct({ products: cartData.products }));
+    dispatch(addProductAsync({ products: cartData.products }));
 
     Swal.fire({
       position: 'center',
