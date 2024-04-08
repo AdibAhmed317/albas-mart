@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 
 import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 
-import b2 from '../../assets/b2.jpg';
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';
 import Swal from 'sweetalert2';
+import { addProductAsync } from '../../redux/thunks/cartThunk';
+import { addOrUpdateProduct } from '../../redux/cartRedux';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
@@ -45,7 +45,19 @@ const SingleProduct = () => {
   };
 
   const handleCart = () => {
-    dispatch(addProduct({ ...fetchedProduct, quantity }));
+    const cartData = {
+      products: [
+        {
+          _id: fetchedProduct._id,
+          quantity: quantity,
+          price: fetchedProduct.price,
+        },
+      ],
+      userId: null,
+    };
+    console.log(cartData);
+
+    dispatch(addOrUpdateProduct({ products: cartData.products })); // Pass cartData.products correctly
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -65,7 +77,8 @@ const SingleProduct = () => {
         delay: 0.175,
       }}
       className='bg-green-50'
-      id='container'>
+      id='container'
+    >
       <Navbar />
       <DropDown />
       <div className='p-[50px] flex flex-col md:flex-row' id='wrapper'>
@@ -87,7 +100,8 @@ const SingleProduct = () => {
           </span>
           <div
             className='flex justify-between w-3/6 my-[30px] mx-0'
-            id='filterContainer'>
+            id='filterContainer'
+          >
             <div className='flex items-center' id='filter'>
               <span className='font-extralight text-xl m-1' id='filterTitle'>
                 Size: {fetchedProduct.size}
@@ -96,14 +110,16 @@ const SingleProduct = () => {
           </div>
           <div
             className='flex justify-between items-center w-3/6'
-            id='AddContainer'>
+            id='AddContainer'
+          >
             <div className='flex items-center' id='AmountContainer'>
               <button onClick={() => handleOnClick('Remove')}>
                 <Remove />
               </button>
               <span
                 className='p-6 w-10 h-10 md:w-[30px] md:h-[30px] text-green-900 rounded-xl border-solid bg-green-200 flex justify-center items-center mx-1'
-                id='amount'>
+                id='amount'
+              >
                 {quantity}
               </span>
               <button onClick={() => handleOnClick('Add')}>
@@ -112,7 +128,8 @@ const SingleProduct = () => {
             </div>
             <button
               onClick={handleCart}
-              className='w-fit h-fit justify-center items-center md:ml-0 ml-10 text-base text-green-900 bg-green-200 rounded-xl px-5 py-1 hover:text-green-600'>
+              className='w-fit h-fit justify-center items-center md:ml-0 ml-10 text-base text-green-900 bg-green-200 rounded-xl px-5 py-1 hover:text-green-600'
+            >
               <div className='flex justify-center items-center'>
                 <p className='mr-2'>
                   <ShoppingCart />

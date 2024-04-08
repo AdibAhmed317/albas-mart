@@ -6,7 +6,6 @@ const initialState = savedCartData
   ? JSON.parse(savedCartData)
   : {
       products: [],
-      quantity: 0,
       total: 0,
       items: 0,
     };
@@ -33,6 +32,41 @@ const cartSlice = createSlice({
       state.items = uniqueProductIds.size;
     },
 
+    addOrUpdateProduct: (state, action) => {
+      const { products } = action.payload;
+
+      products.forEach((newProduct) => {
+        const existingProductIndex = state.products.findIndex(
+          (p) => p._id === newProduct._id
+        );
+
+        if (existingProductIndex !== -1) {
+          // If the product exists, update its quantity
+          state.products[existingProductIndex].quantity += newProduct.quantity;
+        } else {
+          // If the product doesn't exist, add it to the products array
+          state.products.push(newProduct);
+        }
+      });
+
+      // Update the total quantity and total price
+      state.quantity = state.products.reduce(
+        (acc, product) => acc + product.quantity,
+        0
+      );
+
+      state.total = state.products.reduce(
+        (acc, product) => acc + product.price * product.quantity,
+        0
+      );
+
+      // Update the number of unique items
+      const uniqueProductIds = new Set(
+        state.products.map((product) => product._id)
+      );
+      state.items = uniqueProductIds.size;
+    },
+
     updateProductQuantity: (state, action) => {
       const updatedProduct = action.payload;
       const index = state.products.findIndex(
@@ -40,13 +74,21 @@ const cartSlice = createSlice({
       );
 
       if (index !== -1) {
-        const oldQuantity = state.products[index].quantity;
-        state.products[index] = updatedProduct;
-        state.quantity += updatedProduct.quantity - oldQuantity;
-        state.total +=
-          updatedProduct.price * updatedProduct.quantity -
-          updatedProduct.price * oldQuantity;
-        localStorage.setItem('cartData', JSON.stringify(state));
+        state.products[index].quantity = updatedProduct.quantity;
+
+        state.quantity = state.products.reduce(
+          (acc, product) => acc + product.quantity,
+          0
+        );
+        state.total = state.products.reduce(
+          (acc, product) => acc + product.price * product.quantity,
+          0
+        );
+
+        const uniqueProductIds = new Set(
+          state.products.map((product) => product._id)
+        );
+        state.items = uniqueProductIds.size;
       }
     },
 
@@ -80,6 +122,11 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addProduct, clearCart, updateProductQuantity, removeProduct } =
-  cartSlice.actions;
+export const {
+  addProduct,
+  clearCart,
+  updateProductQuantity,
+  removeProduct,
+  addOrUpdateProduct,
+} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -46,7 +46,8 @@ const FeaturedProduct = () => {
       </div>
       <Link
         to={`/shop/all`}
-        className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-purple-700 bg-green-500 rounded-md font-thin text-xl mt-10'>
+        className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-purple-700 bg-green-500 rounded-md font-thin text-xl mt-10'
+      >
         Shop Now
       </Link>
     </div>

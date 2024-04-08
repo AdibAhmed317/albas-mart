@@ -11,7 +11,7 @@ import Notice from './Notice';
 import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-  const items = useSelector((state) => state.cart.products.length);
+  const items = useSelector((state) => state.cart.items);
 
   const { isOpen, setIsOpen } = useContext(NavbarContext);
   const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);
