@@ -1,12 +1,12 @@
-const router = require("express").Router();
-const CartModel = require("./CartModel");
+const router = require('express').Router();
+const CartModel = require('./CartModel');
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { products, userId } = req.body;
 
     if (!userId) {
-      return res.status(404).json({ message: "User Id not found" });
+      return res.status(404).json({ message: 'User Id not found' });
     }
 
     let existingCart = await CartModel.findOne({ userId });
@@ -67,21 +67,21 @@ router.post("/", async (req, res) => {
     res.status(201).json(savedCart);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Internal server error." });
+    res.status(500).json({ error: 'Internal server error.' });
   }
 });
 
-router.get("/:userId", async (req, res) => {
+router.get('/:userId', async (req, res) => {
   try {
-    const userId = req.params;
+    const { userId } = req.params;
     const cart = await CartModel.findOne({ userId });
     if (!cart) {
-      return res.status(404).json({ message: "Cart not found" });
+      return res.status(404).json({ message: 'Cart not found' });
     }
     res.status(200).json(cart);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 

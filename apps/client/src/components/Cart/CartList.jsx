@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { removeProduct, updateProductQuantity } from '../../redux/cartRedux';
 import { useDispatch, useSelector } from 'react-redux';
 import { publicRequest } from '../../network/RequestMethod';
+import useCart from '../../hooks/useCart';
 
 const CartList = () => {
   const products = useSelector((state) => state.cart.products);
+  // const { cart } = useCart();
+  // console.log(cart);
   const dispatch = useDispatch();
   const [fetchedProducts, setFetchedProducts] = useState([]);
 
