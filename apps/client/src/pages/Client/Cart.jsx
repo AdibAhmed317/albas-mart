@@ -25,31 +25,31 @@ const Cart = () => {
 
   const KEY = import.meta.env.VITE_STRIPE;
 
+  useEffect(() => {
+    if (stripeToken && subtotal > 0) {
+      makeRequest();
+    }
+  }, [stripeToken, subtotal, navigate, clearCart]);
+
   const onToken = (token) => {
     setStripeToken(token);
   };
 
-  useEffect(() => {
-    const makeRequest = async () => {
-      try {
-        const res = await userRequest.post('checkout/payment', {
-          tokenId: stripeToken.id,
-          amount: (subtotal + 20 - 10) * 100,
-        });
+  const makeRequest = async () => {
+    try {
+      const res = await userRequest.post('checkout/payment', {
+        tokenId: stripeToken.id,
+        amount: (subtotal + 20 - 10) * 100,
+      });
 
-        if (res.status === 200) {
-          handleOrder(res.data);
-          navigate(`/user-details/${loggedId}`);
-        }
-      } catch (error) {
-        console.log(error);
+      if (res.status === 200) {
+        handleOrder(res.data);
+        navigate(`/user-details/${loggedId}`);
       }
-    };
-
-    if (stripeToken && subtotal > 0) {
-      makeRequest();
+    } catch (error) {
+      console.log(error);
     }
-  }, [stripeToken, subtotal, navigate]);
+  };
 
   const handleOrder = async (paymentData) => {
     const orderData = {

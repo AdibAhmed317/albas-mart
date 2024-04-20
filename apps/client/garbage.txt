@@ -1,0 +1,194 @@
+// import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { userRequest } from '../../network/RequestMethod';
+// import { addProduct } from '../cartRedux';
+
+// export const addProductAsync = createAsyncThunk(
+//   'cart/addProductAsync',
+//   async (cartData, { rejectWithValue, dispatch }) => {
+//     const { userId } = cartData;
+//     try {
+//       if (userId) {
+//         const response = await userRequest.post('/cart', cartData);
+//         return response.data;
+//       } else {
+//         const existingItem = localStorage.getItem('cartData');
+//         let updatedCartData = cartData;
+
+//         if (existingItem) {
+//           const existingCartData = JSON.parse(existingItem);
+//           updatedCartData = {
+//             ...existingCartData,
+//             products: [...existingCartData.products],
+//           };
+
+//           if (cartData.products && Array.isArray(cartData.products)) {
+//             // Check if products exists and is an array
+//             cartData.products.forEach((product) => {
+//               const existingProductIndex = updatedCartData.products.findIndex(
+//                 (p) => p._id.toString() === product._id.toString()
+//               );
+
+//               if (existingProductIndex !== -1) {
+//                 updatedCartData.products[existingProductIndex].quantity +=
+//                   product.quantity;
+//               } else {
+//                 updatedCartData.products.push({
+//                   _id: product._id,
+//                   quantity: product.quantity,
+//                   price: product.price,
+//                 });
+//               }
+//             });
+//           }
+
+//           updatedCartData.total = updatedCartData.products.reduce(
+//             (acc, product) => {
+//               return acc + product.price * product.quantity;
+//             },
+//             0
+//           );
+
+//           const uniqueProductIds = Array.from(
+//             new Set(updatedCartData.products.map((product) => product._id))
+//           );
+//           updatedCartData.items = uniqueProductIds.length;
+//         }
+
+//         localStorage.setItem('cartData', JSON.stringify(updatedCartData));
+//         dispatch(addProduct(updatedCartData));
+//         return updatedCartData;
+//       }
+//     } catch (error) {
+//       console.log(error);
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+// export const addProductAsync = createAsyncThunk(
+//   'cart/addProductAsync',
+//   async (cartData, { rejectWithValue, dispatch }) => {
+//     const { userId } = cartData;
+//     try {
+//       if (userId) {
+//         const response = await userRequest.post('/cart', cartData);
+//         return response.data;
+//       } else {
+//         const existingItem = localStorage.getItem('cartData');
+//         let updatedCartData = cartData;
+
+//         if (existingItem) {
+//           const existingCartData = JSON.parse(existingItem);
+//           updatedCartData = {
+//             ...existingCartData,
+//             products: [...existingCartData.products],
+//           };
+
+//           cartData.products.forEach((product) => {
+//             const existingProductIndex = updatedCartData.products.findIndex(
+//               (p) => p._id.toString() === product._id.toString()
+//             );
+
+//             if (existingProductIndex !== -1) {
+//               updatedCartData.products[existingProductIndex].quantity +=
+//                 product.quantity;
+//             } else {
+//               updatedCartData.products.push({
+//                 _id: product._id,
+//                 quantity: product.quantity,
+//                 price: product.price,
+//               });
+//             }
+//           });
+
+//           updatedCartData.total = updatedCartData.products.reduce(
+//             (acc, product) => {
+//               return acc + product.price * product.quantity;
+//             },
+//             0
+//           );
+
+//           const uniqueProductIds = Array.from(
+//             new Set(updatedCartData.products.map((product) => product._id))
+//           );
+//           updatedCartData.items = uniqueProductIds.length;
+//         }
+
+//         localStorage.setItem('cartData', JSON.stringify(updatedCartData));
+//         dispatch(addProduct(updatedCartData));
+//         return updatedCartData;
+//       }
+//     } catch (error) {
+//       console.log(error);
+//       return rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
+
+// addProduct: (state, action) => {
+//   const newProducts = action.payload.products;
+//   state.products = newProducts;
+//   state.quantity = newProducts.reduce(
+//     (acc, product) => acc + product.quantity,
+//     0
+//   );
+//   state.total = newProducts.reduce(
+//     (acc, product) => acc + product.price * product.quantity,
+//     0
+//   );
+
+//   const uniqueProductIds = new Set(
+//     newProducts.map((product) => product._id)
+//   );
+//   state.items = uniqueProductIds.size;
+// },
+
+make a cart in redux toolkit.
+the cartData will be 
+  const cartData = {
+    products: [
+      {
+        _id: product._id,
+        quantity: 1,
+        price: product.price,
+      },
+    ],
+    userId: userId,
+    items: cart.items + 1,
+  };
+items will be how many products are in there. i mean if there is 2 apple and 1 banana the items will be 2.
+
+now use redux toolkit for making this cart. but make sure to do these points. 
+
+1. create a mongodb model based on that cartData. userId cannot be null/undefined 
+2. create a route in nodejs which will receive the cartData from body. extract products and userId. if userId is null then dont proceed. if not null then find the userId in the mongodb database. i mean find cart by userId. now there are two condition.  a) if the product doesnt exist in cart then the products.quantity will be the quantity you get from the body. b) if the product exist then add the new products.quantity to the new products.quantity. [if products.quantity is 2 and and add 3 more products.quantity the final answer will be 5.]
+3. also create a route for fectching the cartData by userId
+4. now create  a store for redux and a slice for cart and also a thunk for cart.
+5. the slice which will be named cartRedux.js. should have the initials as cartData. the initial state will be the data that i get from fectching [if there is userId] or localStorage.getItem('cartData') [if there is no userId or undefined or null]. the initial state will be a merge of fectching and localStorage. for example if i have 3 apple in mongodb and 2 apple in localStorage the initial state will be 5 apple.
+
+now create a store.js, cartRedux.js, cartThunk.js, CartModel.js, CartRoute.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

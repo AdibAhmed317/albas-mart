@@ -28,10 +28,8 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleCart = () => {
-    console.log('clicked');
-
     // dispatch(addOrUpdateProduct({ products: cartData.products }));
-    dispatch(addProductAsync({ products: cartData.products }));
+    dispatch(addProductAsync(cartData));
 
     Swal.fire({
       position: 'center',

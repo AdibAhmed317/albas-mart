@@ -34,7 +34,9 @@ const CartList = () => {
   };
 
   const decreaseQuantity = (product) => {
-    if (product.quantity > 0) {
+    if (product.quantity === 1) {
+      dispatch(removeProduct(product._id));
+    } else if (product.quantity > 1) {
       dispatch(
         updateProductQuantity({ ...product, quantity: product.quantity - 1 })
       );

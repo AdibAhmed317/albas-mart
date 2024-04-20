@@ -14,24 +14,6 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // addProduct: (state, action) => {
-    //   const newProducts = action.payload.products;
-    //   state.products = newProducts;
-    //   state.quantity = newProducts.reduce(
-    //     (acc, product) => acc + product.quantity,
-    //     0
-    //   );
-    //   state.total = newProducts.reduce(
-    //     (acc, product) => acc + product.price * product.quantity,
-    //     0
-    //   );
-
-    //   const uniqueProductIds = new Set(
-    //     newProducts.map((product) => product._id)
-    //   );
-    //   state.items = uniqueProductIds.size;
-    // },
-
     addOrUpdateProduct: (state, action) => {
       const { products } = action.payload;
 
@@ -85,16 +67,14 @@ const cartSlice = createSlice({
           state.products.map((product) => product._id)
         );
         state.items = uniqueProductIds.size;
+
+        localStorage.setItem('cartData', JSON.stringify(state));
       }
     },
 
     clearCart: (state) => {
-      state.products = [];
-      state.quantity = 0;
-      state.total = 0;
-      state.items = 0;
-
       localStorage.removeItem('cartData');
+      return (state = initialState);
     },
 
     removeProduct: (state, action) => {
@@ -107,13 +87,14 @@ const cartSlice = createSlice({
         state.quantity -= removedQuantity;
         state.total -= removedProduct.price * removedQuantity;
         state.products.splice(index, 1);
+        state.items = state.items - 1;
         localStorage.setItem('cartData', JSON.stringify(state));
       }
     },
   },
   extraReducers: (builder) => {
     builder.addCase(addProductAsync.fulfilled, (state, action) => {
-      return action.payload;
+      return (state = action.payload);
     });
   },
 });
