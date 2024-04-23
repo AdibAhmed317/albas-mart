@@ -1,7 +1,12 @@
 const router = require('express').Router();
 const CartModel = require('./CartModel');
+const {
+  verifyTokenAndAuthorization,
+  verifyToken,
+} = require('../middleware/verifyToken');
 
-router.post('/', async (req, res) => {
+//Add to cart
+router.post('/', verifyToken, async (req, res) => {
   try {
     const { products, userId } = req.body;
 
@@ -71,7 +76,8 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.get('/:userId', async (req, res) => {
+//Get all cart by userId
+router.get('/:userId', verifyTokenAndAuthorization, async (req, res) => {
   try {
     const { userId } = req.params;
     const cart = await CartModel.findOne({ userId });
@@ -84,5 +90,21 @@ router.get('/:userId', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+//Clear cart by userId
+router.delete(
+  '/clear-cart/:userId',
+  verifyTokenAndAuthorization,
+  async (req, res) => {
+    try {
+      const { userId } = req.params;
+      await CartModel.deleteOne({ userId });
+      res.status(200).json({ message: 'Cart cleared successfully' });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+);
 
 module.exports = router;
