@@ -81,20 +81,22 @@ const Shop = () => {
         type: 'keyframes',
         delay: 0.175,
       }}
-      className='bg-green-50'>
+    >
       <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row items-start justify-center my-10 px-6 gap-4 md:gap-8'>
         <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-green-100 w-full lg:max-w-[16rem]'>
-          <div className='flex items-center justify-between'>
+          <div className='relative flex items-center'>
             <input
-              className='h-10 block bg-green-200 pl-3 items-center rounded-full max-w-[8rem]'
+              className='h-10 block w-full bg-green-200 pl-3 pr-10 rounded-full'
               type='search'
               placeholder='Search'
               value={inputValue}
               onChange={handleSearch}
             />
-            <Search />
+            <div className='absolute right-0 top-0 h-full flex items-center pr-3'>
+              <Search />
+            </div>
           </div>
           <Sidebar />
         </div>

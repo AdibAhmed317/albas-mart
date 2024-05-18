@@ -62,7 +62,7 @@ const Slider = () => {
   }, [currentIndex]);
 
   return (
-    <section className='bg-green-200'>
+    <section>
       <div className='max-w-[90rem] h-full w-full relative py-16 px-4 m-auto group'>
         <h1 className='text-center text-5xl font-thin text-green-900 mb-20'>
           Best Deals

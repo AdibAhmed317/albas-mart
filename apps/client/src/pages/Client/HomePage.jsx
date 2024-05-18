@@ -7,9 +7,9 @@ import CategorySection from '../../components/Hero Section/CategorySection';
 import FeaturedProduct from '../../components/Hero Section/FeaturedProduct';
 import Slider from '../../components/Hero Section/Slider';
 
-const HomePage = ({ Name }) => {
+const HomePage = () => {
   return (
-    <div className='bg-green-50'>
+    <>
       <Navbar />
       <Dropdown />
       <Hero />
@@ -17,7 +17,7 @@ const HomePage = ({ Name }) => {
       <CategorySection />
       <FeaturedProduct />
       <Footer />
-    </div>
+    </>
   );
 };
 

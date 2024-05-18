@@ -72,7 +72,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className='flex flex-col shadow-lg bg-green-100 rounded-lg max-w-[16rem]'>
+    <div className='flex flex-col shadow-lg bg-green-50 rounded-lg max-w-[13rem] border-black/5 border-2'>
       <Link to={`/product/${product._id}`}>
         <img
           className='object-cover rounded-t-lg h-[10rem] md:h-[12rem] w-full justify-center items-center'
@@ -81,10 +81,10 @@ const ProductCard = ({ product }) => {
         />
       </Link>
       <div className='px-3'>
-        <h5 className='text-xl md:text-2xl font-normal text-green-900 mt-1'>
+        <h5 className='text-lg md:text-xl font-normal text-green-900 mt-1'>
           {product.title}
         </h5>
-        <p className='text-sm md:text-lg text-green-900 mt-0 mb-0 md:mt-2 md:mb-1'>
+        <p className='text-sm text-green-900 mt-0 mb-0 md:mt-2 md:mb-1'>
           {product.size}
         </p>
         <div className='flex flex-row justify-between md:items-center mb-1'>

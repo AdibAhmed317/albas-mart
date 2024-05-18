@@ -77,7 +77,6 @@ const SingleProduct = () => {
         type: 'keyframes',
         delay: 0.175,
       }}
-      className='bg-green-50'
       id='container'
     >
       <Navbar />

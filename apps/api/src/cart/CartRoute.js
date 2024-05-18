@@ -6,9 +6,10 @@ const {
 } = require('../middleware/verifyToken');
 
 //Add to cart
-router.post('/', verifyToken, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { products, userId } = req.body;
+    console.log(userId);
 
     if (!userId) {
       return res.status(404).json({ message: 'User Id not found' });
