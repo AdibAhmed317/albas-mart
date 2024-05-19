@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <>
-      <Notice />
+      {/* <Notice /> */}
       <motion.nav
         className='w-full bg-green-200 flex justify-between items-center'
         initial={{ y: -1, opacity: 0.1 }}

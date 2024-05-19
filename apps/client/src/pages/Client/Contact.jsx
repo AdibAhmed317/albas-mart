@@ -17,12 +17,13 @@ const Contact = () => {
           type: 'keyframes',
           delay: 0.175,
         }}
-        className='bg-green-50 h-full w-full flex justify-center items-center'>
+        className='min-h-screen w-full flex justify-center items-center'
+      >
         <div className='flex flex-col'>
-          <h1 className='text-4xl md:text-5xl font-thin text-center text-green-800 my-16'>
+          <h1 className='text-4xl md:text-5xl font-thin text-center text-green-800 mt-16'>
             Contact Us
           </h1>
-          <div className='flex flex-col h-full w-[20rem] md:w-[30rem] justify-center md:items-start my-10'>
+          <div className='flex flex-col h-full w-[20rem] md:w-[30rem] justify-center md:items-start m-10'>
             <input
               className='bg-green-200 w-full h-12 pl-3 rounded-lg placeholder:text-green-800'
               type='text'
@@ -49,9 +50,11 @@ const Contact = () => {
               placeholder='Message'
               name='message'
             />
-            <button className='bg-green-900 p-4 w-40 rounded-lg hover:bg-green-400 font-mono text-green-100 hover:text-green-900'>
-              Send
-            </button>
+            <div className='w-full flex justify-center items-center'>
+              <button className='bg-green-900 w-1/2 p-4 rounded-lg hover:bg-green-400 font-mono text-green-100 hover:text-green-900'>
+                Send
+              </button>
+            </div>
           </div>
         </div>
       </motion.div>

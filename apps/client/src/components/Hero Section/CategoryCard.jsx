@@ -1,15 +1,20 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CategoryCard = ({ item }) => {
   return (
-    <div
+    <motion.div
+      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0.5 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true, amount: 0.1 }}
       style={{
         backgroundImage: `url(${item.img})`,
       }}
-      className='mt-10 mx-5 shadow-xl bg-no-repeat h-[20rem] w-[20rem] md:w-[25rem] rounded-2xl'
+      className='mt-10 mx-5 shadow-xl bg-no-repeat h-[20rem] w-[20rem] md:w-[25rem] rounded-2xl flex items-end'
     >
-      <div className='h-[8rem] w-full flex flex-col justify-center items-center mt-[13rem] rounded-b-2xl'>
+      <div className='h-[8rem] w-full flex flex-col justify-center items-center rounded-b-2xl bg-black/50'>
         <h1 className='text-3xl font-thin text-white'>{item.title}</h1>
         <Link
           to={`/shop/all`}
@@ -18,7 +23,7 @@ const CategoryCard = ({ item }) => {
           Shop Now
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

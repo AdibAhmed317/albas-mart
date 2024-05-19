@@ -7,6 +7,16 @@ import ab1 from '../../assets/about/ab1.jpg';
 import ab2 from '../../assets/about/ab2.jpg';
 import ab3 from '../../assets/about/ab3.jpg';
 
+const imageVariants = {
+  hidden: { opacity: 0, x: -100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { opacity: 1, x: 0, transition: { duration: 1 } },
+};
+
 const About = () => {
   return (
     <>
@@ -16,10 +26,7 @@ const About = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{
-          type: 'keyframes',
-          delay: 0.175,
-        }}
+        transition={{ type: 'keyframes', delay: 0.175 }}
         className='px-20'
       >
         <section className='py-10'>
@@ -33,11 +40,19 @@ const About = () => {
             local community with dedication and commitment.
           </p>
         </section>
-        <section className='flex flex-col md:flex-row p-5'>
-          <div className='flex-1'>
+        <motion.section
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          className='flex flex-col md:flex-row p-5'
+        >
+          <motion.div variants={imageVariants} className='flex-1'>
             <img src={ab3} className='object-cover h-[500px] w-full' />
-          </div>
-          <div className='flex-1 flex justify-center items-end flex-col'>
+          </motion.div>
+          <motion.div
+            variants={textVariants}
+            className='flex-1 flex justify-center items-end flex-col'
+          >
             <h1 className='text-xl md:text-2xl font-normal text-end text-green-900 my-2'>
               Our History
             </h1>
@@ -48,10 +63,18 @@ const About = () => {
               diverse range of products to cater to every shopper's
               requirements.
             </p>
-          </div>
-        </section>
-        <section className='flex flex-col md:flex-row p-5'>
-          <div className='flex-1 flex justify-center items-stary flex-col'>
+          </motion.div>
+        </motion.section>
+        <motion.section
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          className='flex flex-col md:flex-row p-5'
+        >
+          <motion.div
+            variants={textVariants}
+            className='flex-1 flex justify-center items-start flex-col'
+          >
             <h1 className='text-xl md:text-2xl font-normal text-start text-green-900 my-2'>
               Our Mission
             </h1>
@@ -62,16 +85,24 @@ const About = () => {
               expectations by delivering exceptional service and creating a
               welcoming environment for all.
             </p>
-          </div>
-          <div className='flex-1'>
+          </motion.div>
+          <motion.div variants={imageVariants} className='flex-1'>
             <img src={ab1} className='object-cover h-[500px] w-full' />
-          </div>
-        </section>
-        <section className='flex flex-col md:flex-row p-5'>
-          <div className='flex-1'>
+          </motion.div>
+        </motion.section>
+        <motion.section
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          className='flex flex-col md:flex-row p-5'
+        >
+          <motion.div variants={imageVariants} className='flex-1'>
             <img src={ab2} className='object-cover h-[500px] w-full' />
-          </div>
-          <div className='flex-1 flex justify-center items-end flex-col'>
+          </motion.div>
+          <motion.div
+            variants={textVariants}
+            className='flex-1 flex justify-center items-end flex-col'
+          >
             <h1 className='text-xl md:text-2xl font-normal text-end text-green-900 my-2'>
               Our Products
             </h1>
@@ -81,8 +112,8 @@ const About = () => {
               much more. We source our products from reputable brands and
               suppliers to ensure that our customers receive only the best.
             </p>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
         <section className='py-12 text-green-900'>
           <h2 className='text-3xl font-semibold mb-8 text-center'>
             Why Choose Al Raya?
@@ -132,36 +163,3 @@ const About = () => {
 };
 
 export default About;
-
-{
-  /* <img
-src={ab1}
-height={500}
-width={500}
-className='mx-5 object-cover'
-/>
-<img
-src={ab2}
-height={500}
-width={500}
-className='mx-5 object-cover'
-/> */
-}
-
-{
-  /* <img
-src={ab1}
-height={900}
-width={900}
-className='object-contain mr-5'
-/> */
-}
-
-{
-  /* <img
-src={ab3}
-height={900}
-width={900}
-className='object-contain mr-5'
-/> */
-}
