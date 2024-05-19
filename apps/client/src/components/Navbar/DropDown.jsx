@@ -8,10 +8,10 @@ import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 
 const Dropdown = () => {
-  const { isOpen } = useContext(NavbarContext);
+  const { isOpen, setIsOpen } = useContext(NavbarContext);
   const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);
 
-  const quantity = useSelector((state) => state.cart.quantity);
+  const items = useSelector((state) => state.cart.items);
 
   const loggedInId = localStorage.getItem('id');
 
@@ -49,6 +49,11 @@ const Dropdown = () => {
     visible: { opacity: 1, y: 0 },
   };
 
+  const handleNavigation = (url) => {
+    navigate(`${url}`);
+    setIsOpen(false);
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -59,55 +64,73 @@ const Dropdown = () => {
             animate='visible'
             exit='hidden'
             variants={dropdownVariants}
-            transition={{ duration: 0.3 }}>
+            transition={{ duration: 0.3 }}
+          >
             <ul className='flex flex-col justify-center items-center'>
               <li className='justify-center items-center flex'>
-                <Link className='small-navlink' to='/'>
+                <button
+                  className='small-navlink'
+                  onClick={() => handleNavigation('/')}
+                >
                   Home
-                </Link>
+                </button>
               </li>
               <li className='justify-center items-center flex'>
-                <Link className='small-navlink' to='/shop/all'>
+                <button
+                  className='small-navlink'
+                  onClick={() => handleNavigation('/shop/all')}
+                >
                   Shop
-                </Link>
+                </button>
               </li>
               <li className='justify-center items-center flex'>
-                <Link className='small-navlink' to='/contact'>
+                <button
+                  className='small-navlink'
+                  to='/contact'
+                  onClick={() => handleNavigation('/contact')}
+                >
                   Contact
-                </Link>
+                </button>
               </li>
               <li className='justify-center items-center flex'>
-                <Link className='small-navlink' to='/about'>
+                <button
+                  className='small-navlink'
+                  to='/about'
+                  onClick={() => handleNavigation('/about')}
+                >
                   About Us
-                </Link>
+                </button>
               </li>
             </ul>
             <ul className='flex justify-center items-center mt-10'>
               {Name != '' && isAdmin && (
                 <>
                   <li>
-                    <Link
+                    <button
+                      onClick={() => handleNavigation('/cart')}
                       className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                      to={`/cart`}>
+                    >
                       <div className='flex'>
                         <div className='mt-1'>
                           <ShoppingCart />
                         </div>
-                        <div>({quantity})</div>
+                        <div>({items})</div>
                       </div>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
+                    <button
+                      onClick={() => handleNavigation('/admin/dashboard')}
                       className='my-1 text-base text-green-800 hover:text-green-600 font-medium m-0 py-2 px-3 md:mx-2 rounded-md'
-                      to='/admin/dashboard'>
+                    >
                       Dashboard
-                    </Link>
+                    </button>
                   </li>
                   <li>
                     <button
                       className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
-                      onClick={handleLogout}>
+                      onClick={handleLogout}
+                    >
                       Logout
                     </button>
                   </li>
@@ -116,28 +139,33 @@ const Dropdown = () => {
               {Name != '' && isAdmin == false && (
                 <>
                   <li>
-                    <Link
+                    <button
+                      onClick={() => handleNavigation(`/cart`)}
                       className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                      to={`/cart`}>
+                    >
                       <div className='flex'>
                         <div className='mt-1'>
                           <ShoppingCart />
                         </div>
-                        <div>({quantity})</div>
+                        <div>({items})</div>
                       </div>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
+                    <button
+                      onClick={() =>
+                        handleNavigation(`/user-details/${loggedInId}`)
+                      }
                       className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                      to={`/user-details/${loggedInId}`}>
+                    >
                       Profile
-                    </Link>
+                    </button>
                   </li>
                   <li>
                     <button
                       className='my-1 text-base text-green-50 font-medium m-0 bg-red-500 hover:bg-red-600 py-2 px-3 md:mx-2 rounded-md'
-                      onClick={handleLogout}>
+                      onClick={handleLogout}
+                    >
                       Logout
                     </button>
                   </li>
@@ -146,30 +174,35 @@ const Dropdown = () => {
               {Name === '' && (
                 <>
                   <li>
-                    <Link
+                    <button
+                      onClick={() => handleNavigation('/cart')}
                       className='my-1 text-base text-green-800 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-green-600'
-                      to={`/cart`}>
+                      to={`/cart`}
+                    >
                       <div className='flex'>
                         <div className='mt-1'>
                           <ShoppingCart />
                         </div>
-                        <div>({quantity})</div>
+                        <div>({items})</div>
                       </div>
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
+                    <button
+                      onClick={() => handleNavigation('/login')}
                       className='my-1 text-base text-green-50 font-medium bg-blue-600 hover:bg-blue-900 py-2 px-3 mx-2 rounded-md'
-                      to='/login'>
+                      to='/login'
+                    >
                       Login
-                    </Link>
+                    </button>
                   </li>
                   <li>
-                    <Link
+                    <button
+                      onClick={() => handleNavigation('/registration')}
                       className='my-1 text-base text-green-50 font-medium bg-purple-700 hover:bg-purple-500 py-2 px-3 mx-2 rounded-md'
-                      to='/registration'>
+                    >
                       Signup
-                    </Link>
+                    </button>
                   </li>
                 </>
               )}

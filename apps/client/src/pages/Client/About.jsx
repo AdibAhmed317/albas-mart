@@ -27,7 +27,7 @@ const About = () => {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ type: 'keyframes', delay: 0.175 }}
-        className='px-20'
+        className='px-2 md:px-20'
       >
         <section className='py-10'>
           <h1 className='text-3xl md:text-4xl font-thin text-center text-green-900 my-5'>
