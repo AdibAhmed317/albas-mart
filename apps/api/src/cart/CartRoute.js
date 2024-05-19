@@ -5,7 +5,7 @@ const {
   verifyToken,
 } = require('../middleware/verifyToken');
 
-//Add to cart
+//Add to cart db
 router.post('/', async (req, res) => {
   try {
     const { products, userId } = req.body;
