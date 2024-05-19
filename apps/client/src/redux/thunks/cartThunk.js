@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { userRequest } from '../../network/RequestMethod';
-import { addOrUpdateProduct } from '../cartRedux';
+import { addOrUpdateProduct, clearCart } from '../cartRedux';
 
 export const addProductAsync = createAsyncThunk(
   'cart/addProductAsync',
@@ -9,7 +9,6 @@ export const addProductAsync = createAsyncThunk(
       const { userId, products } = cartData;
       let updatedCartData = { userId, products: [], total: 0, items: 0 };
 
-      // Check if there's existing cart data in localStorage
       const existingItem = localStorage.getItem('cartData');
       if (existingItem) {
         const existingCartData = JSON.parse(existingItem);
@@ -31,7 +30,6 @@ export const addProductAsync = createAsyncThunk(
           }
         });
       } else {
-        // If no existing cart data, just add the new products
         updatedCartData.products = products;
       }
 
@@ -47,7 +45,6 @@ export const addProductAsync = createAsyncThunk(
         const response = await userRequest.post('/cart', updatedCartData);
         return response.data;
       } else {
-        // If user is not logged in, save cart data to localStorage
         localStorage.setItem('cartData', JSON.stringify(updatedCartData));
         dispatch(addOrUpdateProduct({ products: updatedCartData.products }));
         return updatedCartData;
@@ -59,71 +56,28 @@ export const addProductAsync = createAsyncThunk(
   }
 );
 
-// import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { userRequest } from '../../network/RequestMethod';
-// import { addOrUpdateProduct } from '../cartRedux';
+export const clearCartAsync = createAsyncThunk(
+  'cart/clearCartAsync',
+  async (userId, { rejectWithValue, dispatch }) => {
+    try {
+      const res = await userRequest.delete(`/cart/clear-cart/${userId}`);
+      if (res.status === 200) {
+        dispatch(clearCart());
+      }
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);
 
-// export const addProductAsync = createAsyncThunk(
-//   'cart/addProductAsync',
-//   async (cartData, { rejectWithValue, dispatch }) => {
-//     const { userId } = cartData;
-//     try {
-//       const existingItem = localStorage.getItem('cartData');
-//       let updatedCartData = { ...cartData };
-
-//       if (existingItem) {
-//         const existingCartData = JSON.parse(existingItem);
-//         updatedCartData = {
-//           ...existingCartData,
-//           userId: cartData.userId,
-//           products: [...existingCartData.products],
-//         };
-
-//         if (cartData.products && Array.isArray(cartData.products)) {
-//           cartData.products.forEach((product) => {
-//             const existingProductIndex = updatedCartData.products.findIndex(
-//               (p) => p._id.toString() === product._id.toString()
-//             );
-
-//             if (existingProductIndex !== -1) {
-//               updatedCartData.products[existingProductIndex].quantity +=
-//                 product.quantity;
-//             } else {
-//               updatedCartData.products.push({
-//                 _id: product._id,
-//                 quantity: product.quantity,
-//                 price: product.price,
-//               });
-//             }
-//           });
-//         }
-
-//         updatedCartData.total = updatedCartData.products.reduce(
-//           (acc, product) => {
-//             return acc + product.price * product.quantity;
-//           },
-//           0
-//         );
-
-//         const uniqueProductIds = Array.from(
-//           new Set(updatedCartData.products.map((product) => product._id))
-//         );
-//         updatedCartData.items = uniqueProductIds.length;
-//       }
-
-//       if (userId) {
-//         console.log(updatedCartData);
-//         const response = await userRequest.post('/cart', updatedCartData);
-//         console.log(response);
-//         return response.data;
-//       } else {
-//         localStorage.setItem('cartData', JSON.stringify(updatedCartData));
-//         dispatch(addOrUpdateProduct({ products: updatedCartData.products }));
-//         return updatedCartData;
-//       }
-//     } catch (error) {
-//       console.log(error);
-//       return rejectWithValue(error.response?.data || error.message);
-//     }
-//   }
-// );
+export const updateProductQuantity = createAsyncThunk(
+  'cart/upateProductAsync',
+  async ({ rejectWithValue, dispatch }) => {
+    try {
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);

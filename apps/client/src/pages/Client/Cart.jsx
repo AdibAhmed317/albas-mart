@@ -13,6 +13,7 @@ import logo from '../../assets/logoT.png';
 import { clearCart } from '../../redux/cartRedux';
 import { userRequest } from '../../network/RequestMethod';
 import { useNavigate } from 'react-router-dom';
+import { clearCartAsync } from '../../redux/thunks/cartThunk';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const Cart = () => {
       confirmButtonText: 'Yes, clear it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(clearCart());
+        dispatch(clearCartAsync(userId));
         Swal.fire('Cleared!', 'Your cart has been cleared.', 'success');
       }
     });

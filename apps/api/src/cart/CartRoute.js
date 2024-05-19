@@ -93,19 +93,19 @@ router.get('/:userId', verifyTokenAndAuthorization, async (req, res) => {
 });
 
 //Clear cart by userId
-router.delete(
-  '/clear-cart/:userId',
-  verifyTokenAndAuthorization,
-  async (req, res) => {
-    try {
-      const { userId } = req.params;
-      await CartModel.deleteOne({ userId });
-      res.status(200).json({ message: 'Cart cleared successfully' });
-    } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: 'Internal Server Error' });
-    }
+router.delete('/clear-cart/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params;
+    await CartModel.deleteOne({ userId });
+    res.status(200).json({ message: 'Cart cleared successfully' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
-);
+});
+
+router.put('/update', async (req, res) => {
+  const { userId } = req.body;
+});
 
 module.exports = router;
