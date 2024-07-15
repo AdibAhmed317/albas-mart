@@ -7,10 +7,8 @@ const {
 
 //Add to cart db
 router.post('/', async (req, res) => {
+  const { products, userId } = req.body;
   try {
-    const { products, userId } = req.body;
-    console.log(userId);
-
     if (!userId) {
       return res.status(404).json({ message: 'User Id not found' });
     }
@@ -78,9 +76,9 @@ router.post('/', async (req, res) => {
 });
 
 //Get all cart by userId
-router.get('/:userId', verifyTokenAndAuthorization, async (req, res) => {
+router.get('/:userId', async (req, res) => {
+  const { userId } = req.params;
   try {
-    const { userId } = req.params;
     const cart = await CartModel.findOne({ userId });
     if (!cart) {
       return res.status(404).json({ message: 'Cart not found' });
@@ -104,8 +102,10 @@ router.delete('/clear-cart/:userId', async (req, res) => {
   }
 });
 
+//Update product quantity
 router.put('/update', async (req, res) => {
-  const { userId } = req.body;
+  const { userId, productId, quantity } = req.body;
+  res.send(200).json();
 });
 
 module.exports = router;

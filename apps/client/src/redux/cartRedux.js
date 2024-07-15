@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addProductAsync } from './thunks/cartThunk';
+import { addProductAsync, clearCartAsync } from './thunks/cartThunk';
 
 const savedCartData = localStorage.getItem('cartData');
 const initialState = savedCartData
@@ -94,6 +94,9 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addProductAsync.fulfilled, (state, action) => {
+      return (state = action.payload);
+    });
+    builder.addCase(clearCartAsync.fulfilled, (state, action) => {
       return (state = action.payload);
     });
   },

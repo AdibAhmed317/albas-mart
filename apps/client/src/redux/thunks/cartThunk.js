@@ -59,12 +59,16 @@ export const addProductAsync = createAsyncThunk(
 export const clearCartAsync = createAsyncThunk(
   'cart/clearCartAsync',
   async (userId, { rejectWithValue, dispatch }) => {
+    console.log('cart called', userId);
     try {
-      const res = await userRequest.delete(`/cart/clear-cart/${userId}`);
-      if (res.status === 200) {
+      if (!userId) {
+        const res = await userRequest.delete(`/cart/clear-cart/${userId}`);
+        if (res.status === 200) {
+          dispatch(clearCart());
+        }
+      } else {
         dispatch(clearCart());
       }
-      console.log(res);
     } catch (error) {
       console.log(error);
       return rejectWithValue(error.response?.data || error.message);
@@ -72,12 +76,21 @@ export const clearCartAsync = createAsyncThunk(
   }
 );
 
-export const updateProductQuantity = createAsyncThunk(
-  'cart/upateProductAsync',
-  async ({ rejectWithValue, dispatch }) => {
-    try {
-    } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
-    }
-  }
-);
+// export const updateProductQuantityAsync = createAsyncThunk(
+//   'cart/upateProductAsync',
+//   async (userId, product, { rejectWithValue, dispatch }) => {
+//     try {
+//       if (userId) {
+//         const response = await userRequest.put('/cart/update', {
+//           userId,
+//           products: [product],
+//         });
+//         return response.data;
+//       } else {
+//         dispatch(updateProductQuantityLocal(product));
+//       }
+//     } catch (error) {
+//       return rejectWithValue(error.response?.data || error.message);
+//     }
+//   }
+// );

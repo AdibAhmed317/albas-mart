@@ -6,8 +6,7 @@ import useCart from '../../hooks/useCart';
 
 const CartList = () => {
   const products = useSelector((state) => state.cart.products);
-  // const { cart } = useCart();
-  // console.log(cart);
+
   const dispatch = useDispatch();
   const [fetchedProducts, setFetchedProducts] = useState([]);
 
