@@ -1,31 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import logoT from '../../assets/logoT.png';
 
 const NavbarNew = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
-    <nav className='bg-white border-gray-200 dark:bg-gray-900'>
+    <nav className='bg-blue-200 border-gray-200'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+        {/* Logo and Brand Name */}
         <Link
           to='/'
           className='flex items-center space-x-3 rtl:space-x-reverse'
         >
-          <img
-            src='https://flowbite.com/docs/images/logo.svg'
-            className='h-8'
-            alt='Flowbite Logo'
-          />
-          <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
-            Flowbite
-          </span>
+          <img src={logoT} className='h-16' alt='Flowbite Logo' />
         </Link>
-        <div className='flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse'>
+
+        {/* User Menu and Dropdown */}
+        <div className='flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse relative'>
           <button
             type='button'
-            className='flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600'
+            className='flex text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600'
             id='user-menu-button'
-            aria-expanded='false'
-            data-dropdown-toggle='user-dropdown'
-            data-dropdown-placement='bottom'
+            aria-expanded={isDropdownOpen}
+            onClick={toggleDropdown}
           >
             <span className='sr-only'>Open user menu</span>
             <img
@@ -34,53 +36,59 @@ const NavbarNew = () => {
               alt='user photo'
             />
           </button>
-          <div
-            className='z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600'
-            id='user-dropdown'
-          >
-            <div className='px-4 py-3'>
-              <span className='block text-sm text-gray-900 dark:text-white'>
-                Bonnie Green
-              </span>
-              <span className='block text-sm text-gray-500 truncate dark:text-gray-400'>
-                name@flowbite.com
-              </span>
+
+          {/* Dropdown */}
+          {isDropdownOpen && (
+            <div
+              className='z-50 absolute top-full mt-2 right-0 w-48 text-base list-none divide-y rounded-lg shadow bg-gray-700 divide-gray-600'
+              id='user-dropdown'
+            >
+              <div className='px-4 py-3'>
+                <span className='block text-sm text-gray-900 dark:text-white'>
+                  Bonnie Green
+                </span>
+                <span className='block text-sm text-gray-500 truncate dark:text-gray-400'>
+                  name@flowbite.com
+                </span>
+              </div>
+              <ul className='py-2' aria-labelledby='user-menu-button'>
+                <li>
+                  <Link
+                    to='/dashboard'
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+                  >
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/settings'
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+                  >
+                    Settings
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/earnings'
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+                  >
+                    Earnings
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to='/signout'
+                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+                  >
+                    Sign out
+                  </Link>
+                </li>
+              </ul>
             </div>
-            <ul className='py-2' aria-labelledby='user-menu-button'>
-              <li>
-                <Link
-                  to='/dashboard'
-                  className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                >
-                  Dashboard
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/settings'
-                  className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                >
-                  Settings
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/earnings'
-                  className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                >
-                  Earnings
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to='/signout'
-                  className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
-                >
-                  Sign out
-                </Link>
-              </li>
-            </ul>
-          </div>
+          )}
+
+          {/* Mobile menu toggle button */}
           <button
             data-collapse-toggle='navbar-user'
             type='button'
@@ -106,15 +114,17 @@ const NavbarNew = () => {
             </svg>
           </button>
         </div>
+
+        {/* Navigation Links (Home, About, Services, Pricing, Contact) */}
         <div
           className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
           id='navbar-user'
         >
-          <ul className='flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
+          <ul className='flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0'>
             <li>
               <Link
                 to='/'
-                className='block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500'
+                className='block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-100 md:p-0 md:dark:text-blue-100'
                 aria-current='page'
               >
                 Home
