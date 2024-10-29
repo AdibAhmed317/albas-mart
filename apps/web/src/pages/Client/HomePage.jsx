@@ -6,11 +6,14 @@ import Dropdown from '../../components/Navbar/DropDown';
 import CategorySection from '../../components/Hero Section/CategorySection';
 import FeaturedProduct from '../../components/Hero Section/FeaturedProduct';
 import Slider from '../../components/Hero Section/Slider';
+import NewNavBar from '../../components/Navbar/navbar-new';
+import NavbarNew from '../../components/Navbar/navbar-new';
 
 const HomePage = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
+      <NavbarNew />
       <Dropdown />
       <Hero />
       <Slider />
