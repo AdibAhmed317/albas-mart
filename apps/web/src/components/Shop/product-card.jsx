@@ -115,11 +115,13 @@ const ProductCard = ({ product }) => {
     <Card className='w-full max-w-60 rounded-xl border width bg-primaryBlue'>
       <div className='grid gap-4 p-4'>
         <div className='aspect-[3/4] w-full overflow-hidden rounded-xl'>
-          <img
-            src={product.img}
-            alt='Product image'
-            className='aspect-[4/5] object-cover border w-full'
-          />
+          <Link to={`/product/${product._id}`}>
+            <img
+              src={product.img}
+              alt='Product image'
+              className='aspect-[4/5] object-cover border w-full'
+            />
+          </Link>
         </div>
         <div className='grid gap-1.5'>
           <h3 className='font-semibold text-sm md:text-base text-black/80'>
