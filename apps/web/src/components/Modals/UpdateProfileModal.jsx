@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RxCross2 } from 'react-icons/rx';
 import { motion } from 'framer-motion';
 import axios from 'axios';
-import { userRequest } from '../../network/RequestMethod';
+import { userRequest } from '../../network/request-method';
 
 const UpdateProfileModal = ({ isOpen, onClose, customer }) => {
   const [updatedCustomer, setUpdatedCustomer] = useState({
@@ -48,10 +48,12 @@ const UpdateProfileModal = ({ isOpen, onClose, customer }) => {
               type: 'spring',
               delay: 0.175,
             }}
-            className='absolute bg-green-200 p-8 rounded-sm w-[30%] max-h-[60%] overflow-auto'>
+            className='absolute bg-green-200 p-8 rounded-sm w-[30%] max-h-[60%] overflow-auto'
+          >
             <button
               onClick={onClose}
-              className='transition-all text-red-500 hover:bg-red-500 hover:text-white m-2 rounded-lg text-2xl absolute top-0 right-0'>
+              className='transition-all text-red-500 hover:bg-red-500 hover:text-white m-2 rounded-lg text-2xl absolute top-0 right-0'
+            >
               <RxCross2 />
             </button>
             <h2 className='text-2xl text-center font-base mb-4'>

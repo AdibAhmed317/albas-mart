@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { addOrUpdateProduct } from '../cartRedux';
-import { userRequest } from '../../network/RequestMethod';
+import { userRequest } from '../../network/request-method';
 
 export const addProductAsync = createAsyncThunk(
   'cart/addProductAsync',

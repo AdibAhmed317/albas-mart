@@ -4,7 +4,7 @@ import Footer from '../../components/footer/footer';
 import DropDown from '../../components/navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 import UpdateProfileModal from '../../components/Modals/UpdateProfileModal';
 import DeleteProfileModal from '../../components/Modals/DeleteProfileModal';
 

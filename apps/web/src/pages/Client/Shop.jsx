@@ -10,7 +10,7 @@ import NoProductFound from '../../components/shop/NoProductFound';
 import Footer from '../../components/footer/footer';
 import SkeletonProductCard from '../../components/shop/SkeletonProductCard';
 import { Search } from '../../assets/icons';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 import NavbarNew from '../../components/navbar/navbar-new';
 
 const Shop = () => {

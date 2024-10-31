@@ -7,7 +7,7 @@ import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 import UserContext from '../../context/UserContext';
 import Dropdown from '../../components/navbar/DropDown';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');

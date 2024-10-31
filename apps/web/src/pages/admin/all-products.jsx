@@ -10,7 +10,7 @@ import NoProductFound from '../../components/shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import AdminProductCard from '../../components/Admin/AdminProductCard';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 
 const AllProducts = () => {
   //States for sorting

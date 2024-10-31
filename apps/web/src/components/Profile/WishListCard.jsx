@@ -4,7 +4,7 @@ import { IoMdRemoveCircleOutline } from 'react-icons/io';
 import { addProduct } from '../../redux/cartRedux';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import { userRequest } from '../../network/RequestMethod';
+import { userRequest } from '../../network/request-method';
 
 const WishListCard = ({ product }) => {
   const quantity = 1;
@@ -95,7 +95,8 @@ const WishListCard = ({ product }) => {
           <div className='mt-1'>
             <button
               className='text-red-400 hover:text-red-600 mr-5 transition-all text-2xl'
-              onClick={handleDeleteWishList}>
+              onClick={handleDeleteWishList}
+            >
               <IoMdRemoveCircleOutline />
             </button>
           </div>
@@ -103,7 +104,8 @@ const WishListCard = ({ product }) => {
         <button
           className='w-full p-2 bg-green-300 hover:bg-green-600 text-green-900 hover:text-white transition-all rounded-lg mb-3 font-thin'
           onClick={handleCart}
-          disabled={isLoading}>
+          disabled={isLoading}
+        >
           {isLoading ? 'Adding to cart...' : 'Add to Cart'}
         </button>
       </div>

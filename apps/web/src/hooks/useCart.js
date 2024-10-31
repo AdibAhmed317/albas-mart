@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from './useAuth';
-import { userRequest } from '../network/RequestMethod';
+import { userRequest } from '../network/request-method';
 
 const useCart = () => {
   const { userId } = useAuth();

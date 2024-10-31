@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../../../components/navbar/navbar';
-import { publicRequest } from '../../../network/RequestMethod';
+import { publicRequest } from '../../../network/request-method';
 
 const UserDetails = () => {
   const location = useLocation();

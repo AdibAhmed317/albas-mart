@@ -6,7 +6,7 @@ import Footer from '../../../components/footer/footer';
 import { motion } from 'framer-motion';
 import SkeletonProductCard from '../../../components/shop/SkeletonProductCard';
 import NoProductFound from '../../../components/shop/NoProductFound';
-import { userRequest } from '../../../network/RequestMethod';
+import { userRequest } from '../../../network/request-method';
 import WishListCard from '../../../components/Profile/WishListCard';
 
 const Wishlist = () => {

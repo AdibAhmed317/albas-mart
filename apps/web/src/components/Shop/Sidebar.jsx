@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 
 const Sidebar = () => {
   const [fetchCat, setFetchCat] = useState([]);

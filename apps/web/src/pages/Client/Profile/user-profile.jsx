@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../../../components/navbar/navbar';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { publicRequest } from '../../../network/RequestMethod';
+import { publicRequest } from '../../../network/request-method';
 import Footer from '../../../components/footer/footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Dropdown from '../../../components/navbar/DropDown';

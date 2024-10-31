@@ -11,7 +11,7 @@ import CartList from '@/components/cart/cart-list';
 import Dropdown from '@/components/navbar/DropDown';
 import logo from '../../assets/logoT.png';
 import { clearCart } from '../../redux/cartRedux';
-import { userRequest } from '../../network/RequestMethod';
+import { userRequest } from '../../network/request-method';
 import { useNavigate } from 'react-router-dom';
 import { clearCartAsync } from '@/redux/thunks/cartThunk';
 

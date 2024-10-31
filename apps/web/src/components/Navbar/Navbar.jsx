@@ -234,22 +234,28 @@
 
 // export default Navbar;
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { LuShoppingCart } from 'react-icons/lu';
 
 import logoT from '@/assets/logoT.png';
 import logo from '@/assets/icon.png';
 
 import useAuth from '@/hooks/useAuth';
+import { useSelector } from 'react-redux';
+import Swal from 'sweetalert2';
+import UserContext from '@/context/UserContext';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [dropdownHeight, setDropdownHeight] = useState(0);
+  const items = useSelector((state) => state.cart.items);
 
   const { userId } = useAuth();
+  const navigate = useNavigate();
+  const { Name, isAdmin, setName, setIsAdmin } = useContext(UserContext);
 
   useEffect(() => {
     if (dropdownRef.current) {
@@ -265,6 +271,31 @@ const Navbar = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleSignOut = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will be logged out of your session.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('id');
+        setName('');
+        setIsAdmin(false);
+        navigate('/');
+        Swal.fire(
+          'Logged out!',
+          'You have been successfully logged out.',
+          'success'
+        );
+      }
+    });
+  };
+
   return (
     <nav className='bg-primaryBlue border-gray-200 fixed z-10 w-screen shadow-xl'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
@@ -276,19 +307,78 @@ const Navbar = () => {
           <img src={logoT} className='h-16' alt='Logo' />
         </Link>
 
-        {/* User Menu and Dropdown */}
+        {/* User Menu and Dropdown / Sign in Button */}
         <div className='flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse relative'>
-          <button
-            type='button'
-            className='flex text-sm'
-            onClick={toggleDropdown}
-            aria-expanded={isDropdownOpen}
-          >
-            <span className='sr-only'>Open user menu</span>
-            <img src={logo} className='w-8 h-8 rounded-full bg-gray-300' />
-          </button>
+          {/* Conditionally render based on userId */}
+          {userId ? (
+            <>
+              {/* Avatar and Dropdown */}
+              <button
+                type='button'
+                className='flex text-sm'
+                onClick={toggleDropdown}
+                aria-expanded={isDropdownOpen}
+              >
+                <span className='sr-only'>Open user menu</span>
+                <img
+                  src={logo}
+                  className='w-8 h-8 rounded-full bg-gray-300'
+                  alt='User Avatar'
+                />
+              </button>
 
-          {/* User Dropdown Menu */}
+              {/* User Dropdown Menu */}
+              <div
+                ref={dropdownRef}
+                style={{ height: isDropdownOpen ? `${dropdownHeight}px` : '0' }}
+                className={`absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 ease-in-out z-50 ${
+                  isDropdownOpen ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                <div className='px-4 py-3 border-b border-gray-100'>
+                  <span className='block text-sm font-medium'>{Name}</span>
+                  <span className='block text-sm text-gray-500'>{userId}</span>
+                </div>
+                <ul className='py-2'>
+                  {/* Loop for Dashboard, Settings, and Earnings */}
+                  {[
+                    { name: 'Dashboard', path: `/user-details/${userId}` },
+                    { name: 'Settings', path: `/user-details/${userId}` },
+                    { name: 'Earnings', path: `/user-details/${userId}` },
+                  ].map((item) => (
+                    <li key={item.name}>
+                      <Link
+                        to={item.path}
+                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
+                      >
+                        {item.name}
+                      </Link>
+                    </li>
+                  ))}
+
+                  {/* Separate Sign out option */}
+                  <li>
+                    <button
+                      className='block px-4 py-2 text-sm text-primaryRed hover:text-red-900 transition-colors'
+                      onClick={handleSignOut}
+                    >
+                      Sign out
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ) : (
+            // Sign In Button
+            <Link
+              to='/sign-in'
+              className='text-sm md:text-base p-2 px-4 rounded-sm bg-red-500 text-white hover:bg-red-600 ml-5 transition-all'
+            >
+              Sign In
+            </Link>
+          )}
+
+          {/* Cart Icon */}
           <Link
             className='my-1 text-base text-black/80 font-medium m-0 py-2 px-3 md:mx-2 rounded-md hover:text-black/50'
             to={`/cart`}
@@ -297,36 +387,9 @@ const Navbar = () => {
               <div className='mt-1'>
                 <LuShoppingCart />
               </div>
-              <div>(0)</div>
+              <div>({items})</div>
             </div>
           </Link>
-
-          <div
-            ref={dropdownRef}
-            style={{ height: isDropdownOpen ? `${dropdownHeight}px` : '0' }}
-            className={`absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-200 ease-in-out z-50 ${
-              isDropdownOpen ? 'opacity-100' : 'opacity-0'
-            }`}
-          >
-            <div className='px-4 py-3 border-b border-gray-100'>
-              <span className='block text-sm font-medium'>User Name</span>
-              <span className='block text-sm text-gray-500'>
-                user@example.com
-              </span>
-            </div>
-            <ul className='py-2'>
-              {['Dashboard', 'Settings', 'Earnings', 'Sign out'].map((item) => (
-                <li key={item}>
-                  <a
-                    href={`/${item.toLowerCase().replace(' ', '')}`}
-                    className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
 
           {/* Mobile Menu Button */}
           <button

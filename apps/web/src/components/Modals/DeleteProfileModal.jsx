@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { RxCross2 } from 'react-icons/rx';
-import { userRequest } from '../../network/RequestMethod';
+import { userRequest } from '../../network/request-method';
 import { useNavigate } from 'react-router-dom';
 
 const DeleteProfileModal = ({ isOpen, onClose, customerId }) => {
@@ -46,10 +46,12 @@ const DeleteProfileModal = ({ isOpen, onClose, customerId }) => {
               type: 'spring',
               delay: 0.175,
             }}
-            className='absolute bg-green-200 p-8 rounded-sm w-[30%] max-h-[60%] overflow-auto'>
+            className='absolute bg-green-200 p-8 rounded-sm w-[30%] max-h-[60%] overflow-auto'
+          >
             <button
               onClick={onClose}
-              className='transition-all text-red-500 hover:bg-red-500 hover:text-white m-2 rounded-lg text-2xl absolute top-0 right-0'>
+              className='transition-all text-red-500 hover:bg-red-500 hover:text-white m-2 rounded-lg text-2xl absolute top-0 right-0'
+            >
               <RxCross2 />
             </button>
             <section>

@@ -9,7 +9,7 @@ import NoProductFound from '../../components/shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import AdminProductCard from '../../components/Admin/AdminProductCard';
-import { userRequest } from '../../network/RequestMethod';
+import { userRequest } from '../../network/request-method';
 
 const AllOrders = () => {
   const [orders, setOrders] = useState([]);

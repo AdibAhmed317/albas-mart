@@ -8,7 +8,7 @@ import DropDown from '../../components/navbar/DropDown';
 import Footer from '../../components/footer/footer';
 
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 import Swal from 'sweetalert2';
 import { addProductAsync } from '../../redux/thunks/cartThunk';
 

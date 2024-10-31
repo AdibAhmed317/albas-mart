@@ -4,7 +4,7 @@ import DropDown from '../../components/navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import hero from '../../assets/hero.jpg';
 import { useNavigate } from 'react-router-dom';
-import { publicRequest, userRequest } from '../../network/RequestMethod';
+import { publicRequest, userRequest } from '../../network/request-method';
 import {
   getStorage,
   ref,

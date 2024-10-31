@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/navbar/navbar';
 import Dropdown from '../../components/navbar/DropDown';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 import Swal from 'sweetalert2';
 import Footer from '../../components/footer/footer';
 
