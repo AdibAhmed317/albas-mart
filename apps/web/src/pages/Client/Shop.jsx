@@ -11,6 +11,7 @@ import Footer from '../../components/Footer/Footer';
 import SkeletonProductCard from '../../components/Shop/SkeletonProductCard';
 import { Search } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';
+import NavbarNew from '../../components/Navbar/navbar-new';
 
 const Shop = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -82,9 +83,9 @@ const Shop = () => {
         delay: 0.175,
       }}
     >
-      <Navbar />
+      <NavbarNew />
       <DropDown />
-      <div className='flex flex-col lg:flex-row items-start justify-center my-10 px-6 gap-4 md:gap-8'>
+      <div className='flex flex-col lg:flex-row items-start justify-center my-10 px-6 gap-4 md:gap-8 min-h-[70vh]'>
         <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-green-100 w-full lg:max-w-[16rem]'>
           <div className='relative flex items-center'>
             <input

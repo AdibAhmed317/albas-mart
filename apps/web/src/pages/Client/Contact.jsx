@@ -3,11 +3,12 @@ import Navbar from '../../components/Navbar/Navbar';
 import DropDown from '../../components/Navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 import { motion } from 'framer-motion';
+import NavbarNew from '../../components/Navbar/navbar-new';
 
 const Contact = () => {
   return (
     <>
-      <Navbar />
+      <NavbarNew />
       <DropDown />
       <motion.div
         initial={{ opacity: 0 }}

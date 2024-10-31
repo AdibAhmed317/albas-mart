@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-.small-navlink {
+/* .small-navlink {
   @apply items-center text-base text-green-800 font-medium hover:text-green-600 my-2;
-}
+} */
 
-.dashboard-link {
+/* .dashboard-link {
   @apply my-5 text-sm md:text-lg font-mono text-green-900 mx-8 md:mx-0;
-}
+} */
 
-.product-link-action {
+/* .product-link-action {
   @apply p-1 px-4 text-white rounded-md;
-}
+} */
 
 /* Define keyframes for the marquee animation */
 @keyframes marquee {

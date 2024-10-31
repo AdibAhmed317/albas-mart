@@ -1,24 +1,26 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import HomePage from './pages/Client/HomePage';
-import AdminDashboard from './pages/Admin/AdminDashboard';
-import Login from './pages/Auth/Login';
-import Registration from './pages/Auth/Registration';
-import Shop from './pages/Client/Shop';
-import Cart from './pages/Client/Cart';
-import Contact from './pages/Client/Contact';
-import About from './pages/Client/About';
-import CreateProduct from './pages/Admin/CreateProduct';
-import AllProducts from './pages/Admin/AllProducts';
-import AllOrders from './pages/Admin/AllOrders';
-import AdminProfile from './pages/Admin/AdminProfile';
-import UserDetails from './pages/Admin/Details/UserDetails';
-import OrderDetails from './pages/Admin/Details/OrderDetails';
-import SingleProduct from './pages/Client/SingleProduct';
-import Orders from './pages/Client/Profile/Orders';
-import Wishlist from './pages/Client/Profile/Wishlist';
-import UserProfile from './pages/Client/Profile/UserProfile';
+import Login from '@/pages/auth/login';
+
+import Registration from '@/pages/auth/registration';
+import AdminDashboard from '@/pages/admin/admin-dashboard';
+import CreateProduct from '@/pages/admin/create-product';
+import AllProducts from '@/pages/admin/all-products';
+import AllOrders from '@/pages/admin/all-orders';
+import AdminProfile from '@/pages/admin/admin-profile';
+import UserDetails from '@/pages/admin/details/user-details';
+import OrderDetails from '@/pages/admin/details/order-details';
+
+import HomePage from '@/pages/client/home-page';
+import SingleProduct from '@/pages/client/single-product';
+import Orders from '@/pages/client/profile/orders';
+import Wishlist from '@/pages/client/profile/wishlist';
+import UserProfile from '@/pages/client/profile/user-profile';
+import About from '@/pages/client/about';
+import Shop from '@/pages/client/shop';
+import Cart from '@/pages/client/cart';
+import Contact from '@/pages/client/contact';
 
 function App() {
   return (

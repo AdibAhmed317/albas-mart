@@ -6,6 +6,7 @@ import Footer from '../../components/Footer/Footer';
 import ab1 from '../../assets/about/ab1.jpg';
 import ab2 from '../../assets/about/ab2.jpg';
 import ab3 from '../../assets/about/ab3.jpg';
+import NavbarNew from '../../components/Navbar/navbar-new';
 
 const imageVariants = {
   hidden: { opacity: 0, x: -100 },
@@ -20,7 +21,7 @@ const textVariants = {
 const About = () => {
   return (
     <>
-      <Navbar />
+      <NavbarNew />
       <Dropdown />
       <motion.div
         initial={{ opacity: 0 }}
