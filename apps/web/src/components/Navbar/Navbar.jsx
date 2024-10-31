@@ -266,7 +266,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className='bg-primaryBlue border-gray-200'>
+    <nav className='bg-primaryBlue border-gray-200 fixed z-10 w-screen shadow-xl'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
         {/* Logo and Brand Name */}
         <Link

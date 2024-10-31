@@ -85,7 +85,7 @@ const Shop = () => {
     >
       <Navbar />
       <DropDown />
-      <div className='flex flex-col lg:flex-row items-start justify-center my-10 px-6 gap-4 md:gap-8 min-h-[70vh]'>
+      <div className='flex flex-col lg:flex-row items-start justify-center mb-10 px-6 gap-4 md:gap-8 min-h-[70vh] pt-40'>
         <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-green-100 w-full lg:max-w-[16rem]'>
           <div className='relative flex items-center'>
             <input

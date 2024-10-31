@@ -18,7 +18,7 @@ const Hero = () => {
         height: '800px',
       }}
     >
-      <div className='h-full w-full flex items-center justify-center'>
+      <div className='h-full w-full flex items-center justify-center pt-40'>
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,7 +39,7 @@ const Hero = () => {
             </p>
             <Link
               to='/shop/all'
-              className='text-xl mt-5 bg-primaryRed inline-flex items-center justify-center w-[60%] h-12 px-6 mb-3 font-thin tracking-wider 
+              className='text-base md:text-xl mt-5 bg-primaryRed inline-flex items-center justify-center w-[60%] h-12 px-6 mb-3 font-thin tracking-wider 
               text-white transition duration-200 rounded shadow-md md:w-auto md:mr-4 md:mb-0 bg-deep-purple-accent-400 
               hover:bg-primaryGreen focus:shadow-outline focus:outline-none border border-green-950/10'
             >

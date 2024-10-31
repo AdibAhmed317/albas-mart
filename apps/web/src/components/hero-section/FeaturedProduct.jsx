@@ -42,8 +42,8 @@ const FeaturedProduct = () => {
 
   return (
     <div className='mt-10 h-full mb-20 flex justify-center items-center flex-col px-10'>
-      <h1 className='text-center text-5xl font-thin text-green-900 mb-20'>
-        Featured Product
+      <h1 className='text-center text-4xl font-robotoBlack text-primaryRed pt-20 mb-2 md:mb-10'>
+        Featured Products
       </h1>
       <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-20'>
         {isLoading ? (

@@ -1,19 +1,21 @@
-import b2 from '../b2.jpg';
+import fishMeat from '../images/fish-meat.jpg';
+import vegetable from '../images/vegetable.jpg';
+import fruits from '../images/fruits.jpg';
 
 export const categories = [
   {
     id: 1,
     title: 'Meat & Fish',
-    img: b2,
+    img: fishMeat,
   },
   {
     id: 2,
     title: 'Vegetables',
-    img: b2,
+    img: vegetable,
   },
   {
     id: 3,
     title: 'Fruits',
-    img: b2,
+    img: fruits,
   },
 ];

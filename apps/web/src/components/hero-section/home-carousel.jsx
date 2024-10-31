@@ -1,6 +1,6 @@
 import React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
-import { Card, CardContent } from '@/components/ui/card';
+
 import {
   Carousel,
   CarouselContent,
@@ -24,7 +24,7 @@ const HomeCarousel = () => {
 
   return (
     <>
-      <h1 className='text-center text-4xl font-robotoBlack text-black/80 mt-20 mb-2 md:mb-10'>
+      <h1 className='text-center text-4xl font-robotoBlack text-primaryRed mt-20 mb-2 md:mb-10'>
         Best Deals
       </h1>
       <div className='flex justify-center items-center min-h-[10vh] bg-white mb-20'>
