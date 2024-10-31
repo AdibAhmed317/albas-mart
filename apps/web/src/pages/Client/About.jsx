@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/navbar/navbar';
 import Dropdown from '../../components/navbar/DropDown';
 import { motion } from 'framer-motion';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/footer/footer';
 import ab1 from '../../assets/about/ab1.jpg';
 import ab2 from '../../assets/about/ab2.jpg';
 import ab3 from '../../assets/about/ab3.jpg';

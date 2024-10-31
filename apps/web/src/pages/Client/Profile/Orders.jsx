@@ -4,7 +4,7 @@ import Navbar from '../../../components/navbar/navbar';
 import Dropdown from '../../../components/navbar/DropDown';
 import { userRequest } from '../../../network/RequestMethod';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
-import Footer from '../../../components/Footer/Footer';
+import Footer from '../../../components/footer/footer';
 import { motion } from 'framer-motion';
 
 const Orders = () => {

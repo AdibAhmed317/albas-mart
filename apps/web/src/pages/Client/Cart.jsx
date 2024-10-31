@@ -5,7 +5,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 
 import Navbar from '../../components/navbar/navbar';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/footer/footer';
 import CartList from '../../components/Cart/CartList';
 import Dropdown from '../../components/navbar/DropDown';
 import StripeCheckout from 'react-stripe-checkout';

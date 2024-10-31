@@ -8,7 +8,7 @@ import Navbar from '../../components/navbar/navbar';
 import Dropdown from '../../components/navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
 import Swal from 'sweetalert2';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/footer/footer';
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -133,7 +133,7 @@ const SignUp = () => {
           <span className='text-sm m-2'>
             <Link
               className='text-base underline cursor-pointer text-green-900'
-              to='/login'
+              to='/sign-in'
             >
               Already have an account?
             </Link>

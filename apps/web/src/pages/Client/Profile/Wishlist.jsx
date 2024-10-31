@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../../../components/navbar/navbar';
 import Dropdown from '../../../components/navbar/DropDown';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
-import Footer from '../../../components/Footer/Footer';
+import Footer from '../../../components/footer/footer';
 import { motion } from 'framer-motion';
-import SkeletonProductCard from '../../../components/Shop/SkeletonProductCard';
-import NoProductFound from '../../../components/Shop/NoProductFound';
+import SkeletonProductCard from '../../../components/shop/SkeletonProductCard';
+import NoProductFound from '../../../components/shop/NoProductFound';
 import { userRequest } from '../../../network/RequestMethod';
 import WishListCard from '../../../components/Profile/WishListCard';
 

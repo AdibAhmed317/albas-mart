@@ -4,7 +4,7 @@ import { jwtDecode } from 'jwt-decode';
 import Swal from 'sweetalert2';
 
 import Navbar from '../../components/navbar/navbar';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/footer/footer';
 import UserContext from '../../context/UserContext';
 import Dropdown from '../../components/navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
@@ -81,7 +81,7 @@ const SignIn = () => {
           <br />
           <Link
             className='my-1 mx-0 text-base underline cursor-pointer text-green-900'
-            to='/registration'
+            to='/sign-up'
           >
             Create new account
           </Link>

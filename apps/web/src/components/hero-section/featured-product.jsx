@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { publicRequest } from '../../network/RequestMethod';
 import { motion } from 'framer-motion';
 
-import NoProductFound from '../Shop/NoProductFound';
-import ProductCard from '../Shop/product-card';
-import SkeletonProductCard from '../Shop/SkeletonProductCard';
+import NoProductFound from '../shop/NoProductFound';
+import ProductCard from '../shop/product-card';
+import SkeletonProductCard from '../shop/SkeletonProductCard';
 
 const FeaturedProduct = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -69,7 +69,7 @@ const FeaturedProduct = () => {
       </div>
       <Link
         to={`/shop/all`}
-        className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-purple-700 bg-green-500 rounded-md font-thin text-xl mt-10'
+        className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-primaryGreen bg-primaryRed rounded-md font-thin text-base md:text-xl mt-10'
       >
         Shop Now
       </Link>

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import Navbar from '../../components/navbar/navbar';
 import DropDown from '../../components/navbar/DropDown';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/footer/footer';
 
 import { Add, Remove, ShoppingCart } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';

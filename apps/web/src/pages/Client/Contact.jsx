@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/navbar/navbar';
 import DropDown from '../../components/navbar/DropDown';
-import Footer from '../../components/Footer/Footer';
+import Footer from '../../components/footer/footer';
 import { motion } from 'framer-motion';
 import NavbarNew from '../../components/navbar/navbar-new';
 

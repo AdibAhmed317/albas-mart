@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
         });
       }
     } else {
-      navigate('/login');
+      navigate('/sign-in');
     }
   };
 
@@ -141,7 +141,7 @@ const ProductCard = ({ product }) => {
         </div>
         <Button
           size='sm'
-          className='bg-primaryRed hover:bg-primaryGreen'
+          className='hover:bg-primaryRed bg-primaryGreen'
           onClick={handleCart}
           disabled={isLoading}
         >

@@ -5,7 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import Navbar from '../../components/navbar/navbar';
 import DropDown from '../../components/navbar/DropDown';
-import NoProductFound from '../../components/Shop/NoProductFound';
+import NoProductFound from '../../components/shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import AdminProductCard from '../../components/Admin/AdminProductCard';

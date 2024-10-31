@@ -4,11 +4,11 @@ import { motion } from 'framer-motion';
 
 import Navbar from '../../components/navbar/navbar';
 import DropDown from '../../components/navbar/DropDown';
-import Sidebar from '../../components/Shop/Sidebar';
-import ProductCard from '../../components/Shop/product-card';
-import NoProductFound from '../../components/Shop/NoProductFound';
-import Footer from '../../components/Footer/Footer';
-import SkeletonProductCard from '../../components/Shop/SkeletonProductCard';
+import Sidebar from '../../components/shop/Sidebar';
+import ProductCard from '../../components/shop/product-card';
+import NoProductFound from '../../components/shop/NoProductFound';
+import Footer from '../../components/footer/footer';
+import SkeletonProductCard from '../../components/shop/SkeletonProductCard';
 import { Search } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';
 import NavbarNew from '../../components/navbar/navbar-new';
@@ -86,10 +86,10 @@ const Shop = () => {
       <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row items-start justify-center mb-10 px-6 gap-4 md:gap-8 min-h-[70vh] pt-40'>
-        <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-green-100 w-full lg:max-w-[16rem]'>
+        <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-primaryBlue w-full lg:max-w-[16rem]'>
           <div className='relative flex items-center'>
             <input
-              className='h-10 block w-full bg-green-200 pl-3 pr-10 rounded-full'
+              className='h-10 block w-full bg-blue-100 pl-3 pr-10 rounded-full'
               type='search'
               placeholder='Search'
               value={inputValue}
