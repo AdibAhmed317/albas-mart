@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import Navbar from '../../components/navbar/navbar';
 import DropDown from '../../components/navbar/DropDown';
 import Sidebar from '../../components/Shop/Sidebar';
-import ProductCard from '../../components/Shop/ProductCard';
+import ProductCard from '../../components/Shop/product-card';
 import NoProductFound from '../../components/Shop/NoProductFound';
 import Footer from '../../components/Footer/Footer';
 import SkeletonProductCard from '../../components/Shop/SkeletonProductCard';

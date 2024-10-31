@@ -30,7 +30,8 @@ const Sidebar = () => {
           <li className='mx-5 xl:mx-0 group' key={item._id}>
             <Link
               to={`/shop/${item.CategoryName}`}
-              className='text-green-900 text-base m-1 font-mono w-[4rem] md:w-auto'>
+              className='text-green-900 text-base m-1 font-mono w-[4rem] md:w-auto'
+            >
               {item.CategoryName}
               <span class='block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-green-500'></span>
             </Link>

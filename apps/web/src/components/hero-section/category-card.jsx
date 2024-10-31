@@ -23,7 +23,7 @@ const CategoryCard = ({ item }) => {
         </h1>
         <Link
           to={`/shop/all`}
-          className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-primaryGreen bg-primaryRed rounded-md font-thin text-xl mt-5'
+          className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-primaryGreen bg-primaryRed rounded-md font-thin text-base md:text-xl mt-5'
         >
           Shop Now
         </Link>

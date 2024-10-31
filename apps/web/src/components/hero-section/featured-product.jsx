@@ -4,7 +4,7 @@ import { publicRequest } from '../../network/RequestMethod';
 import { motion } from 'framer-motion';
 
 import NoProductFound from '../Shop/NoProductFound';
-import ProductCard from '../Shop/ProductCard';
+import ProductCard from '../Shop/product-card';
 import SkeletonProductCard from '../Shop/SkeletonProductCard';
 
 const FeaturedProduct = () => {
