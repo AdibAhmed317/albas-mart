@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import { Link } from 'react-router-dom';
 import { publicRequest, userRequest } from '../../network/RequestMethod';
@@ -51,7 +51,6 @@ const AdminDashboard = () => {
   return (
     <>
       <Navbar />
-      <DropDown />
       <AdminSidebar />
 
       <div className='bg-green-50 overflow-x-auto text-center px-10 py-2 md:min-h-[80vh]'>
@@ -68,7 +67,8 @@ const AdminDashboard = () => {
           />
           <button
             onClick={handleSearch}
-            className='bg-green-300 text-green-800 font-medium px-4 py-2 rounded ml-2'>
+            className='bg-green-300 text-green-800 font-medium px-4 py-2 rounded ml-2'
+          >
             Search
           </button>
         </div>
@@ -101,7 +101,8 @@ const AdminDashboard = () => {
             {data.map((user) => (
               <tr
                 key={user._id}
-                className='hover:bg-green-100 transition duration-300 ease-in-out'>
+                className='hover:bg-green-100 transition duration-300 ease-in-out'
+              >
                 <td className='py-3 px-4 text-center'>{user._id}</td>
                 <td className='py-3 px-4 text-center'>{user.Name}</td>
                 <td className='py-3 px-4 text-center'>
@@ -112,7 +113,8 @@ const AdminDashboard = () => {
                 <td className='py-3 px-4 text-center'>
                   <Link
                     to={`/admin/user-details/${user._id}`}
-                    className='text-blue-500 hover:underline'>
+                    className='text-blue-500 hover:underline'
+                  >
                     Details
                   </Link>
                 </td>

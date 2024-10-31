@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import Sidebar from '../../components/Shop/Sidebar';
 import ProductCard from '../../components/Shop/ProductCard';
 import NoProductFound from '../../components/Shop/NoProductFound';
@@ -11,7 +11,7 @@ import Footer from '../../components/Footer/Footer';
 import SkeletonProductCard from '../../components/Shop/SkeletonProductCard';
 import { Search } from '../../assets/icons';
 import { publicRequest } from '../../network/RequestMethod';
-import NavbarNew from '../../components/Navbar/navbar-new';
+import NavbarNew from '../../components/navbar/navbar-new';
 
 const Shop = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -83,7 +83,7 @@ const Shop = () => {
         delay: 0.175,
       }}
     >
-      <NavbarNew />
+      <Navbar />
       <DropDown />
       <div className='flex flex-col lg:flex-row items-start justify-center my-10 px-6 gap-4 md:gap-8 min-h-[70vh]'>
         <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-green-100 w-full lg:max-w-[16rem]'>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../../components/Navbar/Navbar';
+import Navbar from '../../../components/navbar/navbar';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { publicRequest } from '../../../network/RequestMethod';
 import Footer from '../../../components/Footer/Footer';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
-import Dropdown from '../../../components/Navbar/DropDown';
+import Dropdown from '../../../components/navbar/DropDown';
 import UpdateProfileModal from '../../../components/Modals/UpdateProfileModal';
 import DeleteProfileModal from '../../../components/Modals/DeleteProfileModal';
 
@@ -70,7 +70,8 @@ const UserProfile = () => {
           type: 'keyframes',
           delay: 0.175,
         }}
-        className='bg-green-50 flex justify-center items-center min-h-[70vh]'>
+        className='bg-green-50 flex justify-center items-center min-h-[70vh]'
+      >
         <div className='flex justify-center'>
           <div className='bg-green-200 shadow-md rounded p-6 max-w-2xl w-full text-green-900'>
             <h1 className='text-4xl font-thin text-center'>
@@ -105,7 +106,8 @@ const UserProfile = () => {
             <div className='flex gap-1 mt-10'>
               <button
                 onClick={openModal}
-                className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'>
+                className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'
+              >
                 Update Profile
               </button>
               {isModalOpen && (
@@ -118,7 +120,8 @@ const UserProfile = () => {
 
               <button
                 onClick={openDeleteModal}
-                className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
+                className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'
+              >
                 Delete Account
               </button>
               {isDeleteModalOpen && (

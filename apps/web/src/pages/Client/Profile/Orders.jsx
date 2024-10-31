@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Navbar from '../../../components/Navbar/Navbar';
-import Dropdown from '../../../components/Navbar/DropDown';
+import Navbar from '../../../components/navbar/navbar';
+import Dropdown from '../../../components/navbar/DropDown';
 import { userRequest } from '../../../network/RequestMethod';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Footer from '../../../components/Footer/Footer';
@@ -53,7 +53,8 @@ const Orders = () => {
           type: 'keyframes',
           delay: 0.175,
         }}
-        className='bg-green-50'>
+        className='bg-green-50'
+      >
         <h1 className='text-3xl text-center text-green-900 p-8'>All Orders</h1>
         <div className='overflow-x-auto md:min-h-[60vh] px-10'>
           <table className='min-w-full overflow-hidden rounded-t-md'>
@@ -73,7 +74,8 @@ const Orders = () => {
               {orders.map((order) => (
                 <tr
                   key={order.OrderId}
-                  className='hover:bg-green-100 transition duration-300 ease-in-out'>
+                  className='hover:bg-green-100 transition duration-300 ease-in-out'
+                >
                   <td className='py-3 px-4 text-center'>{order._id}</td>
                   <td className='py-3 px-4 text-center'>{order.userId}</td>
                   <td className='py-3 px-4 text-center'>
@@ -84,7 +86,8 @@ const Orders = () => {
                   <td className='py-3 px-4 text-center'>
                     <Link
                       to={`/admin/order-details/${order._id}`}
-                      className='text-blue-500 hover:underline'>
+                      className='text-blue-500 hover:underline'
+                    >
                       Details
                     </Link>
                   </td>

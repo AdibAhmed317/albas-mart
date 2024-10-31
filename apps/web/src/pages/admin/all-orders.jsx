@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import NoProductFound from '../../components/Shop/NoProductFound';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
@@ -46,7 +46,6 @@ const AllOrders = () => {
   return (
     <>
       <Navbar />
-      <DropDown />
       <AdminSidebar />
       <div className='bg-green-50 overflow-x-auto text-center px-10 py-2 md:min-h-[80vh]'>
         <h1 className='text-2xl font-normal text-green-900 mb-4'>
@@ -86,7 +85,8 @@ const AllOrders = () => {
                 {orders.map((order) => (
                   <tr
                     key={order._id}
-                    className='hover:bg-green-100 transition duration-300 ease-in-out'>
+                    className='hover:bg-green-100 transition duration-300 ease-in-out'
+                  >
                     <td className='py-3 px-4 text-center'>{order._id}</td>
                     <td className='py-3 px-4 text-center'>{order.userId}</td>
                     <td className='py-3 px-4 text-center'>
@@ -97,7 +97,8 @@ const AllOrders = () => {
                     <td className='py-3 px-4 text-center'>
                       <Link
                         to={`/admin/order-details/${order._id}`}
-                        className='text-blue-500 hover:underline'>
+                        className='text-blue-500 hover:underline'
+                      >
                         Details
                       </Link>
                     </td>

@@ -3,13 +3,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Swal from 'sweetalert2';
 
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
 import UserContext from '../../context/UserContext';
-import Dropdown from '../../components/Navbar/DropDown';
+import Dropdown from '../../components/navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
 
-const Login = () => {
+const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -53,7 +53,6 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      <Dropdown />
       <div className='w-auto min-h-[90vh] flex items-center justify-center'>
         <div className='p-5 w-[350px] md:w-[30rem] bg-green-200' id='wrapper'>
           <h1 className='text-2xl font-light'>SIGN IN</h1>
@@ -95,4 +94,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignIn;

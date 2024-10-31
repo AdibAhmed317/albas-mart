@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../../../components/Navbar/Navbar';
-import Dropdown from '../../../components/Navbar/DropDown';
+import Navbar from '../../../components/navbar/navbar';
+import Dropdown from '../../../components/navbar/DropDown';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Footer from '../../../components/Footer/Footer';
 import { motion } from 'framer-motion';
@@ -49,7 +49,8 @@ const Wishlist = () => {
           type: 'keyframes',
           delay: 0.175,
         }}
-        className='bg-green-50'>
+        className='bg-green-50'
+      >
         <h1 className='text-3xl text-center text-green-900 p-8'>
           Your Wishlist
         </h1>

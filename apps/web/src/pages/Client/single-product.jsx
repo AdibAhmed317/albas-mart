@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 
 import { Add, Remove, ShoppingCart } from '../../assets/icons';

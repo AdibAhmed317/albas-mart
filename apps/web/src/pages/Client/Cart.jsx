@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
 import CartList from '../../components/Cart/CartList';
-import Dropdown from '../../components/Navbar/DropDown';
+import Dropdown from '../../components/navbar/DropDown';
 import StripeCheckout from 'react-stripe-checkout';
 import logo from '../../assets/logoT.png';
 import { clearCart } from '../../redux/cartRedux';

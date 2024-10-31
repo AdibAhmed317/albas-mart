@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Navbar from '../../../components/Navbar/Navbar';
+import Navbar from '../../../components/navbar/navbar';
 import { publicRequest } from '../../../network/RequestMethod';
 
 const OrderDetails = () => {
@@ -71,7 +71,8 @@ const OrderDetails = () => {
               <div className='mt-4'>
                 <Link
                   to='/admin/dashboard'
-                  className='text-indigo-600 hover:text-indigo-800'>
+                  className='text-indigo-600 hover:text-indigo-800'
+                >
                   Go Back
                 </Link>
               </div>

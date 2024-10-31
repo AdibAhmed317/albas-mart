@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import ProductCard from '../../components/Shop/ProductCard';
 import NoProductFound from '../../components/Shop/NoProductFound';
 import { Search } from '../../assets/icons';
@@ -65,7 +65,6 @@ const AllProducts = () => {
   return (
     <>
       <Navbar />
-      <DropDown />
       <AdminSidebar />
       <div className='bg-green-50 p-10'>
         <h1 className='text-2xl font-normal text-green-900 mb-4'>

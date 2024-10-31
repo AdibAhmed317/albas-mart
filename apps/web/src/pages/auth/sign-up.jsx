@@ -4,13 +4,13 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../../components/Navbar/Navbar';
-import Dropdown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import Dropdown from '../../components/navbar/DropDown';
 import { publicRequest } from '../../network/RequestMethod';
 import Swal from 'sweetalert2';
 import Footer from '../../components/Footer/Footer';
 
-const Registration = () => {
+const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -75,7 +75,6 @@ const Registration = () => {
   return (
     <>
       <Navbar />
-      <Dropdown />
       <div className='w-auto min-h-[90vh] flex items-center justify-center'>
         <div className='p-5 w-[350px] md:w-[40%] bg-green-200 my-10 md:mb-0 mb-20'>
           <h1 className='text-2xl font-light m-2'>CREATE AN ACCOUNT</h1>
@@ -148,4 +147,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default SignUp;

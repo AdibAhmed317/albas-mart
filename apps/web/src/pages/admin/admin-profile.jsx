@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
-import DropDown from '../../components/Navbar/DropDown';
+import DropDown from '../../components/navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 
 import { publicRequest } from '../../network/RequestMethod';
@@ -47,7 +47,6 @@ const AdminProfile = () => {
   return (
     <>
       <Navbar />
-      <DropDown />
       <AdminSidebar />
       <div className='bg-green-50 flex justify-center items-center min-h-[70vh]'>
         <div className='flex justify-center'>
@@ -84,7 +83,8 @@ const AdminProfile = () => {
             <div className='flex gap-1 mt-10'>
               <button
                 onClick={openModal}
-                className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'>
+                className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'
+              >
                 Update Profile
               </button>
               {isModalOpen && (
@@ -97,7 +97,8 @@ const AdminProfile = () => {
 
               <button
                 onClick={openDeleteModal}
-                className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'>
+                className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'
+              >
                 Delete Account
               </button>
               {isDeleteModalOpen && (

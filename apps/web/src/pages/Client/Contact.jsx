@@ -1,14 +1,14 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import Footer from '../../components/Footer/Footer';
 import { motion } from 'framer-motion';
-import NavbarNew from '../../components/Navbar/navbar-new';
+import NavbarNew from '../../components/navbar/navbar-new';
 
 const Contact = () => {
   return (
     <>
-      <NavbarNew />
+      <Navbar />
       <DropDown />
       <motion.div
         initial={{ opacity: 0 }}

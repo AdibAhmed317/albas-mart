@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import DropDown from '../../components/Navbar/DropDown';
+import Navbar from '../../components/navbar/navbar';
+import DropDown from '../../components/navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
 import hero from '../../assets/hero.jpg';
 import { useNavigate } from 'react-router-dom';
@@ -131,7 +131,6 @@ const CreateProduct = () => {
     <>
       <>
         <Navbar />
-        <DropDown />
         <AdminSidebar />
         <div className='flex flex-col bg-green-50 p-10'>
           <form onSubmit={handleSubmit} className=''>
@@ -163,7 +162,8 @@ const CreateProduct = () => {
                 name='categories'
                 value={productData.categories}
                 onChange={handleInputChange}
-                className='w-auto md:w-[50%] py-2 border rounded focus:outline-none focus:border-blue-500'>
+                className='w-auto md:w-[50%] py-2 border rounded focus:outline-none focus:border-blue-500'
+              >
                 <option value=''>Select Category</option>
                 {fetchCat.map((item) => (
                   <option key={item._id} value={item.CategoryName}>

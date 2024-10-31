@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Login from '@/pages/auth/login';
+import SignIn from '@/pages/auth/sign-in';
+import SignUp from '@/pages/auth/sign-up';
 
-import Registration from '@/pages/auth/registration';
 import AdminDashboard from '@/pages/admin/admin-dashboard';
 import CreateProduct from '@/pages/admin/create-product';
 import AllProducts from '@/pages/admin/all-products';
@@ -33,8 +33,8 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/product/:id' element={<SingleProduct />} />
 
-        <Route path='/login' element={<Login />} />
-        <Route path='/registration' element={<Registration />} />
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/sign-up' element={<SignUp />} />
         <Route path='/user-details/:id' element={<UserProfile />} />
         <Route path='/user-details/orders/:id' element={<Orders />} />
         <Route path='/user-details/wishlist/:id' element={<Wishlist />} />
