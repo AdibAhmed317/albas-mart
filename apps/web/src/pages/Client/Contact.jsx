@@ -1,9 +1,7 @@
 import React from 'react';
-import Navbar from '../../components/navbar/navbar';
-import DropDown from '../../components/navbar/DropDown';
-import Footer from '../../components/footer/footer';
+import Navbar from '@/components/navbar/navbar';
+import Footer from '@/components/footer/footer';
 import { motion } from 'framer-motion';
-import NavbarNew from '../../components/navbar/navbar-new';
 
 const Contact = () => {
   return (
@@ -17,7 +15,7 @@ const Contact = () => {
           type: 'keyframes',
           delay: 0.175,
         }}
-        className='min-h-screen w-full flex justify-center items-center'
+        className='min-h-[80vh] w-full flex justify-center items-center pt-10 md:pt-40'
       >
         <div className='max-w-6xl max-lg:max-w-3xl mx-auto bg-primaryBlue rounded-lg my-40 md:mt-6'>
           <div className='grid lg:grid-cols-2 items-center gap-14 sm:p-8 p-4 font-[sans-serif]'>
