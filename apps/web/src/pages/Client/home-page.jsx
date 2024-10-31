@@ -1,20 +1,17 @@
 import React from 'react';
-import Hero from '../../components/Hero Section/hero';
+import Hero from '@/components/hero-section/hero';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/Footer/Footer';
-import Dropdown from '../../components/navbar/DropDown';
-import CategorySection from '../../components/Hero Section/CategorySection';
-import FeaturedProduct from '../../components/Hero Section/FeaturedProduct';
-import Slider from '../../components/Hero Section/Slider';
-import NewNavBar from '../../components/navbar/navbar-new';
-import NavbarNew from '../../components/navbar/navbar-new';
+import CategorySection from '../../components/hero-section/CategorySection';
+import FeaturedProduct from '../../components/hero-section/FeaturedProduct';
+import HomeCarousel from '@/components/hero-section/home-carousel';
 
 const HomePage = () => {
   return (
     <>
       <Navbar />
       <Hero />
-      <Slider />
+      <HomeCarousel />
       <CategorySection />
       <FeaturedProduct />
       <Footer />

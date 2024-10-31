@@ -11,9 +11,9 @@ const CategorySection = () => {
       transition={{
         delay: 0.5,
       }}
-      className='pt-10 md:pt-24 h-full pb-20 bg-green-200'
+      className='min-h-20 pb-20 bg-primaryBlue'
     >
-      <h1 className='text-center text-5xl font-thin text-green-900 mb-2 md:mb-10'>
+      <h1 className='text-center text-4xl font-robotoBlack text-black/80 pt-20 mb-2 md:mb-10'>
         Popular Categories
       </h1>
       <div className='flex flex-col md:flex-row justify-center items-center md:justify-between mx-0 md:mx-40'>
