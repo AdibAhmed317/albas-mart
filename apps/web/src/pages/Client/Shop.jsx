@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import Navbar from '../../components/navbar/navbar';
-import DropDown from '../../components/navbar/DropDown';
-import Sidebar from '../../components/shop/Sidebar';
-import ProductCard from '../../components/shop/product-card';
-import NoProductFound from '../../components/shop/NoProductFound';
-import Footer from '../../components/footer/footer';
-import SkeletonProductCard from '../../components/shop/SkeletonProductCard';
-import { Search } from '../../assets/icons';
-import { publicRequest } from '../../network/request-method';
-import NavbarNew from '../../components/navbar/navbar-new';
+import Navbar from '@/components/navbar/navbar';
+import Sidebar from '@/components/shop/Sidebar';
+import ProductCard from '@/components/shop/product-card';
+import NoProductFound from '@/components/shop/NoProductFound';
+import Footer from '@/components/footer/footer';
+import SkeletonProductCard from '@/components/shop/SkeletonProductCard';
+import { Search } from '@/assets/icons';
+import { publicRequest } from '@/network/request-method';
 
 const Shop = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -84,7 +82,6 @@ const Shop = () => {
       }}
     >
       <Navbar />
-      <DropDown />
       <div className='flex flex-col lg:flex-row items-start justify-center mb-10 px-6 gap-4 md:gap-8 min-h-[70vh] pt-40'>
         <div className='scrollbar-hide shadow-xl rounded-lg p-10 bg-primaryBlue w-full lg:max-w-[16rem]'>
           <div className='relative flex items-center'>
@@ -101,18 +98,18 @@ const Shop = () => {
           </div>
           <Sidebar />
         </div>
-        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6'>
+
+        {/* Responsive grid layout */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
           {isLoading ? (
             Array.from({ length: 8 }).map((_, index) => (
               <div className='mt-0 md:mt-10 ml-0 md:ml-2' key={index}>
                 <SkeletonProductCard />
               </div>
             ))
-          ) : fetchedProduct.length > 0 || fetchedProduct.value === null ? (
+          ) : fetchedProduct.length > 0 ? (
             fetchedProduct.map((product) => (
-              <React.Fragment key={product._id}>
-                <ProductCard product={product} />
-              </React.Fragment>
+              <ProductCard product={product} key={product._id} />
             ))
           ) : (
             <NoProductFound />
