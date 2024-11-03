@@ -92,8 +92,6 @@ const FeaturedProduct = () => {
           Shop Now
         </Link>
       </div>
-
-      <Footer />
     </motion.div>
   );
 };

@@ -13,12 +13,12 @@ const CategorySection = () => {
       }}
       className='min-h-20 pb-20 bg-primaryBlue'
     >
-      <h1 className='text-center text-4xl font-robotoBlack text-primaryGreen pt-20 mb-2 md:mb-10'>
+      <h1 className='text-center text-3xl sm:text-4xl font-robotoBlack text-primaryGreen pt-10 sm:pt-20 mb-4 sm:mb-10'>
         Popular Categories
       </h1>
-      <div className='flex flex-col md:flex-row justify-center items-center md:justify-between mx-0 md:mx-40'>
+      <div className='flex flex-wrap justify-center items-center gap-5 md:gap-10 mx-0 md:mx-10'>
         {categories.map((item) => (
-          <CategoryCard item={item} />
+          <CategoryCard key={item.id} item={item} />
         ))}
       </div>
     </motion.div>

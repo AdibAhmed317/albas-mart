@@ -1,35 +1,60 @@
 import React, { useState } from 'react';
-
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import Navbar from '../../components/navbar/navbar';
-import Dropdown from '../../components/navbar/DropDown';
-import { publicRequest } from '../../network/request-method';
-import Swal from 'sweetalert2';
 import Footer from '../../components/footer/footer';
+import { publicRequest } from '../../network/request-method';
 
 const SignUp = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [address, setAddress] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    phoneNumber: '',
+    address: '',
+  });
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
   const handleSubmit = async () => {
+    const { name, email, password, confirmPassword, phoneNumber, address } =
+      formData;
+
+    // Check if all fields are filled
+    if (
+      !name ||
+      !email ||
+      !password ||
+      !confirmPassword ||
+      !phoneNumber ||
+      !address
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'All fields are required!',
+      });
+      return;
+    }
+
     if (password !== confirmPassword) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Password and Confirm Password do not match.',
+        text: 'Passwords do not match!',
       });
       return;
     }
+
     try {
       const registrationData = {
         Name: name,
@@ -38,28 +63,25 @@ const SignUp = () => {
         Phone: phoneNumber,
         Address: address,
       };
-      const response = await publicRequest.post(
-        'auth/register',
-        registrationData
-      );
 
-      setName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setPhoneNumber('');
-      setAddress('');
-      setErrorMessage('');
+      await publicRequest.post('auth/register', registrationData);
+
+      setFormData({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        address: '',
+      });
 
       Swal.fire({
         icon: 'success',
         title: 'Registration Successful!',
         text: 'Your account has been created.',
         confirmButtonText: 'Login',
-      }).then((result) => {
-        if (result.value) {
-          navigate('/login');
-        }
+      }).then(() => {
+        navigate('/sign-in');
       });
     } catch (error) {
       console.error('Registration error:', error);
@@ -68,78 +90,93 @@ const SignUp = () => {
         title: 'Registration Failed',
         text: 'User already exists.',
       });
-      setErrorMessage('User Already Exist');
+      setErrorMessage('User already exists');
     }
   };
 
   return (
     <>
       <Navbar />
-      <div className='w-auto min-h-[90vh] flex items-center justify-center'>
-        <div className='p-5 w-[350px] md:w-[40%] bg-green-200 my-10 md:mb-0 mb-20'>
-          <h1 className='text-2xl font-light m-2'>CREATE AN ACCOUNT</h1>
-          <div className='flex flex-col md:flex-row'>
+      <div className='min-h-screen flex items-center justify-center bg-gray-50'>
+        <div className='p-6 w-full max-w-lg bg-primaryBlue shadow-lg rounded-lg'>
+          <h1 className='text-3xl font-semibold mb-6 text-gray-800'>
+            Create an Account
+          </h1>
+
+          <div className='flex flex-col space-y-4'>
             <input
-              className='flex-1 p-2 m-2 bg-green-50'
-              placeholder='Name'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              className='p-3 rounded-md border border-gray-300 focus:ring focus:ring-green-500 focus:outline-none'
+              type='text'
+              name='name'
+              placeholder='Full Name'
+              value={formData.name}
+              onChange={handleChange}
+              required
             />
             <input
-              className='flex-1 p-2 m-2 bg-green-50'
-              placeholder='Email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              className='p-3 rounded-md border border-gray-300 focus:ring focus:ring-green-500 focus:outline-none'
+              type='email'
+              name='email'
+              placeholder='Email Address'
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <input
+              className='p-3 rounded-md border border-gray-300 focus:ring focus:ring-green-500 focus:outline-none'
+              type='tel'
+              name='phoneNumber'
+              placeholder='Phone Number'
+              value={formData.phoneNumber}
+              onChange={handleChange}
+              required
+            />
+            <input
+              className='p-3 rounded-md border border-gray-300 focus:ring focus:ring-green-500 focus:outline-none'
+              type='text'
+              name='address'
+              placeholder='Address'
+              value={formData.address}
+              onChange={handleChange}
+              required
+            />
+            <input
+              className='p-3 rounded-md border border-gray-300 focus:ring focus:ring-green-500 focus:outline-none'
+              type='password'
+              name='password'
+              placeholder='Password'
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <input
+              className='p-3 rounded-md border border-gray-300 focus:ring focus:ring-green-500 focus:outline-none'
+              type='password'
+              name='confirmPassword'
+              placeholder='Confirm Password'
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
             />
           </div>
 
-          <div className='flex flex-col md:flex-row'>
-            <input
-              className='flex-1 p-2 m-2 bg-green-50'
-              placeholder='Phone Number'
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-            />
-            <input
-              className='flex-1 p-2 m-2 bg-green-50'
-              placeholder='Address'
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-          </div>
-          <div className='flex flex-col md:flex-row'>
-            <input
-              className='flex-1 p-2 m-2 bg-green-50'
-              type='password'
-              placeholder='Password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              className='flex-1 p-2 m-2 bg-green-50'
-              type='password'
-              placeholder='Confirm Password'
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
           <button
-            className='w-[40%] border-none p-2 m-2 text-center bg-green-900 text-white cursor-pointer mt-5'
+            className='mt-6 w-full bg-primaryGreen text-white py-3 rounded-md font-semibold hover:bg-primaryRed transition duration-300'
             onClick={handleSubmit}
           >
-            Create
+            Sign Up
           </button>
-          <br />
-          <span className='text-sm m-2'>
-            <Link
-              className='text-base underline cursor-pointer text-green-900'
-              to='/sign-in'
-            >
-              Already have an account?
+
+          <p className='mt-4 text-sm text-gray-600'>
+            Already have an account?{' '}
+            <Link className='text-primaryGreen hover:underline' to='/sign-in'>
+              Sign In
             </Link>
-          </span>
-          <br />
-          <span className='text-red-500'>{errorMessage}</span>
+          </p>
+
+          {errorMessage && (
+            <p className='mt-4 text-sm text-red-500'>{errorMessage}</p>
+          )}
         </div>
       </div>
       <Footer />

@@ -21,6 +21,7 @@ import About from '@/pages/client/about';
 import Shop from '@/pages/client/shop';
 import Cart from '@/pages/client/cart';
 import Contact from '@/pages/client/contact';
+import UserDetailsDemo from '@/pages/client/profile/user-details-demo';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/user-details/:id' element={<UserProfile />} />
+        <Route path='/user-details-demo/' element={<UserDetailsDemo />} />
         <Route path='/user-details/orders/:id' element={<Orders />} />
         <Route path='/user-details/wishlist/:id' element={<Wishlist />} />
 

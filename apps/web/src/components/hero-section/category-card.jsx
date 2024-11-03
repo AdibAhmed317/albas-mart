@@ -15,15 +15,15 @@ const CategoryCard = ({ item }) => {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
-      className='mt-10 mx-5 shadow-xl bg-no-repeat h-[10rem] w-[15rem] md:h-[20rem] md:w-[20rem] rounded-xl flex items-end'
+      className='mt-10 mx-5 shadow-xl bg-no-repeat h-[12rem] w-[14rem] sm:h-[16rem] sm:w-[16rem] md:h-[20rem] md:w-[20rem] rounded-xl flex items-end'
     >
-      <div className='h-[6rem] md:h-[8rem] w-full flex flex-col justify-center items-center rounded-b-2xl bg-black/50'>
-        <h1 className='text-base md:text-2xl font-thin text-white'>
+      <div className='h-[5rem] sm:h-[6rem] md:h-[8rem] w-full flex flex-col justify-center items-center rounded-b-2xl bg-black/50'>
+        <h1 className='text-sm sm:text-lg md:text-2xl font-thin text-white text-center'>
           {item.title}
         </h1>
         <Link
           to={`/shop/all`}
-          className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-primaryGreen bg-primaryRed rounded-md font-thin text-base md:text-xl mt-5'
+          className='border-none p-2 mb-1 text-white cursor-pointer hover:bg-primaryGreen bg-primaryRed rounded-md font-thin text-xs sm:text-base md:text-xl mt-3'
         >
           Shop Now
         </Link>
