@@ -5,9 +5,9 @@ import { motion } from 'framer-motion';
 import Navbar from '@/components/navbar/navbar';
 import Sidebar from '@/components/shop/Sidebar';
 import ProductCard from '@/components/shop/product-card';
-import NoProductFound from '@/components/shop/NoProductFound';
+import NoProductFound from '@/components/shop/no-product-found';
 import Footer from '@/components/footer/footer';
-import SkeletonProductCard from '@/components/shop/SkeletonProductCard';
+import SkeletonProductCard from '@/components/shop/skeleton-product-card';
 import { Search } from '@/assets/icons';
 import { publicRequest } from '@/network/request-method';
 

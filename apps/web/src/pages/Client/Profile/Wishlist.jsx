@@ -4,8 +4,8 @@ import Dropdown from '../../../components/navbar/DropDown';
 import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
 import Footer from '../../../components/footer/footer';
 import { motion } from 'framer-motion';
-import SkeletonProductCard from '../../../components/shop/SkeletonProductCard';
-import NoProductFound from '../../../components/shop/NoProductFound';
+import SkeletonProductCard from '../../../components/shop/skeleton-product-card';
+import NoProductFound from '../../../components/shop/no-product-found';
 import { userRequest } from '../../../network/request-method';
 import WishListCard from '../../../components/Profile/WishListCard';
 

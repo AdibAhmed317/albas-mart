@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { userRequest } from '../../network/request-method';
-import useAuth from '../../hooks/useAuth';
-import { addProductAsync } from '../../redux/thunks/cartThunk';
+import { userRequest } from '@/network/request-method';
+import useAuth from '@/hooks/useAuth';
+import { addProductAsync } from '@/redux/thunks/cartThunk';
 import {
   Card,
   CardContent,
@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <div className='max-w-72 mx-auto p-4'>
+    <div className='w-full sm:w-[10rem] md:w-[15rem] lg:w-[20rem] max-w-full mx-auto p-4'>
       <Card className='shadow-lg rounded-lg overflow-hidden transition-transform duration-300 transform hover:scale-105'>
         <CardHeader className='p-0'>
           <Link to={`/product/${product._id}`} className='block'>
