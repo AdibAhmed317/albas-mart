@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 
 import Navbar from '../../components/navbar/navbar';
-import DropDown from '../../components/navbar/DropDown';
 import NoProductFound from '../../components/shop/no-product-found';
 import { Search } from '../../assets/icons';
 import AdminSidebar from '../../components/Admin/AdminSidebar';

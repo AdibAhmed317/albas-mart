@@ -24,7 +24,7 @@ import {
   TableRow,
   TableCell,
 } from '@/components/ui/table';
-import WishListCard from '@/components/profile/wishlist-card';
+import WishListCard from '@/components/Profile/wishlist-card';
 import NoProductFound from '@/components/shop/no-product-found';
 import SkeletonProductCard from '@/components/shop/skeleton-product-card';
 
@@ -32,64 +32,43 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('orders');
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   const location = useLocation();
   const customerId = location.pathname.split('/')[2];
   const [customer, setCustomer] = useState(null);
 
-  const orders = [
-    {
-      id: 1,
-      date: '2023-06-01',
-      items: [
-        { name: 'T-Shirt', quantity: 2, price: 29.99 },
-        { name: 'Jeans', quantity: 1, price: 59.99 },
-      ],
-      total: 119.97,
-      status: 'Delivered',
-    },
-    {
-      id: 2,
-      date: '2023-05-15',
-      items: [
-        { name: 'Sunglasses', quantity: 1, price: 49.99 },
-        { name: 'Beach Towel', quantity: 1, price: 24.99 },
-      ],
-      total: 74.98,
-      status: 'Shipped',
-    },
-    {
-      id: 3,
-      date: '2023-04-20',
-      items: [{ name: 'Sneakers', quantity: 1, price: 79.99 }],
-      total: 79.99,
-      status: 'Delivered',
-    },
-  ];
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-  // const openModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
-  // const openDeleteModal = () => {
-  //   setIsDeleteModalOpen(true);
-  // };
-
-  // const closeDeleteModal = () => {
-  //   setIsDeleteModalOpen(false);
-  // };
-
   useEffect(() => {
     fetchCustomerDetails();
     fetchWishlistData();
+    getAllOrders();
   }, []);
+
+  const getAllOrders = async () => {
+    try {
+      const res = await userRequest.get(`orders/find/${customerId}`);
+
+      setOrders(res.data);
+      console.log(orders);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  function formatDateString(timestamp) {
+    const date = new Date(timestamp);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+
+    const hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 || 12;
+
+    return `${day}-${month}-${year} (${formattedHours}:${minutes} ${ampm})`;
+  }
 
   const fetchWishlistData = async () => {
     setIsLoading(true);
@@ -182,27 +161,39 @@ const UserProfile = () => {
                         <TableCell>Date</TableCell>
                         <TableCell>Items</TableCell>
                         <TableCell>Total</TableCell>
-                        <TableCell>Status</TableCell>
+                        <TableCell>Payment Status</TableCell>
+                        <TableCell>Delivery Status</TableCell>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {orders.map((order) => (
-                        <TableRow key={order.id}>
-                          <TableCell>{order.id}</TableCell>
-                          <TableCell>{order.date}</TableCell>
+                        <TableRow key={order._id}>
+                          <TableCell>{order._id}</TableCell>
+                          <TableCell>
+                            {formatDateString(order.createdAt)}
+                          </TableCell>
                           <TableCell>
                             <ul>
-                              {order.items.map((item, index) => (
+                              {order.products.map((item, index) => (
                                 <li key={index}>
                                   {item.quantity} x {item.name}
                                 </li>
                               ))}
                             </ul>
                           </TableCell>
-                          <TableCell>${order.total.toFixed(2)}</TableCell>
+                          <TableCell>৳ {order.amount}</TableCell>
                           <TableCell
                             className={`font-medium ${
-                              order.status === 'Delivered'
+                              order.status === 'succeeded'
+                                ? 'text-green-500'
+                                : 'text-yellow-500'
+                            }`}
+                          >
+                            {order.status}
+                          </TableCell>
+                          <TableCell
+                            className={`font-medium ${
+                              order.status === 'succeeded'
                                 ? 'text-green-500'
                                 : 'text-yellow-500'
                             }`}
@@ -217,12 +208,12 @@ const UserProfile = () => {
               </Card>
             </TabsContent>
             <TabsContent value='wishlist'>
-              <div className='overflow-x-auto md:min-h-[60vh] p-10'>
-                <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 px-10'>
+              <div className='overflow-x-auto md:min-h-[60vh] p-4 sm:p-6 md:p-8 lg:p-10'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 px-4 sm:px-6 md:px-8 lg:px-10'>
                   {isLoading ? (
                     // Show skeletons while loading
                     Array.from({ length: 8 }).map((_, index) => (
-                      <div className='mt-0 md:mt-10 ml-0 md:ml-2' key={index}>
+                      <div className='mt-4 ml-0' key={index}>
                         <SkeletonProductCard />
                       </div>
                     ))

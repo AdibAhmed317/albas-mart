@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../../../components/navbar/navbar';
-import Dropdown from '../../../components/navbar/DropDown';
-import ProfileSidebar from '../../../components/profile/ProfileSidebar';
 import Footer from '../../../components/footer/footer';
 import { motion } from 'framer-motion';
 import SkeletonProductCard from '../../../components/shop/skeleton-product-card';
 import NoProductFound from '../../../components/shop/no-product-found';
 import { userRequest } from '../../../network/request-method';
-import WishListCard from '../../../components/profile/wishlist-card';
+import WishListCard from '../../../components/Profile/wishlist-card';
 
 const Wishlist = () => {
   const [products, setProducts] = useState([]);

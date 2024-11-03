@@ -8,7 +8,6 @@ import useAuth from '@/hooks/useAuth';
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
 import CartList from '@/components/cart/cart-list';
-import Dropdown from '@/components/navbar/DropDown';
 import logo from '../../assets/logoT.png';
 import { clearCart } from '../../redux/cartRedux';
 import { userRequest } from '../../network/request-method';

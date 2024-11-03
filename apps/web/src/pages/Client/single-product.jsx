@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import Navbar from '../../components/navbar/navbar';
-import DropDown from '../../components/navbar/DropDown';
 import Footer from '../../components/footer/footer';
 
 import { Add, Remove, ShoppingCart } from '../../assets/icons';

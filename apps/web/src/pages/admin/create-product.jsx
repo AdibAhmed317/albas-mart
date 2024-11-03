@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/navbar';
-import DropDown from '../../components/navbar/DropDown';
 import AdminSidebar from '../../components/Admin/AdminSidebar';
-import hero from '../../assets/hero.jpg';
 import { useNavigate } from 'react-router-dom';
 import { publicRequest, userRequest } from '../../network/request-method';
 import {
