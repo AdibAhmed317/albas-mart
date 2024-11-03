@@ -245,6 +245,7 @@ import useAuth from '@/hooks/useAuth';
 import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
 import UserContext from '@/context/UserContext';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -315,16 +316,15 @@ const Navbar = () => {
               {/* Avatar and Dropdown */}
               <button
                 type='button'
-                className='flex text-sm'
+                className='relative flex items-center justify-center'
                 onClick={toggleDropdown}
                 aria-expanded={isDropdownOpen}
               >
+                <Avatar className='w-10 h-10 md:w-12 md:h-12'>
+                  <AvatarImage src='/placeholder-user.jpg' alt='User Avatar' />
+                  <AvatarFallback className='bg-cyan-500'>JD</AvatarFallback>
+                </Avatar>
                 <span className='sr-only'>Open user menu</span>
-                <img
-                  src={logo}
-                  className='w-8 h-8 rounded-full bg-gray-300'
-                  alt='User Avatar'
-                />
               </button>
 
               {/* User Dropdown Menu */}
@@ -337,24 +337,21 @@ const Navbar = () => {
               >
                 <div className='px-4 py-3 border-b border-gray-100'>
                   <span className='block text-sm font-medium'>{Name}</span>
-                  <span className='block text-sm text-gray-500'>{userId}</span>
                 </div>
                 <ul className='py-2'>
                   {/* Loop for Dashboard, Settings, and Earnings */}
-                  {[
-                    { name: 'Dashboard', path: `/user-details/${userId}` },
-                    { name: 'Settings', path: `/user-details/${userId}` },
-                    { name: 'Earnings', path: `/user-details/${userId}` },
-                  ].map((item) => (
-                    <li key={item.name}>
-                      <Link
-                        to={item.path}
-                        className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
-                      >
-                        {item.name}
-                      </Link>
-                    </li>
-                  ))}
+                  {[{ name: 'Dashboard', path: `/user-profile/${userId}` }].map(
+                    (item) => (
+                      <li key={item.name}>
+                        <Link
+                          to={item.path}
+                          className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors'
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    )
+                  )}
 
                   {/* Separate Sign out option */}
                   <li>

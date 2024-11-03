@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../../../components/navbar/navbar';
 import Dropdown from '../../../components/navbar/DropDown';
 import { userRequest } from '../../../network/request-method';
-import ProfileSidebar from '../../../components/Profile/ProfileSidebar';
+import ProfileSidebar from '../../../components/profile/ProfileSidebar';
 import Footer from '../../../components/footer/footer';
 import { motion } from 'framer-motion';
 
