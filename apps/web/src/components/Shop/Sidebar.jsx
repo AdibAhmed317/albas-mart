@@ -32,7 +32,7 @@ const Sidebar = () => {
               className='text-black/80 text-base m-1 font-mono w-[4rem] md:w-auto'
             >
               {item.CategoryName}
-              <span class='block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black/80'></span>
+              <span className='block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black/80'></span>
             </Link>
           </li>
         ))}

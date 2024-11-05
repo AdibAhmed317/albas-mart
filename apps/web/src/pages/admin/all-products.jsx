@@ -6,9 +6,8 @@ import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../../components/navbar/navbar';
 import ProductCard from '../../components/shop/product-card';
 import NoProductFound from '../../components/shop/no-product-found';
-import { Search } from '../../assets/icons';
-import AdminSidebar from '../../components/Admin/AdminSidebar';
-import AdminProductCard from '../../components/Admin/AdminProductCard';
+import AdminSidebar from '../../components/admin/sidebar/admin-sidebar';
+import AdminProductCard from '../../components/admin/admin-product-card';
 import { publicRequest } from '../../network/request-method';
 
 const AllProducts = () => {

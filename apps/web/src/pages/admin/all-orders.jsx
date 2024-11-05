@@ -1,13 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
 import { Link, useLocation } from 'react-router-dom';
 
-import Navbar from '../../components/navbar/navbar';
-import NoProductFound from '../../components/shop/no-product-found';
-import { Search } from '../../assets/icons';
-import AdminSidebar from '../../components/Admin/AdminSidebar';
-import AdminProductCard from '../../components/Admin/AdminProductCard';
+import AdminSidebar from '../../components/admin/sidebar/admin-sidebar';
 import { userRequest } from '../../network/request-method';
 
 const AllOrders = () => {
@@ -44,7 +39,6 @@ const AllOrders = () => {
 
   return (
     <>
-      <Navbar />
       <AdminSidebar />
       <div className='bg-green-50 overflow-x-auto text-center px-10 py-2 md:min-h-[80vh]'>
         <h1 className='text-2xl font-normal text-green-900 mb-4'>

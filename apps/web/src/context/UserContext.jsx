@@ -6,10 +6,12 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [Name, setName] = useState('');
   const [isAdmin, setIsAdmin] = useState();
+  const [userId, setUserId] = useState(''); // Add userId state
 
   useEffect(() => {
     try {
       const accessToken = localStorage.getItem('accessToken');
+      const storedUserId = localStorage.getItem('id'); // Retrieve userId from localStorage
 
       if (accessToken) {
         const decodedToken = jwtDecode(accessToken);
@@ -18,14 +20,21 @@ export const UserProvider = ({ children }) => {
         setName(userName);
         setIsAdmin(adminCheck);
       }
+
+      if (storedUserId) {
+        setUserId(storedUserId); // Set userId from localStorage
+      }
     } catch (error) {
       setName('');
       setIsAdmin(false);
+      setUserId(''); // Clear userId on error
     }
   }, []);
 
   return (
-    <UserContext.Provider value={{ Name, setName, isAdmin, setIsAdmin }}>
+    <UserContext.Provider
+      value={{ Name, setName, isAdmin, setIsAdmin, userId }}
+    >
       {children}
     </UserContext.Provider>
   );

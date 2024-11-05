@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux';
 import Navbar from '../../components/navbar/navbar';
 import Footer from '../../components/footer/footer';
 
-import { Add, Remove, ShoppingCart } from '../../assets/icons';
+import { FiMinusCircle, FiPlusCircle, FiShoppingCart } from 'react-icons/fi';
+
 import { publicRequest } from '../../network/request-method';
 import Swal from 'sweetalert2';
 import { addProductAsync } from '../../redux/thunks/cartThunk';
@@ -116,7 +117,7 @@ const SingleProduct = () => {
           >
             <div className='flex items-center' id='AmountContainer'>
               <button onClick={() => handleOnClick('Remove')}>
-                <Remove />
+                <FiMinusCircle />
               </button>
               <span
                 className='p-6 w-10 h-10 md:w-[30px] md:h-[30px] text-green-900 rounded-xl border-solid bg-green-200 flex justify-center items-center mx-1'
@@ -125,7 +126,7 @@ const SingleProduct = () => {
                 {quantity}
               </span>
               <button onClick={() => handleOnClick('Add')}>
-                <Add />
+                <FiPlusCircle />
               </button>
             </div>
             <button
@@ -134,7 +135,7 @@ const SingleProduct = () => {
             >
               <div className='flex justify-center items-center'>
                 <p className='mr-2'>
-                  <ShoppingCart />
+                  <FiShoppingCart />
                 </p>
                 <p className='justify-center mx-2 md:mx-0'>Add to cart</p>
               </div>

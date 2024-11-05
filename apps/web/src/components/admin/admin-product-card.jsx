@@ -1,81 +1,39 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { userRequest } from '@/network/request-method';
-import useAuth from '@/hooks/useAuth';
-import { addProductAsync } from '@/redux/thunks/cartThunk';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
-const ProductCard = ({ product }) => {
-  const cart = useSelector((state) => state.cart);
+const AdminProductCard = ({ product }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { userId } = useAuth();
-  const cartData = {
-    products: [
-      {
-        _id: product._id,
-        quantity: 1,
-        price: product.price,
-      },
-    ],
-    userId: userId,
-    items: cart.items + 1,
-  };
-
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const handleCart = () => {
+  const deleteProduct = async (productId) => {
     setIsLoading(true);
-    dispatch(addProductAsync(cartData)).finally(() => {
+    // Assume deleteProductAsync is a function that handles product deletion
+    try {
+      await deleteProductAsync(productId);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Product deleted!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Failed to delete product!',
+      });
+    } finally {
       setIsLoading(false);
-    });
-
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Added to cart!',
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  };
-
-  const handleWishList = async () => {
-    if (userId) {
-      const wishlistData = {
-        userId: userId,
-        productId: product._id,
-      };
-
-      try {
-        const response = await userRequest.post('wishlist/', wishlistData);
-
-        if (response.status === 200) {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Added to wishlist!',
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      } catch (error) {
-        Swal.fire({
-          icon: 'info',
-          title: 'Oops...',
-          text: 'Product already exists in wishlist!',
-        });
-      }
-    } else {
-      navigate('/sign-in');
     }
   };
 
@@ -106,7 +64,7 @@ const ProductCard = ({ product }) => {
             </span>
             <button
               className='text-cyan-600 hover:text-primaryRed transition-colors duration-200'
-              onClick={handleWishList}
+              onClick={() => navigate(`/admin/product-details/${product._id}`)}
             >
               <FaHeart className='w-4 h-4' />
             </button>
@@ -114,13 +72,18 @@ const ProductCard = ({ product }) => {
         </CardContent>
 
         <CardFooter className='p-4'>
+          <Link
+            to={`/admin/edit-product/${product._id}`}
+            className='w-full bg-blue-500 text-white hover:bg-blue-600 rounded-lg mb-2 text-center p-2'
+          >
+            Edit
+          </Link>
           <Button
-            className='w-full bg-cyan-600 text-white hover:bg-primaryBlue hover:text-black/50 transition-colors duration-200'
-            size='lg'
-            onClick={handleCart}
+            className='w-full bg-red-500 text-white hover:bg-red-600 transition-colors duration-200'
+            onClick={() => deleteProduct(product._id)}
             disabled={isLoading}
           >
-            {isLoading ? 'Adding...' : 'Add to Cart'}
+            {isLoading ? 'Deleting...' : 'Delete'}
           </Button>
         </CardFooter>
       </Card>
@@ -128,4 +91,4 @@ const ProductCard = ({ product }) => {
   );
 };
 
-export default ProductCard;
+export default AdminProductCard;

@@ -8,8 +8,8 @@ import ProductCard from '@/components/shop/product-card';
 import NoProductFound from '@/components/shop/no-product-found';
 import Footer from '@/components/footer/footer';
 import SkeletonProductCard from '@/components/shop/skeleton-product-card';
-import { Search } from '@/assets/icons';
 import { publicRequest } from '@/network/request-method';
+import { FiSearch } from 'react-icons/fi';
 
 const Shop = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);
@@ -93,7 +93,7 @@ const Shop = () => {
               onChange={handleSearch}
             />
             <div className='absolute right-0 top-0 h-full flex items-center pr-3'>
-              <Search />
+              <FiSearch />
             </div>
           </div>
           <Sidebar />

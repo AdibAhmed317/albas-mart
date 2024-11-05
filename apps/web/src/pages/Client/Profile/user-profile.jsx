@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/navbar/navbar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { publicRequest, userRequest } from '@/network/request-method';
 import Footer from '@/components/footer/footer';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
@@ -33,10 +33,16 @@ const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [orders, setOrders] = useState([]);
+  const [customer, setCustomer] = useState(null);
+  const [updatedCustomer, setUpdatedCustomer] = useState({
+    Name: '',
+    Address: '',
+    Phone: '',
+  });
 
+  const navigate = useNavigate();
   const location = useLocation();
   const customerId = location.pathname.split('/')[2];
-  const [customer, setCustomer] = useState(null);
 
   useEffect(() => {
     fetchCustomerDetails();
@@ -44,57 +50,76 @@ const UserProfile = () => {
     getAllOrders();
   }, []);
 
+  useEffect(() => {
+    if (customer) {
+      setUpdatedCustomer({
+        Name: customer.Name || '',
+        Address: customer.Address || '',
+        Phone: customer.Phone || '',
+      });
+    }
+  }, [customer]);
+
   const getAllOrders = async () => {
     try {
       const res = await userRequest.get(`orders/find/${customerId}`);
-
       setOrders(res.data);
-      console.log(orders);
     } catch (error) {
       console.log(error);
     }
   };
 
-  function formatDateString(timestamp) {
+  const formatDateString = (timestamp) => {
     const date = new Date(timestamp);
-
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-
     const hours = date.getHours();
     const minutes = String(date.getMinutes()).padStart(2, '0');
     const ampm = hours >= 12 ? 'PM' : 'AM';
     const formattedHours = hours % 12 || 12;
-
     return `${day}-${month}-${year} (${formattedHours}:${minutes} ${ampm})`;
-  }
+  };
 
   const fetchWishlistData = async () => {
     setIsLoading(true);
     try {
       const res = await userRequest.get(`wishlist/${customerId}`);
-
-      const productsData = res.data;
-
-      setProducts(productsData);
+      setProducts(res.data);
       setIsLoading(false);
-      console.log(productsData);
     } catch (error) {
       setIsLoading(false);
       console.error('Error fetching wishlist data:', error);
     }
   };
 
-  const fetchCustomerDetails = () => {
-    publicRequest
-      .get(`user/find/${customerId}`)
-      .then((response) => {
-        setCustomer(response.data);
-      })
-      .catch((error) => {
-        console.error('Error fetching customer details:', error);
-      });
+  const fetchCustomerDetails = async () => {
+    try {
+      const response = await publicRequest.get(`user/find/${customerId}`);
+      setCustomer(response.data);
+    } catch (error) {
+      console.error('Error fetching customer details:', error);
+    }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUpdatedCustomer((prevCustomer) => ({
+      ...prevCustomer,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await userRequest.put(`user/${customerId}`, updatedCustomer);
+      if (res.status === 200) {
+        window.location.reload(); // Reloads the page
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!customer) {
@@ -253,27 +278,38 @@ const UserProfile = () => {
                     <form className='grid gap-4'>
                       <div className='grid gap-2'>
                         <Label htmlFor='name'>Name</Label>
-                        <Input id='name' defaultValue='John Doe' />
-                      </div>
-                      <div className='grid gap-2'>
-                        <Label htmlFor='email'>Email</Label>
                         <Input
-                          id='email'
-                          type='email'
-                          defaultValue='john.doe@example.com'
+                          defaultValue={customer.Name}
+                          type='text'
+                          name='Name'
+                          value={updatedCustomer.Name}
+                          onChange={handleInputChange}
                         />
                       </div>
                       <div className='grid gap-2'>
-                        <Label htmlFor='bio'>Bio</Label>
-                        <Textarea
-                          id='bio'
-                          defaultValue='Passionate about fashion and exploring new trends.'
+                        <Label htmlFor='email'>Address</Label>
+                        <Input
+                          defaultValue={customer.Address}
+                          type='text'
+                          name='Address'
+                          value={updatedCustomer.Address}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                      <div className='grid gap-2'>
+                        <Label htmlFor='bio'>Phone</Label>
+                        <Input
+                          defaultValue={customer.Phone}
+                          type='text'
+                          name='Phone'
+                          value={updatedCustomer.Phone}
+                          onChange={handleInputChange}
                         />
                       </div>
                     </form>
                   </CardContent>
                   <CardFooter>
-                    <Button>Save Changes</Button>
+                    <Button onClick={handleSubmit}>Save Changes</Button>
                   </CardFooter>
                 </Card>
                 <Card>
