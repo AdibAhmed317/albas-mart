@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
-import Navbar from '../../components/navbar/navbar';
-import Footer from '../../components/footer/footer';
-
 import { FiMinusCircle, FiPlusCircle, FiShoppingCart } from 'react-icons/fi';
-
-import { publicRequest } from '../../network/request-method';
 import Swal from 'sweetalert2';
-import { addProductAsync } from '../../redux/thunks/cartThunk';
+
+import Navbar from '@/components/navbar/navbar';
+import Footer from '@/components/footer/footer';
+import { publicRequest } from '@/network/request-method';
+import { addProductAsync } from '@/redux/thunks/cartThunk';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);

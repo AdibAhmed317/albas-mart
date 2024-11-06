@@ -31,17 +31,11 @@ function App() {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/user-profile/:id' element={<UserProfile />} />
-        {/* <Route path='/user-details/orders/:id' element={<Orders />} />
-        <Route path='/user-details/wishlist/:id' element={<Wishlist />} /> */}
 
         <Route path='/admin-dashboard/:id' element={<AdminDashboard />} />
         <Route path='/admin-profile/:id' element={<AdminProfile />} />
         <Route path='/admin/create-product/:id' element={<AdminProduct />} />
         <Route path='/admin/all-orders/:id' element={<AllOrders />} />
-        {/* <Route path='/admin/all-products' element={<AllProducts />} /> */}
-        {/* <Route path='/admin/order-details/:id' element={<OrderDetails />} /> */}
-        {/* <Route path='/admin/user-details/:id' element={<UserDetails />} /> */}
-        {/* <Route path='/admin/profile' element={<AdminProfile />} /> */}
       </Routes>
     </>
   );

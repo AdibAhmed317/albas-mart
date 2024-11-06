@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import logoT from '@/assets/logoT.png';
+import logoT from '@/assets/images/basic/logoT.png';
 import { MdOutlineSpaceDashboard } from 'react-icons/md';
 import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
-import { MdAddShoppingCart } from 'react-icons/md';
+import { MdAddShoppingCart, MdPointOfSale } from 'react-icons/md';
 import { PiSignOutBold } from 'react-icons/pi';
 import { CgProfile } from 'react-icons/cg';
 import { IoClose, IoMenu } from 'react-icons/io5'; // Import the close icon
@@ -109,6 +109,15 @@ const AdminSidebar = () => {
               >
                 <MdAddShoppingCart />
                 <span className='flex-1 ms-3 whitespace-nowrap'>Orders</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={`/admin/all-orders/${userId}`}
+                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+              >
+                <MdPointOfSale />
+                <span className='flex-1 ms-3 whitespace-nowrap'>POS</span>
               </Link>
             </li>
             <li>

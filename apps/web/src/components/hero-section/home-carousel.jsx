@@ -9,10 +9,10 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 
-import s1 from '@/assets/s1.jpg';
-import s2 from '@/assets/s2.jpg';
-import s3 from '@/assets/s3.jpg';
-import s4 from '@/assets/s4.jpg';
+import s1 from '@/assets/images/carousel/s1.jpg';
+import s2 from '@/assets/images/carousel/s2.jpg';
+import s3 from '@/assets/images/carousel/s3.jpg';
+import s4 from '@/assets/images/carousel/s4.jpg';
 
 const HomeCarousel = () => {
   const plugin = React.useRef(

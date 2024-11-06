@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-// const rateLimit = require("express-rate-limit");
 
 dotenv.config();
 
@@ -28,12 +27,6 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello, Welcome to Al-Raya Backend!');
 });
-
-// const limiter = rateLimit({
-//   windowMs: 15 * 60 * 1000,
-//   max: 100,
-// });
-// app.use(limiter);
 
 app.use('/api/auth', authRoute);
 app.use('/api/user', userRoute);

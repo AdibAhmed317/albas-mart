@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import StripeCheckout from 'react-stripe-checkout';
 
-import useAuth from '@/hooks/useAuth';
 import Navbar from '@/components/navbar/navbar';
 import Footer from '@/components/footer/footer';
 import CartList from '@/components/cart/cart-list';
-import logo from '../../assets/logoT.png';
-import { clearCart } from '../../redux/cartRedux';
-import { userRequest } from '../../network/request-method';
-import { useNavigate } from 'react-router-dom';
+import useAuth from '@/hooks/useAuth';
+import { clearCart } from '@/redux/cartRedux';
+import { userRequest } from '@/network/request-method';
 import { clearCartAsync } from '@/redux/thunks/cartThunk';
+import logo from '@/assets/images/basic/logoT.png';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -116,7 +116,7 @@ const Cart = () => {
         <div className='h-[100vh] flex flex-col md:flex-row'>
           <div
             id='left'
-            className='h-full md:h-[80vh] w-full overflow-auto bg-primaryBlue ml-0 md:ml-10'
+            className='h-full md:h-[80vh] w-full overflow-auto bg-primaryBlue ml-0 md:ml-10 rounded-lg'
           >
             <CartList />
           </div>
@@ -124,46 +124,79 @@ const Cart = () => {
             id='right'
             className='h-full w-full md:w-[60%] flex justify-center items-center md:items-start'
           >
-            <div className='h-[80%] w-full mx-10 border-spacing-10 border-[1px] border-black flex justify-center items-center flex-col'>
-              <div>
-                <span className='font-light text-xl md:text-4xl text-start md:text-justify'>
-                  <h1 className='m-5'>
-                    <b>Subtotal:</b> ৳{subtotal}
-                  </h1>
-                  <h1 className='m-5'>
-                    <b>Delivery Charge:</b> ৳20
-                  </h1>
-                  <h1 className='m-5'>
-                    <b>Discount:</b> ৳10
-                  </h1>
-                  <h1 className='m-5'>
-                    <b>Total:</b> ৳{subtotal + 20 - 10}
-                  </h1>
-                </span>
+            <div className='h-[80%] w-full mx-10 border-spacing-10 flex justify-start items-center flex-col'>
+              <div class='mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full'>
+                <div class='space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6'>
+                  <p class='text-xl font-semibold text-gray-900 dark:text-white'>
+                    Order summary
+                  </p>
+
+                  <div class='space-y-4'>
+                    <div class='space-y-2'>
+                      <dl class='flex items-center justify-between gap-4'>
+                        <dt class='text-base font-normal text-gray-500 dark:text-gray-400'>
+                          Original price
+                        </dt>
+                        <dd class='text-base font-medium text-gray-900 dark:text-white'>
+                          ৳{subtotal}
+                        </dd>
+                      </dl>
+
+                      <dl class='flex items-center justify-between gap-4'>
+                        <dt class='text-base font-normal text-gray-500 dark:text-gray-400'>
+                          Discount
+                        </dt>
+                        <dd class='text-base font-medium text-green-600'>
+                          -৳10
+                        </dd>
+                      </dl>
+
+                      <dl class='flex items-center justify-between gap-4'>
+                        <dt class='text-base font-normal text-gray-500 dark:text-gray-400'>
+                          Delivery Charge
+                        </dt>
+                        <dd class='text-base font-medium text-gray-900 dark:text-white'>
+                          ৳20
+                        </dd>
+                      </dl>
+                    </div>
+
+                    <dl class='flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700'>
+                      <dt class='text-base font-bold text-gray-900 dark:text-white'>
+                        Total
+                      </dt>
+                      <dd class='text-base font-bold text-gray-900 dark:text-white'>
+                        ৳{subtotal + 20 - 10}
+                      </dd>
+                    </dl>
+                    <div className='flex justify-center items-center'>
+                      {userId === '' || userId === null ? (
+                        <button
+                          onClick={handleNavigation}
+                          className='w-[10rem] h-8 md:h-10 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white'
+                        >
+                          Login First
+                        </button>
+                      ) : (
+                        <StripeCheckout
+                          name='Al-Raya'
+                          image={logo}
+                          billingAddress
+                          shippingAddress
+                          description={`Your total is ৳${subtotal + 20 - 10}`}
+                          token={onToken}
+                          amount={(subtotal + 20 - 10) * 100}
+                          stripeKey={KEY}
+                        >
+                          <button className='w-[10rem] h-8 md:h-10 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white'>
+                            Confirm Order
+                          </button>
+                        </StripeCheckout>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
-              {userId === '' || userId === null ? (
-                <button
-                  onClick={handleNavigation}
-                  className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'
-                >
-                  Login First
-                </button>
-              ) : (
-                <StripeCheckout
-                  name='Al-Raya'
-                  image={logo}
-                  billingAddress
-                  shippingAddress
-                  description={`Your total is ৳${subtotal + 20 - 10}`}
-                  token={onToken}
-                  amount={(subtotal + 20 - 10) * 100}
-                  stripeKey={KEY}
-                >
-                  <button className='w-[20rem] h-10 md:h-16 rounded-sm bg-black hover:bg-black/50 hover:text-black text-white mt-0 md:mt-10'>
-                    Confirm Order
-                  </button>
-                </StripeCheckout>
-              )}
             </div>
           </div>
         </div>

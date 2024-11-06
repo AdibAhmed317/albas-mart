@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LuShoppingCart } from 'react-icons/lu';
 
-import logoT from '@/assets/logoT.png';
+import logoT from '@/assets/images/basic/logoT.png';
 
 import useAuth from '@/hooks/useAuth';
 import { useSelector } from 'react-redux';

@@ -1,6 +1,6 @@
-import fishMeat from '../images/fish-meat.jpg';
-import vegetable from '../images/vegetable.jpg';
-import fruits from '../images/fruits.jpg';
+import fishMeat from '../images/category/fish-meat.jpg';
+import vegetable from '../images/category/vegetable.jpg';
+import fruits from '../images/category/fruits.jpg';
 
 export const categories = [
   {
