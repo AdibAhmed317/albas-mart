@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../../components/navbar/Navbar';
 import { userRequest } from '../../../network/RequestMethod';
-import Footer from '../../../components/temp-footer/Footer';
+import Footer from '../../../components/footer/Footer';
 import { motion } from 'framer-motion';
 
 const Orders = () => {

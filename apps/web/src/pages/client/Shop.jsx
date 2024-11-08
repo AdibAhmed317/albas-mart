@@ -6,7 +6,7 @@ import Navbar from '@/components/navbar/Navbar.jsx';
 import Sidebar from '@/components/shop/Sidebar.jsx';
 import ProductCard from '@/components/shop/ProductCard.jsx';
 import NoProductFound from '@/components/shop/NoProductFound.jsx';
-import Footer from '@/components/temp-footer/Footer.jsx';
+import Footer from '@/components/footer/Footer.jsx';
 import SkeletonProductCard from '@/components/shop/SkeletonProductCard.jsx';
 import { publicRequest } from '@/network/RequestMethod.js';
 import { FiSearch } from 'react-icons/fi';
