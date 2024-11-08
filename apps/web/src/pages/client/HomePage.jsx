@@ -1,19 +1,19 @@
 import Hero from '@/components/hero-section/Hero.jsx';
-// import Navbar from '@/components/navbar/Navbar';
-// import Footer from '@/components/footer/footer';
-// import CategorySection from '@/components/hero-section/CategorySection';
-// import FeaturedProduct from '@/components/hero-section/FeaturedProduct';
-// import HomeCarousel from '@/components/hero-section/HomeCarousel';
+import Navbar from '@/components/navbar/Navbar.jsx';
+import Footer from '@/components/footer/Footer.jsx';
+import CategorySection from '@/components/hero-section/CategorySection.jsx';
+import FeaturedProduct from '@/components/hero-section/FeaturedProduct.jsx';
+import HomeCarousel from '@/components/hero-section/HomeCarousel.jsx';
 
 const HomePage = () => {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
-      {/* <HomeCarousel />
+      <HomeCarousel />
       <CategorySection />
       <FeaturedProduct />
-      <Footer /> */}
+      <Footer />
     </>
   );
 };

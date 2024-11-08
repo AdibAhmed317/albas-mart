@@ -3,10 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Swal from 'sweetalert2';
 
-import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/Footer';
-import UserContext from '@/context/UserContext';
-import { publicRequest } from '@/network/RequestMethod';
+import Navbar from '@/components/navbar/Navbar.jsx';
+import Footer from '@/components/footer/Footer.jsx';
+import UserContext from '@/context/UserContext.jsx';
+import { publicRequest } from '@/network/RequestMethod.js';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');

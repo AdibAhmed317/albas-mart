@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import Navbar from '@/components/navbar/Navbar';
-import Sidebar from '@/components/shop/Sidebar';
-import ProductCard from '@/components/shop/ProductCard';
-import NoProductFound from '@/components/shop/NoProductFound';
-import Footer from '@/components/footer/footer';
-import SkeletonProductCard from '@/components/shop/SkeletonProductCard';
-import { publicRequest } from '@/network/RequestMethod';
+import Navbar from '@/components/navbar/Navbar.jsx';
+import Sidebar from '@/components/shop/Sidebar.jsx';
+import ProductCard from '@/components/shop/ProductCard.jsx';
+import NoProductFound from '@/components/shop/NoProductFound.jsx';
+import Footer from '@/components/footer/Footer.jsx';
+import SkeletonProductCard from '@/components/shop/SkeletonProductCard.jsx';
+import { publicRequest } from '@/network/RequestMethod.js';
 import { FiSearch } from 'react-icons/fi';
 
 const Shop = () => {

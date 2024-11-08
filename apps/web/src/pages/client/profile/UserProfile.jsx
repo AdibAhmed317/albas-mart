@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '@/components/navbar/Navbar';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { publicRequest, userRequest } from '@/network/RequestMethod';
-import Footer from '@/components/footer/footer';
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+
+import { publicRequest, userRequest } from '@/network/RequestMethod.js';
+import Navbar from '@/components/navbar/Navbar.jsx';
+import Footer from '@/components/footer/Footer.jsx';
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from '@/components/ui/avatar.jsx';
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from '@/components/ui/tabs.jsx';
 import {
   Card,
   CardHeader,
@@ -12,20 +22,20 @@ import {
   CardDescription,
   CardContent,
   CardFooter,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
+} from '@/components/ui/card.jsx';
+import { Button } from '@/components/ui/button.jsx';
+import { Label } from '@/components/ui/label.jsx';
+import { Input } from '@/components/ui/input.jsx';
 import {
   Table,
   TableHeader,
   TableBody,
   TableRow,
   TableCell,
-} from '@/components/ui/table';
-import WishListCard from '@/components/profile/WishlistCard';
-import NoProductFound from '@/components/shop/NoProductFound';
-import SkeletonProductCard from '@/components/shop/SkeletonProductCard';
+} from '@/components/ui/table.jsx';
+import WishListCard from '@/components/profile/WishlistCard.jsx';
+import NoProductFound from '@/components/shop/NoProductFound.jsx';
+import SkeletonProductCard from '@/components/shop/SkeletonProductCard.jsx';
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('orders');

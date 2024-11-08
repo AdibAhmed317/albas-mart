@@ -17,22 +17,6 @@ import Cart from '@/pages/client/Cart.jsx';
 import Contact from '@/pages/client/Contact.jsx';
 import AdminProduct from '@/pages/admin/AdminProduct.jsx';
 
-// import SignIn from '../src/pages/auth/SignIn';
-// import SignUp from '../src/pages/auth/SignUp';
-
-// import AdminDashboard from '../src/pages/admin/AdminDashboard';
-// import AllOrders from '../src/pages/admin/AllOrders';
-// import AdminProfile from '../src/pages/admin/AdminProfile';
-
-// import HomePage from '@/pages/Client/HomePage.jsx';
-// import SingleProduct from '@/pages/client/SingleProduct.jsx';
-// import UserProfile from '../src/pages/client/profile/UserProfile.jsx';
-// import About from '../src/pages/client/about';
-// import Shop from '../src/pages/client/shop';
-// import Cart from '../src/pages/client/cart';
-// import Contact from '../src/pages/client/contact';
-// import AdminProduct from '../src/pages/admin/AdminProduct';
-
 function App() {
   return (
     <>
