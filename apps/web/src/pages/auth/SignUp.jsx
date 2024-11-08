@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-import Navbar from '../../components/navbar/Navbar';
-import Footer from '../../components/footer/footer';
-import { publicRequest } from '../../network/RequestMethod';
+import Navbar from '@/components/navbar/Navbar';
+import Footer from '@/components/footer/footer';
+import { publicRequest } from '@/network/RequestMethod';
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
