@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import StripeCheckout from 'react-stripe-checkout';
 
 import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/Footer';
+import Footer from '@/components/temp-footer/Footer';
 import CartList from '@/components/cart/CartList';
 import useAuth from '@/hooks/useAuth';
 import { clearCart } from '@/redux/cartRedux';
