@@ -8,7 +8,7 @@ import { Route, Routes } from 'react-router-dom';
 // import AllOrders from '@/pages/admin/AllOrders.jsx';
 // import AdminProfile from '@/pages/admin/AdminProfile.jsx';
 
-import HomePage from '@/pages/client/HomePage.jsx';
+import HomePage from '@/pages/client/home-page.jsx';
 // import SingleProduct from '@/pages/client/SingleProduct.jsx';
 // import UserProfile from '@/pages/client/profile/UserProfile.jsx';
 // import About from '@/pages/client/About.jsx';
