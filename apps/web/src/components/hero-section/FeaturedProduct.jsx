@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import ProductCard from '@/components/shop/ProductCard.jsx';
 import SkeletonProductCard from '@/components/shop/SkeletonProductCard.jsx';
 import NoProductFound from '@/components/shop/NoProductFound.jsx';
-import { publicRequest } from '@/network/RequestMethod.js';
+import { publicRequest } from '@/network/request-method.js';
 
 const FeaturedProduct = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);

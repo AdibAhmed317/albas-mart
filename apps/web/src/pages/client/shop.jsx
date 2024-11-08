@@ -8,7 +8,7 @@ import ProductCard from '@/components/shop/ProductCard.jsx';
 import NoProductFound from '@/components/shop/NoProductFound.jsx';
 import Footer from '@/components/footer/Footer.jsx';
 import SkeletonProductCard from '@/components/shop/SkeletonProductCard.jsx';
-import { publicRequest } from '@/network/RequestMethod.js';
+import { publicRequest } from '@/network/request-method.js';
 import { FiSearch } from 'react-icons/fi';
 
 const Shop = () => {

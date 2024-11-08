@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaHeart } from 'react-icons/fa';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
-import { userRequest } from '@/network/RequestMethod';
+import { userRequest } from '@/network/request-method';
 import { addProductAsync } from '@/redux/thunks/cartThunk';
 import { Button } from '@/components/ui/button';
 import {

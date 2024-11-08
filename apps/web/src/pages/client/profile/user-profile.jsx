@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { publicRequest, userRequest } from '@/network/RequestMethod.js';
+import { publicRequest, userRequest } from '@/network/request-method.js';
 import Navbar from '@/components/navbar/Navbar.jsx';
 import Footer from '@/components/footer/Footer.jsx';
 import {

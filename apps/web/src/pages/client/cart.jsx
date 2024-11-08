@@ -10,7 +10,7 @@ import Footer from '@/components/footer/Footer';
 import CartList from '@/components/cart/CartList';
 import useAuth from '@/hooks/useAuth';
 import { clearCart } from '@/redux/cartRedux';
-import { userRequest } from '@/network/RequestMethod';
+import { userRequest } from '@/network/request-method';
 import { clearCartAsync } from '@/redux/thunks/cartThunk';
 import logo from '@/assets/images/basic/logoT.png';
 

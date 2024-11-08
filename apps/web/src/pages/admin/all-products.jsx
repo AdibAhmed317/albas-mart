@@ -8,7 +8,7 @@ import ProductCard from '../../components/shop/ProductCard';
 import NoProductFound from '../../components/shop/NoProductFound';
 import AdminSidebar from '../../components/admin/sidebar/AdminSidebar';
 import AdminProductCard from '../../components/admin/AdminProductCard';
-import { publicRequest } from '../../network/RequestMethod';
+import { publicRequest } from '../../network/request-method';
 
 const AllProducts = () => {
   //States for sorting
