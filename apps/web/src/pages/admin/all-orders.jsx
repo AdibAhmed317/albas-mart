@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { Link, useLocation } from 'react-router-dom';
 
-import AdminSidebar from '../../components/admin/sidebar/AdminSidebar';
+import AdminSidebar from '../../components/admin/sidebar/admin-sidebar';
 import { userRequest } from '../../network/request-method';
 
 const AllOrders = () => {

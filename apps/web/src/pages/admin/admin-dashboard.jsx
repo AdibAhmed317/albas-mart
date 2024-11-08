@@ -128,7 +128,7 @@
 
 // export default AdminDashboard;
 
-import AdminSidebar from '@/components/admin/sidebar/AdminSidebar.jsx';
+import AdminSidebar from '@/components/admin/sidebar/admin-sidebar.jsx';
 import React from 'react';
 
 const AdminDashboard = () => {

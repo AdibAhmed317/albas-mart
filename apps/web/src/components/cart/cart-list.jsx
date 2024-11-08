@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { removeProduct, updateProductQuantity } from '../../redux/cartRedux';
 import { useDispatch, useSelector } from 'react-redux';
-import { publicRequest } from '../../network/request-method';
+import { removeProduct, updateProductQuantity } from '@/redux/cartRedux';
+import { publicRequest } from '@/network/request-method';
 
 const CartList = () => {
   const products = useSelector((state) => state.cart.products);

@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import StripeCheckout from 'react-stripe-checkout';
 
-import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/Footer';
-import CartList from '@/components/cart/CartList';
+import Navbar from '@/components/navbar/temp-navbar';
+import Footer from '@/components/footer/temp-footer';
+import CartList from '@/components/cart/cart-list';
 import useAuth from '@/hooks/useAuth';
 import { clearCart } from '@/redux/cartRedux';
 import { userRequest } from '@/network/request-method';

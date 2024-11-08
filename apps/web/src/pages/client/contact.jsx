@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '@/components/navbar/Navbar.jsx';
-import Footer from '@/components/footer/Footer.jsx';
+import Navbar from '@/components/navbar/temp-navbar.jsx';
+import Footer from '@/components/footer/temp-footer.jsx';
 import { motion } from 'framer-motion';
 
 const Contact = () => {

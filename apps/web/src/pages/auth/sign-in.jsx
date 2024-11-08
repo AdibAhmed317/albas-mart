@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Swal from 'sweetalert2';
 
-import Navbar from '@/components/navbar/Navbar.jsx';
-import Footer from '@/components/footer/Footer.jsx';
+import Navbar from '@/components/navbar/temp-navbar.jsx';
+import Footer from '@/components/footer/temp-footer.jsx';
 import UserContext from '@/context/UserContext.jsx';
 import { publicRequest } from '@/network/request-method.js';
 

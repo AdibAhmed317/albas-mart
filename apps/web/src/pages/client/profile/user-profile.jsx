@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { publicRequest, userRequest } from '@/network/request-method.js';
-import Navbar from '@/components/navbar/Navbar.jsx';
-import Footer from '@/components/footer/Footer.jsx';
+import Navbar from '@/components/navbar/temp-navbar.jsx';
+import Footer from '@/components/footer/temp-footer.jsx';
 import {
   Avatar,
   AvatarImage,
@@ -33,9 +33,9 @@ import {
   TableRow,
   TableCell,
 } from '@/components/ui/table.jsx';
-import WishListCard from '@/components/profile/WishlistCard.jsx';
-import NoProductFound from '@/components/shop/NoProductFound.jsx';
-import SkeletonProductCard from '@/components/shop/SkeletonProductCard.jsx';
+import WishListCard from '@/components/profile/wishlist-card.jsx';
+import NoProductFound from '@/components/shop/no-product-found.jsx';
+import SkeletonProductCard from '@/components/shop/skeleton-product-card.jsx';
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState('orders');

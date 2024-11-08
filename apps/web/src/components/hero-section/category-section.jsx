@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import CategoryCard from './CategoryCard.jsx';
+import CategoryCard from './category-card.jsx';
 import { categories } from '../../assets/data/categories.js';
 
 const CategorySection = () => {

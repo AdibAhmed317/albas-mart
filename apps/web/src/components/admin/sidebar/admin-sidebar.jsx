@@ -5,7 +5,7 @@ import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { MdAddShoppingCart, MdPointOfSale } from 'react-icons/md';
 import { PiSignOutBold } from 'react-icons/pi';
 import { CgProfile } from 'react-icons/cg';
-import { IoClose, IoMenu } from 'react-icons/io5'; // Import the close icon
+import { IoClose, IoMenu } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 import UserContext from '@/context/UserContext';
 import { Link, useNavigate } from 'react-router-dom';

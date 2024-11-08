@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import AdminSidebar from '@/components/admin/sidebar/AdminSidebar';
+import AdminSidebar from '@/components/admin/sidebar/admin-sidebar';
 import { useNavigate } from 'react-router-dom';
 import { publicRequest, userRequest } from '../../network/request-method';
 import {

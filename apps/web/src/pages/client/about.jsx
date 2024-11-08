@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import Navbar from '@/components/navbar/Navbar';
-import Footer from '@/components/footer/Footer';
+import Navbar from '@/components/navbar/temp-navbar';
+import Footer from '@/components/footer/temp-footer';
 
 const About = () => {
   return (
