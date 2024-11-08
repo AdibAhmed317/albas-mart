@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import Navbar from '@/components/navbar/temp-navbar.jsx';
-import Sidebar from '@/components/shop/Sidebar.jsx';
+import Sidebar from '@/components/shop/sidebar';
 import ProductCard from '@/components/shop/product-card.jsx';
 import NoProductFound from '@/components/shop/no-product-found.jsx';
 import Footer from '@/components/footer/temp-footer.jsx';
