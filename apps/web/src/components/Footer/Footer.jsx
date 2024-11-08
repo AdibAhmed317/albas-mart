@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from '@/assets/images/basic/logoT.png';
 
+//rename folder
 const Footer = () => {
   return (
     <footer className='p-4 sm:p-6 bg-primaryBlue'>
