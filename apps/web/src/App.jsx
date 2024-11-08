@@ -8,13 +8,13 @@ import AdminDashboard from '@/pages/admin/AdminDashboard.jsx';
 import AllOrders from '@/pages/admin/AllOrders.jsx';
 import AdminProfile from '@/pages/admin/AdminProfile.jsx';
 
-import HomePage from '@/pages/Client/HomePage.jsx';
-import SingleProduct from '@/pages/Client/SingleProduct.jsx';
+import HomePage from '@/pages/client/HomePage.jsx';
+import SingleProduct from '@/pages/client/SingleProduct.jsx';
 import UserProfile from '@/pages/client/profile/UserProfile.jsx';
-import About from '@/pages/Client/About.jsx';
-import Shop from '@/pages/Client/Shop.jsx';
-import Cart from '@/pages/Client/Cart.jsx';
-import Contact from '@/pages/Client/Contact.jsx';
+import About from '@/pages/client/About.jsx';
+import Shop from '@/pages/client/Shop.jsx';
+import Cart from '@/pages/client/Cart.jsx';
+import Contact from '@/pages/client/Contact.jsx';
 import AdminProduct from '@/pages/admin/AdminProduct.jsx';
 
 // import SignIn from '../src/pages/auth/SignIn';
