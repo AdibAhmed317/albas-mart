@@ -11,10 +11,10 @@ import AdminProfile from '@/pages/admin/admin-profile';
 import HomePage from '@/pages/client/home-page';
 import SingleProduct from '@/pages/client/single-product';
 import UserProfile from '@/pages/client/profile/user-profile';
-import About from '@/pages/client/about';
-import Shop from '@/pages/client/shop';
-import Cart from '@/pages/client/cart';
-import Contact from '@/pages/client/contact';
+import About from '@/pages/client/temp-about';
+import Shop from '@/pages/client/temp-shop';
+import Cart from '@/pages/client/temp-cart';
+import Contact from '@/pages/client/temp-contact';
 import AdminProduct from '@/pages/admin/admin-dashboard';
 
 function App() {
