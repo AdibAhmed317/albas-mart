@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import AdminSidebar from '@/components/admin/sidebar/admin-sidebar';
 import { useNavigate } from 'react-router-dom';
-import { publicRequest, userRequest } from '../../network/request-method';
+import { publicRequest, userRequest } from '@/network/request-method';
 import {
   getStorage,
   ref,
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
-import app from '../../firebase';
+import app from '@/firebase';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 const AdminProduct = () => {

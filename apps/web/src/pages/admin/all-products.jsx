@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 
-import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import Navbar from '../../components/navbar/temp-navbar';
-import NoProductFound from '../../components/shop/no-product-found';
-import AdminSidebar from '../../components/admin/sidebar/admin-sidebar';
-import AdminProductCard from '../../components/admin/admin-product-card';
-import { publicRequest } from '../../network/request-method';
+import Navbar from '@/components/navbar/navbar';
+import NoProductFound from '@/components/shop/no-product-found';
+import AdminSidebar from '@/components/admin/sidebar/admin-sidebar';
+import AdminProductCard from '@/components/admin/admin-product-card';
+import { publicRequest } from '@/network/request-method';
 
 const AllProducts = () => {
   //States for sorting

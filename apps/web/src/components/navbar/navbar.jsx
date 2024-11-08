@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { LuShoppingCart } from 'react-icons/lu';
+import { useSelector } from 'react-redux';
 
 import logoT from '@/assets/images/basic/logoT.png';
 
 import useAuth from '@/hooks/useAuth';
-import { useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import UserContext from '@/context/UserContext.jsx';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import UserContext from '@/context/UserContext';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

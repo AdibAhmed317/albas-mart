@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux';
 import { FiMinusCircle, FiPlusCircle, FiShoppingCart } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 
-import Navbar from '@/components/navbar/temp-navbar.jsx';
-import Footer from '@/components/footer/temp-footer.jsx';
-import { publicRequest } from '@/network/request-method.js';
-import { addProductAsync } from '@/redux/thunks/cartThunk.js';
+import Navbar from '@/components/navbar/navbar';
+import Footer from '@/components/footer/footer';
+import { publicRequest } from '@/network/request-method';
+import { addProductAsync } from '@/redux/thunks/cartThunk';
 
 const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);

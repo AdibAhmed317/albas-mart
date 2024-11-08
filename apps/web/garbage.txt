@@ -1684,9 +1684,255 @@ import React, { useEffect, useState } from 'react';
 
 // export default Sidebar;
 
+// import React, { useEffect, useState } from 'react';
+// import Navbar from '../../components/navbar/navbar';
+// import AdminSidebar from '../../components/admin/AdminSidebar';
+// import { Link } from 'react-router-dom';
+// import { publicRequest, userRequest } from '../../network/request-method';
 
+// const AdminDashboard = () => {
+//   const [data, setData] = useState([]);
+//   const [searchId, setSearchId] = useState('');
+//   const [searchResult, setSearchResult] = useState(null);
 
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
 
+//   const fetchData = async () => {
+//     try {
+//       const res = await userRequest.get('user/');
+//       setData(res.data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   const handleSearch = async () => {
+//     try {
+//       const res = await publicRequest.get(`user/find/${searchId}`);
+//       setSearchResult(res.data);
+//     } catch (error) {
+//       console.log(error);
+//       setSearchResult(null);
+//     }
+//   };
+
+//   function formatDateString(timestamp) {
+//     const date = new Date(timestamp);
+
+//     const year = date.getFullYear();
+//     const month = String(date.getMonth() + 1).padStart(2, '0');
+//     const day = String(date.getDate()).padStart(2, '0');
+
+//     const hours = date.getHours();
+//     const minutes = String(date.getMinutes()).padStart(2, '0');
+//     const ampm = hours >= 12 ? 'PM' : 'AM';
+//     const formattedHours = hours % 12 || 12;
+
+//     return `${day}-${month}-${year} (${formattedHours}:${minutes} ${ampm})`;
+//   }
+
+//   return (
+//     <>
+//       <Navbar />
+//       <AdminSidebar />
+
+//       <div className='bg-green-50 overflow-x-auto text-center px-10 py-2 md:min-h-[80vh]'>
+//         <h1 className='text-2xl font-normal text-green-900 mb-4'>
+//           Search user
+//         </h1>
+//         <div className='mb-4'>
+//           <input
+//             type='text'
+//             placeholder='Search by ID'
+//             value={searchId}
+//             onChange={(e) => setSearchId(e.target.value)}
+//             className='border border-gray-300 rounded px-4 py-2'
+//           />
+//           <button
+//             onClick={handleSearch}
+//             className='bg-green-300 text-green-800 font-medium px-4 py-2 rounded ml-2'
+//           >
+//             Search
+//           </button>
+//         </div>
+//         {searchResult ? (
+//           <div className='bg-white p-4 rounded shadow-md mb-10 text-green-900'>
+//             <h2 className='text-xl font-bold mb-2'>{searchResult.Name}</h2>
+//             <p>
+//               <b>Email:</b> {searchResult.Email}
+//             </p>
+//             <p>
+//               <b>Phone:</b> {searchResult.Phone}
+//             </p>
+//           </div>
+//         ) : (
+//           <p></p>
+//         )}
+//         <h1 className='text-2xl text-green-900 mb-4'>All Users</h1>
+//         <table className='overflow-hidden w-full rounded-t-md'>
+//           <thead className='bg-green-200 text-green-900'>
+//             <tr>
+//               <th className='py-3 px-4 font-semibold text-sm'>User ID</th>
+//               <th className='py-3 px-4 font-semibold text-sm'>Name</th>
+//               <th className='py-3 px-4 font-semibold text-sm'>Joining Date</th>
+//               <th className='py-3 px-4 font-semibold text-sm'>Email</th>
+//               <th className='py-3 px-4 font-semibold text-sm'>Phone</th>
+//               <th className='py-3 px-4 font-semibold text-sm'>Details</th>
+//             </tr>
+//           </thead>
+//           <tbody className='text-gray-600'>
+//             {data.map((user) => (
+//               <tr
+//                 key={user._id}
+//                 className='hover:bg-green-100 transition duration-300 ease-in-out'
+//               >
+//                 <td className='py-3 px-4 text-center'>{user._id}</td>
+//                 <td className='py-3 px-4 text-center'>{user.Name}</td>
+//                 <td className='py-3 px-4 text-center'>
+//                   {formatDateString(user.createdAt)}
+//                 </td>
+//                 <td className='py-3 px-4 text-center'>{user.Email}</td>
+//                 <td className='py-3 px-4 text-center'>{user.Phone}</td>
+//                 <td className='py-3 px-4 text-center'>
+//                   <Link
+//                     to={`/admin/user-details/${user._id}`}
+//                     className='text-blue-500 hover:underline'
+//                   >
+//                     Details
+//                   </Link>
+//                 </td>
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default AdminDashboard;
+
+// import React, { useEffect, useState } from 'react';
+// import Navbar from '../../components/navbar/navbar';
+// import Footer from '../../components/footer/footer';
+// import AdminSidebar from '../../components/admin/AdminSidebar';
+
+// import { publicRequest } from '../../network/request-method';
+// import UpdateProfileModal from '../../components/Modals/UpdateProfileModal';
+// import DeleteProfileModal from '../../components/Modals/DeleteProfileModal';
+
+// const AdminProfile = () => {
+//   const [adminData, setAdminData] = useState('');
+
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   const openDeleteModal = () => {
+//     setIsDeleteModalOpen(true);
+//   };
+
+//   const closeDeleteModal = () => {
+//     setIsDeleteModalOpen(false);
+//   };
+
+//   useEffect(() => {
+//     fetchAdminData();
+//   }, []);
+
+//   const fetchAdminData = async () => {
+//     const userId = localStorage.getItem('id');
+//     try {
+//       const res = await publicRequest.get(`user/find/${userId}`);
+//       setAdminData(res.data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Navbar />
+//       <AdminSidebar />
+//       <div className='bg-green-50 flex justify-center items-center min-h-[70vh]'>
+//         <div className='flex justify-center'>
+//           <div className='bg-green-200 shadow-md rounded p-6 max-w-2xl w-full text-green-900'>
+//             <h1 className='text-4xl font-thin text-center'>
+//               Admin Information
+//             </h1>
+//             <div className='grid grid-cols-2 gap-y-4 text-xl mt-6'>
+//               <div className='text-left'>
+//                 <p className='my-3 text-base'>
+//                   <strong>ID:</strong>
+//                 </p>
+//                 <p className='my-3 text-base'>
+//                   <strong>Name:</strong>
+//                 </p>
+//                 <p className='my-3 text-base'>
+//                   <strong>Email:</strong>
+//                 </p>
+//                 <p className='my-3 text-base'>
+//                   <strong>Address:</strong>
+//                 </p>
+//                 <p className='my-3 text-base'>
+//                   <strong>Phone:</strong>
+//                 </p>
+//               </div>
+//               <div className='text-left overflow-auto'>
+//                 <p className='my-3 text-base'>{adminData._id}</p>
+//                 <p className='my-3 text-base'>{adminData.Name}</p>
+//                 <p className='my-3 text-base'>{adminData.Email}</p>
+//                 <p className='my-3 text-base'>{adminData.Address}</p>
+//                 <p className='my-3 text-base'>{adminData.Phone}</p>
+//               </div>
+//             </div>
+//             <div className='flex gap-1 mt-10'>
+//               <button
+//                 onClick={openModal}
+//                 className='bg-blue-600 hover:bg-blue-500 transition-all text-white p-2 rounded-lg text-xs'
+//               >
+//                 Update Profile
+//               </button>
+//               {isModalOpen && (
+//                 <UpdateProfileModal
+//                   customer={adminData}
+//                   isOpen={isModalOpen}
+//                   onClose={closeModal}
+//                 />
+//               )}
+
+//               <button
+//                 onClick={openDeleteModal}
+//                 className='bg-red-600 hover:bg-red-500 transition-all text-white p-2 rounded-lg text-xs'
+//               >
+//                 Delete Account
+//               </button>
+//               {isDeleteModalOpen && (
+//                 <DeleteProfileModal
+//                   isOpen={isDeleteModalOpen}
+//                   onClose={closeDeleteModal}
+//                   customerId={adminData._id}
+//                 />
+//               )}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <Footer />
+//     </>
+//   );
+// };
+
+// export default AdminProfile;
 
 
 

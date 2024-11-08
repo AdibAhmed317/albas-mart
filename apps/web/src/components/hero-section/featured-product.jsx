@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import ProductCard from '@/components/shop/product-card.jsx';
-import SkeletonProductCard from '@/components/shop/skeleton-product-card.jsx';
-import NoProductFound from '@/components/shop/no-product-found.jsx';
-import { publicRequest } from '@/network/request-method.js';
+import ProductCard from '@/components/shop/product-card';
+import SkeletonProductCard from '@/components/shop/skeleton-product-card';
+import NoProductFound from '@/components/shop/no-product-found';
+import { publicRequest } from '@/network/request-method';
 
 const FeaturedProduct = () => {
   const [fetchedProduct, setFetchedProduct] = useState([]);

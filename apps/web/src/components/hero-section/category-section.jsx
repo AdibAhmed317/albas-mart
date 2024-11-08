@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import CategoryCard from './category-card.jsx';
-import { categories } from '../../assets/data/categories.js';
+import CategoryCard from '@/components/hero-section/category-card';
+import { categories } from '@/assets/data/categories';
 
 const CategorySection = () => {
   return (
