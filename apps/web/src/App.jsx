@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-// import SignIn from '@/pages/auth/SignIn.jsx';
+import SignIn from '@/pages/auth/sign-in.jsx';
 // import SignUp from '@/pages/auth/SignUp.jsx';
 
 // import AdminDashboard from '@/pages/admin/AdminDashboard.jsx';
 // import AllOrders from '@/pages/admin/AllOrders.jsx';
 // import AdminProfile from '@/pages/admin/AdminProfile.jsx';
 
-import HomePage from '@/pages/client/home-page.jsx';
+import HomePage from '@/pages/client/home-page';
 // import SingleProduct from '@/pages/client/SingleProduct.jsx';
 // import UserProfile from '@/pages/client/profile/UserProfile.jsx';
 // import About from '@/pages/client/About.jsx';
@@ -26,10 +26,10 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='/cart' element={<Cart />} />
-        <Route path='/product/:id' element={<SingleProduct />} />
+        <Route path='/product/:id' element={<SingleProduct />} /> */}
 
         <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/sign-up' element={<SignUp />} />
+        {/* <Route path='/sign-up' element={<SignUp />} />
         <Route path='/user-profile/:id' element={<UserProfile />} />
 
         <Route path='/admin-dashboard/:id' element={<AdminDashboard />} />
