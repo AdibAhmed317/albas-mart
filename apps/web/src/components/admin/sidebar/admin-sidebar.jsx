@@ -86,7 +86,7 @@ const AdminSidebar = () => {
           <ul className='space-y-2 font-medium'>
             <li>
               <Link
-                to={`/admin-dashboard/${userId}`}
+                to={`/admin/dashboard`}
                 className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <MdOutlineSpaceDashboard />
@@ -95,25 +95,7 @@ const AdminSidebar = () => {
             </li>
             <li>
               <Link
-                to={`/admin/create-product/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <MdOutlineProductionQuantityLimits />
-                <span className='flex-1 ms-3 whitespace-nowrap'>Product</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/admin/all-orders/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <MdAddShoppingCart />
-                <span className='flex-1 ms-3 whitespace-nowrap'>Orders</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/admin/all-orders/${userId}`}
+                to={`/admin/pos`}
                 className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <MdPointOfSale />
@@ -122,7 +104,25 @@ const AdminSidebar = () => {
             </li>
             <li>
               <Link
-                to={`/admin-profile/${userId}`}
+                to={`/admin/create-product`}
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+              >
+                <MdOutlineProductionQuantityLimits />
+                <span className='flex-1 ms-3 whitespace-nowrap'>Product</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={`/admin/all-orders`}
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+              >
+                <MdAddShoppingCart />
+                <span className='flex-1 ms-3 whitespace-nowrap'>Orders</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to={`/admin/profile`}
                 className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <CgProfile />

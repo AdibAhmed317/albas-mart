@@ -5,7 +5,7 @@ import SignIn from '@/pages/auth/sign-in';
 import SignUp from '@/pages/auth/sign-up';
 
 import AdminDashboard from '@/pages/admin/admin-dashboard';
-import AllOrders from '@/pages/admin/all-orders';
+import AllOrders from '@/pages/admin/admin-all-orders';
 import AdminProfile from '@/pages/admin/admin-profile';
 
 import HomePage from '@/pages/client/home-page';
@@ -16,6 +16,7 @@ import Shop from '@/pages/client/shop';
 import Cart from '@/pages/client/cart';
 import Contact from '@/pages/client/contact';
 import AdminProduct from '@/pages/admin/admin-product';
+import AdminPos from './pages/admin/admin-pos';
 
 function App() {
   return (
@@ -32,10 +33,11 @@ function App() {
         <Route path='/sign-up' element={<SignUp />} />
         <Route path='/user-profile/:id' element={<UserProfile />} />
 
-        <Route path='/admin-dashboard/:id' element={<AdminDashboard />} />
-        <Route path='/admin-profile/:id' element={<AdminProfile />} />
-        <Route path='/admin/create-product/:id' element={<AdminProduct />} />
-        <Route path='/admin/all-orders/:id' element={<AllOrders />} />
+        <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        <Route path='/admin/pos' element={<AdminPos />} />
+        <Route path='/admin/create-product' element={<AdminProduct />} />
+        <Route path='/admin/profile' element={<AdminProfile />} />
+        <Route path='/admin/all-orders' element={<AllOrders />} />
       </Routes>
     </>
   );

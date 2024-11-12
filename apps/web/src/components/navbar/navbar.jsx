@@ -60,6 +60,17 @@ const Navbar = () => {
     });
   };
 
+  const getInitials = (name) => {
+    const initials = name
+      ? name
+          .split(' ')
+          .map((n) => n[0])
+          .join('')
+          .substring(0, 2)
+      : '';
+    return initials.toUpperCase();
+  };
+
   return (
     <nav className='bg-primaryBlue border-gray-200 fixed z-10 w-screen shadow-xl'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
@@ -85,7 +96,9 @@ const Navbar = () => {
               >
                 <Avatar className='w-10 h-10 md:w-12 md:h-12'>
                   <AvatarImage src='/placeholder-user.jpg' alt='User Avatar' />
-                  <AvatarFallback className='bg-cyan-500'>JD</AvatarFallback>
+                  <AvatarFallback className='bg-cyan-500'>
+                    {getInitials(Name)}
+                  </AvatarFallback>
                 </Avatar>
                 <span className='sr-only'>Open user menu</span>
               </button>
@@ -107,7 +120,7 @@ const Navbar = () => {
                     {
                       name: 'Dashboard',
                       path: isAdmin
-                        ? `/admin-dashboard/${userId}`
+                        ? `/admin/dashboard`
                         : `/user-profile/${userId}`,
                     },
                   ].map((item) => (
