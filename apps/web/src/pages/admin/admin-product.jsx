@@ -127,11 +127,11 @@ const AdminProduct = () => {
 
   return (
     <>
-      <div className='flex min-h-screen flex-col md:flex-row'>
+      <div className='flex min-h-screen flex-col md:flex-row bg-slate-200'>
         <AdminSidebar />
         <div className='flex-1 p-6'>
-          <div className='flex flex-col p-4 md:p-10'>
-            <div className='w-full max-w-3xl mx-auto'>
+          <div className='flex flex-col p-4 md:p-10 '>
+            <div className='w-full max-w-3xl mx-auto bg-white p-5 rounded-lg'>
               <Tabs defaultValue='createProduct'>
                 <TabsList>
                   <TabsTrigger value='createProduct'>
