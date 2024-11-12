@@ -87,7 +87,7 @@ const AdminSidebar = () => {
             <li>
               <Link
                 to={`/admin-dashboard/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <MdOutlineSpaceDashboard />
                 <span className='ms-3'>Dashboard</span>
@@ -96,7 +96,7 @@ const AdminSidebar = () => {
             <li>
               <Link
                 to={`/admin/create-product/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <MdOutlineProductionQuantityLimits />
                 <span className='flex-1 ms-3 whitespace-nowrap'>Product</span>
@@ -105,7 +105,7 @@ const AdminSidebar = () => {
             <li>
               <Link
                 to={`/admin/all-orders/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <MdAddShoppingCart />
                 <span className='flex-1 ms-3 whitespace-nowrap'>Orders</span>
@@ -114,7 +114,7 @@ const AdminSidebar = () => {
             <li>
               <Link
                 to={`/admin/all-orders/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <MdPointOfSale />
                 <span className='flex-1 ms-3 whitespace-nowrap'>POS</span>
@@ -123,7 +123,7 @@ const AdminSidebar = () => {
             <li>
               <Link
                 to={`/admin-profile/${userId}`}
-                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
               >
                 <CgProfile />
                 <span className='flex-1 ms-3 whitespace-nowrap'>Profile</span>
@@ -132,7 +132,7 @@ const AdminSidebar = () => {
             <li>
               <button
                 onClick={handleSignOut}
-                className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-primaryRed dark:hover:bg-gray-700 w-full'
+                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 w-full'
               >
                 <PiSignOutBold />
                 <span className='flex-1 ms-3 whitespace-nowrap text-start'>
