@@ -58,7 +58,7 @@ const AdminSidebar = () => {
     },
     {
       icon: <MdAddShoppingCart size={20} />,
-      text: 'Orders',
+      text: 'Online Orders',
       link: '/admin/all-orders',
     },
     { icon: <CgProfile size={20} />, text: 'Profile', link: '/admin/profile' },

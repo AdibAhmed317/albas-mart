@@ -102,21 +102,16 @@ const AdminDashboard = () => {
           </div>
 
           {/* Charts Section */}
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+          <div className='flex flex-col md:flex-row justify-center items-center space-x-2'>
             {/* Sales Chart - Takes up 2 columns on large screens */}
-            <div className='lg:col-span-2 bg-white rounded-lg p-4 shadow-sm'>
-              <h2 className='text-lg font-semibold mb-4'>Sales Overview</h2>
-              <div className='h-[300px] md:h-[400px]'>
-                <SalesChart data={lineData} />
-              </div>
+            <div className='flex-1'>
+              <SalesChart data={lineData} />
             </div>
 
             {/* Trending Products - Takes up 1 column */}
-            <div className='bg-white rounded-lg p-4 shadow-sm'>
-              <h2 className='text-lg font-semibold mb-4'>Trending Products</h2>
-              <div className='h-[300px] md:h-[400px]'>
-                <TrendingProductsChart data={barData} />
-              </div>
+
+            <div className='flex-1'>
+              <TrendingProductsChart data={barData} />
             </div>
           </div>
 

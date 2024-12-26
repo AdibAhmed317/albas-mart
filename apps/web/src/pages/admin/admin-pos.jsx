@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminSidebar from '@/components/admin/sidebar/admin-sidebar';
 import { Search, ShoppingCart, Trash2, Plus, Minus } from 'lucide-react';
+import { publicRequest } from '@/network/request-method';
 
 const AdminPos = () => {
   const [cart, setCart] = useState([]);
@@ -11,18 +12,32 @@ const AdminPos = () => {
   const [total, setTotal] = useState(0);
   const [paymentAmount, setPaymentAmount] = useState('');
   const [discount, setDiscount] = useState('');
-
-  // Sample products
-  const products = [
-    { id: 1, name: 'Product A', price: 100, image: '/api/placeholder/80/80' },
-    { id: 2, name: 'Product B', price: 150, image: '/api/placeholder/80/80' },
-    { id: 3, name: 'Product C', price: 200, image: '/api/placeholder/80/80' },
-    { id: 4, name: 'Product D', price: 50, image: '/api/placeholder/80/80' },
-  ];
+  const [fetchedProduct, setFetchedProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const calculateSubtotal = (cartItems) => {
     return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
+
+  const getAllProducts = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+      const response = await publicRequest.get('products/all?categories=all');
+      console.log('Fetched products:', response.data); // Add this to debug
+      setFetchedProduct(response.data);
+    } catch (error) {
+      console.error('Error fetching products:', error);
+      setError('Failed to fetch products');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
 
   useEffect(() => {
     const subtotal = calculateSubtotal(cart);
@@ -32,15 +47,18 @@ const AdminPos = () => {
     setTotal(finalTotal);
   }, [cart, discount]);
 
-  const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = fetchedProduct.filter(
+    (product) =>
+      product?.title?.toLowerCase().includes(searchQuery.toLowerCase()) || false
   );
 
   const addToCart = (product) => {
-    const existingItem = cart.find((item) => item.id === product.id);
+    const existingItem = cart.find((item) => item._id === product._id); // Change id to _id
     if (existingItem) {
       const newCart = cart.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        item._id === product._id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
       );
       setCart(newCart);
     } else {
@@ -52,7 +70,8 @@ const AdminPos = () => {
   const updateQuantity = (productId, change) => {
     const newCart = cart
       .map((item) => {
-        if (item.id === productId) {
+        if (item._id === productId) {
+          // Change id to _id
           const newQuantity = item.quantity + change;
           return newQuantity > 0 ? { ...item, quantity: newQuantity } : null;
         }
@@ -63,10 +82,11 @@ const AdminPos = () => {
   };
 
   const removeFromCart = (productId) => {
-    const newCart = cart.filter((item) => item.id !== productId);
+    const newCart = cart.filter((item) => item._id !== productId); // Change id to _id
     setCart(newCart);
   };
 
+  // Update handlePayment function
   const handlePayment = () => {
     const subtotal = calculateSubtotal(cart);
     const discountValue = parseFloat(discount) || 0;
@@ -79,7 +99,12 @@ const AdminPos = () => {
       setSalesHistory([
         ...salesHistory,
         {
-          cart: [...cart],
+          items: cart.map((item) => ({
+            title: item.title,
+            quantity: item.quantity,
+            price: item.price,
+            total: item.price * item.quantity,
+          })),
           subtotal,
           discount: validDiscount,
           total: finalTotal,
@@ -144,25 +169,40 @@ const AdminPos = () => {
 
             {/* Products Grid */}
             <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-y-auto flex-1'>
-              {filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className='bg-white max-h-[20rem] p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer'
-                  onClick={() => addToCart(product)}
-                >
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className='w-full aspect-square object-cover rounded-md mb-2'
-                  />
-                  <h3 className='font-medium text-gray-800 truncate'>
-                    {product.name}
-                  </h3>
-                  <p className='text-blue-600 font-semibold'>
-                    {product.price} BDT
-                  </p>
+              {isLoading ? (
+                <div className='col-span-full text-center py-12'>
+                  Loading products...
                 </div>
-              ))}
+              ) : error ? (
+                <div className='col-span-full text-center py-12 text-red-500'>
+                  {error}
+                </div>
+              ) : filteredProducts.length === 0 ? (
+                <div className='col-span-full text-center py-12'>
+                  No products found
+                </div>
+              ) : (
+                filteredProducts.map((product) => (
+                  <div
+                    key={product._id}
+                    className='bg-white max-h-[20rem] p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer'
+                    onClick={() => addToCart(product)}
+                  >
+                    <img
+                      src={product.img}
+                      alt={product.title}
+                      className='w-full aspect-square object-cover rounded-md mb-2'
+                    />
+                    <h3 className='font-medium text-gray-800 truncate'>
+                      {product.title}
+                    </h3>
+                    <p className='text-sm text-gray-600 mb-1'>{product.size}</p>
+                    <p className='text-blue-600 font-semibold'>
+                      ৳ {product.price}
+                    </p>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
@@ -186,23 +226,24 @@ const AdminPos = () => {
               <div className='flex-1 overflow-y-auto'>
                 {cart.map((item) => (
                   <div
-                    key={item.id}
+                    key={item._id}
                     className='flex items-center gap-2 p-2 hover:bg-gray-50 rounded-lg mb-2'
                   >
                     <img
-                      src={item.image}
-                      alt={item.name}
+                      src={item.img}
+                      alt={item.title}
                       className='w-12 h-12 rounded-md object-cover'
                     />
                     <div className='flex-1 min-w-0'>
-                      <h3 className='font-medium truncate'>{item.name}</h3>
-                      <p className='text-sm text-gray-600'>{item.price} BDT</p>
+                      <h3 className='font-medium truncate'>{item.title}</h3>
+                      <p className='text-sm text-gray-600'>{item.size}</p>
+                      <p className='text-sm font-medium'>৳ {item.price}</p>
                     </div>
                     <div className='flex items-center gap-2'>
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          updateQuantity(item.id, -1);
+                          updateQuantity(item._id, -1);
                         }}
                         className='p-1 hover:bg-gray-200 rounded'
                       >
@@ -212,7 +253,7 @@ const AdminPos = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          updateQuantity(item.id, 1);
+                          updateQuantity(item._id, 1);
                         }}
                         className='p-1 hover:bg-gray-200 rounded'
                       >
@@ -221,7 +262,7 @@ const AdminPos = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          removeFromCart(item.id);
+                          removeFromCart(item._id);
                         }}
                         className='p-1 text-red-500 hover:bg-red-50 rounded'
                       >
@@ -322,18 +363,55 @@ const AdminPos = () => {
                   ✕
                 </button>
               </div>
-              <div className='space-y-4'>
+              <div className='space-y-6'>
                 {salesHistory.map((sale, index) => (
                   <div key={index} className='border-b pb-4'>
-                    <div className='text-sm text-gray-500'>
+                    <div className='text-sm text-gray-500 mb-2'>
                       {sale.timestamp}
                     </div>
-                    <div className='font-medium'>Total: {sale.total} BDT</div>
-                    <div className='text-sm'>Discount: {sale.discount} BDT</div>
-                    <div className='text-sm'>
-                      Payment: {sale.paymentAmount} BDT
+                    {/* Items List */}
+                    <div className='bg-gray-50 rounded-lg p-3 mb-3'>
+                      <h3 className='font-medium mb-2'>Items:</h3>
+                      <div className='space-y-2'>
+                        {sale.items.map((item, itemIndex) => (
+                          <div
+                            key={itemIndex}
+                            className='flex justify-between text-sm'
+                          >
+                            <div className='flex items-center gap-2'>
+                              <span className='font-medium'>{item.title}</span>
+                              <span className='text-gray-500'>
+                                (x{item.quantity})
+                              </span>
+                            </div>
+                            <span>৳ {item.total}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className='text-sm'>Change: {sale.change} BDT</div>
+                    {/* Summary */}
+                    <div className='space-y-1 text-sm'>
+                      <div className='flex justify-between'>
+                        <span>Subtotal:</span>
+                        <span>৳ {sale.subtotal}</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span>Discount:</span>
+                        <span>৳ {sale.discount}</span>
+                      </div>
+                      <div className='flex justify-between font-medium'>
+                        <span>Total:</span>
+                        <span>৳ {sale.total}</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span>Payment:</span>
+                        <span>৳ {sale.paymentAmount}</span>
+                      </div>
+                      <div className='flex justify-between'>
+                        <span>Change:</span>
+                        <span>৳ {sale.change}</span>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

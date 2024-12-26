@@ -33,7 +33,7 @@ const SalesChart = () => {
   const chartData = selectedTab === 'daily' ? dailyData : monthlyData;
 
   return (
-    <div className='bg-white p-4 md:p-6 rounded-lg shadow-md mb-4 md:mb-6'>
+    <div className='bg-white p-4 md:p-6 rounded-lg shadow-md h-auto md:h-[30rem]'>
       <h2 className='text-lg md:text-xl font-semibold mb-3 md:mb-4'>
         Sales Overview
       </h2>
