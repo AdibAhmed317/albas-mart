@@ -66,29 +66,107 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className='flex min-h-screen'>
-      <div className='w-64 bg-primaryBlue text-white'>
-        <AdminSidebar />
-      </div>
-      <div className='flex-1 p-4 md:p-6 bg-slate-200'>
-        <h1 className='text-center text-xl md:text-2xl font-bold mb-6 md:mb-8'>
-          Admin Dashboard
-        </h1>
+    <div className='min-h-screen bg-gray-50'>
+      <AdminSidebar />
 
-        {/* Statistic Cards */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6'>
-          <StatisticCard title='Total Users' value='1,250' />
-          <StatisticCard title='Total Orders' value='650' />
-          <StatisticCard title='Total Sales' value='$12,400' />
-        </div>
+      {/* Main content with mobile header spacing */}
+      <div className='pt-16 sm:pt-0 sm:pl-64'>
+        <div className='p-4 md:p-6 space-y-6'>
+          {/* Header with welcome message */}
+          <div className='bg-white rounded-lg p-4 shadow-sm'>
+            <h1 className='text-2xl md:text-3xl font-bold text-gray-800'>
+              Welcome Back, Admin
+            </h1>
+            <p className='text-gray-600 mt-1'>
+              Here's what's happening with your store today.
+            </p>
+          </div>
 
-        {/* Sales Chart */}
-        <SalesChart data={lineData} />
+          {/* Statistic Cards */}
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6'>
+            <StatisticCard
+              title='Total Users'
+              value='1,250'
+              className='bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow'
+            />
+            <StatisticCard
+              title='Total Orders'
+              value='650'
+              className='bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow'
+            />
+            <StatisticCard
+              title='Total Sales'
+              value='$12,400'
+              className='bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow'
+            />
+          </div>
 
-        {/* Latest Users & Trending Products */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
-          <LatestUsers users={latestUsers} />
-          <TrendingProductsChart data={barData} />
+          {/* Charts Section */}
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6'>
+            {/* Sales Chart - Takes up 2 columns on large screens */}
+            <div className='lg:col-span-2 bg-white rounded-lg p-4 shadow-sm'>
+              <h2 className='text-lg font-semibold mb-4'>Sales Overview</h2>
+              <div className='h-[300px] md:h-[400px]'>
+                <SalesChart data={lineData} />
+              </div>
+            </div>
+
+            {/* Trending Products - Takes up 1 column */}
+            <div className='bg-white rounded-lg p-4 shadow-sm'>
+              <h2 className='text-lg font-semibold mb-4'>Trending Products</h2>
+              <div className='h-[300px] md:h-[400px]'>
+                <TrendingProductsChart data={barData} />
+              </div>
+            </div>
+          </div>
+
+          {/* Latest Users Section */}
+          <div className='bg-white rounded-lg p-4 shadow-sm'>
+            <div className='flex justify-between items-center mb-4'>
+              <h2 className='text-lg font-semibold'>Latest Users</h2>
+              <button className='text-blue-600 hover:text-blue-700 text-sm font-medium'>
+                View All
+              </button>
+            </div>
+            <div className='overflow-x-auto'>
+              <table className='min-w-full divide-y divide-gray-200'>
+                <thead className='bg-gray-50'>
+                  <tr>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Name
+                    </th>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Email
+                    </th>
+                    <th className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'>
+                      Joined Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className='bg-white divide-y divide-gray-200'>
+                  {latestUsers.map((user, index) => (
+                    <tr key={index}>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='text-sm font-medium text-gray-900'>
+                          {user.name}
+                        </div>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='text-sm text-gray-500'>
+                          {user.email}
+                        </div>
+                      </td>
+                      <td className='px-6 py-4 whitespace-nowrap'>
+                        <div className='text-sm text-gray-500'>
+                          {new Date(user.joinedDate).toLocaleDateString()}
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>

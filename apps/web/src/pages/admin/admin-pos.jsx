@@ -1,86 +1,97 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminSidebar from '@/components/admin/sidebar/admin-sidebar';
+import { Search, ShoppingCart, Trash2, Plus, Minus } from 'lucide-react';
 
 const AdminPos = () => {
   const [cart, setCart] = useState([]);
   const [salesHistory, setSalesHistory] = useState([]);
-  const [total, setTotal] = useState(0);
-  const [paymentAmount, setPaymentAmount] = useState();
   const [searchQuery, setSearchQuery] = useState('');
-  const [discount, setDiscount] = useState(0); // Default discount set to 0
+  const [showHistory, setShowHistory] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+  const [total, setTotal] = useState(0);
+  const [paymentAmount, setPaymentAmount] = useState('');
+  const [discount, setDiscount] = useState('');
 
-  // Sample products (You can replace this with API calls to a database)
+  // Sample products
   const products = [
-    { id: 1, name: 'Product A', price: 100 },
-    { id: 2, name: 'Product B', price: 150 },
-    { id: 3, name: 'Product C', price: 200 },
-    { id: 4, name: 'Product D', price: 50 },
+    { id: 1, name: 'Product A', price: 100, image: '/api/placeholder/80/80' },
+    { id: 2, name: 'Product B', price: 150, image: '/api/placeholder/80/80' },
+    { id: 3, name: 'Product C', price: 200, image: '/api/placeholder/80/80' },
+    { id: 4, name: 'Product D', price: 50, image: '/api/placeholder/80/80' },
   ];
 
-  // Filter products based on search query
+  const calculateSubtotal = (cartItems) => {
+    return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  };
+
+  useEffect(() => {
+    const subtotal = calculateSubtotal(cart);
+    const discountValue = parseFloat(discount) || 0;
+    const validDiscount = Math.min(Math.max(discountValue, 0), subtotal);
+    const finalTotal = subtotal - validDiscount;
+    setTotal(finalTotal);
+  }, [cart, discount]);
+
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Add item to cart
   const addToCart = (product) => {
-    const newCart = [...cart, product];
-    setCart(newCart);
-    updateTotal(newCart);
+    const existingItem = cart.find((item) => item.id === product.id);
+    if (existingItem) {
+      const newCart = cart.map((item) =>
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setCart(newCart);
+    } else {
+      const newCart = [...cart, { ...product, quantity: 1 }];
+      setCart(newCart);
+    }
   };
 
-  // Remove item from cart
+  const updateQuantity = (productId, change) => {
+    const newCart = cart
+      .map((item) => {
+        if (item.id === productId) {
+          const newQuantity = item.quantity + change;
+          return newQuantity > 0 ? { ...item, quantity: newQuantity } : null;
+        }
+        return item;
+      })
+      .filter(Boolean);
+    setCart(newCart);
+  };
+
   const removeFromCart = (productId) => {
     const newCart = cart.filter((item) => item.id !== productId);
     setCart(newCart);
-    updateTotal(newCart);
   };
 
-  // Update total price with discount
-  const updateTotal = (cart) => {
-    // Calculate the total price of items in the cart
-    const calculatedTotal = cart.reduce((acc, item) => acc + item.price, 0);
-
-    // Apply the discount if it exists (discount > 0)
-    const finalTotal =
-      discount > 0 ? calculatedTotal - discount : calculatedTotal;
-
-    // Ensure the total is never negative
-    setTotal(finalTotal >= 0 ? finalTotal : 0);
-  };
-
-  // Handle payment (simulated)
   const handlePayment = () => {
-    // Calculate the total price of items in the cart
-    const calculatedTotal = cart.reduce((acc, item) => acc + item.price, 0);
+    const subtotal = calculateSubtotal(cart);
+    const discountValue = parseFloat(discount) || 0;
+    const validDiscount = Math.min(Math.max(discountValue, 0), subtotal);
+    const finalTotal = subtotal - validDiscount;
+    const paymentValue = parseFloat(paymentAmount) || 0;
+    const change = Math.max(paymentValue - finalTotal, 0);
 
-    // Apply the discount (if any)
-    const discountedTotal =
-      discount > 0 ? calculatedTotal - discount : calculatedTotal;
-
-    // Ensure that the final total is not negative
-    const finalTotal = discountedTotal >= 0 ? discountedTotal : 0;
-
-    // Calculate the change based on the payment amount
-    const change = paymentAmount >= finalTotal ? paymentAmount - finalTotal : 0;
-
-    if (paymentAmount >= finalTotal) {
-      // Record sales history with the discount included
+    if (paymentValue >= finalTotal) {
       setSalesHistory([
         ...salesHistory,
         {
-          cart,
-          total: finalTotal, // Use the final total after discount
-          discount: discount, // Store discount in the sales history
-          paymentAmount,
+          cart: [...cart],
+          subtotal,
+          discount: validDiscount,
+          total: finalTotal,
+          paymentAmount: paymentValue,
           change,
+          timestamp: new Date().toLocaleString(),
         },
       ]);
-      // Reset the cart, total, and other values
       setCart([]);
       setTotal(0);
-      setPaymentAmount(0);
-      setDiscount(0); // Reset discount after payment
+      setPaymentAmount('');
+      setDiscount('');
       alert('Payment Successful');
     } else {
       alert('Insufficient payment amount');
@@ -88,147 +99,247 @@ const AdminPos = () => {
   };
 
   return (
-    <div className='flex min-h-screen bg-gray-100'>
-      {/* Sidebar */}
-      <div className='w-64 bg-primaryBlue text-white'>
-        <AdminSidebar />
-      </div>
+    <div className='min-h-screen bg-gray-50'>
+      <AdminSidebar />
 
-      {/* Main Content */}
-      <div className='flex-1 p-8'>
-        <h1 className='text-3xl font-bold text-center mb-6 text-gray-800'>
-          Admin POS System
-        </h1>
-
-        {/* Search Bar */}
-        <div className='mb-6'>
-          <input
-            type='text'
-            placeholder='Search Products...'
-            className='w-full p-3 border-2 border-gray-300 rounded-lg'
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        {/* Product List */}
-        {searchQuery && (
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6'>
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className='bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out'
-                >
-                  <h3 className='text-lg font-semibold text-gray-800'>
-                    {product.name}
-                  </h3>
-                  <p className='text-gray-600 mt-2'>
-                    Price: {product.price} BDT
-                  </p>
-                  <button
-                    className='mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-200'
-                    onClick={() => addToCart(product)}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              ))
-            ) : (
-              <p className='col-span-3 text-center text-gray-500'>
-                No products found
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* Cart */}
-        <div className='bg-white p-6 rounded-lg shadow-lg mb-6'>
-          <h2 className='text-xl font-semibold text-gray-800 mb-4'>
-            Shopping Cart
-          </h2>
-          {cart.length > 0 ? (
-            <div>
-              <ul className='space-y-4'>
-                {cart.map((item, index) => (
-                  <li key={index} className='flex justify-between items-center'>
-                    <span>{item.name}</span>
-                    <span>{item.price} BDT</span>
-                    <button
-                      className='text-red-500 hover:text-red-700'
-                      onClick={() => removeFromCart(item.id)}
-                    >
-                      Remove
-                    </button>
-                  </li>
-                ))}
-              </ul>
-              <div className='mt-4 text-xl font-semibold'>
-                <strong>Total: {total} BDT</strong>
-              </div>
-            </div>
-          ) : (
-            <p>Your cart is empty.</p>
-          )}
-        </div>
-
-        {/* Discount Section */}
-        <div className='bg-white p-6 rounded-lg shadow-lg mb-6'>
-          <h2 className='text-xl font-semibold text-gray-800 mb-4'>Discount</h2>
-          <input
-            type='number'
-            placeholder='Enter discount (taka)'
-            className='w-full p-3 border-2 border-gray-300 rounded-lg mb-4'
-            value={discount === 0 ? '' : discount} // Ensure empty field when discount is 0
-            onChange={(e) => {
-              const value = parseFloat(e.target.value);
-              setDiscount(isNaN(value) ? 0 : value); // Handle NaN and allow empty field
-            }}
-          />
-        </div>
-
-        {/* Payment Section */}
-        <div className='bg-white p-6 rounded-lg shadow-lg mb-6'>
-          <h2 className='text-xl font-semibold text-gray-800 mb-4'>Payment</h2>
-          <input
-            type='number'
-            placeholder='Enter payment amount'
-            className='w-full p-3 border-2 border-gray-300 rounded-lg mb-4'
-            value={paymentAmount}
-            onChange={(e) => setPaymentAmount(parseFloat(e.target.value))}
-          />
+      <div className='pt-16 sm:pt-0 sm:pl-64'>
+        {/* Mobile view tabs */}
+        <div className='sm:hidden flex border-b'>
           <button
-            className='w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200'
-            onClick={handlePayment}
+            className={`flex-1 py-2 px-4 ${
+              showCart ? '' : 'bg-blue-50 border-b-2 border-blue-500'
+            }`}
+            onClick={() => setShowCart(false)}
           >
-            Process Payment
+            Products
+          </button>
+          <button
+            className={`flex-1 py-2 px-4 ${
+              showCart ? 'bg-blue-50 border-b-2 border-blue-500' : ''
+            }`}
+            onClick={() => setShowCart(true)}
+          >
+            Cart ({cart.length})
           </button>
         </div>
 
-        {/* Sales History */}
-        <div className='bg-white p-6 rounded-lg shadow-lg'>
-          <h2 className='text-xl font-semibold text-gray-800 mb-4'>
-            Sales History
-          </h2>
-          <ul className='space-y-4'>
-            {salesHistory.map((sale, index) => (
-              <li key={index} className='border-b pb-4'>
-                <div>
-                  <strong>Transaction {index + 1}</strong>
+        <div className='flex flex-col sm:flex-row h-[calc(100vh-4rem)] sm:h-screen p-4 gap-4'>
+          {/* Products Section */}
+          <div
+            className={`${
+              showCart ? 'hidden' : 'flex'
+            } sm:flex sm:w-2/3 flex-col gap-4`}
+          >
+            {/* Search Bar */}
+            <div className='relative'>
+              <Search className='absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400' />
+              <input
+                type='text'
+                placeholder='Search Products...'
+                className='w-full pl-10 pr-4 py-3 rounded-lg border-2 border-gray-200 focus:border-blue-500 focus:outline-none'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+
+            {/* Products Grid */}
+            <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 overflow-y-auto flex-1'>
+              {filteredProducts.map((product) => (
+                <div
+                  key={product.id}
+                  className='bg-white max-h-[20rem] p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer'
+                  onClick={() => addToCart(product)}
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className='w-full aspect-square object-cover rounded-md mb-2'
+                  />
+                  <h3 className='font-medium text-gray-800 truncate'>
+                    {product.name}
+                  </h3>
+                  <p className='text-blue-600 font-semibold'>
+                    {product.price} BDT
+                  </p>
                 </div>
-                <div>Total: {sale.total} BDT</div>
-                <div>Discount: {sale.discount} BDT</div> {/* Show discount */}
-                <div>Payment: {sale.paymentAmount} BDT</div>
-                <div>Change: {sale.change} BDT</div>
-                <ul>
-                  {sale.cart.map((item, idx) => (
-                    <li key={idx}>{item.name}</li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          </div>
+
+          {/* Cart Section */}
+          <div
+            className={`${
+              showCart ? 'flex' : 'hidden'
+            } sm:flex sm:w-1/3 flex-col gap-4`}
+          >
+            <div className='bg-white rounded-lg shadow-sm p-4 flex flex-col flex-1'>
+              <div className='flex items-center justify-between mb-4'>
+                <h2 className='text-xl font-semibold flex items-center gap-2'>
+                  <ShoppingCart size={24} /> Cart
+                </h2>
+                <span className='text-sm text-gray-500'>
+                  {cart.length} items
+                </span>
+              </div>
+
+              {/* Cart Items */}
+              <div className='flex-1 overflow-y-auto'>
+                {cart.map((item) => (
+                  <div
+                    key={item.id}
+                    className='flex items-center gap-2 p-2 hover:bg-gray-50 rounded-lg mb-2'
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className='w-12 h-12 rounded-md object-cover'
+                    />
+                    <div className='flex-1 min-w-0'>
+                      <h3 className='font-medium truncate'>{item.name}</h3>
+                      <p className='text-sm text-gray-600'>{item.price} BDT</p>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          updateQuantity(item.id, -1);
+                        }}
+                        className='p-1 hover:bg-gray-200 rounded'
+                      >
+                        <Minus size={16} />
+                      </button>
+                      <span className='w-8 text-center'>{item.quantity}</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          updateQuantity(item.id, 1);
+                        }}
+                        className='p-1 hover:bg-gray-200 rounded'
+                      >
+                        <Plus size={16} />
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeFromCart(item.id);
+                        }}
+                        className='p-1 text-red-500 hover:bg-red-50 rounded'
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Payment Section */}
+              <div className='border-t pt-4 mt-auto'>
+                <div className='space-y-3'>
+                  <div className='flex justify-between items-center'>
+                    <span>Subtotal:</span>
+                    <span>{calculateSubtotal(cart)} BDT</span>
+                  </div>
+                  <div className='flex justify-between items-center'>
+                    <span>Discount:</span>
+                    <div className='relative w-24'>
+                      <input
+                        type='text'
+                        className='w-full text-right border rounded px-2 py-1'
+                        value={discount}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (value === '' || /^\d*\.?\d*$/.test(value)) {
+                            setDiscount(value);
+                          }
+                        }}
+                        placeholder='0'
+                      />
+                      {parseFloat(discount) > calculateSubtotal(cart) && (
+                        <p className='absolute right-0 text-xs text-red-500 whitespace-nowrap'>
+                          Cannot exceed subtotal
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className='flex justify-between items-center text-lg font-bold'>
+                    <span>Total:</span>
+                    <span>{total} BDT</span>
+                  </div>
+                  <div className='space-y-2'>
+                    <input
+                      type='text'
+                      placeholder='Enter payment amount'
+                      className='w-full p-2 border rounded'
+                      value={paymentAmount}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        if (value === '' || /^\d*\.?\d*$/.test(value)) {
+                          setPaymentAmount(value);
+                        }
+                      }}
+                    />
+                    {parseFloat(paymentAmount) > 0 && (
+                      <div className='text-sm text-gray-600 text-right'>
+                        Change:{' '}
+                        {Math.max((parseFloat(paymentAmount) || 0) - total, 0)}{' '}
+                        BDT
+                      </div>
+                    )}
+                  </div>
+                  <button
+                    onClick={handlePayment}
+                    className='w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-blue-300'
+                    disabled={
+                      cart.length === 0 || parseFloat(paymentAmount) < total
+                    }
+                  >
+                    Complete Payment
+                  </button>
+
+                  {/* Sales History Toggle */}
+                  <button
+                    onClick={() => setShowHistory(!showHistory)}
+                    className='w-full text-blue-600 hover:text-blue-700 font-medium text-center py-2'
+                  >
+                    {showHistory ? 'Hide Sales History' : 'Show Sales History'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Sales History Modal */}
+        {showHistory && (
+          <div className='fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4'>
+            <div className='bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto'>
+              <div className='flex justify-between items-center mb-4'>
+                <h2 className='text-xl font-semibold'>Sales History</h2>
+                <button
+                  onClick={() => setShowHistory(false)}
+                  className='text-gray-500 hover:text-gray-700'
+                >
+                  ✕
+                </button>
+              </div>
+              <div className='space-y-4'>
+                {salesHistory.map((sale, index) => (
+                  <div key={index} className='border-b pb-4'>
+                    <div className='text-sm text-gray-500'>
+                      {sale.timestamp}
+                    </div>
+                    <div className='font-medium'>Total: {sale.total} BDT</div>
+                    <div className='text-sm'>Discount: {sale.discount} BDT</div>
+                    <div className='text-sm'>
+                      Payment: {sale.paymentAmount} BDT
+                    </div>
+                    <div className='text-sm'>Change: {sale.change} BDT</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -126,179 +126,236 @@ const AdminProduct = () => {
   };
 
   return (
-    <>
-      <div className='flex min-h-screen flex-col md:flex-row bg-slate-200'>
-        <AdminSidebar />
-        <div className='flex-1 p-6'>
-          <div className='flex flex-col p-4 md:p-10 '>
-            <div className='w-full max-w-3xl mx-auto bg-white p-5 rounded-lg'>
-              <Tabs defaultValue='createProduct'>
-                <TabsList>
-                  <TabsTrigger value='createProduct'>
+    <div className='min-h-screen bg-gray-50'>
+      <AdminSidebar />
+
+      {/* Main content with mobile header spacing */}
+      <div className='pt-16 sm:pt-0 sm:pl-64'>
+        <div className='p-4 sm:p-6 lg:p-8'>
+          {/* Page Header */}
+          <div className='mb-6'>
+            <h1 className='text-2xl font-bold text-gray-800'>
+              Product Management
+            </h1>
+            <p className='text-gray-600 mt-1'>
+              Create and manage your products
+            </p>
+          </div>
+
+          {/* Main Content Card */}
+          <div className='bg-white rounded-lg shadow-sm'>
+            <Tabs defaultValue='createProduct' className='w-full'>
+              <div className='border-b px-4 py-2'>
+                <TabsList className='flex space-x-4'>
+                  <TabsTrigger
+                    value='createProduct'
+                    className='px-4 py-2 text-sm font-medium'
+                  >
                     Create Product
                   </TabsTrigger>
-                  <TabsTrigger value='allProducts'>All Products</TabsTrigger>
+                  <TabsTrigger
+                    value='allProducts'
+                    className='px-4 py-2 text-sm font-medium'
+                  >
+                    All Products
+                  </TabsTrigger>
                 </TabsList>
+              </div>
 
-                <TabsContent value='createProduct'>
-                  <form onSubmit={handleSubmit} className='space-y-6'>
-                    <h1 className='text-2xl font-semibold text-black/80 mb-4'>
-                      Create Product
-                    </h1>
+              <TabsContent value='createProduct' className='p-4 sm:p-6'>
+                <form onSubmit={handleSubmit} className='space-y-6'>
+                  {/* Product Details Section */}
+                  <div className='space-y-6'>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Product Title
-                        </label>
-                        <input
-                          type='text'
-                          name='title'
-                          value={productData.title}
-                          onChange={handleInputChange}
-                          className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                          required
-                        />
+                      <div className='space-y-4'>
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Product Title
+                          </label>
+                          <input
+                            type='text'
+                            name='title'
+                            value={productData.title}
+                            onChange={handleInputChange}
+                            className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            required
+                          />
+                        </div>
+
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Category
+                          </label>
+                          <select
+                            name='categories'
+                            value={productData.categories}
+                            onChange={handleInputChange}
+                            className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                          >
+                            <option value=''>Select Category</option>
+                            {fetchCat.map((item) => (
+                              <option key={item._id} value={item.CategoryName}>
+                                {item.CategoryName}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Price
+                          </label>
+                          <input
+                            type='number'
+                            name='price'
+                            value={productData.price}
+                            onChange={handleInputChange}
+                            className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            required
+                          />
+                        </div>
+
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Stock Quantity
+                          </label>
+                          <input
+                            type='number'
+                            name='StockQuantity'
+                            value={productData.StockQuantity}
+                            onChange={handleInputChange}
+                            className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            required
+                          />
+                        </div>
                       </div>
 
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Product Description
-                        </label>
-                        <textarea
-                          name='desc'
-                          value={productData.desc}
-                          onChange={handleInputChange}
-                          className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                          required
-                        />
-                      </div>
+                      <div className='space-y-4'>
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Product Description
+                          </label>
+                          <textarea
+                            name='desc'
+                            value={productData.desc}
+                            onChange={handleInputChange}
+                            rows='4'
+                            className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            required
+                          />
+                        </div>
 
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Category
-                        </label>
-                        <select
-                          name='categories'
-                          value={productData.categories}
-                          onChange={handleInputChange}
-                          className='w-full py-2 border rounded focus:outline-none focus:border-blue-500'
-                        >
-                          <option value=''>Select Category</option>
-                          {fetchCat.map((item) => (
-                            <option key={item._id} value={item.CategoryName}>
-                              {item.CategoryName}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Product Size (Kg, L, ml)
+                          </label>
+                          <input
+                            type='text'
+                            name='size'
+                            value={productData.size}
+                            onChange={handleInputChange}
+                            className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                            required
+                          />
+                        </div>
 
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Product Size (Kg, L, ml)
-                        </label>
-                        <input
-                          type='text'
-                          name='size'
-                          value={productData.size}
-                          onChange={handleInputChange}
-                          className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Price
-                        </label>
-                        <input
-                          type='text'
-                          name='price'
-                          value={productData.price}
-                          onChange={handleInputChange}
-                          className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Stock Quantity
-                        </label>
-                        <input
-                          type='text'
-                          name='StockQuantity'
-                          value={productData.StockQuantity}
-                          onChange={handleInputChange}
-                          className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                          required
-                        />
-                      </div>
-
-                      <div>
-                        <label className='block text-gray-700 mb-2'>
-                          Product Image
-                        </label>
-                        <input
-                          type='file'
-                          name='img'
-                          id='file'
-                          accept='image/png, image/jpeg'
-                          onChange={(e) => setFile(e.target.files[0])}
-                          className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                          required
-                        />
+                        <div>
+                          <label className='block text-sm font-medium text-gray-700 mb-1'>
+                            Product Image
+                          </label>
+                          <div className='mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg'>
+                            <div className='space-y-1 text-center'>
+                              <svg
+                                className='mx-auto h-12 w-12 text-gray-400'
+                                stroke='currentColor'
+                                fill='none'
+                                viewBox='0 0 48 48'
+                                aria-hidden='true'
+                              >
+                                <path
+                                  d='M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02'
+                                  strokeWidth={2}
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                />
+                              </svg>
+                              <div className='flex text-sm text-gray-600'>
+                                <label
+                                  htmlFor='file'
+                                  className='relative cursor-pointer bg-white rounded-md font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500'
+                                >
+                                  <span>Upload a file</span>
+                                  <input
+                                    id='file'
+                                    name='img'
+                                    type='file'
+                                    className='sr-only'
+                                    onChange={(e) => setFile(e.target.files[0])}
+                                    required
+                                  />
+                                </label>
+                                <p className='pl-1'>or drag and drop</p>
+                              </div>
+                              <p className='text-xs text-gray-500'>
+                                PNG, JPG up to 10MB
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <button
                       type='submit'
-                      className='w-full bg-blue-400 text-white py-3 rounded-lg font-medium hover:bg-blue-500 transition duration-200'
+                      className='w-full max-w-[20rem] bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors'
                     >
                       Create Product
                     </button>
+                  </div>
+                </form>
 
-                    <div className='mt-10'>
-                      <h2 className='text-2xl font-semibold text-black/80 mb-4'>
-                        Add New Category
-                      </h2>
-                      <form onSubmit={handleCatSubmit} className='space-y-4'>
-                        <div>
-                          <label className='block text-gray-700 mb-2'>
-                            Category Name
-                          </label>
-                          <input
-                            type='text'
-                            name='categoryName'
-                            value={categoryName}
-                            onChange={(e) => setCategoryName(e.target.value)}
-                            className='w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500'
-                            required
-                          />
-                        </div>
-                        <button
-                          type='submit'
-                          className='w-full bg-blue-400 text-white py-3 rounded-lg font-medium hover:bg-blue-500 transition duration-200'
-                        >
-                          Add Category
-                        </button>
-                      </form>
+                {/* Category Section */}
+                <div className='mt-8 pt-6 border-t'>
+                  <h2 className='text-lg font-medium text-gray-900 mb-4'>
+                    Add New Category
+                  </h2>
+                  <form onSubmit={handleCatSubmit} className='space-y-4'>
+                    <div>
+                      <label className='block text-sm font-medium text-gray-700 mb-1'>
+                        Category Name
+                      </label>
+                      <input
+                        type='text'
+                        value={categoryName}
+                        onChange={(e) => setCategoryName(e.target.value)}
+                        className='w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+                        required
+                      />
                     </div>
+                    <button
+                      type='submit'
+                      className='w-full max-w-[20rem] justify-center items-center bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-colors'
+                    >
+                      Add Category
+                    </button>
                   </form>
-                </TabsContent>
+                </div>
+              </TabsContent>
 
-                <TabsContent value='allProducts'>
-                  <h1 className='text-2xl font-semibold text-black/80 mb-4'>
+              <TabsContent value='allProducts' className='p-4 sm:p-6'>
+                <div className='space-y-4'>
+                  <h2 className='text-lg font-medium text-gray-900'>
                     All Products
-                  </h1>
-                  {/* Display all products logic here */}
-                  {/* Fetch and render products list */}
-                </TabsContent>
-              </Tabs>
-            </div>
+                  </h2>
+                  {/* Add your products list here */}
+                  <p className='text-gray-600'>No products found.</p>
+                </div>
+              </TabsContent>
+            </Tabs>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -12,11 +12,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const AdminSidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const navigate = useNavigate();
   const { setName, setIsAdmin, userId } = useContext(UserContext);
 
-  // Function to toggle sidebar
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -46,103 +44,121 @@ const AdminSidebar = () => {
     });
   };
 
+  const menuItems = [
+    {
+      icon: <MdOutlineSpaceDashboard size={20} />,
+      text: 'Dashboard',
+      link: '/admin/dashboard',
+    },
+    { icon: <MdPointOfSale size={20} />, text: 'POS', link: '/admin/pos' },
+    {
+      icon: <MdOutlineProductionQuantityLimits size={20} />,
+      text: 'Product',
+      link: '/admin/create-product',
+    },
+    {
+      icon: <MdAddShoppingCart size={20} />,
+      text: 'Orders',
+      link: '/admin/all-orders',
+    },
+    { icon: <CgProfile size={20} />, text: 'Profile', link: '/admin/profile' },
+  ];
+
   return (
     <>
-      {/* Button to open the sidebar (visible on mobile) */}
-      <button
-        onClick={toggleSidebar}
-        aria-controls='logo-sidebar'
-        type='button'
-        className='inline-flex items-center h-10 px-4 text-sm bg-primaryBlue text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
-      >
-        <span className='sr-only'>Open sidebar</span>
-        <IoMenu className='h-8 w-8' />
-      </button>
-
-      {/* Sidebar */}
-      <aside
-        id='logo-sidebar'
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform transform bg-primaryBlue shadow-2xl ${
-          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-        } sm:translate-x-0`}
-        aria-label='Sidebar'
-      >
-        <div className='h-full px-3 py-4 overflow-y-auto dark:bg-gray-800'>
-          {/* Close button (visible on mobile when sidebar is open) */}
+      {/* Mobile Menu Button - Fixed at top */}
+      <div className='fixed top-0 left-0 z-50 w-full bg-primaryBlue sm:hidden'>
+        <div className='flex items-center justify-between px-4 py-2'>
+          <Link to='/' className='flex items-center'>
+            <img src={logoT} className='h-10' alt='Logo' />
+          </Link>
           <button
             onClick={toggleSidebar}
-            aria-label='Close sidebar'
-            className='sm:hidden text-black absolute top-4 right-4 p-2'
+            className='p-2 text-white hover:bg-blue-700 rounded-lg transition-colors'
           >
-            <IoClose className='w-8 h-8' />
+            {isSidebarOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
           </button>
+        </div>
+      </div>
 
-          {/* Logo */}
+      {/* Mobile Dropdown Menu */}
+      <div
+        className={`fixed top-14 left-0 right-0 z-40 bg-primaryBlue transform transition-transform duration-300 ease-in-out sm:hidden ${
+          isSidebarOpen ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
+        <nav className='px-4 py-2'>
+          <ul className='space-y-1'>
+            {menuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  to={item.link}
+                  className='flex items-center p-3 text-black rounded-lg hover:bg-primaryRed transition-colors'
+                  onClick={toggleSidebar}
+                >
+                  {item.icon}
+                  <span className='ml-3'>{item.text}</span>
+                </Link>
+              </li>
+            ))}
+            <li>
+              <button
+                onClick={() => {
+                  toggleSidebar();
+                  handleSignOut();
+                }}
+                className='w-full flex items-center p-3 text-black rounded-lg hover:bg-primaryRed hover:text-white transition-colors'
+              >
+                <PiSignOutBold size={20} />
+                <span className='ml-3'>Sign Out</span>
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      {/* Desktop Sidebar */}
+      <aside
+        className='hidden sm:block fixed top-0 left-0 z-40 w-64 h-screen bg-primaryBlue shadow-2xl'
+        aria-label='Sidebar'
+      >
+        <div className='h-full px-3 py-4 overflow-y-auto'>
           <Link to='/' className='flex items-center ps-2.5 mb-5'>
-            <img src={logoT} className='me-3 h-14 md:h-20' alt='Logo' />
+            <img src={logoT} className='h-14 md:h-20' alt='Logo' />
           </Link>
 
-          {/* Menu items */}
-          <ul className='space-y-2 font-medium'>
-            <li>
-              <Link
-                to={`/admin/dashboard`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <MdOutlineSpaceDashboard />
-                <span className='ms-3'>Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/admin/pos`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <MdPointOfSale />
-                <span className='flex-1 ms-3 whitespace-nowrap'>POS</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/admin/create-product`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <MdOutlineProductionQuantityLimits />
-                <span className='flex-1 ms-3 whitespace-nowrap'>Product</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/admin/all-orders`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <MdAddShoppingCart />
-                <span className='flex-1 ms-3 whitespace-nowrap'>Orders</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={`/admin/profile`}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 group'
-              >
-                <CgProfile />
-                <span className='flex-1 ms-3 whitespace-nowrap'>Profile</span>
-              </Link>
-            </li>
+          <ul className='space-y-2'>
+            {menuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  to={item.link}
+                  className='flex items-center p-2 text-black rounded-lg hover:bg-primaryRed hover:text-white transition-colors group'
+                >
+                  {item.icon}
+                  <span className='ml-3'>{item.text}</span>
+                </Link>
+              </li>
+            ))}
             <li>
               <button
                 onClick={handleSignOut}
-                className='flex items-center p-2 text-gray-900 rounded-lg hover:text-white hover:bg-primaryRed dark:hover:bg-gray-700 w-full'
+                className='w-full flex items-center p-2 text-black rounded-lg hover:bg-primaryRed hover:text-white transition-colors'
               >
-                <PiSignOutBold />
-                <span className='flex-1 ms-3 whitespace-nowrap text-start'>
-                  Sign Out
-                </span>
+                <PiSignOutBold size={20} />
+                <span className='ml-3 text-left'>Sign Out</span>
               </button>
             </li>
           </ul>
         </div>
       </aside>
+
+      {/* Overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className='fixed inset-0 bg-black bg-opacity-50 z-30 sm:hidden'
+          onClick={toggleSidebar}
+        ></div>
+      )}
     </>
   );
 };
